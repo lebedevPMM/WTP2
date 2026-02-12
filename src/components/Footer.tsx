@@ -18,7 +18,6 @@ const Footer: React.FC = () => {
                     <span className="label">Legal</span>
                     <Link to="/process/terms" className="text-body" style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}>Terms of Service</Link>
                     <p className="text-body">Privacy Policy</p>
-                    <Link to="/updates" className="text-body" style={{ display: 'block', marginTop: '8px', textDecoration: 'none' }}>Updates</Link>
                 </div>
                 <div>
                     <span className="label">Office</span>

@@ -163,43 +163,64 @@ const LandingPage: React.FC = () => {
             {/* Product Lines */}
             <section id="products">
                 <span className="label">Product Lines</span>
-                <div className="grid-4">
-                    <Link to="/products/banking" style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <ProductCard
-                            title="Banking"
-                            description="Personal & corporate accounts, payment support."
-                            gradient="var(--accent-magma)"
-                            pillText="Essential"
-                            features={[]}
-                        />
+                <div className="product-split-container">
+
+                    <Link to="/products/banking" className="product-split-row">
+                        <div className="product-split-image">
+                            <div className="visual-bg" style={{ background: 'var(--accent-magma)' }} />
+                            <div className="icon-overlay">BK</div>
+                        </div>
+                        <div className="product-split-content">
+                            <span className="pill">Core Service</span>
+                            <h2 style={{ fontSize: '36px' }}>Banking</h2>
+                            <p className="subtitle" style={{ fontSize: '16px', marginBottom: 0 }}>
+                                Personal &amp; corporate accounts, payment support, and institutional routing. We handle the heavy lifting of compliance and relationship management with UAE banks.
+                            </p>
+                        </div>
                     </Link>
-                    <Link to="/products/business-setup" style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <ProductCard
-                            title="Business Setup"
-                            description="Registration, licensing, tax & operating setup."
-                            gradient="var(--accent-gold)"
-                            pillText="Foundation"
-                            features={[]}
-                        />
+
+                    <Link to="/products/business-setup" className="product-split-row">
+                        <div className="product-split-image">
+                            <div className="visual-bg" style={{ background: 'var(--accent-gold)' }} />
+                            <div className="icon-overlay">BS</div>
+                        </div>
+                        <div className="product-split-content">
+                            <span className="pill">Operations</span>
+                            <h2 style={{ fontSize: '36px' }}>Business Setup</h2>
+                            <p className="subtitle" style={{ fontSize: '16px', marginBottom: 0 }}>
+                                From mainland registration to specialized free zone licensing. We ensure your corporate structure is tax-optimized and operationally sound from day one.
+                            </p>
+                        </div>
                     </Link>
-                    <Link to="/products/residency" style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <ProductCard
-                            title="Residency"
-                            description="Visas & Emirates ID integrated with tax logic."
-                            gradient="var(--accent-teal)"
-                            pillText="Immigration"
-                            features={[]}
-                        />
+
+                    <Link to="/products/residency" className="product-split-row">
+                        <div className="product-split-image">
+                            <div className="visual-bg" style={{ background: 'var(--accent-teal)' }} />
+                            <div className="icon-overlay">RE</div>
+                        </div>
+                        <div className="product-split-content">
+                            <span className="pill">Identity</span>
+                            <h2 style={{ fontSize: '36px' }}>Residency</h2>
+                            <p className="subtitle" style={{ fontSize: '16px', marginBottom: 0 }}>
+                                Executive visas and Emirates ID services integrated with personal tax logic. We manage the entire lifecycle of residency for principals and their families.
+                            </p>
+                        </div>
                     </Link>
-                    <Link to="/products/assets-wealth" style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <ProductCard
-                            title="Wealth"
-                            description="Real estate, wills, foundations, custody."
-                            gradient="var(--accent-nebula)"
-                            pillText="Premium"
-                            features={[]}
-                        />
+
+                    <Link to="/products/assets-wealth" className="product-split-row">
+                        <div className="product-split-image">
+                            <div className="visual-bg" style={{ background: 'var(--accent-nebula)' }} />
+                            <div className="icon-overlay">WE</div>
+                        </div>
+                        <div className="product-split-content">
+                            <span className="pill">Legacy</span>
+                            <h2 style={{ fontSize: '36px' }}>Wealth</h2>
+                            <p className="subtitle" style={{ fontSize: '16px', marginBottom: 0 }}>
+                                Strategic real estate acquisition, Sharia-compliant or DIFC wills, foundations, and private custody solutions for long-term asset protection.
+                            </p>
+                        </div>
                     </Link>
+
                 </div>
             </section>
 
