@@ -24,13 +24,13 @@ const htmlContent = `<!DOCTYPE html>
   }
 
   :root {
-    /* Dark Theme Variables matching WTP 2 */
-    --bg: #050505;
-    --bg-card: #0F0F0F;
-    --border: #222222;
-    --text: #FFFFFF;
-    --text2: #999999;
-    --meta: #555555;
+    /* Light Theme Variables matching WTP 2 */
+    --bg: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --border: #E0E0E0;
+    --text: #0A0A0A;
+    --text2: #666666;
+    --meta: #999999;
     
     --accent-magma: linear-gradient(135deg, #ff4d4d, #f9cb28);
     --accent-gold: linear-gradient(135deg, #d4af37, #f2eecb);
@@ -200,7 +200,7 @@ const htmlContent = `<!DOCTYPE html>
     border: 1px solid var(--border);
     margin-bottom: 6px;
     color: var(--text2);
-     background: #000;
+     background: var(--bg-card);
   }
 
   .process-step h3 {
@@ -256,7 +256,7 @@ const htmlContent = `<!DOCTYPE html>
 
   /* ---- PRODUCT LINES (Grid 4) ---- */
   .product-card {
-    background: #0a0a0a;
+    background: #f5f5f5;
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
@@ -283,9 +283,9 @@ const htmlContent = `<!DOCTYPE html>
   .product-card .pill {
     font-size: 6px;
     padding: 2px 4px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.2);
     border-radius: 100px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(0,0,0,0.7);
     display: inline-block;
     margin-bottom: 4px;
   }
@@ -294,13 +294,13 @@ const htmlContent = `<!DOCTYPE html>
     font-family: var(--serif);
     font-size: 12px;
     margin-bottom: 4px;
-    color: #fff;
+    color: #000;
     font-weight: 400;
   }
 
   .product-card p {
     font-size: 7px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(0,0,0,0.8);
     margin-bottom: 6px;
     line-height: 1.2;
   }
@@ -447,11 +447,7 @@ const htmlContent = `<!DOCTYPE html>
         <span class="pill">Essential</span>
         <h4>Banking</h4>
         <p>Personal & corporate accounts, payment support.</p>
-        <ul>
-          <li>→ Account opening</li>
-          <li>→ Compliance prep</li>
-          <li>→ Payment routing</li>
-        </ul>
+        <!-- Features removed for Light Theme Fidelity -->
       </div>
     </div>
     <div class="product-card">
@@ -460,11 +456,7 @@ const htmlContent = `<!DOCTYPE html>
         <span class="pill">Foundation</span>
         <h4>Business Setup</h4>
         <p>Registration, licensing, tax & operating setup.</p>
-        <ul>
-           <li>→ Company formation</li>
-           <li>→ License acquisition</li>
-           <li>→ Tax registration</li>
-        </ul>
+        <!-- Features removed for Light Theme Fidelity -->
       </div>
     </div>
      <div class="product-card">
@@ -473,11 +465,7 @@ const htmlContent = `<!DOCTYPE html>
         <span class="pill">Immigration</span>
         <h4>Residency</h4>
         <p>Visas & Emirates ID integrated with tax logic.</p>
-        <ul>
-           <li>→ Visa processing</li>
-           <li>→ Emirates ID</li>
-           <li>→ Tax residency</li>
-        </ul>
+        <!-- Features removed for Light Theme Fidelity -->
       </div>
     </div>
      <div class="product-card">
@@ -486,11 +474,7 @@ const htmlContent = `<!DOCTYPE html>
         <span class="pill">Premium</span>
         <h4>Wealth</h4>
         <p>Real estate, wills, foundations, custody.</p>
-        <ul>
-           <li>→ Property acquisition</li>
-           <li>→ Estate planning</li>
-           <li>→ Asset structuring</li>
-        </ul>
+        <!-- Features removed for Light Theme Fidelity -->
       </div>
     </div>
   </div>

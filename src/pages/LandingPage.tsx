@@ -170,7 +170,7 @@ const LandingPage: React.FC = () => {
                             description="Personal & corporate accounts, payment support."
                             gradient="var(--accent-magma)"
                             pillText="Essential"
-                            features={['Account opening', 'Compliance prep', 'Payment routing']}
+                            features={[]}
                         />
                     </Link>
                     <Link to="/products/business-setup" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -179,7 +179,7 @@ const LandingPage: React.FC = () => {
                             description="Registration, licensing, tax & operating setup."
                             gradient="var(--accent-gold)"
                             pillText="Foundation"
-                            features={['Company formation', 'License acquisition', 'Tax registration']}
+                            features={[]}
                         />
                     </Link>
                     <Link to="/products/residency" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -188,7 +188,7 @@ const LandingPage: React.FC = () => {
                             description="Visas & Emirates ID integrated with tax logic."
                             gradient="var(--accent-teal)"
                             pillText="Immigration"
-                            features={['Visa processing', 'Emirates ID', 'Tax residency']}
+                            features={[]}
                         />
                     </Link>
                     <Link to="/products/assets-wealth" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -197,7 +197,7 @@ const LandingPage: React.FC = () => {
                             description="Real estate, wills, foundations, custody."
                             gradient="var(--accent-nebula)"
                             pillText="Premium"
-                            features={['Property acquisition', 'Estate planning', 'Asset structuring']}
+                            features={[]}
                         />
                     </Link>
                 </div>
