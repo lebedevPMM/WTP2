@@ -23,13 +23,37 @@ dist-ssr
 *.sln
 *.sw?
 
-# Notion scripts (use NOTION_TOKEN env var)
+# ===== INTERNAL / CONFIDENTIAL — NEVER IN PUBLIC GIT =====
+
+# Notion scripts (contain API logic, use NOTION_TOKEN env var)
 scripts/upload-to-notion.mjs
 scripts/upload-single-doc.mjs
 scripts/attach-pdfs-to-notion.mjs
 
-# Internal documents — NEVER deploy to public hosting
-# (Partner Kit PDFs in process/01,02,03,06 are PUBLIC — they stay tracked)
+# Internal Markdown documents (ALL except public Partner Kit sources)
+docs/basics/
+docs/linkedin/
+docs/partner/
+docs/process/04-commercial-proposal.md
+docs/process/05-retainer.md
+docs/marketing-plan-6mo.md
+docs/project-process.md
+docs/project-summary.md
+docs/PROJECT_LOG.md
+docs/templates/
+
+# Russian translations (same categories)
+docs/ru/basics/
+docs/ru/linkedin/
+docs/ru/partner/
+docs/ru/process/04-commercial-proposal.md
+docs/ru/process/05-retainer.md
+docs/ru/marketing-plan-6mo.md
+docs/ru/project-process.md
+docs/ru/project-summary.md
+
+# Internal PDF files in public/ (NOT for public hosting)
+# (Partner Kit PDFs in process/01,02,03,06 ARE PUBLIC — they stay tracked)
 public/docs/basics/
 public/docs/linkedin/
 public/docs/partner/
@@ -41,6 +65,17 @@ public/docs/ru/linkedin/
 public/docs/ru/partner/
 public/docs/ru/process/04-commercial-proposal.pdf
 public/docs/ru/process/05-retainer.pdf
+
+# Product marketing context (competitive analysis, pricing, strategy)
+.claude/
+
+# Internal planning & roadmap
+BACKLOG.md
+SESSION_LOG.md
+IMPROVEMENT_PLAN.md
+
+# Brain directory (skills, prompts, configs)
+brain/
 
 # Stitch MCP outputs
 stitch-*.html
