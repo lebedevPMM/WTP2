@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Notion upload scripts (contain API tokens)
+scripts/upload-to-notion.mjs
+scripts/upload-single-doc.mjs
+
+# Stitch MCP outputs
+stitch-*.html
+stitch-*.png
+
+# Raw SVG sources (processed versions in public/)
+wtp *.svg
