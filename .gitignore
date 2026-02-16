@@ -23,9 +23,24 @@ dist-ssr
 *.sln
 *.sw?
 
-# Notion upload scripts (contain API tokens)
+# Notion scripts (use NOTION_TOKEN env var)
 scripts/upload-to-notion.mjs
 scripts/upload-single-doc.mjs
+scripts/attach-pdfs-to-notion.mjs
+
+# Internal documents — NEVER deploy to public hosting
+# (Partner Kit PDFs in process/01,02,03,06 are PUBLIC — they stay tracked)
+public/docs/basics/
+public/docs/linkedin/
+public/docs/partner/
+public/docs/marketing-plan-6mo.pdf
+public/docs/process/04-commercial-proposal.pdf
+public/docs/process/05-retainer.pdf
+public/docs/ru/basics/
+public/docs/ru/linkedin/
+public/docs/ru/partner/
+public/docs/ru/process/04-commercial-proposal.pdf
+public/docs/ru/process/05-retainer.pdf
 
 # Stitch MCP outputs
 stitch-*.html
