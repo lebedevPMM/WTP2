@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
                 <div>
                     <span className="label">{t('footer.legal')}</span>
                     <Link to="/process/terms" className="text-body" style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}>{t('footer.terms')}</Link>
-                    <p className="text-body">{t('footer.privacy')}</p>
+                    <Link to="/privacy" className="text-body" style={{ display: 'block', textDecoration: 'none' }}>{t('footer.privacy')}</Link>
                 </div>
                 <div>
                     <span className="label">{t('footer.office')}</span>

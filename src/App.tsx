@@ -11,6 +11,7 @@ import EngagementPage from './pages/EngagementPage'
 import PartnerKitPage from './pages/PartnerKitPage'
 import UpdatesPage from './pages/UpdatesPage'
 import TermsPage from './pages/TermsPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route index element={<LandingPage />} />
 
                 {/* Dynamic Routes */}
+                <Route path="privacy" element={<PrivacyPolicyPage />} />
                 <Route path="process/terms" element={<TermsPage />} />
                 <Route path="process/:slug" element={<ProcessPage />} />
                 <Route path="products/:slug" element={<ProductPage />} />

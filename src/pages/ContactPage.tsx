@@ -5,9 +5,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { contactFormSchema, type ContactFormData } from '../lib/validations'
 import FormInput from '../components/FormInput'
 import FormTextarea from '../components/FormTextarea'
+import FormCheckbox from '../components/FormCheckbox'
 import { submitContactToBitrix } from '../lib/bitrix'
+import { useLanguage } from '../lib/LanguageContext'
 
 const ContactPage: React.FC = () => {
+    const { t } = useLanguage()
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -89,6 +92,19 @@ const ContactPage: React.FC = () => {
                                 />
                             </div>
                         </div>
+
+                        {/* Privacy Consent */}
+                        <FormCheckbox
+                            name="consentPrivacy"
+                            register={register('consentPrivacy')}
+                            error={errors.consentPrivacy?.message}
+                            label={
+                                <>
+                                    {t('form.consent.prefix')}{' '}
+                                    <Link to="/privacy">{t('form.consent.link')}</Link>
+                                </>
+                            }
+                        />
 
                         {/* Status Messages */}
                         {submitStatus === 'success' && (

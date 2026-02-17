@@ -63,6 +63,7 @@ const Navbar: React.FC = () => {
                 className={`hamburger ${menuOpen ? 'hamburger--open' : ''}`}
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label="Menu"
+                aria-expanded={menuOpen}
             >
                 <span /><span /><span />
             </button>

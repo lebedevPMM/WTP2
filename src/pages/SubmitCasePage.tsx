@@ -7,6 +7,7 @@ import { NATIONALITIES, RESIDENCIES, BANKING_JURISDICTIONS } from '../lib/consta
 import FormInput from '../components/FormInput'
 import FormTextarea from '../components/FormTextarea'
 import FormSelect from '../components/FormSelect'
+import FormCheckbox from '../components/FormCheckbox'
 import { submitCaseToBitrix } from '../lib/bitrix'
 import { useLanguage } from '../lib/LanguageContext'
 import { trackFormSubmit } from '../lib/analytics'
@@ -143,6 +144,21 @@ const SubmitCasePage: React.FC = () => {
                                 error={errors.sourceOfFunds?.message}
                             />
                         </div>
+                    </div>
+
+                    {/* Privacy Consent */}
+                    <div className="form-section">
+                        <FormCheckbox
+                            name="consentPrivacy"
+                            register={register('consentPrivacy')}
+                            error={errors.consentPrivacy?.message}
+                            label={
+                                <>
+                                    {t('form.consent.prefix')}{' '}
+                                    <Link to="/privacy">{t('form.consent.link')}</Link>
+                                </>
+                            }
+                        />
                     </div>
 
                     {/* Status Messages */}

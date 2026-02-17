@@ -31,6 +31,8 @@ export const submitCaseSchema = z.object({
     sourceOfFunds: z.string()
         .min(10, 'Please provide more details about source of funds')
         .max(1000, 'Description is too long'),
+
+    consentPrivacy: z.literal(true, 'You must agree to the Privacy Policy'),
 })
 
 export type SubmitCaseFormData = z.infer<typeof submitCaseSchema>
@@ -53,6 +55,8 @@ export const contactFormSchema = z.object({
     message: z.string()
         .min(10, 'Message must be at least 10 characters')
         .max(1000, 'Message is too long'),
+
+    consentPrivacy: z.literal(true, 'You must agree to the Privacy Policy'),
 })
 
 export type ContactFormData = z.infer<typeof contactFormSchema>
