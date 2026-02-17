@@ -143,19 +143,19 @@ const ContactPage: React.FC = () => {
 
                         <div className="contact-info-block">
                             <h4>Email</h4>
-                            <a href="mailto:email@wtp.uae">email@wtp.uae</a>
+                            <a href="mailto:hello@wtpbrokers.com">hello@wtpbrokers.com</a>
                         </div>
 
                         <div className="contact-info-block">
-                            <h4>Telegram</h4>
-                            <a href="https://t.me/wtp_uae" target="_blank" rel="noopener noreferrer">@wtp_uae</a>
+                            <h4>Phone</h4>
+                            <a href="tel:+971600575294">+971 600 575-294</a>
                         </div>
 
                         <div className="contact-info-block">
                             <h4>Office</h4>
                             <p>
-                                Dubai International Financial Centre<br />
-                                Dubai, UAE
+                                Office 1207, Arenco Tower<br />
+                                Media City, Dubai, UAE
                             </p>
                         </div>
                     </div>

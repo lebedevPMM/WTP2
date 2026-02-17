@@ -316,7 +316,7 @@ const translations: Record<string, Record<string, string>> = {
         'footer.terms': 'Terms of Service',
         'footer.privacy': 'Privacy Policy',
         'footer.office': 'Office',
-        'footer.address': 'Dubai International Financial Centre\nDubai, UAE',
+        'footer.address': 'Office 1207, Arenco Tower\nMedia City, Dubai, UAE',
 
         // Cookie Banner
         'cookie.text': 'We use cookies for analytics to improve our website. You can accept or reject non-essential cookies.',
@@ -652,7 +652,7 @@ const translations: Record<string, Record<string, string>> = {
         'footer.terms': 'Условия использования',
         'footer.privacy': 'Политика конфиденциальности',
         'footer.office': 'Офис',
-        'footer.address': 'Dubai International Financial Centre\nDubай, ОАЭ',
+        'footer.address': 'Office 1207, Arenco Tower\nMedia City, Дубай, ОАЭ',
 
         // Cookie Banner
         'cookie.text': 'Мы используем cookies для аналитики и улучшения сайта. Вы можете принять или отклонить необязательные cookies.',

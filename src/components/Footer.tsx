@@ -17,8 +17,12 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                     <span className="label">{t('footer.contact')}</span>
-                    <p className="text-body" style={{ marginBottom: '8px' }}>email@wtp.uae</p>
-                    <p className="text-body">Telegram: @wtp_uae</p>
+                    <p className="text-body" style={{ marginBottom: '8px' }}>
+                        <a href="mailto:hello@wtpbrokers.com" style={{ color: 'inherit', textDecoration: 'none' }}>hello@wtpbrokers.com</a>
+                    </p>
+                    <p className="text-body">
+                        <a href="tel:+971600575294" style={{ color: 'inherit', textDecoration: 'none' }}>+971 600 575-294</a>
+                    </p>
                 </div>
                 <div>
                     <span className="label">{t('footer.legal')}</span>
@@ -28,8 +32,8 @@ const Footer: React.FC = () => {
                 <div>
                     <span className="label">{t('footer.office')}</span>
                     <p className="text-body">
-                        Dubai International Financial Centre<br />
-                        Dubai, UAE
+                        Office 1207, Arenco Tower<br />
+                        Media City, Dubai, UAE
                     </p>
                 </div>
             </div>
