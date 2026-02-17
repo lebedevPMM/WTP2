@@ -40,6 +40,10 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 /* Animations kept as is */
 @keyframes fadeInUp {
   from {
@@ -207,6 +211,7 @@ section {
 .hero-section {
   margin-bottom: 160px;
   position: relative;
+  overflow: hidden;
   animation: fadeInUp 0.8s ease-out;
 }
 
