@@ -63,7 +63,7 @@ const SubmitCasePage: React.FC = () => {
                             <FormInput
                                 label={t('submitCase.name')}
                                 name="name"
-                                placeholder="John Doe"
+                                placeholder={t('submitCase.namePlaceholder')}
                                 required
                                 register={register('name')}
                                 error={errors.name?.message}
@@ -72,7 +72,7 @@ const SubmitCasePage: React.FC = () => {
                                 label={t('submitCase.email')}
                                 name="email"
                                 type="email"
-                                placeholder="john@example.com"
+                                placeholder={t('submitCase.emailPlaceholder')}
                                 required
                                 register={register('email')}
                                 error={errors.email?.message}
@@ -80,7 +80,7 @@ const SubmitCasePage: React.FC = () => {
                             <FormInput
                                 label={t('submitCase.telegram')}
                                 name="telegram"
-                                placeholder="@username"
+                                placeholder={t('submitCase.telegramPlaceholder')}
                                 register={register('telegram')}
                                 error={errors.telegram?.message}
                             />
@@ -95,7 +95,7 @@ const SubmitCasePage: React.FC = () => {
                                 label={t('submitCase.nationality')}
                                 name="nationality"
                                 options={NATIONALITIES}
-                                placeholder="Select nationality"
+                                placeholder={t('submitCase.nationalityPlaceholder')}
                                 required
                                 register={register('nationality')}
                                 error={errors.nationality?.message}
@@ -104,7 +104,7 @@ const SubmitCasePage: React.FC = () => {
                                 label={t('submitCase.residency')}
                                 name="residency"
                                 options={RESIDENCIES}
-                                placeholder="Select residency"
+                                placeholder={t('submitCase.residencyPlaceholder')}
                                 required
                                 register={register('residency')}
                                 error={errors.residency?.message}
@@ -129,7 +129,7 @@ const SubmitCasePage: React.FC = () => {
                                 label={t('submitCase.jurisdiction')}
                                 name="bankingJurisdiction"
                                 options={BANKING_JURISDICTIONS}
-                                placeholder="Select jurisdiction"
+                                placeholder={t('submitCase.jurisdictionPlaceholder')}
                                 required
                                 register={register('bankingJurisdiction')}
                                 error={errors.bankingJurisdiction?.message}

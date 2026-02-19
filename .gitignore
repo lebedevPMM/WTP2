@@ -29,6 +29,7 @@ dist-ssr
 scripts/upload-to-notion.mjs
 scripts/upload-single-doc.mjs
 scripts/attach-pdfs-to-notion.mjs
+scripts/upload-pdfs-to-notion.mjs
 
 # Internal Markdown documents (ALL except public Partner Kit sources)
 docs/basics/

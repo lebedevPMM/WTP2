@@ -325,10 +325,10 @@ const ProductPage: React.FC = () => {
         return (
             <div className="container" style={{ paddingTop: '80px' }}>
                 <Link to="/" className="label" style={{ textDecoration: 'none', cursor: 'pointer' }}>
-                    {lang === 'ru' ? '\u2190 \u041d\u0430\u0437\u0430\u0434 \u043a \u043e\u0431\u0437\u043e\u0440\u0443' : '\u2190 Back to Overview'}
+                    {t('product.back')}
                 </Link>
-                <h1>{lang === 'ru' ? '\u041f\u0440\u043e\u0434\u0443\u043a\u0442 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d' : 'Product Not Found'}</h1>
-                <p className="text-body">{lang === 'ru' ? '\u0417\u0430\u043f\u0440\u043e\u0448\u0435\u043d\u043d\u0430\u044f \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u043e\u0432\u0430\u044f \u043b\u0438\u043d\u0435\u0439\u043a\u0430 \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442.' : 'The requested product line does not exist.'}</p>
+                <h1>{t('product.notFound')}</h1>
+                <p className="text-body">{t('product.notFoundText')}</p>
             </div>
         )
     }
@@ -338,7 +338,7 @@ const ProductPage: React.FC = () => {
             <section className="hero-section" style={{ minHeight: 'auto', marginBottom: '80px' }}>
                 <div className="label" style={{ marginBottom: '32px' }}>
                     <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                        {lang === 'ru' ? '\u2190 \u041d\u0430\u0437\u0430\u0434 \u043a \u043e\u0431\u0437\u043e\u0440\u0443' : '\u2190 Back to Overview'}
+                        {t('product.back')}
                     </Link>
                 </div>
                 <span className="label">{data.subtitle}</span>
@@ -348,8 +348,8 @@ const ProductPage: React.FC = () => {
 
             <section>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '32px' }}>
-                    <h2>{lang === 'ru' ? '\u0423\u0441\u043b\u0443\u0433\u0438' : 'Services'}</h2>
-                    <span className="label">{lang === 'ru' ? '\u041e\u0431\u044a\u0451\u043c' : 'Scope'}</span>
+                    <h2>{t('product.services')}</h2>
+                    <span className="label">{t('product.scope')}</span>
                 </div>
                 <div className="grid-2">
                     {data.services.map((svc) => (
@@ -364,8 +364,8 @@ const ProductPage: React.FC = () => {
             {data.redFlags && (
                 <section>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '32px' }}>
-                        <h2>Red Flags</h2>
-                        <span className="label">{lang === 'ru' ? '\u0412\u043d\u0438\u043c\u0430\u043d\u0438\u0435' : 'Attention'}</span>
+                        <h2>{t('product.redFlags')}</h2>
+                        <span className="label">{t('product.attention')}</span>
                     </div>
                     <div className="grid-2">
                         {data.redFlags.map((flag, i) => (
@@ -382,8 +382,8 @@ const ProductPage: React.FC = () => {
 
             <section>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '32px' }}>
-                    <h2>{lang === 'ru' ? '\u041e\u0436\u0438\u0434\u0430\u0435\u043c\u044b\u0439 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442' : 'Expected Result'}</h2>
-                    <span className="label">{lang === 'ru' ? '\u0418\u0442\u043e\u0433' : 'Outcome'}</span>
+                    <h2>{t('product.result')}</h2>
+                    <span className="label">{t('product.outcome')}</span>
                 </div>
                 <Card style={{ borderColor: 'var(--border-focus)', background: 'transparent' }}>
                     <p className="text-body" style={{ fontSize: '16px', color: 'var(--text-primary)' }}>{data.result}</p>

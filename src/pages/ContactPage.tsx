@@ -44,10 +44,10 @@ const ContactPage: React.FC = () => {
 
     return (
         <div className="form-page">
-            <span className="label">Get in Touch</span>
-            <h1>Contact Us</h1>
+            <span className="label">{t('contact.label')}</span>
+            <h1>{t('contact.title')}</h1>
             <p className="subtitle">
-                Get in touch with our team. We'll get back to you within 24 hours.
+                {t('contact.subtitle')}
             </p>
 
             <div className="contact-grid">
@@ -55,36 +55,36 @@ const ContactPage: React.FC = () => {
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-section">
-                            <h3>Send us a message</h3>
+                            <h3>{t('contact.formTitle')}</h3>
                             <div className="form-grid">
                                 <FormInput
-                                    label="Name"
+                                    label={t('contact.name')}
                                     name="name"
-                                    placeholder="John Doe"
+                                    placeholder={t('contact.namePlaceholder')}
                                     required
                                     register={register('name')}
                                     error={errors.name?.message}
                                 />
                                 <FormInput
-                                    label="Email"
+                                    label={t('contact.email')}
                                     name="email"
                                     type="email"
-                                    placeholder="john@example.com"
+                                    placeholder={t('contact.emailPlaceholder')}
                                     required
                                     register={register('email')}
                                     error={errors.email?.message}
                                 />
                                 <FormInput
-                                    label="Telegram"
+                                    label={t('contact.telegram')}
                                     name="telegram"
-                                    placeholder="@username"
+                                    placeholder={t('contact.telegramPlaceholder')}
                                     register={register('telegram')}
                                     error={errors.telegram?.message}
                                 />
                                 <FormTextarea
-                                    label="Message"
+                                    label={t('contact.message')}
                                     name="message"
-                                    placeholder="Tell us about your inquiry..."
+                                    placeholder={t('contact.messagePlaceholder')}
                                     required
                                     rows={5}
                                     register={register('message')}
@@ -109,13 +109,13 @@ const ContactPage: React.FC = () => {
                         {/* Status Messages */}
                         {submitStatus === 'success' && (
                             <div className="form-alert success">
-                                Your message has been sent successfully! We'll get back to you soon.
+                                {t('contact.success')}
                             </div>
                         )}
 
                         {submitStatus === 'error' && (
                             <div className="form-alert error">
-                                Something went wrong. Please try again or reach out via email directly.
+                                {t('contact.error')}
                             </div>
                         )}
 
@@ -127,10 +127,10 @@ const ContactPage: React.FC = () => {
                                 className="btn"
                                 style={isSubmitting ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
                             >
-                                {isSubmitting ? 'Sending...' : 'Send Message'}
+                                {isSubmitting ? t('contact.submitting') : t('contact.submit')}
                             </button>
                             <Link to="/" className="btn btn-outline">
-                                Back to Home
+                                {t('contact.backHome')}
                             </Link>
                         </div>
                     </form>
@@ -139,20 +139,20 @@ const ContactPage: React.FC = () => {
                 {/* Contact Information */}
                 <div>
                     <div className="form-section">
-                        <h3>Get in Touch</h3>
+                        <h3>{t('contact.info')}</h3>
 
                         <div className="contact-info-block">
-                            <h4>Email</h4>
+                            <h4>{t('contact.emailLabel')}</h4>
                             <a href="mailto:hello@wtpbrokers.com">hello@wtpbrokers.com</a>
                         </div>
 
                         <div className="contact-info-block">
-                            <h4>Phone</h4>
+                            <h4>{t('contact.phoneLabel')}</h4>
                             <a href="tel:+971600575294">+971 600 575-294</a>
                         </div>
 
                         <div className="contact-info-block">
-                            <h4>Office</h4>
+                            <h4>{t('contact.officeLabel')}</h4>
                             <p>
                                 Office 1207, Arenco Tower<br />
                                 Media City, Dubai, UAE
@@ -161,9 +161,9 @@ const ContactPage: React.FC = () => {
                     </div>
 
                     <div className="response-card">
-                        <h4>Response Time</h4>
+                        <h4>{t('contact.responseTime')}</h4>
                         <p>
-                            We typically respond within 24 hours during business days. For urgent matters, please reach out via Telegram.
+                            {t('contact.responseText')}
                         </p>
                     </div>
                 </div>

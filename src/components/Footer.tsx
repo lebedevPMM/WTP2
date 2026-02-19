@@ -31,9 +31,8 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                     <span className="label">{t('footer.office')}</span>
-                    <p className="text-body">
-                        Office 1207, Arenco Tower<br />
-                        Media City, Dubai, UAE
+                    <p className="text-body" style={{ whiteSpace: 'pre-line' }}>
+                        {t('footer.address')}
                     </p>
                 </div>
             </div>

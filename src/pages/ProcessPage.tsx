@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Card from '../components/Card'
+import { useLanguage } from '../lib/LanguageContext'
 
 interface StepDetail {
     title: string
@@ -12,83 +13,154 @@ interface StepDetail {
     nextHref?: string
 }
 
-const processData: Record<string, StepDetail> = {
-    'pre-screen': {
-        title: 'Pre-screen',
-        subtitle: 'D: PRE-ACTION',
-        intro:
-            'Banking First — we assess every case through the bank\'s lens before any registration. Documents go to the banker for preliminary review. Only after a positive signal do we proceed.',
-        actions: [
-            'Collect KYC Light documents (passport, proof of address, source of funds)',
-            'Assess the case from the bank\'s perspective: red flags, business logic, potential issues',
-            'Send documents to banker for preliminary identity verification',
-            'Issue verdict: ✅ proceed / ⚠ proceed with conditions / ❌ decline',
-        ],
-        result:
-            'Clear understanding of bankability before any commitments are made. No wasted time, no false promises.',
-        nextStep: 'Banking Scenario',
-        nextHref: '/process/banking-scenario',
+type ProcessDataMap = Record<string, Record<string, StepDetail>>
+
+const processData: ProcessDataMap = {
+    en: {
+        'pre-screen': {
+            title: 'Pre-screen',
+            subtitle: 'D: PRE-ACTION',
+            intro:
+                'Banking First — we assess every case through the bank\'s lens before any registration. Documents go to the banker for preliminary review. Only after a positive signal do we proceed.',
+            actions: [
+                'Collect KYC Light documents (passport, proof of address, source of funds)',
+                'Assess the case from the bank\'s perspective: red flags, business logic, potential issues',
+                'Send documents to banker for preliminary identity verification',
+                'Issue verdict: \u2705 proceed / \u26A0 proceed with conditions / \u274C decline',
+            ],
+            result:
+                'Clear understanding of bankability before any commitments are made. No wasted time, no false promises.',
+            nextStep: 'Banking Scenario',
+            nextHref: '/process/banking-scenario',
+        },
+        'banking-scenario': {
+            title: 'Banking Scenario',
+            subtitle: 'D: STRATEGY',
+            intro:
+                'Once the case is cleared, we design the banking strategy: which banks have a real chance, what are their requirements, and how to structure the approach.',
+            actions: [
+                'Determine target banks based on client profile and risk appetite',
+                'Map bank-specific requirements and documentation needs',
+                'Choose optimal jurisdiction and company structure (if applicable)',
+                'Define the full scope and announce pricing',
+            ],
+            result:
+                'A concrete banking strategy with realistic targets. Structure is chosen to serve the bank, not the other way around.',
+            nextStep: 'Delivery',
+            nextHref: '/process/delivery',
+        },
+        'delivery': {
+            title: 'Delivery',
+            subtitle: 'D: EXECUTION',
+            intro:
+                'Execution phase: company registration, bank account submission, visa processing — all aligned with the banking strategy from the previous step.',
+            actions: [
+                'Register company in the chosen zone (Free Zone / Mainland)',
+                'Submit bank application with pre-approved document package',
+                'Process visas and Emirates ID',
+                'Respond to bank compliance questions and iterate on documentation',
+                'Finalize until structure is accepted by bank and regulators',
+            ],
+            result:
+                'Working business structure accepted by the bank, with correct compliance, tax logic, and legal foundation.',
+            nextStep: 'Ongoing Support',
+            nextHref: '/process/ongoing-support',
+        },
+        'ongoing-support': {
+            title: 'Ongoing Support',
+            subtitle: 'D: MAINTENANCE',
+            intro:
+                'Post-delivery retainer: operational stability, compliance monitoring, and long-term value creation for partner and client.',
+            actions: [
+                'License renewals and corporate maintenance',
+                'Bank relationship management and compliance updates',
+                'Visa renewals and status changes',
+                'Additional services: wills, real estate, capital flows',
+                'Partner referral management and commission tracking',
+            ],
+            result:
+                'Client becomes a long-term relationship. Repeat business generates predictable revenue for the partner.',
+        },
     },
-    'banking-scenario': {
-        title: 'Banking Scenario',
-        subtitle: 'D: STRATEGY',
-        intro:
-            'Once the case is cleared, we design the banking strategy: which banks have a real chance, what are their requirements, and how to structure the approach.',
-        actions: [
-            'Determine target banks based on client profile and risk appetite',
-            'Map bank-specific requirements and documentation needs',
-            'Choose optimal jurisdiction and company structure (if applicable)',
-            'Define the full scope and announce pricing',
-        ],
-        result:
-            'A concrete banking strategy with realistic targets. Structure is chosen to serve the bank, not the other way around.',
-        nextStep: 'Delivery',
-        nextHref: '/process/delivery',
-    },
-    'delivery': {
-        title: 'Delivery',
-        subtitle: 'D: EXECUTION',
-        intro:
-            'Execution phase: company registration, bank account submission, visa processing — all aligned with the banking strategy from the previous step.',
-        actions: [
-            'Register company in the chosen zone (Free Zone / Mainland)',
-            'Submit bank application with pre-approved document package',
-            'Process visas and Emirates ID',
-            'Respond to bank compliance questions and iterate on documentation',
-            'Finalize until structure is accepted by bank and regulators',
-        ],
-        result:
-            'Working business structure accepted by the bank, with correct compliance, tax logic, and legal foundation.',
-        nextStep: 'Ongoing Support',
-        nextHref: '/process/ongoing-support',
-    },
-    'ongoing-support': {
-        title: 'Ongoing Support',
-        subtitle: 'D: MAINTENANCE',
-        intro:
-            'Post-delivery retainer: operational stability, compliance monitoring, and long-term value creation for partner and client.',
-        actions: [
-            'License renewals and corporate maintenance',
-            'Bank relationship management and compliance updates',
-            'Visa renewals and status changes',
-            'Additional services: wills, real estate, capital flows',
-            'Partner referral management and commission tracking',
-        ],
-        result:
-            'Client becomes a long-term relationship. Repeat business generates predictable revenue for the partner.',
+    ru: {
+        'pre-screen': {
+            title: 'Pre-screen',
+            subtitle: 'D: ПОДГОТОВКА',
+            intro:
+                'Banking First — мы оцениваем каждый кейс через призму банка до любой регистрации. Документы уходят банкиру на предварительный анализ. Только после положительного сигнала мы продвигаемся.',
+            actions: [
+                'Сбор документов KYC Light (паспорт, подтверждение адреса, источник средств)',
+                'Оценка кейса с позиции банка: red flags, бизнес-логика, потенциальные проблемы',
+                'Отправка документов банкиру для предварительной верификации',
+                'Вердикт: \u2705 двигаемся / \u26A0 двигаемся с условиями / \u274C отказ',
+            ],
+            result:
+                'Чёткое понимание банкабельности до каких-либо обязательств. Без потери времени, без ложных обещаний.',
+            nextStep: 'Банковский сценарий',
+            nextHref: '/process/banking-scenario',
+        },
+        'banking-scenario': {
+            title: 'Банковский сценарий',
+            subtitle: 'D: СТРАТЕГИЯ',
+            intro:
+                'После прохождения pre-screen мы разрабатываем банковскую стратегию: какие банки реально подходят, каковы их требования и как структурировать подход.',
+            actions: [
+                'Определение целевых банков на основе профиля клиента и риск-аппетита',
+                'Маппинг специфических требований банков и необходимых документов',
+                'Выбор оптимальной юрисдикции и корпоративной структуры (если применимо)',
+                'Определение полного объёма и объявление стоимости',
+            ],
+            result:
+                'Конкретная банковская стратегия с реалистичными целями. Структура выбрана для банка, а не наоборот.',
+            nextStep: 'Исполнение',
+            nextHref: '/process/delivery',
+        },
+        'delivery': {
+            title: 'Исполнение',
+            subtitle: 'D: ИСПОЛНЕНИЕ',
+            intro:
+                'Фаза исполнения: регистрация компании, подача на банковский счёт, оформление виз — всё в связке с банковской стратегией предыдущего этапа.',
+            actions: [
+                'Регистрация компании в выбранной зоне (Free Zone / Mainland)',
+                'Подача банковского заявления с согласованным пакетом документов',
+                'Оформление виз и Emirates ID',
+                'Ответы на вопросы банковского комплаенса и итерация по документации',
+                'Финализация до принятия структуры банком и регуляторами',
+            ],
+            result:
+                'Работающая бизнес-структура, принятая банком, с корректным комплаенсом, налоговой логикой и правовой основой.',
+            nextStep: 'Сопровождение',
+            nextHref: '/process/ongoing-support',
+        },
+        'ongoing-support': {
+            title: 'Сопровождение',
+            subtitle: 'D: ПОДДЕРЖКА',
+            intro:
+                'Пост-delivery ретейнер: операционная стабильность, мониторинг комплаенса и создание долгосрочной ценности для партнёра и клиента.',
+            actions: [
+                'Продление лицензий и корпоративное обслуживание',
+                'Управление банковскими отношениями и обновления комплаенса',
+                'Продление виз и изменения статуса',
+                'Дополнительные услуги: завещания, недвижимость, движение капитала',
+                'Управление партнёрскими направлениями и отслеживание комиссий',
+            ],
+            result:
+                'Клиент становится долгосрочным партнёром. Повторный бизнес генерирует предсказуемый доход для партнёра.',
+        },
     },
 }
 
 const ProcessPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>()
-    const data = slug ? processData[slug] : null
+    const { lang, t } = useLanguage()
+    const data = slug ? processData[lang]?.[slug] || processData['en']?.[slug] : null
 
     if (!data) {
         return (
             <div className="container" style={{ paddingTop: '80px' }}>
-                <Link to="/" className="label" style={{ textDecoration: 'none', cursor: 'pointer' }}>← Back to Overview</Link>
-                <h1>Process Step Not Found</h1>
-                <p className="text-body">The requested process step does not exist.</p>
+                <Link to="/" className="label" style={{ textDecoration: 'none', cursor: 'pointer' }}>{t('processPage.back')}</Link>
+                <h1>{t('processPage.notFound')}</h1>
+                <p className="text-body">{t('processPage.notFoundText')}</p>
             </div>
         )
     }
@@ -97,7 +169,7 @@ const ProcessPage: React.FC = () => {
         <div className="container" style={{ paddingBottom: '120px' }}>
             <section className="hero-section" style={{ minHeight: 'auto', marginBottom: '80px' }}>
                 <div className="label" style={{ marginBottom: '32px' }}>
-                    <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>← Back to Overview</Link>
+                    <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>{t('processPage.back')}</Link>
                 </div>
                 <span className="label">{data.subtitle}</span>
                 <h1 style={{ fontSize: '48px' }}>{data.title}</h1>
@@ -106,8 +178,8 @@ const ProcessPage: React.FC = () => {
 
             <section>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '32px' }}>
-                    <h2>What Happens</h2>
-                    <span className="label">Actions</span>
+                    <h2>{t('processPage.whatHappens')}</h2>
+                    <span className="label">{t('processPage.actions')}</span>
                 </div>
                 <div className="grid-2">
                     {data.actions.map((action, i) => (
@@ -123,8 +195,8 @@ const ProcessPage: React.FC = () => {
 
             <section>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '32px' }}>
-                    <h2>Result</h2>
-                    <span className="label">Outcome</span>
+                    <h2>{t('processPage.result')}</h2>
+                    <span className="label">{t('processPage.outcome')}</span>
                 </div>
                 <Card style={{ borderColor: 'var(--border-focus)', background: 'transparent' }}>
                     <p className="text-body" style={{ fontSize: '16px', color: 'var(--text-primary)' }}>{data.result}</p>
@@ -135,10 +207,10 @@ const ProcessPage: React.FC = () => {
                 <section style={{ textAlign: 'center', marginTop: '80px' }}>
                     <Link to={data.nextHref} className="card" style={{ display: 'inline-flex', flexDirection: 'row', alignItems: 'center', gap: '24px', textDecoration: 'none', padding: '24px 48px', minHeight: 'auto' }}>
                         <div style={{ textAlign: 'left' }}>
-                            <div className="label" style={{ marginBottom: '4px' }}>Next Step</div>
+                            <div className="label" style={{ marginBottom: '4px' }}>{t('processPage.nextStep')}</div>
                             <h4 style={{ margin: 0, fontSize: '24px' }}>{data.nextStep}</h4>
                         </div>
-                        <span className="label" style={{ marginBottom: 0 }}>Continue →</span>
+                        <span className="label" style={{ marginBottom: 0 }}>{t('processPage.continue')}</span>
                     </Link>
                 </section>
             )}
