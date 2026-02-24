@@ -37,6 +37,9 @@ function mdToHtml(md) {
     });
   }
 
+  // Strip the first top-level heading (it duplicates the doc-header title)
+  html = html.replace(/^# .+$/m, '').trim();
+
   // Headings
   html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
   html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
@@ -91,12 +94,13 @@ function mdToHtml(md) {
 }
 
 function buildHtmlDoc(content, cssContent, title, meta) {
-  const date = meta.date || new Date().toISOString().split('T')[0];
   const category = meta.category || 'WTP';
   const version = meta.version || 'v1.0';
+  const lang = meta.language || 'en';
+  const confidentialLabel = lang === 'ru' ? 'Конфиденциально' : 'Confidential';
 
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&subset=latin,cyrillic&display=swap" rel="stylesheet">
@@ -110,9 +114,8 @@ function buildHtmlDoc(content, cssContent, title, meta) {
     <h1>${title}</h1>
   </div>
   <div class="doc-meta">
-    <span>${date}</span>
     <span>${version}</span>
-    <span>Confidential</span>
+    <span>${confidentialLabel}</span>
   </div>
 </div>
 
@@ -121,7 +124,6 @@ ${content}
 <div class="doc-footer">
   <span>WTP — UAE Execution Partner</span>
   <span>${title}</span>
-  <span>${date}</span>
 </div>
 
 </body>

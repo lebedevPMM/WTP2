@@ -1,6 +1,5 @@
 ---
 title: Intake Checklist — KYC Light
-date: 2026-02-16
 category: Process
 version: v1.0
 ---
@@ -61,11 +60,11 @@ Structured pre-screen questionnaire. Completed by partner or client before engag
 | Question | Response |
 |----------|----------|
 | Do you currently hold bank accounts in other countries? | Yes / No |
-| Have you been denied a bank account in the last 5 years? | Yes / No / Details |
-| Have you been denied a visa in the last 5 years? | Yes / No / Details |
+| Have you been denied a bank account in the last 5 years? | Yes / No / Details: [To be filled by client] |
+| Have you been denied a visa in the last 5 years? | Yes / No / Details: [To be filled by client] |
 | Do you use or plan to use cryptocurrency? | Yes / No |
 | Expected monthly transaction volume (UAE accounts) | < $10K / $10–50K / $50–250K / > $250K |
-| Primary transaction counterparties (countries) | _________ |
+| Primary transaction counterparties (countries) | [To be filled by client] |
 
 ---
 
@@ -120,25 +119,10 @@ Structured pre-screen questionnaire. Completed by partner or client before engag
 
 ---
 
-## For Internal Use Only
-
-| Field | Filled by WTP |
-|-------|--------------|
-| Risk Verdict | GREEN / YELLOW / RED |
-| Red Flags identified | _________ |
-| Recommended Package | L0 / L1 / L2 / L3 |
-| Recommended Banking Scenario | _________ |
-| Assigned to | _________ |
-| Partner Reference | _________ |
-| CRM Lead ID | _________ |
-| Notes | _________ |
-
----
-
 ## Instructions for Partners
 
 1. Complete all **Required** fields — optional fields help us refine the scenario
 2. Attach: passport copy (main page), SOF documentation (bank statements or accountant letter)
-3. Submit via: email to partner@wtp.uae or via the website form at /submit-case
-4. Expected turnaround: risk verdict within **5–7 business days** of complete submission
+3. Submit through your WTP account manager or agreed communication channel
+4. Expected turnaround: risk verdict within **5–7 business days after receiving the complete document package**
 5. Incomplete submissions will be returned with a request for missing items

@@ -1,6 +1,5 @@
 ---
 title: Risk Classification & Compliance Policy
-date: 2026-02-16
 category: Process
 version: v1.0
 ---
@@ -57,7 +56,7 @@ WTP's framework for client risk assessment. Every client is classified before an
 
 **Action:**
 1. Issue decline communication (use Rejection Templates)
-2. Log reason in CRM (confidential, not shared with client)
+2. Log reason internally (confidential, not shared with client)
 3. No re-engagement without material change in circumstances
 4. No advisory offered for RED profiles
 
@@ -102,7 +101,7 @@ WTP's framework for client risk assessment. Every client is classified before an
 | Regulated industry without proper licenses | HIGH |
 | Crypto-only business with no fiat connections | MEDIUM |
 | Shell company with no real operations | HIGH |
-| Gambling / adult entertainment | MEDIUM |
+| Gambling / adult entertainment | HIGH (decline / advisory only) |
 | Arms / defense (without government contract) | CRITICAL |
 
 ### 5. Substance
@@ -178,8 +177,8 @@ Screening is performed at intake and repeated before banking appointments.
 
 ## Documentation & Audit Trail
 
-1. All risk assessments documented in Bitrix24 CRM
-2. Red Flags Matrix completed for every client (stored as attachment)
+1. All risk assessments are documented
+2. Red Flags Matrix completed for every client
 3. Decline reasons logged (internal only, not shared externally)
 4. Re-assessment requests require new pre-screen submission
 5. Quarterly review of all YELLOW clients in active engagement

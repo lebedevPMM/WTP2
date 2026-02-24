@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { submitCaseSchema, type SubmitCaseFormData } from '../lib/validations'
-import { NATIONALITIES, RESIDENCIES, BANKING_JURISDICTIONS } from '../lib/constants'
 import FormInput from '../components/FormInput'
 import FormTextarea from '../components/FormTextarea'
-import FormSelect from '../components/FormSelect'
 import FormCheckbox from '../components/FormCheckbox'
 import { submitCaseToBitrix } from '../lib/bitrix'
 import { useLanguage } from '../lib/LanguageContext'
@@ -54,141 +52,142 @@ const SubmitCasePage: React.FC = () => {
                 {t('submitCase.subtitle')}
             </p>
 
-            <div style={{ maxWidth: '720px' }}>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    {/* Contact Information */}
+            <div className="contact-grid">
+                {/* Form — 3 simple fields */}
+                <div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="form-section">
+                            <h3>{t('submitCase.formTitle')}</h3>
+                            <div className="form-grid">
+                                <FormInput
+                                    label={t('submitCase.whoLabel')}
+                                    name="whoAreYou"
+                                    placeholder={t('submitCase.whoPlaceholder')}
+                                    required
+                                    register={register('whoAreYou')}
+                                    error={errors.whoAreYou?.message}
+                                />
+                                <FormInput
+                                    label={t('submitCase.contactLabel')}
+                                    name="howToContact"
+                                    placeholder={t('submitCase.contactPlaceholder')}
+                                    required
+                                    register={register('howToContact')}
+                                    error={errors.howToContact?.message}
+                                />
+                                <FormTextarea
+                                    label={t('submitCase.helpLabel')}
+                                    name="howCanWeHelp"
+                                    placeholder={t('submitCase.helpPlaceholder')}
+                                    required
+                                    rows={5}
+                                    register={register('howCanWeHelp')}
+                                    error={errors.howCanWeHelp?.message}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Privacy Consent */}
+                        <div className="form-section">
+                            <FormCheckbox
+                                name="consentPrivacy"
+                                register={register('consentPrivacy')}
+                                error={errors.consentPrivacy?.message}
+                                label={
+                                    <>
+                                        {t('form.consent.prefix')}{' '}
+                                        <Link to="/privacy">{t('form.consent.link')}</Link>
+                                    </>
+                                }
+                            />
+                        </div>
+
+                        {/* Status Messages */}
+                        {submitStatus === 'success' && (
+                            <div className="form-alert success" role="status" aria-live="polite">
+                                {t('submitCase.success')}
+                            </div>
+                        )}
+
+                        {submitStatus === 'error' && (
+                            <div className="form-alert error" role="alert" aria-live="assertive">
+                                {t('submitCase.error')}
+                            </div>
+                        )}
+
+                        {/* Actions */}
+                        <div className="form-actions">
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="btn"
+                                style={isSubmitting ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+                            >
+                                {isSubmitting ? t('submitCase.submitting') : t('submitCase.submit')}
+                            </button>
+                            <Link to="/" className="btn btn-outline">
+                                {t('submitCase.backHome')}
+                            </Link>
+                        </div>
+                    </form>
+                </div>
+
+                {/* Right column: Contact channels + Booking */}
+                <div>
+                    {/* Contact channels */}
                     <div className="form-section">
-                        <h3>{t('submitCase.contact')}</h3>
-                        <div className="form-grid">
-                            <FormInput
-                                label={t('submitCase.name')}
-                                name="name"
-                                placeholder={t('submitCase.namePlaceholder')}
-                                required
-                                register={register('name')}
-                                error={errors.name?.message}
-                            />
-                            <FormInput
-                                label={t('submitCase.email')}
-                                name="email"
-                                type="email"
-                                placeholder={t('submitCase.emailPlaceholder')}
-                                required
-                                register={register('email')}
-                                error={errors.email?.message}
-                            />
-                            <FormInput
-                                label={t('submitCase.telegram')}
-                                name="telegram"
-                                placeholder={t('submitCase.telegramPlaceholder')}
-                                register={register('telegram')}
-                                error={errors.telegram?.message}
-                            />
+                        <h3>{t('submitCase.channels')}</h3>
+
+                        <div className="contact-info-block">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/971600575294" target="_blank" rel="noopener noreferrer">+971 600 575-294</a>
+                        </div>
+
+                        <div className="contact-info-block">
+                            <h4>Telegram</h4>
+                            <a href="https://t.me/wtpbrokers" target="_blank" rel="noopener noreferrer">@wtpbrokers</a>
+                        </div>
+
+                        <div className="contact-info-block">
+                            <h4>Email</h4>
+                            <a href="mailto:hello@wtpbrokers.com">hello@wtpbrokers.com</a>
+                        </div>
+
+                        <div className="contact-info-block">
+                            <h4>{t('submitCase.phoneLabel')}</h4>
+                            <a href="tel:+971600575294">+971 600 575-294</a>
+                        </div>
+
+                        <div className="contact-info-block">
+                            <h4>{t('submitCase.officeLabel')}</h4>
+                            <p>
+                                Office 1207, Arenco Tower<br />
+                                Media City, Dubai, UAE
+                            </p>
                         </div>
                     </div>
 
-                    {/* Client Details */}
-                    <div className="form-section">
-                        <h3>{t('submitCase.client')}</h3>
-                        <div className="form-grid">
-                            <FormSelect
-                                label={t('submitCase.nationality')}
-                                name="nationality"
-                                options={NATIONALITIES}
-                                placeholder={t('submitCase.nationalityPlaceholder')}
-                                required
-                                register={register('nationality')}
-                                error={errors.nationality?.message}
-                            />
-                            <FormSelect
-                                label={t('submitCase.residency')}
-                                name="residency"
-                                options={RESIDENCIES}
-                                placeholder={t('submitCase.residencyPlaceholder')}
-                                required
-                                register={register('residency')}
-                                error={errors.residency?.message}
-                            />
-                            <FormTextarea
-                                label={t('submitCase.activity')}
-                                name="businessActivity"
-                                placeholder={t('submitCase.activityPlaceholder')}
-                                required
-                                rows={4}
-                                register={register('businessActivity')}
-                                error={errors.businessActivity?.message}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Banking & Compliance */}
-                    <div className="form-section">
-                        <h3>{t('submitCase.banking')}</h3>
-                        <div className="form-grid">
-                            <FormSelect
-                                label={t('submitCase.jurisdiction')}
-                                name="bankingJurisdiction"
-                                options={BANKING_JURISDICTIONS}
-                                placeholder={t('submitCase.jurisdictionPlaceholder')}
-                                required
-                                register={register('bankingJurisdiction')}
-                                error={errors.bankingJurisdiction?.message}
-                            />
-                            <FormTextarea
-                                label={t('submitCase.funds')}
-                                name="sourceOfFunds"
-                                placeholder={t('submitCase.fundsPlaceholder')}
-                                required
-                                rows={4}
-                                register={register('sourceOfFunds')}
-                                error={errors.sourceOfFunds?.message}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Privacy Consent */}
-                    <div className="form-section">
-                        <FormCheckbox
-                            name="consentPrivacy"
-                            register={register('consentPrivacy')}
-                            error={errors.consentPrivacy?.message}
-                            label={
-                                <>
-                                    {t('form.consent.prefix')}{' '}
-                                    <Link to="/privacy">{t('form.consent.link')}</Link>
-                                </>
-                            }
-                        />
-                    </div>
-
-                    {/* Status Messages */}
-                    {submitStatus === 'success' && (
-                        <div className="form-alert success">
-                            {t('submitCase.success')}
-                        </div>
-                    )}
-
-                    {submitStatus === 'error' && (
-                        <div className="form-alert error">
-                            {t('submitCase.error')}
-                        </div>
-                    )}
-
-                    {/* Actions */}
-                    <div className="form-actions">
-                        <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="btn"
-                            style={isSubmitting ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+                    {/* Online booking */}
+                    <div className="response-card">
+                        <h4>{t('submitCase.bookingTitle')}</h4>
+                        <p>{t('submitCase.bookingText')}</p>
+                        {/* TODO: Костя — добавить ссылку на онлайн-запись (Bitrix24 CRM Calendar / Calendly / Cal.com) */}
+                        <a
+                            href="https://wa.me/971600575294"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-outline"
+                            style={{ marginTop: '16px', display: 'inline-block', textAlign: 'center' }}
                         >
-                            {isSubmitting ? t('submitCase.submitting') : t('submitCase.submit')}
-                        </button>
-                        <Link to="/" className="btn btn-outline">
-                            {t('submitCase.backHome')}
-                        </Link>
+                            {t('submitCase.bookingCta')}
+                        </a>
                     </div>
-                </form>
+
+                    <div className="response-card" style={{ marginTop: '16px' }}>
+                        <h4>{t('submitCase.responseTime')}</h4>
+                        <p>{t('submitCase.responseText')}</p>
+                    </div>
+                </div>
             </div>
         </div>
     )

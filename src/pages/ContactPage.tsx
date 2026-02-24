@@ -108,13 +108,13 @@ const ContactPage: React.FC = () => {
 
                         {/* Status Messages */}
                         {submitStatus === 'success' && (
-                            <div className="form-alert success">
+                            <div className="form-alert success" role="status" aria-live="polite">
                                 {t('contact.success')}
                             </div>
                         )}
 
                         {submitStatus === 'error' && (
-                            <div className="form-alert error">
+                            <div className="form-alert error" role="alert" aria-live="assertive">
                                 {t('contact.error')}
                             </div>
                         )}

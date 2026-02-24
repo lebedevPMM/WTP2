@@ -23,14 +23,18 @@ const FormSelect: React.FC<FormSelectProps> = ({
     placeholder = 'Select an option',
     className = ''
 }) => {
+    const errorId = `${name}-error`
     return (
         <div className={`form-field ${className}`}>
             <label htmlFor={name} className="form-label">
-                {label} {required && <span className="required">*</span>}
+                {label} {required && <span className="required" aria-hidden="true">*</span>}
             </label>
             <select
                 id={name}
                 disabled={disabled}
+                aria-required={required}
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? errorId : undefined}
                 {...register}
                 className={`form-select ${error ? 'error' : ''}`}
             >
@@ -41,7 +45,7 @@ const FormSelect: React.FC<FormSelectProps> = ({
                     </option>
                 ))}
             </select>
-            {error && <span className="form-error">{error}</span>}
+            {error && <span id={errorId} className="form-error" role="alert">{error}</span>}
         </div>
     )
 }

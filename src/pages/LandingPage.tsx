@@ -47,7 +47,7 @@ const LandingPage: React.FC = () => {
                 <div className="grid-2">
                     <Card accentGradient="var(--accent-magma)" hasAccentTop>
                         <div>
-                            <h4>{t('benefits.ownership.title')}</h4>
+                            <h3 className="card-heading">{t('benefits.ownership.title')}</h3>
                             <p className="text-body">
                                 {t('benefits.ownership.text')}
                             </p>
@@ -55,7 +55,7 @@ const LandingPage: React.FC = () => {
                     </Card>
                     <Card accentGradient="var(--accent-gold)" hasAccentTop className="card-transparency">
                         <div>
-                            <h4>{t('benefits.transparency.title')}</h4>
+                            <h3 className="card-heading">{t('benefits.transparency.title')}</h3>
                             <p className="text-body">
                                 {t('benefits.transparency.text')}
                             </p>
@@ -63,7 +63,7 @@ const LandingPage: React.FC = () => {
                     </Card>
                     <Card accentGradient="var(--accent-teal)" hasAccentTop>
                         <div>
-                            <h4>{t('benefits.control.title')}</h4>
+                            <h3 className="card-heading">{t('benefits.control.title')}</h3>
                             <p className="text-body">
                                 {t('benefits.control.text')}
                             </p>
@@ -71,7 +71,7 @@ const LandingPage: React.FC = () => {
                     </Card>
                     <Card accentGradient="var(--accent-nebula)" hasAccentTop>
                         <div>
-                            <h4>{t('benefits.quality.title')}</h4>
+                            <h3 className="card-heading">{t('benefits.quality.title')}</h3>
                             <p className="text-body">
                                 {t('benefits.quality.text')}
                             </p>
@@ -130,7 +130,7 @@ const LandingPage: React.FC = () => {
                 <Card
                     style={{ marginTop: '24px', borderColor: 'var(--border-focus)', background: 'transparent' }}
                 >
-                    <h4 style={{ marginBottom: '24px' }}>{t('engagement.protection.title')}</h4>
+                    <h3 className="card-heading" style={{ marginBottom: '24px' }}>{t('engagement.protection.title')}</h3>
                     <div className="grid-2">
                         <p className="text-body">&bull; {t('engagement.protection.crm')}</p>
                         <p className="text-body">&bull; {t('engagement.protection.contact')}</p>
@@ -175,7 +175,7 @@ const LandingPage: React.FC = () => {
                         <div className="collection-card-bg" style={{ background: 'var(--accent-magma)' }} />
                         <div className="collection-card-inner">
                             <div className="collection-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
                             </div>
                             <div className="collection-card-bottom">
                                 <span className="collection-card-label">{t('products.banking.pill')}</span>
@@ -192,7 +192,7 @@ const LandingPage: React.FC = () => {
                         <div className="collection-card-bg" style={{ background: 'var(--accent-gold)' }} />
                         <div className="collection-card-inner">
                             <div className="collection-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             </div>
                             <div className="collection-card-bottom">
                                 <span className="collection-card-label">{t('products.premium.pill')}</span>
@@ -209,7 +209,7 @@ const LandingPage: React.FC = () => {
                         <div className="collection-card-bg" style={{ background: 'var(--accent-teal)' }} />
                         <div className="collection-card-inner">
                             <div className="collection-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                             </div>
                             <div className="collection-card-bottom">
                                 <span className="collection-card-label">{t('products.business.pill')}</span>
@@ -226,7 +226,7 @@ const LandingPage: React.FC = () => {
                         <div className="collection-card-bg" style={{ background: 'var(--accent-nebula)' }} />
                         <div className="collection-card-inner">
                             <div className="collection-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                             </div>
                             <div className="collection-card-bottom">
                                 <span className="collection-card-label">{t('products.residency.pill')}</span>
@@ -243,7 +243,7 @@ const LandingPage: React.FC = () => {
                         <div className="collection-card-bg" style={{ background: 'var(--accent-magma)' }} />
                         <div className="collection-card-inner">
                             <div className="collection-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 14l6-6M4 4h4v4M20 20h-4v-4M4 20l16-16"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M9 14l6-6M4 4h4v4M20 20h-4v-4M4 20l16-16"/></svg>
                             </div>
                             <div className="collection-card-bottom">
                                 <span className="collection-card-label">{t('products.tax.pill')}</span>
@@ -260,7 +260,7 @@ const LandingPage: React.FC = () => {
                         <div className="collection-card-bg" style={{ background: 'var(--accent-gold)' }} />
                         <div className="collection-card-inner">
                             <div className="collection-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
                             </div>
                             <div className="collection-card-bottom">
                                 <span className="collection-card-label">{t('products.accounting.pill')}</span>
@@ -277,7 +277,7 @@ const LandingPage: React.FC = () => {
                         <div className="collection-card-bg" style={{ background: 'var(--accent-teal)' }} />
                         <div className="collection-card-inner">
                             <div className="collection-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg>
                             </div>
                             <div className="collection-card-bottom">
                                 <span className="collection-card-label">{t('products.realestate.pill')}</span>
@@ -294,7 +294,7 @@ const LandingPage: React.FC = () => {
                         <div className="collection-card-bg" style={{ background: 'var(--accent-nebula)' }} />
                         <div className="collection-card-inner">
                             <div className="collection-card-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
                             </div>
                             <div className="collection-card-bottom">
                                 <span className="collection-card-label">{t('products.wealth.pill')}</span>

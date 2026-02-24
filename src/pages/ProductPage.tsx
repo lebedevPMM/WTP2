@@ -31,10 +31,11 @@ const productData: ProductDataMap = {
             services: [
                 { name: 'Corporate Account Opening', desc: 'Structured around business profile, transaction logic, and bank requirements. KYC-first approach, pre-cleared with banker before submission.' },
                 { name: 'Payment Infrastructure', desc: 'International transfers, payment routing, multi-currency setup, and SWIFT/local payment integration.' },
-                { name: 'Compliance Support', desc: 'Ongoing bank relationship management, EDD responses, document updates, and annual reviews.' },
+                { name: 'Compliance Support', desc: 'Ongoing bank relationship management, EDD (Enhanced Due Diligence) responses, document updates, and annual reviews.' },
                 { name: 'Multi-Bank Strategy', desc: 'Diversification across local and international banks for operational resilience and payment flexibility.' },
                 { name: 'Trade Finance', desc: 'Letters of credit, bank guarantees, and documentary collections for import/export businesses.' },
                 { name: 'Merchant Services', desc: 'POS terminals, payment gateway integration, and e-commerce settlement accounts.' },
+                { name: 'Crypto Payments', desc: 'Cryptocurrency settlement through certified OTC desks and licensed crypto service providers. Compliant infrastructure for businesses that need fiat-crypto conversion.' },
             ],
             redFlags: [
                 'No source of funds documentation',
@@ -48,7 +49,7 @@ const productData: ProductDataMap = {
             title: 'Premium Banking',
             subtitle: 'PERSONAL',
             intro:
-                'Personal banking for HNW individuals relocating to the UAE. We connect clients with the right private bankers and ensure smooth onboarding.',
+                'Personal banking for HNW individuals. We connect clients with the right private bankers and ensure smooth onboarding.',
             services: [
                 { name: 'Personal Account Opening', desc: 'Premium and priority banking with dedicated relationship managers at leading UAE banks.' },
                 { name: 'Private Banking Introduction', desc: 'Access to private banking desks with minimum AUM thresholds, tailored investment mandates.' },
@@ -90,6 +91,7 @@ const productData: ProductDataMap = {
                 { name: 'Family Visa & Dependents', desc: 'Spouse, children, parents — requires legalized documents (birth, marriage certificates). Aligned with housing and schooling.' },
                 { name: 'Emirates ID & Biometrics', desc: 'Biometric registration, ID issuance, and renewal management.' },
                 { name: 'Visa Renewal & Status Management', desc: 'Annual renewals, status changes, visa cancellation, and re-entry permit coordination.' },
+                { name: 'Property Revaluation for Golden Visa', desc: 'Market revaluation of previously purchased property to meet the AED 2M threshold for Golden Visa qualification. Leveraging current market value of earlier investments.' },
             ],
             result: 'Legal residency in the UAE with all documentation aligned for banking, tax, and compliance requirements.',
         },
@@ -97,7 +99,7 @@ const productData: ProductDataMap = {
             title: 'Tax Residency',
             subtitle: 'TAX',
             intro:
-                'Tax residency planning for individuals and structures. We ensure the UAE position is defensible and aligned with the client\'s home jurisdiction requirements.',
+                'Tax residency planning for individuals and structures. We ensure the UAE tax position is substantiated and can withstand scrutiny from any tax authority, aligned with the client\'s home jurisdiction requirements.',
             services: [
                 { name: 'Tax Residency Certificate (TRC)', desc: 'Federal Tax Authority application, documentation preparation, and issuance timeline management.' },
                 { name: 'Substance Requirements', desc: 'Physical presence planning, utility contracts, lease agreements, and evidence portfolio for substance compliance.' },
@@ -177,10 +179,11 @@ const productData: ProductDataMap = {
             services: [
                 { name: 'Открытие корпоративного счёта', desc: 'Структурировано вокруг бизнес-профиля, транзакционной логики и требований банка. KYC-first подход, предварительное согласование с банкиром.' },
                 { name: 'Платёжная инфраструктура', desc: 'Международные переводы, маршрутизация платежей, мультивалютная настройка и интеграция SWIFT.' },
-                { name: 'Сопровождение комплаенса', desc: 'Управление отношениями с банком, ответы на EDD, обновление документов и ежегодные обзоры.' },
+                { name: 'Сопровождение комплаенса', desc: 'Управление отношениями с банком, ответы на EDD (Enhanced Due Diligence — углублённая проверка банком), обновление документов и ежегодные обзоры.' },
                 { name: 'Мульти-банковская стратегия', desc: 'Диверсификация между локальными и международными банками для операционной устойчивости.' },
                 { name: 'Торговое финансирование', desc: 'Аккредитивы, банковские гарантии и документарные инкассо для импортно-экспортного бизнеса.' },
                 { name: 'Эквайринг', desc: 'POS-терминалы, интеграция платёжных шлюзов и расчётные счета для e-commerce.' },
+                { name: 'Крипто-расчёты', desc: 'Расчёты в криптовалюте через сертифицированных OTC-подрядчиков и лицензированных провайдеров. Комплаентная инфраструктура для бизнесов, которым нужна конвертация фиат-крипто.' },
             ],
             redFlags: [
                 'Отсутствие документов об источнике средств',
@@ -194,7 +197,7 @@ const productData: ProductDataMap = {
             title: 'Премиум-банкинг',
             subtitle: 'ПЕРСОНАЛЬНЫЙ',
             intro:
-                'Персональный банкинг для HNW-клиентов, переезжающих в ОАЭ. Мы связываем клиентов с нужными private-банкирами и обеспечиваем гладкий onboarding.',
+                'Персональный банкинг для HNW-клиентов. Мы связываем клиентов с нужными private-банкирами и обеспечиваем гладкий onboarding.',
             services: [
                 { name: 'Открытие персонального счёта', desc: 'Премиум и приоритетный банкинг с выделенными менеджерами в ведущих банках ОАЭ.' },
                 { name: 'Знакомство с Private Banking', desc: 'Доступ к private banking с минимальными порогами AUM и индивидуальными инвестиционными мандатами.' },
@@ -236,6 +239,7 @@ const productData: ProductDataMap = {
                 { name: 'Семейная виза', desc: 'Супруг/а, дети, родители — требует легализованных документов (свидетельства о рождении, браке).' },
                 { name: 'Emirates ID и биометрия', desc: 'Биометрическая регистрация, выпуск и продление ID-карты.' },
                 { name: 'Продление и управление статусом', desc: 'Ежегодные продления, смена статуса, отмена визы и координация re-entry permit.' },
+                { name: 'Переоценка недвижимости для Golden Visa', desc: 'Рыночная переоценка ранее купленной недвижимости для достижения порога AED 2M для Golden Visa. Использование текущей рыночной стоимости прежних инвестиций.' },
             ],
             result: 'Легальное резидентство в ОАЭ с документацией, выстроенной под банковские, налоговые и комплаенс-требования.',
         },
@@ -243,11 +247,11 @@ const productData: ProductDataMap = {
             title: 'Налоговое резидентство',
             subtitle: 'НАЛОГИ',
             intro:
-                'Налоговое планирование для физических лиц и структур. Мы обеспечиваем защитимую позицию ОАЭ, согласованную с требованиями домашней юрисдикции клиента.',
+                'Налоговое планирование для физических лиц и структур. Мы обеспечиваем обоснованную налоговую позицию в ОАЭ, которая выдержит проверку со стороны любого налогового органа, и согласовываем её с требованиями домашней юрисдикции клиента.',
             services: [
                 { name: 'Сертификат налогового резидента (TRC)', desc: 'Заявка в FTA, подготовка документации и управление сроками выдачи.' },
-                { name: 'Substance Requirements', desc: 'Планирование физического присутствия, коммунальные контракты, договоры аренды и доказательная база.' },
-                { name: 'Планирование по СОИДН', desc: 'Анализ применимых соглашений между ОАЭ и страной клиента. Структурирование для оптимизации выгод.' },
+                { name: 'Требования экономической субстанции (Substance)', desc: 'Планирование физического присутствия, коммунальные контракты, договоры аренды и доказательная база.' },
+                { name: 'Планирование по СОИДН (соглашения об избежании двойного налогообложения)', desc: 'Анализ применимых соглашений между ОАЭ и страной клиента. Структурирование для оптимизации выгод.' },
                 { name: 'Консультация по exit tax', desc: 'Предрелокационное планирование для юрисдикций с налогом на выезд (Германия, Норвегия, Франция и др.).' },
                 { name: 'CRS/FATCA комплаенс', desc: 'Подготовка к автоматическому обмену информацией, самосертификация и управление отчётностью.' },
             ],
@@ -354,7 +358,7 @@ const ProductPage: React.FC = () => {
                 <div className="grid-2">
                     {data.services.map((svc) => (
                         <Card key={svc.name} style={{ minHeight: '160px' }}>
-                            <h4 style={{ fontSize: '18px' }}>{svc.name}</h4>
+                            <h3 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>{svc.name}</h3>
                             <p className="text-body" style={{ fontSize: '13px' }}>{svc.desc}</p>
                         </Card>
                     ))}

@@ -11,7 +11,7 @@ const RiskRow: React.FC<RiskRowProps> = ({ status, description, dotColor, noBord
     return (
         <div className="risk-row" style={noBorder ? { borderBottom: 'none' } : {}}>
             <div className="risk-status">
-                <span className={`dot ${dotColor}`} />
+                <span className={`dot ${dotColor}`} aria-hidden="true" />
                 {status}
             </div>
             <p className="text-body">{description}</p>

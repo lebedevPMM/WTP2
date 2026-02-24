@@ -1,0 +1,125 @@
+/* Trust-First Landing Page — Standalone styles */
+
+/* CTA button rows — flex-wrap for mobile stacking */
+.tf-cta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Principles grid */
+.tf-principles-grid {
+    margin-top: 40px;
+}
+
+/* Competencies — numbered blocks in 2x2 grid */
+.tf-competencies-grid {
+    margin-top: 48px;
+}
+
+.tf-competency-item {
+    padding: 32px 0;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.tf-competency-number {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 16px;
+}
+
+.tf-competency-item h3 {
+    font-size: 20px;
+    font-family: var(--font-serif);
+    margin-bottom: 12px;
+}
+
+/* Engagement Models */
+.tf-models-grid {
+    margin-top: 40px;
+}
+
+.tf-model-recommended {
+    background: linear-gradient(135deg, rgba(196, 167, 107, 0.06) 0%, rgba(196, 167, 107, 0.02) 100%);
+    border-color: rgba(196, 167, 107, 0.25);
+}
+
+.tf-model-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 16px;
+}
+
+.tf-model-detail strong {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+}
+
+.tf-model-detail span {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Risk Appetite */
+.tf-risk-grid {
+    margin-top: 40px;
+}
+
+.tf-risk-block {
+    padding: 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+}
+
+.tf-risk-block h3 {
+    font-size: 20px;
+    font-family: var(--font-serif);
+    margin-bottom: 16px;
+}
+
+.tf-risk-accept {
+    border-left: 3px solid var(--accent-teal, #2dd4bf);
+}
+
+.tf-risk-decline {
+    border-left: 3px solid #cd3e30;
+}
+
+/* Responsive — tablet */
+@media (max-width: 900px) {
+    .tf-competencies-grid {
+        margin-top: 32px;
+    }
+
+    .tf-competency-item h3 {
+        font-size: 18px;
+    }
+
+    .tf-risk-block {
+        padding: 24px;
+    }
+}
+
+/* Responsive — mobile */
+@media (max-width: 480px) {
+    .tf-competency-item {
+        padding: 24px 0;
+    }
+
+    .tf-risk-block {
+        padding: 20px;
+    }
+
+    .tf-model-detail span {
+        font-size: 13px;
+    }
+}

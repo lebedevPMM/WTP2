@@ -1,6 +1,5 @@
 ---
 title: Process Map — Banking-First Model
-date: 2026-02-16
 category: Process
 version: v1.0
 ---
@@ -17,7 +16,7 @@ WTP's 10-stage delivery workflow. Every client engagement follows this sequence.
 |-------|------|-------|-------------|
 | 1 | Entry & Initial Contact | Partner + WTP | Day 0 |
 | 2 | Document Request | WTP | Day 1–3 |
-| 3 | Offline Analysis | WTP | Day 3–7 |
+| 3 | Remote Analysis | WTP | Day 3–7 |
 | 4 | Package Confirmation | WTP + Client | Day 7–10 |
 | 5 | Travel Planning | WTP | Day 10–14 |
 | 6 | Client Arrival | WTP + Client | Day 14–21 |
@@ -34,11 +33,11 @@ WTP's 10-stage delivery workflow. Every client engagement follows this sequence.
 
 **Actions:**
 - Receive client referral from partner
-- Log in Bitrix24 CRM with partner tag
-- Acknowledge receipt within 4 hours (SLA)
+- Register client inquiry
+- Acknowledge receipt within 4 hours (SLA (Service Level Agreement — guaranteed response and delivery timelines))
 - Send Intake Checklist (KYC Light) to partner
 
-**Output:** Client lead created in CRM, intake form sent.
+**Output:** Client inquiry registered, intake form sent.
 
 ---
 
@@ -55,7 +54,7 @@ WTP's 10-stage delivery workflow. Every client engagement follows this sequence.
 
 ---
 
-## Stage 3: Offline Analysis
+## Stage 3: Remote Analysis
 
 **Trigger:** All documents received.
 
@@ -168,12 +167,12 @@ WTP's 10-stage delivery workflow. Every client engagement follows this sequence.
 
 ---
 
-## Stage 10: Ongoing Support (Retainer)
+## Stage 10: Ongoing Support
 
 **Trigger:** Initial delivery completed.
 
 **Actions:**
-- Transition to retainer model (if subscribed)
+- Transition to ongoing support subscription — regular maintenance, renewals, and compliance updates on a fixed monthly fee basis (if subscribed)
 - Annual visa renewal coordination
 - Company annual return and license renewal
 - Accounting and bookkeeping (if L3)
@@ -187,8 +186,9 @@ WTP's 10-stage delivery workflow. Every client engagement follows this sequence.
 
 ## Key Principles
 
+<!-- TODO: Костя — переформулировать пункт 1 ключевых принципов (команда отметила что непонятно) -->
 1. **No corporate setup before banking confirmation** — bankability determines the path
 2. **Risk verdict before commitment** — no engagement letter without pre-screen
 3. **Partner is always informed** — weekly updates minimum
-4. **Document everything** — all decisions logged in CRM
-5. **SLA compliance** — response within 4 hours, pre-screen within 7 days
+4. **Document everything** — all decisions documented
+5. **SLA (Service Level Agreement — guaranteed response and delivery timelines) compliance** — response within 4 hours, pre-screen within 7 days

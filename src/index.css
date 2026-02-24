@@ -5,9 +5,9 @@
   --bg-card-hover: #F5F5F5;
   --text-primary: #0A0A0A;
   --text-secondary: #666666;
-  --text-tertiary: #999999;
+  --text-tertiary: #767676;
   --border-subtle: #E0E0E0;
-  --border-focus: #CCCCCC;
+  --border-focus: #0A0A0A;
 
   --accent-magma: linear-gradient(135deg, #e74c3c, #d35400);
   --accent-gold: linear-gradient(135deg, #b8860b, #8B6914);
@@ -377,7 +377,8 @@ section {
   height: 3px;
 }
 
-.card h4 {
+.card h4,
+.card .card-heading {
   font-family: var(--font-serif);
   font-size: 22px;
   margin-bottom: 12px;
@@ -621,10 +622,14 @@ section {
 }
 
 .collection-card-name {
-  font-size: 28px;
+  font-size: clamp(20px, 3.5vw, 28px);
   font-weight: 500;
   margin-bottom: 12px;
   transition: color 0.4s ease;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.2;
 }
 
 .collection-card:hover .collection-card-name {
@@ -1008,13 +1013,22 @@ footer {
   border: 1px solid var(--border-subtle);
   background: var(--bg-card);
   color: var(--text-primary);
-  outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
+  outline: none;
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-input:focus-visible,
+.form-textarea:focus-visible,
+.form-select:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
   border-color: var(--text-primary);
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
@@ -1362,5 +1376,80 @@ footer {
 
   .privacy-page h1 {
     font-size: 28px;
+  }
+}
+
+/* ================================================================
+   ACCESSIBILITY: Focus-visible styles for all interactive elements
+   ================================================================ */
+
+/* Global focus-visible for all focusable elements */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Buttons — override any default removal */
+.btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Navigation links */
+.nav-link:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 4px;
+}
+
+/* Collection cards (product links) */
+.collection-card:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
+}
+
+/* Hamburger button */
+.hamburger:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Language toggle */
+.lang-toggle:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Skip link is already visible on focus — ensure consistency */
+.skip-link:focus-visible {
+  outline: 2px solid var(--bg-body);
+  outline-offset: 2px;
+}
+
+/* Cookie banner buttons */
+.cookie-btn-reject:focus-visible,
+.cookie-btn-accept:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Checkbox */
+.form-checkbox:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Ensure reduced-motion users still see focus */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

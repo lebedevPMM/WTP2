@@ -5,11 +5,28 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:ru": "VITE_LANG=ru vite",
+    "dev:banking": "VITE_LANDING=banking vite",
+    "dev:realestate": "VITE_LANDING=realestate vite",
+    "dev:partners": "VITE_LANDING=partners vite",
+
     "build": "tsc && vite build",
+
+    "build:main:en": "VITE_LANDING=main VITE_LANG=en tsc && VITE_LANDING=main VITE_LANG=en vite build",
+    "build:main:ru": "VITE_LANDING=main VITE_LANG=ru tsc && VITE_LANDING=main VITE_LANG=ru vite build",
+    "build:banking:en": "VITE_LANDING=banking VITE_LANG=en tsc && VITE_LANDING=banking VITE_LANG=en vite build",
+    "build:banking:ru": "VITE_LANDING=banking VITE_LANG=ru tsc && VITE_LANDING=banking VITE_LANG=ru vite build",
+    "build:realestate:en": "VITE_LANDING=realestate VITE_LANG=en tsc && VITE_LANDING=realestate VITE_LANG=en vite build",
+    "build:realestate:ru": "VITE_LANDING=realestate VITE_LANG=ru tsc && VITE_LANDING=realestate VITE_LANG=ru vite build",
+    "build:partners:en": "VITE_LANDING=partners VITE_LANG=en tsc && VITE_LANDING=partners VITE_LANG=en vite build",
+    "build:partners:ru": "VITE_LANDING=partners VITE_LANG=ru tsc && VITE_LANDING=partners VITE_LANG=ru vite build",
+
+    "build:all": "npm run build:main:en && npm run build:main:ru && npm run build:banking:en && npm run build:banking:ru && npm run build:realestate:en && npm run build:realestate:ru && npm run build:partners:en && npm run build:partners:ru",
+
     "preview": "vite preview",
     "pdf": "node scripts/generate-pdf.mjs",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build:main:en",
+    "deploy": "gh-pages -d dist/main-en"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",

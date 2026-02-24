@@ -1,6 +1,5 @@
 ---
 title: Service Packages — Levels 0 to 3
-date: 2026-02-16
 category: Process
 version: v1.0
 ---
@@ -34,6 +33,8 @@ WTP offers four engagement tiers. Each level builds on the previous one. The rec
 ---
 
 ## Level 1 — Entry
+
+<!-- TODO: Костя — L1 описан без открытия компании, но команда говорит это невозможно. Уточнить формулировку после звонка -->
 
 **For:** Individual clients who need basic UAE setup — visa, bank account, tax residency.
 
@@ -91,6 +92,8 @@ WTP offers four engagement tiers. Each level builds on the previous one. The rec
 
 ## Level 3 — Control
 
+<!-- TODO: Костя — широкий ценовой диапазон L3. Уточнить: сузить, убрать цены, или пояснить от чего зависит? -->
+
 **For:** Clients with ongoing operational needs — accounting, employee management, wealth structuring.
 
 | Item | Details |
@@ -135,16 +138,12 @@ WTP offers four engagement tiers. Each level builds on the previous one. The rec
 
 ## Upsell Path
 
-```
-L0 Advisory → L1 Entry → L2 Setup → L3 Control
-     ↓              ↓           ↓           ↓
-  Roadmap      Visa+Bank   Company+RE   Operations
-```
-
-Each level completion creates a natural upsell conversation:
-- L0 → "Based on the roadmap, here's what L1 would cover"
-- L1 → "Now that banking is in place, company formation is the logical next step"
-- L2 → "Your company is operational — let's set up accounting and employee visas"
+| Level | What It Covers | Path to Next |
+|-------|---------------|-------------|
+| L0 Advisory | Roadmap | "Based on the roadmap — here's what L1 covers" |
+| L1 Entry | Visa + Bank | "Banking is set up — company registration is the logical next step" |
+| L2 Setup | Company + Real Estate | "Company is running — let's set up accounting and HR" |
+| L3 Control | Full Operations | Ongoing operational support |
 
 ---
 

@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
-import { useLanguage } from '../lib/LanguageContext'
+import { useLanguage, OTHER_DOMAIN, OTHER_LANG_LABEL } from '../lib/LanguageContext'
+import { IS_FOCUSED_LANDING } from '../config/landing'
 
 const Footer: React.FC = () => {
     const { t } = useLanguage()
 
     return (
-        <footer id="contact">
+        <footer id="contact" role="contentinfo">
             <div className="container grid-4">
                 <div>
                     <div style={{ marginBottom: '24px' }}>
@@ -26,8 +27,12 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                     <span className="label">{t('footer.legal')}</span>
-                    <Link to="/process/terms" className="text-body" style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}>{t('footer.terms')}</Link>
-                    <Link to="/privacy" className="text-body" style={{ display: 'block', textDecoration: 'none' }}>{t('footer.privacy')}</Link>
+                    <Link to="/terms-of-service" className="text-body" style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}>{t('footer.tos')}</Link>
+                    <Link to="/privacy" className="text-body" style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}>{t('footer.privacy')}</Link>
+                    {!IS_FOCUSED_LANDING && (
+                        <Link to="/process/terms" className="text-body" style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}>{t('footer.deliveryTerms')}</Link>
+                    )}
+                    <a href={OTHER_DOMAIN} className="text-body" style={{ display: 'block', textDecoration: 'none', opacity: 0.7 }}>{OTHER_LANG_LABEL}</a>
                 </div>
                 <div>
                     <span className="label">{t('footer.office')}</span>

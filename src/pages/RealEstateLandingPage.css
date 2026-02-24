@@ -1,0 +1,144 @@
+/* Real Estate Landing Page — Standalone styles */
+
+/* Problem grid: 3 columns on desktop, stacks on mobile (handled by .grid-3 base) */
+.re-problem-grid {
+    margin-top: 40px;
+}
+
+/* Solution numbered items */
+.re-solution-cards {
+    margin-top: 60px;
+}
+
+.re-solution-item {
+    padding: 32px 0;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.re-solution-number {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 16px;
+}
+
+.re-solution-item h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+/* Services grid */
+.re-services-grid {
+    margin-top: 40px;
+}
+
+/* Market insight cards */
+.re-market-section {
+    padding: 80px 0;
+}
+
+.re-market-grid {
+    margin-top: 40px;
+}
+
+.re-market-card {
+    padding: 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.re-market-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+.re-market-value {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.re-market-label {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+}
+
+/* Process grid — 5 columns on desktop */
+.re-process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+}
+
+/* Red flags list */
+.re-redflags-list {
+    margin-top: 32px;
+}
+
+.re-redflag-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.re-redflag-item:first-child {
+    border-top: 1px solid var(--border-subtle);
+}
+
+.re-redflag-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    background: #fef2f2;
+    color: #cd3e30;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Responsive — tablet */
+@media (max-width: 900px) {
+    .re-process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .re-market-value {
+        font-size: 36px;
+    }
+
+    .re-solution-cards {
+        margin-top: 40px;
+    }
+}
+
+/* Responsive — mobile */
+@media (max-width: 480px) {
+    .re-market-value {
+        font-size: 32px;
+    }
+
+    .re-market-card {
+        padding: 24px;
+    }
+
+    .re-solution-item {
+        padding: 24px 0;
+    }
+}

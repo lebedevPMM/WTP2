@@ -1,0 +1,952 @@
+/* PostDealLandingPage — L2a Post-Deal RE Agent Landing */
+/* Prefix: pd- | Palette: warm light, WhatsApp green CTAs, gold money highlights */
+
+/* ================================================================
+   1. HERO
+   ================================================================ */
+
+.pd-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.pd-hero-glow {
+  background: radial-gradient(
+    circle at 40% 30%,
+    rgba(197, 165, 114, 0.12) 0%,
+    rgba(197, 165, 114, 0.04) 40%,
+    transparent 70%
+  ) !important;
+  opacity: 1 !important;
+}
+
+.pd-hero-ctas {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* WhatsApp CTA — green button */
+.pd-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: #25D366;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.2s ease,
+    box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pd-wa-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.pd-wa-btn:hover::before {
+  left: 100%;
+}
+
+.pd-wa-btn:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+}
+
+.pd-wa-btn:focus-visible {
+  outline: 2px solid #25D366;
+  outline-offset: 2px;
+}
+
+/* Outline variant — for secondary CTAs (download/catalog) */
+.pd-wa-btn.pd-wa-btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.pd-wa-btn.pd-wa-btn-outline:hover {
+  background: var(--bg-card);
+  border-color: var(--border-focus);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.pd-wa-btn.pd-wa-btn-outline svg {
+  color: #25D366;
+}
+
+/* ================================================================
+   2. MONEY MATH
+   ================================================================ */
+
+.pd-math-section {
+  background: #F8F5EF;
+  padding: 80px 0;
+  margin: 0 -40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.pd-math-table {
+  width: 100%;
+  max-width: 680px;
+  margin: 32px auto 40px;
+}
+
+.pd-math-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.pd-math-row:last-child {
+  border-bottom: none;
+}
+
+.pd-math-service {
+  flex: 1;
+  color: var(--text-secondary);
+}
+
+.pd-math-commission {
+  color: #2D8B4E;
+  font-weight: 700;
+  font-size: 16px;
+  min-width: 120px;
+  text-align: right;
+}
+
+.pd-math-total {
+  padding: 24px 0 !important;
+  margin-top: 8px;
+  border-top: 2px solid rgba(197, 165, 114, 0.4) !important;
+  border-bottom: none !important;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: #C5A572;
+}
+
+/* Slider */
+.pd-slider-wrap {
+  max-width: 680px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.pd-slider-label {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.pd-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pd-slider-val {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 28px;
+  text-align: center;
+}
+
+.pd-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: #E0D8CC;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pd-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #C5A572;
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(197, 165, 114, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pd-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(197, 165, 114, 0.5);
+}
+
+.pd-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #C5A572;
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(197, 165, 114, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pd-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(197, 165, 114, 0.5);
+}
+
+.pd-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #E0D8CC;
+}
+
+.pd-slider:focus-visible {
+  outline: 2px solid #C5A572;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.pd-slider-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 20px;
+}
+
+.pd-slider-amount {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: #C5A572;
+  letter-spacing: -0.02em;
+  transition: transform 0.2s ease;
+}
+
+.pd-slider-amount.pd-amount-pulse {
+  transform: scale(1.05);
+}
+
+.pd-slider-amount-yearly {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+/* Zero Badges */
+.pd-zero-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.pd-zero-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* ================================================================
+   3. PAIN / FOMO
+   ================================================================ */
+
+.pd-pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.pd-pain-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid #2D8B4E;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pd-pain-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+.pd-pain-need {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.pd-pain-budget {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.pd-pain-commission {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: #2D8B4E;
+}
+
+.pd-pain-transition {
+  margin-top: 40px;
+  padding: 28px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.pd-pain-transition p {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* ================================================================
+   4. PROCESS
+   ================================================================ */
+
+.pd-process-steps {
+  display: flex;
+  gap: 32px;
+  margin-top: 48px;
+  position: relative;
+}
+
+/* Connecting line */
+.pd-process-steps::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 80px;
+  right: 80px;
+  height: 2px;
+  background: var(--border-subtle);
+  z-index: 0;
+}
+
+.pd-process-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.pd-process-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border-subtle);
+  margin: 0 auto 20px;
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: #C5A572;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pd-process-step:hover .pd-process-num {
+  border-color: #C5A572;
+  box-shadow: 0 4px 16px rgba(197, 165, 114, 0.25);
+}
+
+.pd-process-step h3 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.pd-process-step .text-body {
+  font-size: 14px;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ================================================================
+   5. SERVICES
+   ================================================================ */
+
+.pd-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.pd-service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pd-service-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-focus);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+}
+
+.pd-service-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(197, 165, 114, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #C5A572;
+  flex-shrink: 0;
+}
+
+.pd-service-card h3 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.pd-service-commission {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(45, 139, 78, 0.08);
+  border-radius: 100px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: #2D8B4E;
+  width: fit-content;
+  margin-top: auto;
+}
+
+/* ================================================================
+   6. SOCIAL PROOF BAR
+   ================================================================ */
+
+.pd-proof-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 80px;
+}
+
+.pd-proof-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pd-proof-number {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pd-proof-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pd-proof-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-subtle);
+}
+
+/* Trust Seals */
+.pd-trust-seals {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px 0 80px;
+  flex-wrap: wrap;
+}
+
+.pd-trust-seal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ================================================================
+   7. CASE STUDY
+   ================================================================ */
+
+.pd-case-card {
+  margin-top: 32px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  max-width: 760px;
+}
+
+.pd-case-header {
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+}
+
+.pd-case-tag {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.pd-case-body {
+  padding: 32px;
+  background: var(--bg-card);
+}
+
+.pd-case-row {
+  margin-bottom: 20px;
+}
+
+.pd-case-row:last-child {
+  margin-bottom: 0;
+}
+
+.pd-case-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.pd-case-result {
+  margin-top: 20px;
+  padding: 20px 24px;
+  background: rgba(45, 139, 78, 0.04);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-left: 3px solid #2D8B4E;
+}
+
+/* Mid-page CTA */
+.pd-mid-cta {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 0;
+}
+
+/* ================================================================
+   8. OBJECTION BUSTER
+   ================================================================ */
+
+.pd-objections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.pd-objection-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pd-objection-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Last card (5th) spans full width */
+.pd-objection-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.pd-objection-card h3 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+/* ================================================================
+   9. LEAD MAGNET
+   ================================================================ */
+
+.pd-magnet-section {
+  background: #F8F5EF;
+  padding: 80px 0;
+  margin: 0 -40px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+
+.pd-magnet-sub {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.pd-magnet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 32px;
+  max-width: 480px;
+  text-align: left;
+}
+
+.pd-magnet-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.pd-magnet-list li svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* ================================================================
+   10. STICKY MOBILE CTA
+   ================================================================ */
+
+.pd-sticky {
+  display: none;
+}
+
+/* ================================================================
+   RESPONSIVE — TABLET (max-width: 900px)
+   ================================================================ */
+
+@media (max-width: 900px) {
+  .pd-hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pd-wa-btn {
+    justify-content: center;
+  }
+
+  .pd-math-section {
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .pd-pain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-process-steps {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .pd-process-steps::before {
+    top: 0;
+    bottom: 0;
+    left: 36px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  .pd-process-step {
+    text-align: left;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .pd-process-num {
+    margin: 0;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    font-size: 22px;
+  }
+
+  .pd-process-step .text-body {
+    max-width: none;
+    margin: 0;
+  }
+
+  .pd-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-proof-bar {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .pd-proof-divider {
+    width: 60px;
+    height: 1px;
+  }
+
+  .pd-objections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-objection-card:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  .pd-magnet-section {
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .pd-mid-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pd-trust-seals {
+    gap: 16px;
+  }
+
+  .pd-trust-seal {
+    font-size: 11px;
+  }
+
+  /* Sticky mobile CTA */
+  .pd-sticky {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: #25D366;
+    padding: 12px 24px;
+    box-shadow: 0 -4px 20px rgba(37, 211, 102, 0.3);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pd-sticky-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 24px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .pd-sticky-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE — SMALL PHONES (max-width: 480px)
+   ================================================================ */
+
+@media (max-width: 480px) {
+  .pd-math-section {
+    margin: 0 -16px;
+    padding: 48px 16px;
+  }
+
+  .pd-slider-amount {
+    font-size: 24px;
+  }
+
+  .pd-zero-row {
+    gap: 8px;
+  }
+
+  .pd-zero-badge {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .pd-pain-card {
+    padding: 20px;
+  }
+
+  .pd-pain-transition {
+    padding: 20px 24px;
+  }
+
+  .pd-pain-transition p {
+    font-size: 17px;
+  }
+
+  .pd-process-num {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    font-size: 20px;
+  }
+
+  .pd-service-card {
+    padding: 24px;
+  }
+
+  .pd-proof-number {
+    font-size: 24px;
+  }
+
+  .pd-case-header {
+    padding: 16px 20px;
+  }
+
+  .pd-case-body {
+    padding: 20px;
+  }
+
+  .pd-objection-card {
+    padding: 20px;
+  }
+
+  .pd-objection-card h3 {
+    font-size: 16px;
+  }
+
+  .pd-magnet-section {
+    margin: 0 -16px;
+    padding: 48px 16px;
+  }
+
+  .pd-wa-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+
+  .pd-sticky {
+    padding: 10px 16px;
+  }
+
+  .pd-sticky-btn {
+    font-size: 15px;
+    padding: 12px 20px;
+  }
+}
+
+/* ================================================================
+   ACCESSIBILITY: prefers-reduced-motion
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-pain-card,
+  .pd-service-card,
+  .pd-objection-card,
+  .pd-process-num {
+    transition: none;
+  }
+
+  .pd-wa-btn {
+    transition: none;
+  }
+
+  .pd-wa-btn::before {
+    display: none;
+  }
+
+  .pd-slider::-webkit-slider-thumb {
+    transition: none;
+  }
+
+  .pd-slider::-moz-range-thumb {
+    transition: none;
+  }
+}

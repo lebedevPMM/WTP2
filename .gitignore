@@ -84,3 +84,43 @@ stitch-*.png
 
 # Raw SVG sources (processed versions in public/)
 wtp *.svg
+
+# Source PDF/DOCX files (confidential, raw inputs)
+*.docx
+*.MP4
+Raw info/
+WTP-*.pdf
+WTP-*.pdf.txt
+Monetizirujte-*.pdf
+Monetizirujte-*.pdf.txt
+Provodim-*.pdf
+Provodim-*.pdf.txt
+extract_pdfs.py
+
+# Internal strategy & planning docs
+L2-LANDING-STRATEGY.md
+L2a-LANDING-STRATEGY.md
+L3-LANDING-STRATEGY.md
+DAILY-TRACKER.md
+docs/plans/
+docs/variants/
+docs/month-2-plan.md
+docs/WTP_Month_2_Plan.docx
+docs/md_to_docx.py
+docs/LINKEDIN-PLAYBOOK-RU.docx
+docs/LINKEDIN-PLAYBOOK-RU.md
+docs/MARKETING-PLAN-RU.docx
+docs/MARKETING-PLAN-RU.md
+
+# Deploy scripts with credentials
+scripts/deploy-timeweb.sh
+scripts/generate-month2-docx.py
+
+# Old build artifacts
+dist-en/
+dist-ru/
+
+# Partner Kit ZIPs (generated, heavy)
+public/WTP_Partner_Kit_EN.zip
+public/WTP_Partner_Kit_RU.zip
+public/WTP_Partner_Kit_RU/

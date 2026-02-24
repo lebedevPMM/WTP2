@@ -23,20 +23,24 @@ const FormInput: React.FC<FormInputProps> = ({
     disabled = false,
     className = ''
 }) => {
+    const errorId = `${name}-error`
     return (
         <div className={`form-field ${className}`}>
             <label htmlFor={name} className="form-label">
-                {label} {required && <span className="required">*</span>}
+                {label} {required && <span className="required" aria-hidden="true">*</span>}
             </label>
             <input
                 id={name}
                 type={type}
                 placeholder={placeholder}
                 disabled={disabled}
+                aria-required={required}
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? errorId : undefined}
                 {...register}
                 className={`form-input ${error ? 'error' : ''}`}
             />
-            {error && <span className="form-error">{error}</span>}
+            {error && <span id={errorId} className="form-error" role="alert">{error}</span>}
         </div>
     )
 }

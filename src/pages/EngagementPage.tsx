@@ -104,7 +104,7 @@ const EngagementPage: React.FC = () => {
                     {(['crm', 'contact', 'terms', 'commission'] as const).map(key => (
                         <Card key={key} accentGradient="var(--accent-gold)" hasAccentTop>
                             <div>
-                                <h4 style={{ fontSize: '18px' }}>{t(`engPage.prot.${key}`)}</h4>
+                                <h3 className="card-heading" style={{ fontSize: '18px' }}>{t(`engPage.prot.${key}`)}</h3>
                                 <p className="text-body" style={{ fontSize: '13px' }}>{t(`engPage.prot.${key}Desc`)}</p>
                             </div>
                         </Card>

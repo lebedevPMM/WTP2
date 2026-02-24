@@ -36,32 +36,21 @@ async function createLead(fields: BitrixLeadFields): Promise<BitrixResponse> {
 }
 
 export async function submitCaseToBitrix(data: {
-    name: string
-    email: string
-    telegram?: string
-    nationality: string
-    residency: string
-    businessActivity: string
-    bankingJurisdiction: string
-    sourceOfFunds: string
+    whoAreYou: string
+    howToContact: string
+    howCanWeHelp: string
 }): Promise<BitrixResponse> {
     const comments = [
-        `Nationality: ${data.nationality}`,
-        `Residency: ${data.residency}`,
-        `Banking Jurisdiction: ${data.bankingJurisdiction}`,
+        `Who: ${data.whoAreYou}`,
+        `Contact: ${data.howToContact}`,
         '',
-        `Business Activity:`,
-        data.businessActivity,
-        '',
-        `Source of Funds:`,
-        data.sourceOfFunds,
-        data.telegram ? `\nTelegram: ${data.telegram}` : '',
+        `Request:`,
+        data.howCanWeHelp,
     ].join('\n')
 
     return createLead({
-        TITLE: `WTP Case: ${data.name}`,
-        NAME: data.name,
-        EMAIL: [{ VALUE: data.email, VALUE_TYPE: 'WORK' }],
+        TITLE: `WTP Lead: ${data.whoAreYou.slice(0, 50)}`,
+        NAME: data.whoAreYou,
         COMMENTS: comments,
         SOURCE_ID: 'WEB',
     })

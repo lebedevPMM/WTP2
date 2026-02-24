@@ -1,36 +1,18 @@
 import { z } from 'zod'
 
-// Submit Case Form Schema
+// Submit Case Form Schema (simplified — 3 open fields)
 export const submitCaseSchema = z.object({
-    name: z.string()
-        .min(2, 'Name must be at least 2 characters')
-        .max(100, 'Name is too long'),
+    whoAreYou: z.string()
+        .min(2, 'Please tell us who you are')
+        .max(200, 'Text is too long'),
 
-    email: z.string()
-        .email('Please enter a valid email address'),
+    howToContact: z.string()
+        .min(5, 'Please provide contact details')
+        .max(300, 'Text is too long'),
 
-    telegram: z.string()
-        .optional()
-        .refine((val) => !val || val.startsWith('@') || val.length === 0, {
-            message: 'Telegram handle should start with @'
-        }),
-
-    nationality: z.string()
-        .min(1, 'Please select client nationality'),
-
-    residency: z.string()
-        .min(1, 'Please select residency'),
-
-    businessActivity: z.string()
-        .min(10, 'Please provide more details about business activity')
-        .max(1000, 'Description is too long'),
-
-    bankingJurisdiction: z.string()
-        .min(1, 'Please select preferred banking jurisdiction'),
-
-    sourceOfFunds: z.string()
-        .min(10, 'Please provide more details about source of funds')
-        .max(1000, 'Description is too long'),
+    howCanWeHelp: z.string()
+        .min(10, 'Please describe your request')
+        .max(2000, 'Description is too long'),
 
     consentPrivacy: z.literal(true, 'You must agree to the Privacy Policy'),
 })

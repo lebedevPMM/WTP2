@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Logo from './Logo'
 import { useLanguage } from '../lib/LanguageContext'
@@ -7,13 +7,25 @@ const Navbar: React.FC = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const isHome = location.pathname === '/'
-    const { lang, setLang, t } = useLanguage()
+    const { t } = useLanguage()
     const [menuOpen, setMenuOpen] = useState(false)
 
     // Close menu on route change
     useEffect(() => {
         setMenuOpen(false)
     }, [location.pathname])
+
+    // Close menu on Escape key
+    const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        if (e.key === 'Escape' && menuOpen) {
+            setMenuOpen(false)
+        }
+    }, [menuOpen])
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown)
+        return () => document.removeEventListener('keydown', handleKeyDown)
+    }, [handleKeyDown])
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, anchor: string) => {
         e.preventDefault()
@@ -54,31 +66,26 @@ const Navbar: React.FC = () => {
     }
 
     return (
-        <nav className="nav">
-            <Link to="/" className="brand" onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMenuOpen(false) }}>
+        <nav className="nav" aria-label={t('a11y.mainNavigation')}>
+            <Link to="/" className="brand" aria-label={t('a11y.homeLink')} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMenuOpen(false) }}>
                 <Logo variant="black" height={48} />
             </Link>
 
             <button
                 className={`hamburger ${menuOpen ? 'hamburger--open' : ''}`}
                 onClick={() => setMenuOpen(!menuOpen)}
-                aria-label="Menu"
+                aria-label={menuOpen ? t('a11y.closeMenu') : t('a11y.openMenu')}
                 aria-expanded={menuOpen}
+                aria-controls="nav-links"
             >
-                <span /><span /><span />
+                <span aria-hidden="true" /><span aria-hidden="true" /><span aria-hidden="true" />
             </button>
 
-            <div className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
+            <div id="nav-links" className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`} role="navigation">
                 <a href="#process" className="nav-link" onClick={(e) => handleNavClick(e, 'process')}>{t('nav.process')}</a>
                 <a href="#partners" className="nav-link" onClick={(e) => handleNavClick(e, 'partners')}>{t('nav.partners')}</a>
                 <a href="#risk" className="nav-link" onClick={(e) => handleNavClick(e, 'risk')}>{t('nav.risk')}</a>
                 <Link to="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>{t('nav.contact')}</Link>
-                <button
-                    className="lang-toggle"
-                    onClick={() => setLang(lang === 'en' ? 'ru' : 'en')}
-                >
-                    {lang === 'en' ? 'RU' : 'EN'}
-                </button>
             </div>
         </nav>
     )
