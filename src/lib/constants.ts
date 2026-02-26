@@ -33,3 +33,31 @@ export const BANKING_JURISDICTIONS = [
 
 // Residency options (can be same as nationalities)
 export const RESIDENCIES = NATIONALITIES
+
+// Client countries for B2C roadmap form
+export const CLIENT_COUNTRIES = [
+    { value: 'GB', label: 'United Kingdom' },
+    { value: 'DE', label: 'Germany' },
+    { value: 'NL', label: 'Netherlands' },
+    { value: 'FR', label: 'France' },
+    { value: 'IT', label: 'Italy' },
+    { value: 'ES', label: 'Spain' },
+    { value: 'CH', label: 'Switzerland' },
+    { value: 'AT', label: 'Austria' },
+    { value: 'BE', label: 'Belgium' },
+    { value: 'SE', label: 'Sweden' },
+    { value: 'NO', label: 'Norway' },
+    { value: 'DK', label: 'Denmark' },
+    { value: 'IN', label: 'India' },
+    { value: 'CN', label: 'China' },
+    { value: 'HK', label: 'Hong Kong' },
+    { value: 'SG', label: 'Singapore' },
+    { value: 'SA', label: 'Saudi Arabia' },
+    { value: 'AE', label: 'UAE (already here)' },
+    { value: 'NG', label: 'Nigeria' },
+    { value: 'ZA', label: 'South Africa' },
+    { value: 'US', label: 'United States' },
+    { value: 'CA', label: 'Canada' },
+    { value: 'AU', label: 'Australia' },
+    { value: 'OTHER', label: 'Other' },
+]

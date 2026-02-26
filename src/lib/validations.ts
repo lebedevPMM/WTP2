@@ -42,3 +42,24 @@ export const contactFormSchema = z.object({
 })
 
 export type ContactFormData = z.infer<typeof contactFormSchema>
+
+// Banking Roadmap Request Form (5 fields)
+export const roadmapFormSchema = z.object({
+    name: z.string()
+        .min(2, 'Please enter your name')
+        .max(100, 'Name is too long'),
+
+    email: z.string()
+        .email('Please enter a valid email address'),
+
+    country: z.string()
+        .min(2, 'Please select your country of residence'),
+
+    situation: z.string()
+        .min(20, 'Please describe your situation in more detail')
+        .max(2000, 'Description is too long'),
+
+    consentPrivacy: z.literal(true, 'You must agree to the Privacy Policy'),
+})
+
+export type RoadmapFormData = z.infer<typeof roadmapFormSchema>

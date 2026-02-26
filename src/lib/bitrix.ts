@@ -75,3 +75,27 @@ export async function submitContactToBitrix(data: {
         SOURCE_ID: 'WEB',
     })
 }
+
+// Banking Roadmap request (B2C client form)
+export async function submitRoadmapToBitrix(data: {
+    name: string
+    email: string
+    country: string
+    situation: string
+}): Promise<BitrixResponse> {
+    const comments = [
+        `Source: B2C Client Landing — Banking Roadmap Request`,
+        `Country of residence: ${data.country}`,
+        '',
+        `Situation:`,
+        data.situation,
+    ].join('\n')
+
+    return createLead({
+        TITLE: `WTP B2C Roadmap: ${data.name} (${data.country})`,
+        NAME: data.name,
+        EMAIL: [{ VALUE: data.email, VALUE_TYPE: 'WORK' }],
+        COMMENTS: comments,
+        SOURCE_ID: 'WEB',
+    })
+}
