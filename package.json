@@ -20,8 +20,12 @@
     "build:realestate:ru": "VITE_LANDING=realestate VITE_LANG=ru tsc && VITE_LANDING=realestate VITE_LANG=ru vite build",
     "build:partners:en": "VITE_LANDING=partners VITE_LANG=en tsc && VITE_LANDING=partners VITE_LANG=en vite build",
     "build:partners:ru": "VITE_LANDING=partners VITE_LANG=ru tsc && VITE_LANDING=partners VITE_LANG=ru vite build",
+    "dev:client": "VITE_LANDING=client vite",
+    "dev:client:ru": "VITE_LANDING=client VITE_LANG=ru vite",
+    "build:client:en": "VITE_LANDING=client VITE_LANG=en tsc && VITE_LANDING=client VITE_LANG=en vite build",
+    "build:client:ru": "VITE_LANDING=client VITE_LANG=ru tsc && VITE_LANDING=client VITE_LANG=ru vite build",
 
-    "build:all": "npm run build:main:en && npm run build:main:ru && npm run build:banking:en && npm run build:banking:ru && npm run build:realestate:en && npm run build:realestate:ru && npm run build:partners:en && npm run build:partners:ru",
+    "build:all": "npm run build:main:en && npm run build:main:ru && npm run build:banking:en && npm run build:banking:ru && npm run build:realestate:en && npm run build:realestate:ru && npm run build:partners:en && npm run build:partners:ru && npm run build:client:en && npm run build:client:ru",
 
     "preview": "vite preview",
     "pdf": "node scripts/generate-pdf.mjs",
