@@ -1,4 +1,4 @@
-export type LandingId = 'main' | 'banking' | 'realestate' | 'partners'
+export type LandingId = 'main' | 'banking' | 'realestate' | 'partners' | 'client'
 
 export const LANDING_ID: LandingId =
     (import.meta.env.VITE_LANDING as LandingId) || 'main'
@@ -14,6 +14,7 @@ const SUBDOMAIN_MAP: Record<LandingId, string> = {
     banking: 'banking.',
     realestate: 'realestate.',
     partners: 'partners.',
+    client: 'client.',
 }
 
 export const SUBDOMAIN_PREFIX = SUBDOMAIN_MAP[LANDING_ID]
