@@ -3,6 +3,28 @@ import { getOtherLangDomain } from '../config/landing'
 
 type Language = 'en' | 'ru'
 
+// Glossary tooltips: professional terms with Russian explanations on hover
+const glossaryTooltips: Record<string, Record<string, string>> = {
+    ru: {
+        'Banking-First': 'Подход, при котором документы готовятся так, чтобы пройти проверку в любой инстанции: банке, налоговой, регуляторе',
+        'Pre-screen': 'Предварительная проверка документов и рисков до начала работы',
+        'White-Label': 'Работа под брендом партнёра — клиент не знает о WTP',
+        'Non-Circumvention': 'Юридическая гарантия, что WTP не будет работать с клиентом партнёра напрямую',
+        'KYC': 'Know Your Customer — проверка личности клиента',
+        'AML': 'Anti-Money Laundering — противодействие отмыванию средств',
+        'ESR': 'Economic Substance Regulations — правила экономического присутствия в ОАЭ',
+        'SoF': 'Source of Funds — документальное подтверждение источника средств',
+        'GO/NO-GO': 'Решение о старте или отказе от кейса на основе оценки рисков',
+        'Golden Visa': 'Долгосрочная виза ОАЭ (5–10 лет) для инвесторов и предпринимателей',
+        'Emirates ID': 'Удостоверение личности резидента ОАЭ',
+        'NDA': 'Non-Disclosure Agreement — соглашение о неразглашении',
+        'PEP': 'Politically Exposed Person — политически значимое лицо',
+        'CRM': 'Customer Relationship Management — система управления клиентскими отношениями',
+        'Source of Funds': 'Документальное подтверждение происхождения средств',
+    },
+    en: {}
+}
+
 // Build-time language from env variable (default: 'en')
 const BUILD_LANG: Language = import.meta.env.VITE_LANG === 'ru' ? 'ru' : 'en'
 
@@ -14,6 +36,7 @@ interface LanguageContextType {
     lang: Language
     setLang: (lang: Language) => void
     t: (key: string) => string
+    tRich: (key: string) => React.ReactNode
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -43,8 +66,30 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         return translation
     }
 
+    const tRich = (key: string): React.ReactNode => {
+        const text = t(key)
+        const terms = glossaryTooltips[lang]
+        if (!terms || Object.keys(terms).length === 0) return text
+
+        // Sort by length desc so longer terms match first (e.g. "Source of Funds" before "Source")
+        const sortedTerms = Object.keys(terms).sort((a, b) => b.length - a.length)
+        const escaped = sortedTerms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+        const regex = new RegExp(`(${escaped.join('|')})`, 'gi')
+
+        const parts = text.split(regex)
+        if (parts.length === 1) return text
+
+        return parts.map((part, i) => {
+            const matched = sortedTerms.find(term => term.toLowerCase() === part.toLowerCase())
+            if (matched && terms[matched]) {
+                return <abbr key={i} title={terms[matched]} className="glossary-term">{part}</abbr>
+            }
+            return part
+        })
+    }
+
     return (
-        <LanguageContext.Provider value={{ lang, setLang, t }}>
+        <LanguageContext.Provider value={{ lang, setLang, t, tRich }}>
             {children}
         </LanguageContext.Provider>
     )
@@ -59,6 +104,7 @@ const translations: Record<string, Record<string, string>> = {
         'nav.partners': 'Partners',
         'nav.risk': 'Risk',
         'nav.contact': 'Contact',
+        'nav.submitCase': 'Submit a Case',
 
         // Hero
         'hero.label': 'For Brokers & Advisors',
@@ -320,6 +366,7 @@ const translations: Record<string, Record<string, string>> = {
         'footer.terms': 'Terms of Service',
         'footer.privacy': 'Privacy Policy',
         'footer.deliveryTerms': 'Delivery Terms',
+        'footer.cookieSettings': 'Cookie Settings',
         'footer.office': 'Office',
         'footer.address': 'Office 1207, Arenco Tower\nMedia City, Dubai, UAE',
 
@@ -349,7 +396,7 @@ const translations: Record<string, Record<string, string>> = {
         'contact.name': 'Name',
         'contact.namePlaceholder': 'John Doe',
         'contact.email': 'Email',
-        'contact.emailPlaceholder': 'john@example.com',
+        'contact.emailPlaceholder': 'name@company.com',
         'contact.telegram': 'Telegram',
         'contact.telegramPlaceholder': '@username',
         'contact.message': 'Message',
@@ -616,7 +663,7 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.purpose.analytics': 'Website analytics to improve user experience (with consent)',
         'privacy.purpose.legal': 'Compliance with legal obligations',
         'privacy.legalBasis.title': '4. Legal Basis',
-        'privacy.legalBasis.consent': 'Consent — for form submissions and analytics cookies (GDPR Art. 6(1)(a), UAE PDPL)',
+        'privacy.legalBasis.consent': 'Consent — for form submissions and analytics cookies (GDPR Art. 6(1)(a), UAE PDPL, Russian Federal Law No. 152-FZ)',
         'privacy.legalBasis.contract': 'Performance of a contract — for processing your case inquiry',
         'privacy.legalBasis.legitimate': 'Legitimate interest — for website security and performance',
         'privacy.thirdParties.title': '5. Third-Party Data Processors',
@@ -627,7 +674,7 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.retention.title': '6. Data Retention',
         'privacy.retention.text': 'We retain personal data submitted through our forms for up to 2 years from the date of your last interaction with us. Analytics data is retained for 14 months. You may request earlier deletion at any time.',
         'privacy.rights.title': '7. Your Rights',
-        'privacy.rights.intro': 'Under GDPR, UAE PDPL, and DIFC Data Protection Law, you have the following rights:',
+        'privacy.rights.intro': 'Under GDPR, UAE PDPL, DIFC Data Protection Law, and Russian Federal Law No. 152-FZ, you have the following rights:',
         'privacy.rights.access': 'Right of access — obtain a copy of your personal data',
         'privacy.rights.rectification': 'Right to rectification — correct inaccurate data',
         'privacy.rights.erasure': 'Right to erasure — request deletion of your data',
@@ -640,10 +687,14 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.cookies.text': 'We use cookies only with your explicit consent. The following cookies may be set:',
         'privacy.cookies.ga': '_ga, _ga_* — Google Analytics cookies for understanding website usage (analytics category)',
         'privacy.cookies.session': 'wtp-cookie-consent — stores your cookie preference (strictly necessary, no consent required)',
-        'privacy.cookies.control': 'You can manage your cookie preferences at any time by clearing your browser cookies and revisiting the site. The cookie consent banner will reappear.',
-        'privacy.changes.title': '9. Changes to This Policy',
+        'privacy.cookies.control': 'You can manage your cookie preferences at any time using the "Cookie Settings" link in the website footer, or by clearing your browser cookies.',
+        'privacy.crossBorder.title': '9. Cross-Border Data Transfer',
+        'privacy.crossBorder.text': 'Your personal data may be transferred to and processed in countries outside your country of residence, including the United Arab Emirates, where our service providers operate (Bitrix24, Google Analytics). Such transfers are carried out on the basis of your consent, contractual necessity, or standard contractual clauses ensuring an adequate level of data protection.',
+        'privacy.complaint.title': '10. Right to Lodge a Complaint',
+        'privacy.complaint.text': 'If you believe your personal data has been processed in violation of applicable law, you have the right to lodge a complaint with the relevant supervisory authority. For residents of Russia, this is the Federal Service for Supervision of Communications, Information Technology and Mass Media (Roskomnadzor). For EU residents, you may contact your local Data Protection Authority.',
+        'privacy.changes.title': '11. Changes to This Policy',
         'privacy.changes.text': 'We may update this Privacy Policy from time to time. The "last updated" date at the top reflects the most recent revision. We encourage you to review this page periodically.',
-        'privacy.contact.title': '10. Contact Us',
+        'privacy.contact.title': '12. Contact Us',
         'privacy.contact.text': 'If you have questions about this Privacy Policy or wish to exercise your data rights, please contact us at hello@wtpbrokers.com, call +971 600 575-294, or visit wtpbrokers.com.',
 
         // Terms of Service Page
@@ -1093,17 +1144,18 @@ const translations: Record<string, Record<string, string>> = {
         'nav.partners': 'Партнёрам',
         'nav.risk': 'Риски',
         'nav.contact': 'Контакт',
+        'nav.submitCase': 'Отправить кейс',
 
         // Hero
         'hero.label': 'Для брокеров и консультантов',
-        'hero.title': 'Надёжный execution-партнёр в ОАЭ, построенный вокруг банков и комплаенса.',
+        'hero.title': 'Надёжный execution-партнёр в ОАЭ с фокусом на банки и комплаенс.',
         'hero.subtitle': 'WTP — оператор на земле, который проводит клиента от намерения до результата безопасно и без репутационных рисков.',
         'hero.cta.kit': 'Получить Partner Kit',
         'hero.cta.case': 'Отправить кейс',
 
         // Who it's for
         'who.label': 'Для кого',
-        'who.title': 'Партнёры, которым нужен контроль качества на месте.',
+        'who.title': 'Партнёры, которым нужно надёжное исполнение на месте.',
         'who.text': 'У вас есть клиенты, но нет сильного локального исполнителя. Для брокеров, частных банкиров, консультантов, семейных офисов, юристов и агентств за пределами ОАЭ.',
 
         // Partner Benefits
@@ -1113,7 +1165,7 @@ const translations: Record<string, Record<string, string>> = {
         'benefits.transparency.title': 'Прозрачность',
         'benefits.transparency.text': 'Чёткие статусы, контроль объёма и изменений, определённые контрольные точки на каждом этапе.',
         'benefits.control.title': 'Контроль',
-        'benefits.control.text': 'Решения принимаются заранее: можем ли мы двигаться дальше и на каких именно условиях.',
+        'benefits.control.text': 'Всё согласовывается до старта: объём, условия, бюджет. Без обязательств без вашего ведома.',
         'benefits.quality.title': 'Качество',
         'benefits.quality.text': 'Оптимизировано для банков и регуляторов, а не для «скорости любой ценой». Мы ставим на долгосрочную устойчивость.',
 
@@ -1128,7 +1180,7 @@ const translations: Record<string, Record<string, string>> = {
         'process.step3.title': 'Исполнение',
         'process.step3.desc': 'Регистрация, счета, визы и операционная поддержка в рамках согласованного сценария.',
         'process.step4.title': 'Сопровождение',
-        'process.step4.desc': 'Ретейнер для обеспечения стабильности и максимизации LTV.',
+        'process.step4.desc': 'Текущее сопровождение для стабильной работы и долгосрочного дохода партнёра.',
 
         // Engagement
         'engagement.label': 'Модели сотрудничества',
@@ -1155,20 +1207,20 @@ const translations: Record<string, Record<string, string>> = {
         'products.label': 'Продуктовая линейка',
         'products.subtitle': 'Специализированные услуги для требовательных партнёров и их клиентов.',
         'products.banking.pill': 'Ключевая услуга',
-        'products.banking.title': 'Корпоративный банкинг',
+        'products.banking.title': 'Открытие корпоративных счетов',
         'products.banking.desc': 'Открытие корпоративных счетов, платёжная инфраструктура и сопровождение комплаенса. Мы ведём переговоры с банком за вас.',
         'products.banking.cta': 'Подробнее',
         'products.premium.pill': 'Персональный',
-        'products.premium.title': 'Премиум-банкинг',
+        'products.premium.title': 'Премиальные банковские услуги',
         'products.premium.desc': 'Персональные счета, private banking, инвестиционный доступ для HNW-клиентов.',
         'products.premium.cta': 'Подробнее',
         'products.business.pill': 'Операции',
         'products.business.title': 'Регистрация компаний',
-        'products.business.desc': 'Свободные зоны и mainland, торговые лицензии, корпоративное структурирование — всё под банковский acceptance.',
+        'products.business.desc': 'Свободные зоны и mainland, торговые лицензии, корпоративное структурирование — всё с учётом банковских требований.',
         'products.business.cta': 'Подробнее',
         'products.residency.pill': 'Идентичность',
         'products.residency.title': 'Визы и резидентство',
-        'products.residency.desc': 'Рабочие визы, визы инвестора, Golden Visa, Emirates ID — интегрировано с налоговой логикой и банковскими требованиями.',
+        'products.residency.desc': 'Рабочие визы, визы инвестора, Golden Visa, Emirates ID — с учётом налоговых и банковских требований.',
         'products.residency.cta': 'Подробнее',
         'products.tax.pill': 'Налоги',
         'products.tax.title': 'Налоговое резидентство',
@@ -1184,7 +1236,7 @@ const translations: Record<string, Record<string, string>> = {
         'products.realestate.cta': 'Подробнее',
         'products.wealth.pill': 'Наследие',
         'products.wealth.title': 'Активы и защита',
-        'products.wealth.desc': 'Завещания, фонды, структурирование family office и кастоди-решения для долгосрочной защиты активов.',
+        'products.wealth.desc': 'Завещания, фонды, структурирование family office и решения по хранению для долгосрочной защиты активов.',
         'products.wealth.cta': 'Подробнее',
 
         // Engagement Page
@@ -1209,9 +1261,9 @@ const translations: Record<string, Record<string, string>> = {
         'engPage.whitelabel.intro': 'Клиент может не знать о WTP. Мы работаем за кулисами как ваша команда исполнения. Вся коммуникация идёт через вас.',
         'engPage.whitelabel.how': 'Как это работает',
         'engPage.whitelabel.step1': 'Вы передаёте нам детали кейса и документы под вашим брендом',
-        'engPage.whitelabel.step2': 'Мы исполняем полный объём: регистрация, банкинг, визы, комплаенс',
+        'engPage.whitelabel.step2': 'Мы исполняем полный объём: регистрация, открытие счетов, визы, комплаенс',
         'engPage.whitelabel.step3': 'Вся клиентская коммуникация проходит через вас',
-        'engPage.whitelabel.step4': 'Ценообразование cost + fee — вы контролируете маржу',
+        'engPage.whitelabel.step4': 'Ценообразование: наша себестоимость + ваша наценка — вы контролируете маржу',
         'engPage.whitelabel.best': 'Лучше всего подходит для',
         'engPage.whitelabel.best1': 'Юридических фирм и бутиковых практик с собственным клиентским брендом',
         'engPage.whitelabel.best2': 'Партнёров, которые хотят полный контроль над клиентскими отношениями',
@@ -1249,12 +1301,12 @@ const translations: Record<string, Record<string, string>> = {
         'riskPage.yellow.c1': 'Сложные мультиюрисдикционные структуры',
         'riskPage.yellow.c2': 'Отрасли с повышенным банковским вниманием (финтех, крипто-смежные, сырьевые)',
         'riskPage.yellow.c3': 'Задокументированный PEP-статус, требующий усиленных контролей',
-        'riskPage.yellow.c4': 'Большие объёмы транзакций, требующие обоснования для комплаенса',
+        'riskPage.yellow.c4': 'Большие объёмы транзакций, требующие подтверждения для комплаенса',
         'riskPage.yellow.conditions': 'Условия',
         'riskPage.yellow.cond1': 'Фиксированный объём с письменными границами',
         'riskPage.yellow.cond2': 'Отдельное ценообразование, отражающее дополнительную комплаенс-работу',
         'riskPage.yellow.cond3': 'Письменное подтверждение рисков от партнёра и клиента',
-        'riskPage.yellow.cond4': 'Усиленный мониторинг на протяжении всего engagement',
+        'riskPage.yellow.cond4': 'Усиленный мониторинг на протяжении всего сотрудничества',
         'riskPage.red.label': 'КРАСНЫЙ — ОТКАЗЫВАЕМ',
         'riskPage.red.title': 'Безусловный отказ',
         'riskPage.red.intro': 'Мы уходим. Без исключений, без переговоров. Защита наших банковских связей и репутации партнёра важнее любого отдельного кейса.',
@@ -1262,7 +1314,7 @@ const translations: Record<string, Record<string, string>> = {
         'riskPage.red.c1': 'Санкционные физические или юридические лица',
         'riskPage.red.c2': 'Отсутствующая или сфабрикованная документация по источнику средств',
         'riskPage.red.c3': 'Позиция «сделайте без вопросов» к комплаенсу',
-        'riskPage.red.c4': 'Высокорисковые отрасли: нелицензированные криптобиржи, офшорный гемблинг, оборонная торговля, сети shell-компаний',
+        'riskPage.red.c4': 'Высокорисковые отрасли: нелицензированные криптобиржи, офшорный гемблинг, оборонная торговля, сети компаний-пустышек',
         'riskPage.red.c5': 'Давление на обход регуляторных требований или банковских политик',
         'riskPage.red.c6': 'Намерение сокрытия без легальной структуры',
 
@@ -1274,9 +1326,9 @@ const translations: Record<string, Record<string, string>> = {
         'partnersPage.who.label': 'С КЕМ МЫ РАБОТАЕМ',
         'partnersPage.who.title': 'Профиль нашего партнёра',
         'partnersPage.who1.title': 'Wealth Managers и Family Offices',
-        'partnersPage.who1.desc': 'Клиенты, переводящие капитал и семью в ОАЭ. Нужны банкинг, структуры и визы — от того, кто понимает комплаенс.',
+        'partnersPage.who1.desc': 'Клиенты, переводящие капитал и семью в ОАЭ. Нужны банковские счета, корпоративные структуры и визы — от того, кто понимает комплаенс.',
         'partnersPage.who2.title': 'Иммиграционные консультанты',
-        'partnersPage.who2.desc': 'Ведут планирование резидентства, но нуждаются в доверенном операторе на земле для регистрации, банкинга и комплаенса.',
+        'partnersPage.who2.desc': 'Ведут планирование резидентства, но нуждаются в доверенном операторе на земле для регистрации, открытия счетов и комплаенса.',
         'partnersPage.who3.title': 'Налоговые консультанты и бухгалтеры',
         'partnersPage.who3.desc': 'Планируют налоговую структуру из домашней юрисдикции. Нужно исполнение в ОАЭ, которое дополняет консультацию, а не противоречит ей.',
         'partnersPage.who4.title': 'Юридические фирмы и бутиковые практики',
@@ -1287,7 +1339,7 @@ const translations: Record<string, Record<string, string>> = {
         'partnersPage.trans.title': 'Прозрачность',
         'partnersPage.trans.desc': 'Чёткие статусы на каждом этапе. Контроль объёма и изменений задокументирован. Без скрытых сборов, без сюрпризных цен. Вы всегда знаете, где стоит кейс.',
         'partnersPage.ctrl.title': 'Контроль',
-        'partnersPage.ctrl.desc': 'Решения принимаются заранее: можем ли мы продолжить и на каких именно условиях. Без обязательств без вашего ведома. Без изменений объёма без вашего согласия.',
+        'partnersPage.ctrl.desc': 'Всё согласовывается до старта: объём, условия, бюджет. Без обязательств без вашего ведома. Без изменений объёма без вашего согласия.',
         'partnersPage.qual.title': 'Качество',
         'partnersPage.qual.desc': 'Оптимизировано для банков и регуляторов, а не для «скорости любой ценой». Мы ставим на долгосрочную устойчивость. Структура, которая проходит комплаенс сегодня и выдерживает аудит завтра.',
 
@@ -1304,7 +1356,7 @@ const translations: Record<string, Record<string, string>> = {
         'partnerKit.subtitle': 'Всё, что нужно, чтобы понять, как мы работаем, оценить совместимость и представить WTP вашим клиентам.',
         'partnerKit.featured': 'Обзор',
         'partnerKit.onepager.title': 'WTP One Pager',
-        'partnerKit.onepager.desc': 'Краткий обзор нашей партнёрской модели, риск-фреймворка и продуктовой линейки. Идеально для передачи заинтересованным сторонам.',
+        'partnerKit.onepager.desc': 'Краткий обзор нашей партнёрской модели, системы оценки рисков и продуктовой линейки. Идеально для передачи заинтересованным сторонам.',
         'partnerKit.download.btn': 'Скачать PDF',
         'partnerKit.docs': 'Документация',
         'partnerKit.docsSubtitle': 'Подробные документы для вас и ваших клиентов.',
@@ -1354,6 +1406,7 @@ const translations: Record<string, Record<string, string>> = {
         'footer.terms': 'Условия использования',
         'footer.privacy': 'Политика конфиденциальности',
         'footer.deliveryTerms': 'Условия исполнения',
+        'footer.cookieSettings': 'Настройки cookies',
         'footer.office': 'Офис',
         'footer.address': 'Office 1207, Arenco Tower\nMedia City, Дубай, ОАЭ',
 
@@ -1383,7 +1436,7 @@ const translations: Record<string, Record<string, string>> = {
         'contact.name': 'Имя',
         'contact.namePlaceholder': 'Иван Иванов',
         'contact.email': 'Email',
-        'contact.emailPlaceholder': 'ivan@example.com',
+        'contact.emailPlaceholder': 'name@company.com',
         'contact.telegram': 'Telegram',
         'contact.telegramPlaceholder': '@username',
         'contact.message': 'Сообщение',
@@ -1416,18 +1469,18 @@ const translations: Record<string, Record<string, string>> = {
         'terms.back': '\u2190 Назад к процессу',
         'terms.title': 'Условия исполнения',
         'terms.label': 'ПРОЦЕСС ИСПОЛНЕНИЯ',
-        'terms.subtitle': 'Наши принципы работы, риск-фреймворк и операционные правила для каждого engagement.',
+        'terms.subtitle': 'Наши принципы работы, система оценки рисков и операционные правила для каждого проекта.',
         'terms.principles': 'Ключевые принципы',
         'terms.foundation': 'Основа',
         'terms.bankingFirst': 'Банк в приоритете',
         'terms.bankingFirstDesc': 'Мы оцениваем каждый кейс через призму банка до любой регистрации. Структура выбирается для банка, а не наоборот.',
         'terms.compliance': 'Комплаенс важнее скорости',
-        'terms.complianceDesc': 'Мы не срезаем углы. Качество комплаенс-документации важнее скорости исполнения.',
+        'terms.complianceDesc': 'Мы не жертвуем качеством ради скорости. Комплаенс-документация важнее сроков.',
         'terms.scope': 'Объём до обещаний',
         'terms.scopeDesc': 'Нет объёма \u2014 нет обещаний. Услуги, сроки и цены фиксируются до начала работ.',
         'terms.written': 'Только письменные изменения',
         'terms.writtenDesc': 'Все изменения объёма, дополнительные услуги и модификации должны быть подтверждены письменно.',
-        'terms.riskTitle': 'Фреймворк оценки рисков',
+        'terms.riskTitle': 'Система оценки рисков',
         'terms.gatekeeping': 'Контроль допуска',
         'terms.accept': '\u2705 Берём в работу',
         'terms.accept1': 'Клиенты с потенциалом нескольких услуг',
@@ -1480,7 +1533,7 @@ const translations: Record<string, Record<string, string>> = {
         'reLanding.back': '\u2190 Назад к обзору',
         'reLanding.label': 'ИНВЕСТИЦИИ В НЕДВИЖИМОСТЬ',
         'reLanding.hero.title': 'Ваша инвестиция в недвижимость, структурированная с первого дня.',
-        'reLanding.hero.subtitle': 'На рынке 27 000 агентов, и большинство просто продают квартиры. Мы структурируем всю сделку: банкинг, виза, налоги и собственность \u2014 чтобы инвестиция действительно работала.',
+        'reLanding.hero.subtitle': 'На рынке 27 000 агентов, и большинство просто продают квартиры. Мы структурируем всю сделку: банковские счета, виза, налоги и собственность \u2014 чтобы инвестиция действительно работала.',
         'reLanding.hero.cta': 'Обсудить ваш кейс',
         'reLanding.hero.ctaSecondary': 'Как это работает',
 
@@ -1488,24 +1541,24 @@ const translations: Record<string, Record<string, string>> = {
         'reLanding.problem.label': 'НАСТОЯЩАЯ ПРОБЛЕМА',
         'reLanding.problem.title': 'Купить недвижимость легко. Сделать так, чтобы она работала \u2014 нет.',
         'reLanding.problem.banking.title': '30% сталкиваются с банковскими проблемами после покупки',
-        'reLanding.problem.banking.text': 'Вы подписали SPA, внесли депозит \u2014 но банк не проводит перевод. Нет документов об источнике средств. Эскроу-счёт застройщика в другом банке. Домашний банк заблокировал транзакцию. Без предварительно согласованного банкинга покупка может встать на недели.',
+        'reLanding.problem.banking.text': 'Вы подписали SPA, внесли депозит \u2014 но банк не проводит перевод. Нет документов об источнике средств. Эскроу-счёт застройщика в другом банке. Домашний банк заблокировал транзакцию. Без заранее подготовленных банковских документов покупка может встать на недели.',
         'reLanding.problem.visa.title': 'Отказы по Golden Visa растут',
-        'reLanding.problem.visa.text': 'Стоимость недвижимости ниже AED 2M на момент подачи \u2014 не покупки. Off-plan не подходит до передачи. Совместное владение делит стоимость. Титул на компанию требует другого процесса. Эти детали стоят инвесторам визовых заявок.',
+        'reLanding.problem.visa.text': 'Стоимость недвижимости ниже AED 2M на момент подачи \u2014 не покупки. Off-plan не подходит до передачи. Совместное владение делит стоимость. Титул на компанию требует другого процесса. Эти нюансы приводят к отказам.',
         'reLanding.problem.tax.title': '9% корпоративный налог меняет расклад',
         'reLanding.problem.tax.text': 'С июня 2023 года в ОАЭ действует 9% корпоративный налог на прибыль свыше AED 375K. Владение недвижимостью через компанию без правильного структурирования означает налог на арендный доход. Личное vs корпоративное владение имеет реальные последствия для налогового резидентства, наследования и будущего выхода.',
 
         // Решение
         'reLanding.solution.label': 'ИНТЕГРИРОВАННЫЙ ПОДХОД',
-        'reLanding.solution.title': 'Недвижимость + Банкинг + Виза + Налоги. Один процесс.',
-        'reLanding.solution.text': 'WTP \u2014 не брокер по недвижимости. Мы execution-партнёр, который структурирует вашу инвестицию в рамках полного операционного фреймворка. Каждое решение о покупке оценивается с точки зрения банковских требований, визовой eligibility, налоговых последствий и долгосрочной стратегии владения.',
-        'reLanding.solution.point1.title': 'Банкинг в первую очередь',
+        'reLanding.solution.title': 'Недвижимость + Банк + Виза + Налоги. Один процесс.',
+        'reLanding.solution.text': 'WTP \u2014 не брокер по недвижимости. Мы execution-партнёр, который структурирует вашу инвестицию в рамках полного цикла сопровождения. Каждое решение о покупке оценивается с точки зрения банковских требований, визовой пригодности, налоговых последствий и долгосрочной стратегии владения.',
+        'reLanding.solution.point1.title': 'Банк в первую очередь',
         'reLanding.solution.point1.text': 'Мы проверяем вашу способность провести транзакцию до того, как вы привяжетесь к объекту. Документы об источнике средств, предварительное согласование с банком, маршрутизация платежа \u2014 всё решено заранее.',
         'reLanding.solution.point2.title': 'Golden Visa в пакете',
         'reLanding.solution.point2.text': 'Покупка недвижимости + визовая заявка + Emirates ID + спонсорство семьи \u2014 один скоординированный процесс, а не четыре отдельных подрядчика.',
         'reLanding.solution.point3.title': 'Налоговое структурирование',
         'reLanding.solution.point3.text': 'Личная vs корпоративная собственность. Последствия для арендного дохода. Требования substance. Планирование выхода. Структурировано с учётом вашей домашней юрисдикции.',
         'reLanding.solution.point4.title': 'Комплаенс по substance',
-        'reLanding.solution.point4.text': 'Коммунальные контракты, договоры аренды, подтверждение физического присутствия \u2014 всё необходимое для обоснования вашего налогового резидентства в ОАЭ.',
+        'reLanding.solution.point4.text': 'Коммунальные контракты, договоры аренды, подтверждение физического присутствия \u2014 всё необходимое для подтверждения вашего налогового резидентства в ОАЭ.',
 
         // Сетка услуг
         'reLanding.services.label': 'ЧТО МЫ ПОКРЫВАЕМ',
@@ -1556,12 +1609,12 @@ const translations: Record<string, Record<string, string>> = {
         'reLanding.redflags.item1': 'Мы не гарантируем доходность недвижимости или арендные ставки. Рыночные условия вне чьего-либо контроля.',
         'reLanding.redflags.item2': 'Мы не продвигаем схемы \u00ABбыстрого обогащения\u00BB или спекулятивные стратегии перепродажи.',
         'reLanding.redflags.item3': 'Мы не проводим анонимные покупки. Документы об источнике средств обязательны.',
-        'reLanding.redflags.item4': 'Мы не даём юридических или налоговых консультаций. Мы координируемся с вашими квалифицированными консультантами для исполнения структуры.',
+        'reLanding.redflags.item4': 'Мы не даём юридических или налоговых консультаций. Мы координируемся с вашими консультантами для реализации выбранной структуры.',
         'reLanding.redflags.item5': 'Мы не берём кейсы, где бюджет не соответствует заявленной цели Golden Visa.',
 
         // CTA
         'reLanding.cta.title': 'Готовы структурировать инвестицию?',
-        'reLanding.cta.text': 'Начните с оценки кейса. Мы проверим вашу банковскую готовность, визовую eligibility и налоговую позицию \u2014 до того, как вы привяжетесь к объекту.',
+        'reLanding.cta.text': 'Начните с оценки кейса. Мы проверим вашу банковскую готовность, визовую пригодность и налоговую позицию \u2014 до того, как вы привяжетесь к объекту.',
         'reLanding.cta.primary': 'Отправить кейс',
         'reLanding.cta.secondary': 'Запросить Partner Kit',
 
@@ -1579,21 +1632,21 @@ const translations: Record<string, Record<string, string>> = {
         'trustLanding.principles.protection.title': 'Защита интересов партнёра',
         'trustLanding.principles.protection.text': 'Мы юридически фиксируем принадлежность клиента партнёру. Любые коммуникации, дополнительные услуги или расширение контракта проходят только через вас. Мы исключаем прямой коммерческий контакт с клиентом в обход партнёра.',
         'trustLanding.principles.banking.title': 'Banking-First',
-        'trustLanding.principles.banking.text': 'В отличие от регистрационных агентов, мы начинаем с банковского пре-скрининга. Мы не регистрируем компании, которые не смогут открыть расчётные счета. Это защищает вашу репутацию: мы не продаём неработающие инструменты.',
+        'trustLanding.principles.banking.text': 'В отличие от регистрационных агентов, мы начинаем с банковского пре-скрининга. Мы не регистрируем компании, которые не смогут открыть расчётные счета. Это защищает вашу репутацию: мы не создаём компании-пустышки.',
         'trustLanding.principles.transparency.title': 'Прозрачность процесса',
         'trustLanding.principles.transparency.text': 'Вы получаете доступ к трекингу статуса сделки. Каждый этап \u2014 KYC, Bank Approval, Visa Issuance \u2014 фиксируется. Вы всегда знаете, где находятся документы и когда ожидать результат.',
 
         // Компетенции
         'trustLanding.competencies.label': 'КОМПЕТЕНЦИИ',
         'trustLanding.competencies.title': 'Полное исполнение в четырёх областях.',
-        'trustLanding.comp1.title': 'Banking & Compliance',
-        'trustLanding.comp1.text': 'Открытие личных и корпоративных счетов, включая сложные кейсы: High Risk, РФ-паспорт + ВНЖ, крипто-активы с подтверждённым Source of Funds. Разблокировка и сопровождение транзакций.',
-        'trustLanding.comp2.title': 'Corporate Structuring',
-        'trustLanding.comp2.text': 'Регистрация компаний (Mainland / Free Zone) под конкретные бизнес-задачи с учётом требований Economic Substance Regulations (ESR).',
-        'trustLanding.comp3.title': 'Tax & Accounting',
+        'trustLanding.comp1.title': 'Банковские услуги и комплаенс',
+        'trustLanding.comp1.text': 'Открытие личных и корпоративных счетов, включая сложные кейсы: High Risk, РФ-паспорт + ВНЖ, крипто-активы с подтверждённым источником средств. Разблокировка и сопровождение транзакций.',
+        'trustLanding.comp2.title': 'Корпоративное структурирование',
+        'trustLanding.comp2.text': 'Регистрация компаний (Mainland / Free Zone) под конкретные бизнес-задачи с учётом требований экономического присутствия (ESR).',
+        'trustLanding.comp3.title': 'Налоги и бухгалтерия',
         'trustLanding.comp3.text': 'Постановка налогового учёта (Corporate Tax, VAT), регулярная бухгалтерия и подготовка к аудиту. Синхронизировано с банковским комплаенсом с первого дня.',
-        'trustLanding.comp4.title': 'Private Client Services',
-        'trustLanding.comp4.text': 'Оформление резидентства (Golden Visa), налогового резидентства, завещаний и частных фондов. Интегрировано с корпоративным структурированием и банкингом.',
+        'trustLanding.comp4.title': 'Услуги для частных клиентов',
+        'trustLanding.comp4.text': 'Оформление резидентства (Golden Visa), налогового резидентства, завещаний и частных фондов. Интегрировано с корпоративным структурированием и открытием счетов.',
 
         // Форматы сотрудничества
         'trustLanding.models.label': 'ФОРМАТЫ СОТРУДНИЧЕСТВА',
@@ -1650,18 +1703,18 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.purpose.analytics': 'Аналитика сайта для улучшения пользовательского опыта (с согласия)',
         'privacy.purpose.legal': 'Соблюдение правовых обязательств',
         'privacy.legalBasis.title': '4. Правовое основание',
-        'privacy.legalBasis.consent': 'Согласие — для обработки форм и аналитических cookies (GDPR ст. 6(1)(a), UAE PDPL)',
+        'privacy.legalBasis.consent': 'Согласие — для обработки форм и аналитических cookies (GDPR ст. 6(1)(a), UAE PDPL, Федеральный закон №152-ФЗ «О персональных данных»)',
         'privacy.legalBasis.contract': 'Исполнение договора — для обработки вашего кейса',
         'privacy.legalBasis.legitimate': 'Законный интерес — для безопасности и производительности сайта',
         'privacy.thirdParties.title': '5. Третьи стороны — обработчики данных',
         'privacy.thirdParties.bitrix': 'Bitrix24 — CRM-система для управления клиентскими обращениями',
         'privacy.thirdParties.google': 'Google Analytics 4 — аналитика сайта (только с вашего согласия)',
-        'privacy.thirdParties.hosting': 'GitHub Pages — хостинг сайта',
+        'privacy.thirdParties.hosting': 'Timeweb — хостинг сайта (серверы в Российской Федерации)',
         'privacy.thirdParties.note': 'Мы не продаём ваши персональные данные третьим лицам. Обработчики данных связаны соглашениями об обработке данных.',
         'privacy.retention.title': '6. Сроки хранения данных',
         'privacy.retention.text': 'Персональные данные, отправленные через формы, хранятся до 2 лет с момента вашего последнего взаимодействия с нами. Данные аналитики хранятся 14 месяцев. Вы можете запросить досрочное удаление в любое время.',
         'privacy.rights.title': '7. Ваши права',
-        'privacy.rights.intro': 'Согласно GDPR, UAE PDPL и DIFC Data Protection Law, у вас есть следующие права:',
+        'privacy.rights.intro': 'Согласно GDPR, UAE PDPL, DIFC Data Protection Law и Федеральному закону №152-ФЗ «О персональных данных», у вас есть следующие права:',
         'privacy.rights.access': 'Право доступа — получить копию своих персональных данных',
         'privacy.rights.rectification': 'Право на исправление — скорректировать неточные данные',
         'privacy.rights.erasure': 'Право на удаление — запросить удаление своих данных',
@@ -1674,10 +1727,14 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.cookies.text': 'Мы используем cookies только с вашего явного согласия. Могут быть установлены следующие cookies:',
         'privacy.cookies.ga': '_ga, _ga_* — cookies Google Analytics для анализа использования сайта (категория: аналитика)',
         'privacy.cookies.session': 'wtp-cookie-consent — хранит ваш выбор по cookies (строго необходимый, согласие не требуется)',
-        'privacy.cookies.control': 'Вы можете управлять настройками cookies в любое время, очистив cookies браузера и посетив сайт заново. Баннер согласия на cookies появится снова.',
-        'privacy.changes.title': '9. Изменения в политике',
+        'privacy.cookies.control': 'Вы можете управлять настройками cookies в любое время через ссылку «Настройки cookies» в подвале сайта или очистив cookies браузера.',
+        'privacy.crossBorder.title': '9. Трансграничная передача данных',
+        'privacy.crossBorder.text': 'Ваши персональные данные могут передаваться и обрабатываться за пределами страны вашего проживания, в том числе в Объединенных Арабских Эмиратах, где работают наши поставщики услуг (Bitrix24, Google Analytics). Такая передача осуществляется на основании вашего согласия, договорной необходимости или стандартных договорных условий, обеспечивающих надлежащий уровень защиты данных.',
+        'privacy.complaint.title': '10. Право на подачу жалобы',
+        'privacy.complaint.text': 'Если вы считаете, что ваши персональные данные обрабатываются с нарушением законодательства, вы имеете право обратиться с жалобой в уполномоченный надзорный орган. Для резидентов России это Федеральная служба по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор). Для резидентов ЕС — соответствующий национальный орган по защите данных.',
+        'privacy.changes.title': '11. Изменения в политике',
         'privacy.changes.text': 'Мы можем обновлять эту Политику конфиденциальности время от времени. Дата «последнего обновления» вверху отражает последнюю ревизию. Рекомендуем периодически просматривать эту страницу.',
-        'privacy.contact.title': '10. Связаться с нами',
+        'privacy.contact.title': '12. Связаться с нами',
         'privacy.contact.text': 'Если у вас есть вопросы по этой Политике конфиденциальности или вы хотите реализовать свои права, свяжитесь с нами: hello@wtpbrokers.com, +971 600 575-294 или посетите wtpbrokers.com.',
 
         // Terms of Service Page
@@ -1689,14 +1746,14 @@ const translations: Record<string, Record<string, string>> = {
         'tos.intro.text2': 'Получая доступ к нашему Сайту, отправляя любой запрос или пользуясь нашими услугами, вы подтверждаете, что прочитали, поняли и согласны соблюдать настоящие Условия. Если вы не согласны, пожалуйста, не используйте Сайт и наши услуги.',
         'tos.definitions.title': '2. Определения',
         'tos.definitions.company': '\u00ABКомпания\u00BB \u2014 WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, оператор данного Сайта и поставщик посреднических и консультационных услуг.',
-        'tos.definitions.services': '\u00ABУслуги\u00BB \u2014 консультационные, посреднические и содействующие услуги, предлагаемые Компанией, включая, помимо прочего, содействие в корпоративном банкинге, регистрации компаний, оформлении виз и резидентства, налогового резидентства, бухгалтерии, недвижимости и управлении активами.',
+        'tos.definitions.services': '\u00ABУслуги\u00BB \u2014 консультационные, посреднические и содействующие услуги, предлагаемые Компанией, включая, помимо прочего, содействие в открытии корпоративных счетов, регистрации компаний, оформлении виз и резидентства, налогового резидентства, бухгалтерии, недвижимости и управлении активами.',
         'tos.definitions.client': '\u00ABКлиент\u00BB \u2014 конечный пользователь или бенефициар Услуг, будь то физическое или юридическое лицо.',
         'tos.definitions.partner': '\u00ABПартнёр\u00BB \u2014 брокер, консультант, юридическая фирма, семейный офис или иной посредник, направляющий Клиентов в Компанию.',
         'tos.definitions.website': '\u00ABСайт\u00BB \u2014 веб-сайт, расположенный по адресу wtpref.com, и все его поддомены.',
         'tos.definitions.user': '\u00ABПользователь\u00BB или \u00ABвы\u00BB \u2014 любое лицо или организация, получающие доступ к Сайту или использующие Услуги Компании.',
         'tos.services.title': '3. Описание услуг',
         'tos.services.text1': 'Компания выступает в роли посредника, содействующего лица и консультанта по ряду услуг по организации и ведению бизнеса в Объединённых Арабских Эмиратах. Наши услуги включают, помимо прочего:',
-        'tos.services.banking': 'Содействие в корпоративном и премиум-банкинге \u2014 помощь с документацией, выбором банка и процессом подачи заявки',
+        'tos.services.banking': 'Содействие в открытии корпоративных и премиальных счетов \u2014 помощь с документацией, выбором банка и процессом подачи заявки',
         'tos.services.formation': 'Регистрация компаний \u2014 регистрация в свободных зонах и на mainland, торговое лицензирование и корпоративное структурирование',
         'tos.services.visa': 'Визы и резидентство \u2014 рабочие визы, визы инвестора, Golden Visa и оформление Emirates ID',
         'tos.services.tax': 'Налоговое резидентство \u2014 сертификаты налогового резидентства, substance requirements и планирование по соглашениям об избежании двойного налогообложения',
@@ -1726,7 +1783,7 @@ const translations: Record<string, Record<string, string>> = {
         'tos.disclaimers.intro': 'Компания прямо заявляет следующее:',
         'tos.disclaimers.legal': 'Мы НЕ предоставляем юридических консультаций. Наши Услуги носят посреднический и консультационный характер. Для получения юридической консультации обратитесь к квалифицированному адвокату в соответствующей юрисдикции.',
         'tos.disclaimers.tax': 'Мы НЕ предоставляем налоговых консультаций. Хотя мы содействуем процессам получения налогового резидентства и подготовке документации, мы не оказываем профессиональных налоговых консультационных услуг. Обратитесь к лицензированному налоговому консультанту для принятия налоговых решений.',
-        'tos.disclaimers.financial': 'Мы НЕ предоставляем финансовых или инвестиционных консультаций. Любая информация о банкинге, недвижимости или структурах активов предоставляется исключительно в целях содействия и не является рекомендацией.',
+        'tos.disclaimers.financial': 'Мы НЕ предоставляем финансовых или инвестиционных консультаций. Любая информация о банковских услугах, недвижимости или структурах активов предоставляется исключительно в целях содействия и не является рекомендацией.',
         'tos.disclaimers.outcome': 'Мы НЕ гарантируем результатов. Открытие банковских счетов, одобрение виз, выдача лицензий и другие решения государственных или институциональных органов находятся вне нашего контроля. Мы содействуем \u2014 мы не принимаем решений.',
         'tos.disclaimers.note': 'Сайт и Услуги предоставляются на условиях \u00ABкак есть\u00BB и \u00ABкак доступно\u00BB без каких-либо гарантий, явных, подразумеваемых или предусмотренных законом, включая, помимо прочего, гарантии товарной пригодности, соответствия определённой цели или ненарушения прав.',
         'tos.confidentiality.title': '8. Конфиденциальность',
@@ -1748,7 +1805,7 @@ const translations: Record<string, Record<string, string>> = {
         'ml.back': '← К обзору',
         'ml.hero.label': 'МОНЕТИЗАЦИЯ ПАРТНЁРСТВА',
         'ml.hero.title': 'Клиенты просят банк в Дубае? Мы откроем — вы получите комиссию.',
-        'ml.hero.subtitle': 'Мы берём на себя compliance, банкинг и налоги — вы сохраняете лицо перед клиентом и получаете комиссию с каждого чека.',
+        'ml.hero.subtitle': 'Мы берём на себя комплаенс, открытие счетов и налоги — вы выглядите профессионалом в глазах клиента и получаете комиссию с каждого чека.',
         'ml.hero.cta.case': 'Бесплатный pre-screen — передать кейс',
         'ml.hero.cta.kit': 'Получить Partner Kit и прайс',
 
@@ -1767,7 +1824,7 @@ const translations: Record<string, Record<string, string>> = {
         'ml.problem.label': 'ЗНАКОМО?',
         'ml.problem.title': 'Вы уже отправляете клиентов за банками и визами — но бесплатно.',
         'ml.problem.card1': 'Клиент попросил банк в Дубае — вы порекомендовали знакомого. Клиент ушёл. Вы ничего не получили.',
-        'ml.problem.card2': 'Клиент хочет «всё под ключ» — но визы, налоги, банкинг не ваша специализация.',
+        'ml.problem.card2': 'Клиент хочет «всё под ключ» — но визы, налоги, открытие счетов — не ваша специализация.',
         'ml.problem.card3': 'Вы не контролируете процесс и не знаете, на каком этапе находится клиент.',
         'ml.problem.solution': 'WTP решает все три проблемы: вы зарабатываете, контролируете и не теряете клиента.',
 
@@ -1775,11 +1832,11 @@ const translations: Record<string, Record<string, string>> = {
         'ml.protection.label': 'ВАШИ ГАРАНТИИ',
         'ml.protection.title': 'Три гарантии, которые мы не нарушаем.',
         'ml.protection.nc.title': 'Non-Circumvention',
-        'ml.protection.nc.text': 'Мы юридически фиксируем клиента за вами. Не выходим на прямой контакт. Не продаём мимо кассы. Закреплено в договоре.',
+        'ml.protection.nc.text': 'Мы юридически фиксируем клиента за вами. Не выходим на прямой контакт. Не работаем напрямую с вашими клиентами. Закреплено в договоре.',
         'ml.protection.crm.title': 'Полная прозрачность',
         'ml.protection.crm.text': 'Вы видите каждый шаг: статус документов, решения банка, сроки — в реальном времени через CRM.',
         'ml.protection.ltv.title': 'Пожизненная комиссия',
-        'ml.protection.ltv.text': 'Каждое продление, бухгалтерия, завещание — вы получаете комиссию. Средний LTV клиента: 3–5 лет.',
+        'ml.protection.ltv.text': 'Каждое продление, бухгалтерия, завещание — вы получаете комиссию. Средний срок работы с клиентом: 3–5 лет.',
 
         // How It Works
         'ml.how.label': 'КАК ЭТО РАБОТАЕТ',
@@ -1796,7 +1853,7 @@ const translations: Record<string, Record<string, string>> = {
         // Products
         'ml.products.label': 'ЧТО МЫ ИСПОЛНЯЕМ',
         'ml.products.title': 'Пять высокомаржинальных услуг, которые уже нужны вашим клиентам.',
-        'ml.products.banking.title': 'Корпоративный и личный банкинг',
+        'ml.products.banking.title': 'Корпоративные и личные счета',
         'ml.products.banking.desc': 'Открытие счетов, платёжная инфраструктура, сопровождение комплаенса. Мы ведём переговоры с банком — клиент получает работающий счёт.',
         'ml.products.setup.title': 'Регистрация компаний',
         'ml.products.setup.desc': 'Свободные зоны, mainland, торговые лицензии. Структурировано под банковский acceptance, а не просто скорость.',
@@ -1821,7 +1878,7 @@ const translations: Record<string, Record<string, string>> = {
         'ml.models.whitelabel.title': 'Модель White-Label',
         'ml.models.whitelabel.desc': 'Клиент не знает о WTP. Мы работаем за кулисами как ваша команда исполнения. Вся коммуникация идёт через вас.',
         'ml.models.whitelabel.step1': 'Вы передаёте нам детали кейса и документы под вашим брендом.',
-        'ml.models.whitelabel.step2': 'Мы исполняем полный объём: регистрация, банкинг, визы, комплаенс.',
+        'ml.models.whitelabel.step2': 'Мы исполняем полный объём: регистрация, открытие счетов, визы, комплаенс.',
         'ml.models.whitelabel.step3': 'Вы устанавливаете свою наценку. Наша цена — ваша себестоимость; ваша цена — ваша маржа.',
         'ml.models.whitelabel.highlight': 'Лучше всего для: юридических фирм и бутиковых практик, которые хотят расширить практику на UAE без открытия офиса.',
 
@@ -1863,7 +1920,7 @@ const translations: Record<string, Record<string, string>> = {
         'ml.faq.a3': 'Зависит от модели: Referral — фиксированная сумма или % от сделки; White-Label — вы сами ставите наценку. Детали в Partner Kit.',
         'ml.faq.q4': 'Сколько времени занимает типичный кейс?',
         'ml.faq.a4': 'Pre-screen: 5–7 рабочих дней. Полный кейс (компания + банк + виза): 4–8 недель в зависимости от сложности.',
-        'ml.faq.q5': 'Нужен ли мне опыт в банкинге/compliance?',
+        'ml.faq.q5': 'Нужен ли мне опыт в банковских услугах или комплаенсе?',
         'ml.faq.a5': 'Нет. Для модели Referral — только тёплое Intro. Всё остальное делаем мы.',
         'ml.faq.q6': 'Клиент узнает, что работает WTP, а не я?',
         'ml.faq.a6': 'В модели White-Label — нет. Мы работаем как ваш невидимый технический отдел. Все документы и коммуникации — от вашего имени.',
@@ -1880,9 +1937,9 @@ const translations: Record<string, Record<string, string>> = {
 
         // Banking-First Landing (bf.*)
         'bf.back': '← Назад к обзору',
-        'bf.hero.label': 'BANKING-FIRST EXECUTION',
+        'bf.hero.label': 'BANKING-FIRST',
         'bf.hero.title': 'Банк и комплаенс — до регистрации, а не после.',
-        'bf.hero.subtitle': 'Сначала banking-сценарий, потом всё остальное: компания, счета, визы, сопровождение. Вы остаётесь владельцем клиента.',
+        'bf.hero.subtitle': 'Сначала — полная подготовка документов и банковский сценарий, затем — регистрация, счета, визы, сопровождение. Документы, которые пройдут проверку в любой инстанции. Вы остаётесь владельцем клиента.',
         'bf.hero.cta.prescreen': 'Бесплатный pre-screen — передать кейс',
         'bf.hero.cta.catalog': 'Получить каталог услуг',
         'bf.proof.cases.value': '300+',
@@ -1893,7 +1950,7 @@ const translations: Record<string, Record<string, string>> = {
         'bf.proof.approval.label': 'Одобрение банков',
         'bf.trust.nda': 'Защита NDA',
         'bf.trust.licensed': 'Лицензия ОАЭ',
-        'bf.trust.banking': 'Banking-First подход',
+        'bf.trust.banking': 'Banking-First',
 
         // Anti-Commodity
         'bf.anti.label': 'ПРОБЛЕМА',
@@ -1910,11 +1967,11 @@ const translations: Record<string, Record<string, string>> = {
         'bf.usp.label': 'ПОЧЕМУ WTP',
         'bf.usp.title': 'Четыре принципа, которые делают это работающим',
         'bf.usp.banking.title': 'Banking-First',
-        'bf.usp.banking.text': 'Не стартуем регистрацию до bankability-сценария. Если банк не откроет счёт — вы узнаете до того, как заплатите за компанию, которая не сможет работать.',
+        'bf.usp.banking.text': 'Не стартуем регистрацию, пока не подготовлен полный пакет документов и банковский сценарий. Если банк не откроет счёт — вы узнаете до того, как заплатите за компанию, которая не сможет работать.',
         'bf.usp.gonogo.title': 'GO / NO-GO до начала работ',
-        'bf.usp.gonogo.text': 'Каждый кейс проходит Pre-screen. Если видим risk-факторы — даём письменное GO/NO-GO решение с объяснением. Не тратите деньги на безнадёжные кейсы.',
-        'bf.usp.protection.title': 'Partner Protection',
-        'bf.usp.protection.text': 'Non-circumvention зафиксирован в договоре. Ownership клиента в CRM. Прозрачные выплаты. Мы не выходим на прямой контакт с вашим клиентом.',
+        'bf.usp.gonogo.text': 'Каждый кейс проходит Pre-screen. Если видим факторы риска — даём письменное GO/NO-GO решение с объяснением. Не тратите деньги на безнадёжные кейсы.',
+        'bf.usp.protection.title': 'Защита партнёра',
+        'bf.usp.protection.text': 'Non-circumvention зафиксирован в договоре. Клиент закреплён за вами в CRM. Прозрачные выплаты. Мы не выходим на прямой контакт с вашим клиентом.',
         'bf.usp.modes.title': 'Два режима',
         'bf.usp.modes.text': 'Referral: вы делаете intro, мы закрываем, вы получаете комиссию. White-Label: мы работаем как ваш невидимый бэк-офис, вы продаёте от своего имени с наценкой.',
 
@@ -1922,29 +1979,29 @@ const translations: Record<string, Record<string, string>> = {
         'bf.how.label': 'ПРОЦЕСС',
         'bf.how.title': 'Как это работает',
         'bf.how.step1.title': 'Pre-screen',
-        'bf.how.step1.desc': 'Вы отправляете документы клиента. Мы проводим risk-скрининг за 5-7 рабочих дней.',
-        'bf.how.step2.title': 'Banking-сценарий',
+        'bf.how.step1.desc': 'Вы отправляете документы клиента. Мы проводим оценку рисков за 5-7 рабочих дней.',
+        'bf.how.step2.title': 'Банковский сценарий',
         'bf.how.step2.desc': 'Подбираем банки под профиль, формируем план, фиксируем бюджет и условия письменно. GO/NO-GO — до начала работ.',
         'bf.how.step3.title': 'Execution',
         'bf.how.step3.desc': 'Регистрация, счета, визы, налоговая регистрация — всё по утверждённому сценарию.',
-        'bf.how.step4.title': 'Delivery и Next Steps',
-        'bf.how.step4.desc': 'Выдача документов и доступов. Рекомендации по ongoing-сопровождению: бухгалтерия, ESR, продления.',
+        'bf.how.step4.title': 'Передача и дальнейшие шаги',
+        'bf.how.step4.desc': 'Выдача документов и доступов. Рекомендации по текущему сопровождению: бухгалтерия, ESR, продления.',
 
         // Service Map
         'bf.services.label': 'КАТАЛОГ УСЛУГ',
         'bf.services.title': 'Что мы закрываем',
-        'bf.services.banking.title': 'Banking',
-        'bf.services.banking.desc': 'Личные и корпоративные счета, premium banking, сопровождение платежей. От pre-screen до первой транзакции.',
-        'bf.services.setup.title': 'Business Setup',
-        'bf.services.setup.desc': 'Регистрация компании, лицензии, продления, VAT/CT — всё после банковского одобрения, не до.',
-        'bf.services.residency.title': 'Residency',
+        'bf.services.banking.title': 'Банковские услуги',
+        'bf.services.banking.desc': 'Личные и корпоративные счета, премиальное обслуживание, сопровождение платежей. От Pre-screen до первой транзакции.',
+        'bf.services.setup.title': 'Регистрация бизнеса',
+        'bf.services.setup.desc': 'Регистрация компании, лицензии, продления, НДС и корпоративный налог — всё после банковского одобрения, не до.',
+        'bf.services.residency.title': 'Резидентство',
         'bf.services.residency.desc': 'Визы, Emirates ID, Golden Visa как часть структуры.',
-        'bf.services.operations.title': 'Operations',
-        'bf.services.operations.desc': 'Бухгалтерия, ESR/substance, комплаенс-сопровождение — клиент не останется один после setup.',
-        'bf.services.realestate.title': 'Real Estate',
-        'bf.services.realestate.desc': 'Advisory, сопровождение сделки, ипотека, conveyancing — для клиентов с real estate как частью relocation.',
-        'bf.services.wealth.title': 'Asset & Wealth',
-        'bf.services.wealth.desc': 'Will, foundation, asset protection, custody — для HNWI с задачей сохранения и передачи активов.',
+        'bf.services.operations.title': 'Операционное сопровождение',
+        'bf.services.operations.desc': 'Бухгалтерия, ESR/substance, комплаенс-сопровождение — клиент не останется один после запуска.',
+        'bf.services.realestate.title': 'Недвижимость',
+        'bf.services.realestate.desc': 'Консультация, сопровождение сделки, ипотека, оформление собственности — для клиентов с недвижимостью как частью релокации.',
+        'bf.services.wealth.title': 'Активы и защита',
+        'bf.services.wealth.desc': 'Завещания, фонды, защита активов, хранение — для состоятельных клиентов с задачей сохранения и передачи капитала.',
 
         // Models
         'bf.models.label': 'МОДЕЛИ СОТРУДНИЧЕСТВА',
@@ -1956,32 +2013,32 @@ const translations: Record<string, Record<string, string>> = {
         'bf.models.referral.step1': 'Вы отправляете тёплое intro в чат или email',
         'bf.models.referral.step2': 'WTP проводит pre-screen, закрывает кейс «под ключ»',
         'bf.models.referral.step3': 'Вы получаете комиссию по завершении кейса',
-        'bf.models.referral.highlight': 'Опыт в банкинге не нужен. Вы делаете только intro — мы делаем всё остальное.',
+        'bf.models.referral.highlight': 'Опыт в банковских услугах не нужен. Вы делаете только intro — мы делаем всё остальное.',
         'bf.models.whitelabel.title': 'White-Label Back-Office',
         'bf.models.whitelabel.desc': 'Мы работаем как ваш невидимый технический отдел. Все документы и коммуникации — от вашего имени.',
         'bf.models.whitelabel.step1': 'Клиент видит только ваш бренд и вашу команду',
-        'bf.models.whitelabel.step2': 'WTP исполняет в фоне: banking, compliance, setup',
+        'bf.models.whitelabel.step2': 'WTP исполняет в фоне: открытие счетов, комплаенс, регистрация',
         'bf.models.whitelabel.step3': 'Вы устанавливаете наценку. Наша цена + ваша маржа = ваша цена',
         'bf.models.whitelabel.highlight': 'Ваш клиент никогда не узнает о WTP. Полная конфиденциальность гарантирована в договоре.',
 
         // Result Statement
         'bf.result.label': 'РЕЗУЛЬТАТ',
         'bf.result.title': 'Клиент выходит в рабочую операционность в ОАЭ',
-        'bf.result.item1': 'Bankable-структура (компания + счёт + лицензия)',
+        'bf.result.item1': 'Работающая структура (компания + счёт + лицензия)',
         'bf.result.item2': 'Закрытый KYC/AML',
         'bf.result.item3': 'Визы и резидентство',
-        'bf.result.item4': 'Ongoing-сопровождение (бухгалтерия, ESR, продления)',
+        'bf.result.item4': 'Текущее сопровождение (бухгалтерия, ESR, продления)',
 
         // Case Study
         'bf.case.label': 'КЕЙС',
         'bf.case.title': 'Как это работает на практике',
-        'bf.case.tag': 'Юридический бутик, Европа → UAE',
+        'bf.case.tag': 'Юридический бутик, Европа → ОАЭ',
         'bf.case.situation.label': 'Ситуация',
-        'bf.case.situation.text': 'Клиент FO хотел tax residency в UAE. Предыдущий подрядчик зарегистрировал компанию в free zone, но банк отказал — недостаточный SoF-пакет.',
+        'bf.case.situation.text': 'Клиент семейного офиса хотел налоговое резидентство в ОАЭ. Предыдущий подрядчик зарегистрировал компанию в free zone, но банк отказал — недостаточный пакет документов по источнику средств.',
         'bf.case.wtp.label': 'Что сделал WTP',
-        'bf.case.wtp.text': 'Pre-screen: выявили проблему с SoF-документами (3 дня). Banking-сценарий: подобрали банк под профиль, сформировали SoF-пакет (7 дней). Execution: перерегистрация + новый банк + Golden Visa + tax residency certificate (6 недель). Delivery: полный пакет документов + план ongoing.',
+        'bf.case.wtp.text': 'Pre-screen: выявили проблему с документами по источнику средств (3 дня). Banking-сценарий: подобрали банк под профиль, сформировали пакет документов (7 дней). Исполнение: перерегистрация + новый банк + Golden Visa + сертификат налогового резидентства (6 недель). Передача: полный пакет документов + план сопровождения.',
         'bf.case.result.label': 'Результат',
-        'bf.case.result.text': 'Клиент операционен в UAE через 2 месяца. Счёт открыт с первой подачи. Партнёр сохранил клиента и репутацию.',
+        'bf.case.result.text': 'Клиент операционен в ОАЭ через 2 месяца. Счёт открыт с первой подачи. Партнёр сохранил клиента и репутацию.',
 
         // Boundaries
         'bf.bounds.label': 'ПРОЗРАЧНОСТЬ',
@@ -1992,10 +2049,10 @@ const translations: Record<string, Record<string, string>> = {
         'bf.bounds.do.item3': 'Берём сложные кейсы (SoF, multi-jurisdiction)',
         'bf.bounds.do.item4': 'Консьерж-сервис по запросу',
         'bf.bounds.dont.title': 'Что мы НЕ делаем',
-        'bf.bounds.dont.item1': 'Не обещаем «гарантию банка» — у каждого кейса свой risk-профиль',
+        'bf.bounds.dont.item1': 'Не обещаем «гарантию банка» — у каждого кейса свой уровень рисков',
         'bf.bounds.dont.item2': 'Не работаем «без документов / без вопросов»',
-        'bf.bounds.dont.item3': 'Не берём кейсы с sanctions red flags',
-        'bf.bounds.dont.item4': 'Не включаем консьерж бесплатно — только time & materials',
+        'bf.bounds.dont.item3': 'Не берём кейсы с признаками санкционных ограничений',
+        'bf.bounds.dont.item4': 'Не включаем консьерж бесплатно — оплата по факту затрат',
 
         // FAQ
         'bf.faq.label': 'FAQ',
@@ -2003,7 +2060,7 @@ const translations: Record<string, Record<string, string>> = {
         'bf.faq.q1': 'Что такое Banking-First и почему это важно?',
         'bf.faq.a1': 'Большинство подрядчиков начинают с регистрации компании и потом «пробуют» открыть счёт. Мы наоборот: сначала строим banking-сценарий — подбираем банк, проверяем KYC/AML-готовность, фиксируем план. Только после GO от банковской стороны запускаем регистрацию. Так вы не платите за компанию, которая не сможет работать.',
         'bf.faq.q2': 'Что если банк всё-таки откажет?',
-        'bf.faq.a2': 'Pre-screen выявляет risk-факторы до начала работ. Если мы видим высокий риск отказа — даём письменное GO/NO-GO решение с объяснением. Вы не тратите деньги и время на безнадёжный кейс.',
+        'bf.faq.a2': 'Pre-screen выявляет факторы риска до начала работ. Если мы видим высокий риск отказа — даём письменное GO/NO-GO решение с объяснением. Вы не тратите деньги и время на безнадёжный кейс.',
         'bf.faq.q3': 'Какие банки вы используете?',
         'bf.faq.a3': 'Мы работаем с пулом банков в UAE: от retail до premium и private banking. Конкретный банк подбирается под профиль клиента — юрисдикцию, тип бизнеса, объём средств, Source of Funds.',
         'bf.faq.q4': 'Сколько времени занимает полный кейс?',
@@ -2013,7 +2070,7 @@ const translations: Record<string, Record<string, string>> = {
         'bf.faq.q6': 'Работаете с клиентами из РФ / СНГ?',
         'bf.faq.a6': 'Да, при наличии прозрачного Source of Funds и отсутствии санкционных ограничений. РФ паспорт не является блокирующим фактором — важен профиль, а не юрисдикция.',
         'bf.faq.q7': 'Что входит в ongoing-сопровождение?',
-        'bf.faq.a7': 'Бухгалтерия, ESR/substance filing, VAT/CT декларации, продление лицензий и виз, compliance-мониторинг. Клиент не остаётся один после setup — это и есть LTV для партнёра.',
+        'bf.faq.a7': 'Бухгалтерия, ESR/substance filing, декларации НДС и корпоративного налога, продление лицензий и виз, комплаенс-мониторинг. Клиент не остаётся один после запуска — это и есть долгосрочный доход для партнёра.',
         'bf.faq.q8': 'Сколько стоит Pre-screen?',
         'bf.faq.a8': 'Pre-screen бесплатный. Бюджет на execution фиксируем в Scenario Approval — до начала работ, без сюрпризов.',
 
@@ -2071,7 +2128,7 @@ const translations: Record<string, Record<string, string>> = {
         'pd.process.step3.desc': 'Когда кейс закрыт, вы получаете SMS с подтверждением выплаты комиссии. Просто.',
         'pd.services.label': 'КАТАЛОГ УСЛУГ',
         'pd.services.title': 'Что нужно вашим клиентам после сделки',
-        'pd.services.banking.title': 'Компания + банкинг',
+        'pd.services.banking.title': 'Компания + счёт',
         'pd.services.banking.desc': 'Регистрация компании в ОАЭ, открытие корпоративного счёта, подготовка KYC.',
         'pd.services.banking.commission': 'Ваша комиссия: $2 000\u2013$3 000',
         'pd.services.visa.title': 'Golden Visa',
@@ -2101,7 +2158,7 @@ const translations: Record<string, Record<string, string>> = {
         'pd.objections.a1': 'Нет. Мы работаем как ваша расширенная команда. Клиент видит бесшовный сервис \u2014 не реферал. Non-circumvention в каждом договоре.',
         'pd.objections.q2': '\u00ABЧто если кейс клиента отклонят?\u00BB',
         'pd.objections.a2': 'Мы проводим pre-screen каждого кейса до старта. Если есть риск-фактор \u2014 говорим сразу, до того как кто-то потратит время или деньги.',
-        'pd.objections.q3': '\u00ABМне нужно разбираться в банкинге или визах?\u00BB',
+        'pd.objections.q3': '\u00ABМне нужно разбираться в открытии счетов или визах?\u00BB',
         'pd.objections.a3': 'Совсем нет. Вы знакомите, мы всё объясняем клиенту. Экспертиза не требуется \u2014 это наша работа.',
         'pd.objections.q4': '\u00ABКак я узнаю, что мне заплатят?\u00BB',
         'pd.objections.a4': 'Письменное реферальное соглашение до первого кейса. Фиксированные суммы комиссий. Выплата в течение 7 рабочих дней после закрытия.',

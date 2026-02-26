@@ -1443,6 +1443,14 @@ button:focus-visible,
   outline-offset: 2px;
 }
 
+/* Glossary tooltips */
+.glossary-term {
+  text-decoration: underline dotted var(--text-tertiary);
+  text-underline-offset: 3px;
+  cursor: help;
+  font-style: normal;
+}
+
 /* Ensure reduced-motion users still see focus */
 @media (prefers-reduced-motion: reduce) {
   *,

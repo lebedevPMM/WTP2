@@ -16,7 +16,7 @@ const WA_DOWNLOAD_MESSAGES = {
 }
 
 const PostDealLandingPage: React.FC = () => {
-    const { t, lang } = useLanguage()
+    const { t, tRich, lang } = useLanguage()
     const WA_LINK = 'https://wa.me/971600575294?text=' + encodeURIComponent(WA_MESSAGES[lang])
     const WA_DOWNLOAD_LINK = 'https://wa.me/971600575294?text=' + encodeURIComponent(WA_DOWNLOAD_MESSAGES[lang])
     const [clients, setClients] = useState(1)
@@ -55,7 +55,7 @@ const PostDealLandingPage: React.FC = () => {
                 </div>
                 <span className="label">{t('pd.hero.label')}</span>
                 <h1>{t('pd.hero.title')}</h1>
-                <p className="subtitle">{t('pd.hero.subtitle')}</p>
+                <p className="subtitle">{tRich('pd.hero.subtitle')}</p>
                 <div className="pd-hero-ctas">
                     <a
                         href={WA_LINK}
@@ -180,7 +180,7 @@ const PostDealLandingPage: React.FC = () => {
                         <div key={i} className="pd-process-step">
                             <div className="pd-process-num">{t(`pd.process.step${i}.number`)}</div>
                             <h3>{t(`pd.process.step${i}.title`)}</h3>
-                            <p className="text-body">{t(`pd.process.step${i}.desc`)}</p>
+                            <p className="text-body">{tRich(`pd.process.step${i}.desc`)}</p>
                         </div>
                     ))}
                 </div>
@@ -197,7 +197,7 @@ const PostDealLandingPage: React.FC = () => {
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
                         </div>
                         <h3>{t('pd.services.banking.title')}</h3>
-                        <p className="text-body">{t('pd.services.banking.desc')}</p>
+                        <p className="text-body">{tRich('pd.services.banking.desc')}</p>
                         <span className="pd-service-commission">{t('pd.services.banking.commission')}</span>
                     </div>
                     {/* Visa */}
@@ -206,7 +206,7 @@ const PostDealLandingPage: React.FC = () => {
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/><path d="M12 2v1M4.93 4.93l.7.7M2 12h1M4.93 19.07l.7-.7M12 22v-1M19.07 19.07l-.7-.7M22 12h-1M19.07 4.93l-.7.7"/></svg>
                         </div>
                         <h3>{t('pd.services.visa.title')}</h3>
-                        <p className="text-body">{t('pd.services.visa.desc')}</p>
+                        <p className="text-body">{tRich('pd.services.visa.desc')}</p>
                         <span className="pd-service-commission">{t('pd.services.visa.commission')}</span>
                     </div>
                     {/* Asset */}
@@ -215,7 +215,7 @@ const PostDealLandingPage: React.FC = () => {
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
                         <h3>{t('pd.services.asset.title')}</h3>
-                        <p className="text-body">{t('pd.services.asset.desc')}</p>
+                        <p className="text-body">{tRich('pd.services.asset.desc')}</p>
                         <span className="pd-service-commission">{t('pd.services.asset.commission')}</span>
                     </div>
                 </div>
@@ -266,15 +266,15 @@ const PostDealLandingPage: React.FC = () => {
                     <div className="pd-case-body">
                         <div className="pd-case-row">
                             <span className="pd-case-label">{t('pd.case.situation.label')}</span>
-                            <p>{t('pd.case.situation.text')}</p>
+                            <p>{tRich('pd.case.situation.text')}</p>
                         </div>
                         <div className="pd-case-row">
                             <span className="pd-case-label">{t('pd.case.action.label')}</span>
-                            <p>{t('pd.case.action.text')}</p>
+                            <p>{tRich('pd.case.action.text')}</p>
                         </div>
                         <div className="pd-case-result">
                             <span className="pd-case-label">{t('pd.case.result.label')}</span>
-                            <p>{t('pd.case.result.text')}</p>
+                            <p>{tRich('pd.case.result.text')}</p>
                         </div>
                     </div>
                 </div>
@@ -296,7 +296,7 @@ const PostDealLandingPage: React.FC = () => {
                     {[1, 2, 3, 4, 5].map((i) => (
                         <div key={i} className="pd-objection-card">
                             <h3>{t(`pd.objections.q${i}`)}</h3>
-                            <p className="text-body">{t(`pd.objections.a${i}`)}</p>
+                            <p className="text-body">{tRich(`pd.objections.a${i}`)}</p>
                         </div>
                     ))}
                 </div>
@@ -336,7 +336,7 @@ const PostDealLandingPage: React.FC = () => {
             <section style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 120px auto' }}>
                 <h2 style={{ fontSize: '32px' }}>{t('pd.cta.title')}</h2>
                 <p className="text-body" style={{ marginBottom: '32px' }}>
-                    {t('pd.cta.subtitle')}
+                    {tRich('pd.cta.subtitle')}
                 </p>
                 <div className="pd-hero-ctas" style={{ justifyContent: 'center' }}>
                     <a

@@ -6,11 +6,11 @@ const NavbarMinimal: React.FC = () => {
     const { t } = useLanguage()
 
     return (
-        <nav className="navbar" role="navigation" aria-label="Main navigation">
-            <div className="container nav-container">
-                <a href="/" aria-label="Home">
-                    <Logo variant="black" height={32} />
-                </a>
+        <nav className="nav" role="navigation" aria-label="Main navigation">
+            <a href="/" className="brand" aria-label="Home">
+                <Logo variant="black" height={32} />
+            </a>
+            <div className="nav-links">
                 <a href="/submit-case" className="btn btn-primary btn-sm">
                     {t('nav.submitCase')}
                 </a>

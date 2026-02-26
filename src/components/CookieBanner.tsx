@@ -12,6 +12,9 @@ const CookieBanner: React.FC = () => {
         if (getConsentStatus() === null) {
             setVisible(true)
         }
+        const handleReset = () => setVisible(true)
+        window.addEventListener('wtp-reset-cookies', handleReset)
+        return () => window.removeEventListener('wtp-reset-cookies', handleReset)
     }, [])
 
     const handleAccept = () => {

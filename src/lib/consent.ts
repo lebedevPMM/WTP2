@@ -26,6 +26,14 @@ export function setConsentStatus(status: 'accepted' | 'rejected'): void {
     }
 }
 
+export function resetConsentStatus(): void {
+    try {
+        localStorage.removeItem(CONSENT_KEY)
+    } catch {
+        // localStorage unavailable
+    }
+}
+
 export function hasAnalyticsConsent(): boolean {
     return getConsentStatus() === 'accepted'
 }

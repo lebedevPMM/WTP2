@@ -8,7 +8,7 @@ import { useLanguage } from '../lib/LanguageContext'
 import { trackCtaClick } from '../lib/analytics'
 
 const LandingPage: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, tRich } = useLanguage()
 
     return (
         <div className="container">
@@ -18,7 +18,7 @@ const LandingPage: React.FC = () => {
                 <span className="label">{t('hero.label')}</span>
                 <h1>{t('hero.title')}</h1>
                 <p className="subtitle">
-                    {t('hero.subtitle')}
+                    {tRich('hero.subtitle')}
                 </p>
                 <div style={{ display: 'flex', gap: '16px' }}>
                     <Button href="/partner-kit" onClick={() => trackCtaClick('partner_kit', 'hero')}>{t('hero.cta.kit')}</Button>
@@ -35,7 +35,7 @@ const LandingPage: React.FC = () => {
                     </div>
                     <div className="flex-col">
                         <p className="text-body">
-                            {t('who.text')}
+                            {tRich('who.text')}
                         </p>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ const LandingPage: React.FC = () => {
                         <div>
                             <h3 className="card-heading">{t('benefits.ownership.title')}</h3>
                             <p className="text-body">
-                                {t('benefits.ownership.text')}
+                                {tRich('benefits.ownership.text')}
                             </p>
                         </div>
                     </Card>
@@ -57,7 +57,7 @@ const LandingPage: React.FC = () => {
                         <div>
                             <h3 className="card-heading">{t('benefits.transparency.title')}</h3>
                             <p className="text-body">
-                                {t('benefits.transparency.text')}
+                                {tRich('benefits.transparency.text')}
                             </p>
                         </div>
                     </Card>
@@ -65,7 +65,7 @@ const LandingPage: React.FC = () => {
                         <div>
                             <h3 className="card-heading">{t('benefits.control.title')}</h3>
                             <p className="text-body">
-                                {t('benefits.control.text')}
+                                {tRich('benefits.control.text')}
                             </p>
                         </div>
                     </Card>
@@ -73,7 +73,7 @@ const LandingPage: React.FC = () => {
                         <div>
                             <h3 className="card-heading">{t('benefits.quality.title')}</h3>
                             <p className="text-body">
-                                {t('benefits.quality.text')}
+                                {tRich('benefits.quality.text')}
                             </p>
                         </div>
                     </Card>
@@ -113,7 +113,7 @@ const LandingPage: React.FC = () => {
                         <div>
                             <h3>{t('engagement.referral.title')}</h3>
                             <p className="text-body" style={{ width: '100%' }}>
-                                {t('engagement.referral.text')}
+                                {tRich('engagement.referral.text')}
                             </p>
                         </div>
                     </Link>
@@ -121,7 +121,7 @@ const LandingPage: React.FC = () => {
                         <div>
                             <h3>{t('engagement.whitelabel.title')}</h3>
                             <p className="text-body" style={{ width: '100%' }}>
-                                {t('engagement.whitelabel.text')}
+                                {tRich('engagement.whitelabel.text')}
                             </p>
                         </div>
                     </Link>
@@ -132,10 +132,10 @@ const LandingPage: React.FC = () => {
                 >
                     <h3 className="card-heading" style={{ marginBottom: '24px' }}>{t('engagement.protection.title')}</h3>
                     <div className="grid-2">
-                        <p className="text-body">&bull; {t('engagement.protection.crm')}</p>
-                        <p className="text-body">&bull; {t('engagement.protection.contact')}</p>
-                        <p className="text-body">&bull; {t('engagement.protection.terms')}</p>
-                        <p className="text-body">&bull; {t('engagement.protection.commission')}</p>
+                        <p className="text-body">&bull; {tRich('engagement.protection.crm')}</p>
+                        <p className="text-body">&bull; {tRich('engagement.protection.contact')}</p>
+                        <p className="text-body">&bull; {tRich('engagement.protection.terms')}</p>
+                        <p className="text-body">&bull; {tRich('engagement.protection.commission')}</p>
                     </div>
                 </Card>
             </section>
@@ -181,7 +181,7 @@ const LandingPage: React.FC = () => {
                                 <span className="collection-card-label">{t('products.banking.pill')}</span>
                                 <h3 className="collection-card-name">{t('products.banking.title')}</h3>
                                 <div className="collection-card-desc">
-                                    <p>{t('products.banking.desc')}</p>
+                                    <p>{tRich('products.banking.desc')}</p>
                                 </div>
                                 <span className="collection-card-cta">{t('products.banking.cta')}</span>
                             </div>
@@ -198,7 +198,7 @@ const LandingPage: React.FC = () => {
                                 <span className="collection-card-label">{t('products.premium.pill')}</span>
                                 <h3 className="collection-card-name">{t('products.premium.title')}</h3>
                                 <div className="collection-card-desc">
-                                    <p>{t('products.premium.desc')}</p>
+                                    <p>{tRich('products.premium.desc')}</p>
                                 </div>
                                 <span className="collection-card-cta">{t('products.premium.cta')}</span>
                             </div>
@@ -215,7 +215,7 @@ const LandingPage: React.FC = () => {
                                 <span className="collection-card-label">{t('products.business.pill')}</span>
                                 <h3 className="collection-card-name">{t('products.business.title')}</h3>
                                 <div className="collection-card-desc">
-                                    <p>{t('products.business.desc')}</p>
+                                    <p>{tRich('products.business.desc')}</p>
                                 </div>
                                 <span className="collection-card-cta">{t('products.business.cta')}</span>
                             </div>
@@ -232,7 +232,7 @@ const LandingPage: React.FC = () => {
                                 <span className="collection-card-label">{t('products.residency.pill')}</span>
                                 <h3 className="collection-card-name">{t('products.residency.title')}</h3>
                                 <div className="collection-card-desc">
-                                    <p>{t('products.residency.desc')}</p>
+                                    <p>{tRich('products.residency.desc')}</p>
                                 </div>
                                 <span className="collection-card-cta">{t('products.residency.cta')}</span>
                             </div>
@@ -249,7 +249,7 @@ const LandingPage: React.FC = () => {
                                 <span className="collection-card-label">{t('products.tax.pill')}</span>
                                 <h3 className="collection-card-name">{t('products.tax.title')}</h3>
                                 <div className="collection-card-desc">
-                                    <p>{t('products.tax.desc')}</p>
+                                    <p>{tRich('products.tax.desc')}</p>
                                 </div>
                                 <span className="collection-card-cta">{t('products.tax.cta')}</span>
                             </div>
@@ -266,7 +266,7 @@ const LandingPage: React.FC = () => {
                                 <span className="collection-card-label">{t('products.accounting.pill')}</span>
                                 <h3 className="collection-card-name">{t('products.accounting.title')}</h3>
                                 <div className="collection-card-desc">
-                                    <p>{t('products.accounting.desc')}</p>
+                                    <p>{tRich('products.accounting.desc')}</p>
                                 </div>
                                 <span className="collection-card-cta">{t('products.accounting.cta')}</span>
                             </div>
@@ -283,7 +283,7 @@ const LandingPage: React.FC = () => {
                                 <span className="collection-card-label">{t('products.realestate.pill')}</span>
                                 <h3 className="collection-card-name">{t('products.realestate.title')}</h3>
                                 <div className="collection-card-desc">
-                                    <p>{t('products.realestate.desc')}</p>
+                                    <p>{tRich('products.realestate.desc')}</p>
                                 </div>
                                 <span className="collection-card-cta">{t('products.realestate.cta')}</span>
                             </div>
@@ -300,7 +300,7 @@ const LandingPage: React.FC = () => {
                                 <span className="collection-card-label">{t('products.wealth.pill')}</span>
                                 <h3 className="collection-card-name">{t('products.wealth.title')}</h3>
                                 <div className="collection-card-desc">
-                                    <p>{t('products.wealth.desc')}</p>
+                                    <p>{tRich('products.wealth.desc')}</p>
                                 </div>
                                 <span className="collection-card-cta">{t('products.wealth.cta')}</span>
                             </div>
@@ -314,7 +314,7 @@ const LandingPage: React.FC = () => {
             <section style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 120px auto' }}>
                 <h2 style={{ fontSize: '32px' }}>{t('cta.title')}</h2>
                 <p className="text-body" style={{ marginBottom: '32px' }}>
-                    {t('cta.text')}
+                    {tRich('cta.text')}
                 </p>
                 <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
                     <Button href="/partner-kit" onClick={() => trackCtaClick('partner_kit', 'bottom_cta')}>{t('cta.kit')}</Button>

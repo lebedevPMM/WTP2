@@ -8,7 +8,7 @@ import { trackCtaClick, trackEvent } from '../lib/analytics'
 import './MonetizationLandingPage.css'
 
 const MonetizationLandingPage: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, tRich } = useLanguage()
     const [activeModel, setActiveModel] = useState<'referral' | 'whitelabel'>('referral')
     const [openFaq, setOpenFaq] = useState<number | null>(null)
 
@@ -37,7 +37,7 @@ const MonetizationLandingPage: React.FC = () => {
                 </div>
                 <span className="label">{t('ml.hero.label')}</span>
                 <h1>{t('ml.hero.title')}</h1>
-                <p className="subtitle">{t('ml.hero.subtitle')}</p>
+                <p className="subtitle">{tRich('ml.hero.subtitle')}</p>
                 <div className="ml-hero-ctas">
                     <Button href="/submit-case" onClick={() => trackCtaClick('submit_case', 'ml_hero')}>
                         {t('ml.hero.cta.case')}
@@ -113,7 +113,7 @@ const MonetizationLandingPage: React.FC = () => {
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
                             </div>
                             <h3 className="card-heading">{t('ml.protection.nc.title')}</h3>
-                            <p className="text-body">{t('ml.protection.nc.text')}</p>
+                            <p className="text-body">{tRich('ml.protection.nc.text')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-teal)" hasAccentTop>
@@ -122,7 +122,7 @@ const MonetizationLandingPage: React.FC = () => {
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                             </div>
                             <h3 className="card-heading">{t('ml.protection.crm.title')}</h3>
-                            <p className="text-body">{t('ml.protection.crm.text')}</p>
+                            <p className="text-body">{tRich('ml.protection.crm.text')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-nebula)" hasAccentTop>
@@ -131,7 +131,7 @@ const MonetizationLandingPage: React.FC = () => {
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                             </div>
                             <h3 className="card-heading">{t('ml.protection.ltv.title')}</h3>
-                            <p className="text-body">{t('ml.protection.ltv.text')}</p>
+                            <p className="text-body">{tRich('ml.protection.ltv.text')}</p>
                         </div>
                     </Card>
                 </div>
@@ -142,10 +142,10 @@ const MonetizationLandingPage: React.FC = () => {
                 <span className="label">{t('ml.how.label')}</span>
                 <h2>{t('ml.how.title')}</h2>
                 <div className="grid-4 ml-how-grid">
-                    <ProcessStep number="01" title={t('ml.how.step1.title')} description={t('ml.how.step1.desc')} active />
-                    <ProcessStep number="02" title={t('ml.how.step2.title')} description={t('ml.how.step2.desc')} />
-                    <ProcessStep number="03" title={t('ml.how.step3.title')} description={t('ml.how.step3.desc')} />
-                    <ProcessStep number="04" title={t('ml.how.step4.title')} description={t('ml.how.step4.desc')} />
+                    <ProcessStep number="01" title={t('ml.how.step1.title')} description={tRich('ml.how.step1.desc')} active />
+                    <ProcessStep number="02" title={t('ml.how.step2.title')} description={tRich('ml.how.step2.desc')} />
+                    <ProcessStep number="03" title={t('ml.how.step3.title')} description={tRich('ml.how.step3.desc')} />
+                    <ProcessStep number="04" title={t('ml.how.step4.title')} description={tRich('ml.how.step4.desc')} />
                 </div>
             </section>
 
@@ -169,35 +169,35 @@ const MonetizationLandingPage: React.FC = () => {
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
                         </div>
                         <h3>{t('ml.products.banking.title')}</h3>
-                        <p className="text-body">{t('ml.products.banking.desc')}</p>
+                        <p className="text-body">{tRich('ml.products.banking.desc')}</p>
                     </div>
                     <div className="ml-product-card">
                         <div className="ml-product-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                         </div>
                         <h3>{t('ml.products.setup.title')}</h3>
-                        <p className="text-body">{t('ml.products.setup.desc')}</p>
+                        <p className="text-body">{tRich('ml.products.setup.desc')}</p>
                     </div>
                     <div className="ml-product-card">
                         <div className="ml-product-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M9 14l6-6M4 4h4v4M20 20h-4v-4M4 20l16-16"/></svg>
                         </div>
                         <h3>{t('ml.products.tax.title')}</h3>
-                        <p className="text-body">{t('ml.products.tax.desc')}</p>
+                        <p className="text-body">{tRich('ml.products.tax.desc')}</p>
                     </div>
                     <div className="ml-product-card">
                         <div className="ml-product-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
                         <h3>{t('ml.products.asset.title')}</h3>
-                        <p className="text-body">{t('ml.products.asset.desc')}</p>
+                        <p className="text-body">{tRich('ml.products.asset.desc')}</p>
                     </div>
                     <div className="ml-product-card">
                         <div className="ml-product-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/><path d="M14.05 2a9 9 0 018 7.94"/><path d="M14.05 6A5 5 0 0118 9.94"/></svg>
                         </div>
                         <h3>{t('ml.products.visas.title')}</h3>
-                        <p className="text-body">{t('ml.products.visas.desc')}</p>
+                        <p className="text-body">{tRich('ml.products.visas.desc')}</p>
                     </div>
                 </div>
             </section>
@@ -224,7 +224,7 @@ const MonetizationLandingPage: React.FC = () => {
                 {activeModel === 'referral' ? (
                     <div className="ml-model-content">
                         <h3>{t('ml.models.referral.title')}</h3>
-                        <p className="text-body">{t('ml.models.referral.desc')}</p>
+                        <p className="text-body">{tRich('ml.models.referral.desc')}</p>
                         <div className="ml-model-flow">
                             <div className="ml-model-step">
                                 <span className="ml-model-step-num">1</span>
@@ -246,7 +246,7 @@ const MonetizationLandingPage: React.FC = () => {
                 ) : (
                     <div className="ml-model-content">
                         <h3>{t('ml.models.whitelabel.title')}</h3>
-                        <p className="text-body">{t('ml.models.whitelabel.desc')}</p>
+                        <p className="text-body">{tRich('ml.models.whitelabel.desc')}</p>
                         <div className="ml-model-flow">
                             <div className="ml-model-step">
                                 <span className="ml-model-step-num">1</span>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Logo from './Logo'
 import { useLanguage, OTHER_DOMAIN, OTHER_LANG_LABEL } from '../lib/LanguageContext'
 import { IS_FOCUSED_LANDING } from '../config/landing'
+import { resetConsentStatus } from '../lib/consent'
 
 const Footer: React.FC = () => {
     const { t } = useLanguage()
@@ -32,6 +33,16 @@ const Footer: React.FC = () => {
                     {!IS_FOCUSED_LANDING && (
                         <Link to="/process/terms" className="text-body" style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}>{t('footer.deliveryTerms')}</Link>
                     )}
+                    <button
+                        onClick={() => {
+                            resetConsentStatus()
+                            window.dispatchEvent(new Event('wtp-reset-cookies'))
+                        }}
+                        className="text-body"
+                        style={{ display: 'block', marginBottom: '8px', textDecoration: 'none', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit', font: 'inherit', textAlign: 'left' }}
+                    >
+                        {t('footer.cookieSettings')}
+                    </button>
                     <a href={OTHER_DOMAIN} className="text-body" style={{ display: 'block', textDecoration: 'none', opacity: 0.7 }}>{OTHER_LANG_LABEL}</a>
                 </div>
                 <div>

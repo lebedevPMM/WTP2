@@ -6,7 +6,7 @@ import { trackCtaClick } from '../lib/analytics'
 import './TrustFirstLandingPage.css'
 
 const TrustFirstLandingPage: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, tRich } = useLanguage()
 
     return (
         <div className="container">
@@ -21,7 +21,7 @@ const TrustFirstLandingPage: React.FC = () => {
                 <span className="label">{t('trustLanding.label')}</span>
                 <h1>{t('trustLanding.hero.title')}</h1>
                 <p className="subtitle">
-                    {t('trustLanding.hero.subtitle')}
+                    {tRich('trustLanding.hero.subtitle')}
                 </p>
                 <div className="tf-cta-row">
                     <Button href="/submit-case" onClick={() => trackCtaClick('submit_case', 'trust_landing_hero')}>
@@ -41,19 +41,19 @@ const TrustFirstLandingPage: React.FC = () => {
                     <Card accentGradient="var(--accent-magma)" hasAccentTop>
                         <div>
                             <h3 className="card-heading">{t('trustLanding.principles.protection.title')}</h3>
-                            <p className="text-body">{t('trustLanding.principles.protection.text')}</p>
+                            <p className="text-body">{tRich('trustLanding.principles.protection.text')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-gold)" hasAccentTop>
                         <div>
                             <h3 className="card-heading">{t('trustLanding.principles.banking.title')}</h3>
-                            <p className="text-body">{t('trustLanding.principles.banking.text')}</p>
+                            <p className="text-body">{tRich('trustLanding.principles.banking.text')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-teal)" hasAccentTop>
                         <div>
                             <h3 className="card-heading">{t('trustLanding.principles.transparency.title')}</h3>
-                            <p className="text-body">{t('trustLanding.principles.transparency.text')}</p>
+                            <p className="text-body">{tRich('trustLanding.principles.transparency.text')}</p>
                         </div>
                     </Card>
                 </div>
@@ -68,7 +68,7 @@ const TrustFirstLandingPage: React.FC = () => {
                         <div key={i} className="tf-competency-item">
                             <div className="tf-competency-number">{String(i).padStart(2, '0')}</div>
                             <h3>{t(`trustLanding.comp${i}.title`)}</h3>
-                            <p className="text-body">{t(`trustLanding.comp${i}.text`)}</p>
+                            <p className="text-body">{tRich(`trustLanding.comp${i}.text`)}</p>
                         </div>
                     ))}
                 </div>
@@ -123,11 +123,11 @@ const TrustFirstLandingPage: React.FC = () => {
                 <div className="grid-2 tf-risk-grid">
                     <div className="tf-risk-block tf-risk-accept">
                         <h3>{t('trustLanding.risk.accept.title')}</h3>
-                        <p className="text-body">{t('trustLanding.risk.accept.text')}</p>
+                        <p className="text-body">{tRich('trustLanding.risk.accept.text')}</p>
                     </div>
                     <div className="tf-risk-block tf-risk-decline">
                         <h3>{t('trustLanding.risk.decline.title')}</h3>
-                        <p className="text-body">{t('trustLanding.risk.decline.text')}</p>
+                        <p className="text-body">{tRich('trustLanding.risk.decline.text')}</p>
                     </div>
                 </div>
             </section>
@@ -136,7 +136,7 @@ const TrustFirstLandingPage: React.FC = () => {
             <section style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 120px auto' }}>
                 <h2 style={{ fontSize: '32px' }}>{t('trustLanding.cta.title')}</h2>
                 <p className="text-body" style={{ marginBottom: '32px' }}>
-                    {t('trustLanding.cta.text')}
+                    {tRich('trustLanding.cta.text')}
                 </p>
                 <div className="tf-cta-row" style={{ justifyContent: 'center' }}>
                     <Button href="/submit-case" onClick={() => trackCtaClick('submit_case', 'trust_landing_bottom')}>

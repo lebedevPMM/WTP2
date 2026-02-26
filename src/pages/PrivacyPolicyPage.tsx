@@ -107,13 +107,25 @@ const PrivacyPolicyPage: React.FC = () => {
                 <p>{t('privacy.cookies.control')}</p>
             </section>
 
-            {/* 9. Changes */}
+            {/* 9. Cross-Border Data Transfer */}
+            <section className="privacy-section">
+                <h2>{t('privacy.crossBorder.title')}</h2>
+                <p>{t('privacy.crossBorder.text')}</p>
+            </section>
+
+            {/* 10. Right to Lodge a Complaint */}
+            <section className="privacy-section">
+                <h2>{t('privacy.complaint.title')}</h2>
+                <p>{t('privacy.complaint.text')}</p>
+            </section>
+
+            {/* 11. Changes */}
             <section className="privacy-section">
                 <h2>{t('privacy.changes.title')}</h2>
                 <p>{t('privacy.changes.text')}</p>
             </section>
 
-            {/* 10. Contact */}
+            {/* 12. Contact */}
             <section className="privacy-section">
                 <h2>{t('privacy.contact.title')}</h2>
                 <p>{t('privacy.contact.text')}</p>

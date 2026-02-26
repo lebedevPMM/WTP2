@@ -3,7 +3,7 @@ import React from 'react'
 interface ProcessStepProps {
     number: string
     title: string
-    description: string
+    description: React.ReactNode
     active?: boolean
 }
 

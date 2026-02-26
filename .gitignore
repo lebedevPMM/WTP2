@@ -116,9 +116,17 @@ docs/MARKETING-PLAN-RU.md
 scripts/deploy-timeweb.sh
 scripts/generate-month2-docx.py
 
-# Old build artifacts
+# Build artifacts (all landing variants)
 dist-en/
 dist-ru/
+dist-*/
+
+# Internal project docs
+glossary.md
+
+# Internal generation scripts
+scripts/generate-linkedin-posts-docx.py
+scripts/generate-playbook-docx.py
 
 # Partner Kit ZIPs (generated, heavy)
 public/WTP_Partner_Kit_EN.zip
