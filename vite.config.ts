@@ -57,6 +57,18 @@ const meta: Record<string, Record<string, { title: string; description: string; 
             keywords: 'партнерская программа WTP, рекомендации ОАЭ, бизнес-партнер Дубай, партнер по регистрации компаний',
         },
     },
+    client: {
+        en: {
+            title: 'WTP - UAE Relocation Partner | Exit Coordination & Banking-First Setup',
+            description: 'WTP orchestrates your complete relocation — coordinated exit from your jurisdiction and bankable company setup in the UAE through our international partner network.',
+            keywords: 'UAE relocation, company formation UAE, corporate banking Dubai, exit tax coordination, UK non-dom UAE, German exit tax, Banking-First, Golden Visa',
+        },
+        ru: {
+            title: 'WTP - Релокация бизнеса в ОАЭ | Координация выхода и Banking-First',
+            description: 'WTP координирует вашу полную релокацию — выход из текущей юрисдикции и создание банковской структуры в ОАЭ через международную партнерскую сеть.',
+            keywords: 'релокация ОАЭ, регистрация компании ОАЭ, корпоративный банкинг Дубай, координация выхода, Banking-First, Golden Visa',
+        },
+    },
 }
 
 const currentMeta = meta[landing]?.[lang] || meta.main.en
