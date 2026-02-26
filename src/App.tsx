@@ -32,6 +32,12 @@ const RealEstatePage = LANDING_ID === 'realestate'
 const PartnersLandingPage = LANDING_ID === 'partners'
     ? lazy(() => import('./pages/MonetizationLandingPage')) : null
 
+const ClientPages = LANDING_ID === 'client' ? {
+    ClientLandingPage: lazy(() => import('./pages/ClientLandingPage')),
+    RoadmapPage: lazy(() => import('./pages/RoadmapPage')),
+    SpokePage: lazy(() => import('./pages/SpokePage')),
+} : null
+
 // Shared loading fallback for lazy-loaded pages
 const PageFallback = (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
@@ -72,6 +78,15 @@ function App() {
                 {BankingPage && <Route index element={<Lazy><BankingPage /></Lazy>} />}
                 {RealEstatePage && <Route index element={<Lazy><RealEstatePage /></Lazy>} />}
                 {PartnersLandingPage && <Route index element={<Lazy><PartnersLandingPage /></Lazy>} />}
+                {ClientPages && (
+                    <>
+                        <Route index element={<Lazy><ClientPages.ClientLandingPage /></Lazy>} />
+                        <Route path="roadmap" element={<Lazy><ClientPages.RoadmapPage /></Lazy>} />
+                        <Route path="uk-non-dom" element={<Lazy><ClientPages.SpokePage market="uk" /></Lazy>} />
+                        <Route path="german-exit-tax" element={<Lazy><ClientPages.SpokePage market="de" /></Lazy>} />
+                        <Route path="dutch-box3" element={<Lazy><ClientPages.SpokePage market="nl" /></Lazy>} />
+                    </>
+                )}
 
                 {/* Shared routes (all landings) */}
                 <Route path="privacy" element={<Lazy><PrivacyPolicyPage /></Lazy>} />
