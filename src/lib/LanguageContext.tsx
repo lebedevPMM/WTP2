@@ -6,6 +6,7 @@ type Language = 'en' | 'ru'
 // Glossary tooltips: professional terms with Russian explanations on hover
 const glossaryTooltips: Record<string, Record<string, string>> = {
     ru: {
+        // --- Existing terms ---
         'Banking-First': 'Подход, при котором документы готовятся так, чтобы пройти проверку в любой инстанции: банке, налоговой, регуляторе',
         'Pre-screen': 'Предварительная проверка документов и рисков до начала работы',
         'White-Label': 'Работа под брендом партнёра — клиент не знает о WTP',
@@ -21,6 +22,35 @@ const glossaryTooltips: Record<string, Record<string, string>> = {
         'PEP': 'Politically Exposed Person — политически значимое лицо',
         'CRM': 'Customer Relationship Management — система управления клиентскими отношениями',
         'Source of Funds': 'Документальное подтверждение происхождения средств',
+        // --- Business / Partnership ---
+        'Referral': 'Модель партнёрства: вы передаёте контакт клиента, WTP выполняет работу, вы получаете комиссию',
+        'Red Flags': 'Тревожные сигналы — признаки повышенных рисков или неприемлемости кейса',
+        'Due diligence': 'Комплексная юридическая и финансовая проверка перед сделкой',
+        'Partner Kit': 'Набор партнёрской документации: обзор услуг, условия сотрудничества, шаблоны',
+        'Net Rates': 'Чистые тарифы — базовая себестоимость услуг без наценки',
+        'KYC Light': 'Упрощённая проверка клиента — минимальный набор документов для первичной оценки',
+        'HNW': 'High Net Worth — клиенты с высоким уровнем личного состояния',
+        'SDN': 'Specially Designated Nationals — санкционный список Минфина США (OFAC)',
+        // --- UAE Jurisdictions ---
+        'Free Zone': 'Свободная экономическая зона в ОАЭ с льготным налогообложением и упрощённой регистрацией',
+        'Mainland': 'Основная юрисдикция ОАЭ вне свободных зон, регулируемая Департаментом экономического развития',
+        'DIFC': 'Dubai International Financial Centre — Международный финансовый центр Дубая',
+        'Substance Requirements': 'Требования экономического присутствия — подтверждение реальной деловой активности в ОАЭ',
+        // --- Tax ---
+        'Corporate Tax': 'Корпоративный налог — 9% на прибыль компаний в ОАЭ (с июня 2023)',
+        'VAT': 'Value Added Tax — НДС (5% в ОАЭ)',
+        // --- Real Estate ---
+        'SPA': 'Sale and Purchase Agreement — договор купли-продажи недвижимости',
+        'DLD': 'Dubai Land Department — Земельный департамент Дубая, регистрирует сделки с недвижимостью',
+        'NOC': 'No Objection Certificate — сертификат от застройщика, разрешающий перепродажу объекта',
+        'RERA': 'Real Estate Regulatory Authority — орган регулирования рынка недвижимости Дубая',
+        'freehold': 'Полная собственность — иностранец получает право собственности без ограничений',
+        'Off-plan': 'Покупка недвижимости на этапе строительства, до сдачи объекта',
+        // --- Data Protection ---
+        'GDPR': 'General Data Protection Regulation — регламент ЕС о защите персональных данных',
+        'PDPL': 'Personal Data Protection Law — закон ОАЭ о защите персональных данных',
+        // --- Cyrillic transliterations ---
+        'комплаенс': 'Соответствие нормативным требованиям: банковским правилам, законам, регуляторным стандартам',
     },
     en: {}
 }
@@ -37,6 +67,7 @@ interface LanguageContextType {
     setLang: (lang: Language) => void
     t: (key: string) => string
     tRich: (key: string) => React.ReactNode
+    richText: (text: string) => React.ReactNode
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -66,12 +97,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         return translation
     }
 
-    const tRich = (key: string): React.ReactNode => {
-        const text = t(key)
+    // Wrap glossary terms in any string with tooltip spans
+    const richText = (text: string): React.ReactNode => {
         const terms = glossaryTooltips[lang]
         if (!terms || Object.keys(terms).length === 0) return text
 
-        // Sort by length desc so longer terms match first (e.g. "Source of Funds" before "Source")
         const sortedTerms = Object.keys(terms).sort((a, b) => b.length - a.length)
         const escaped = sortedTerms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
         const regex = new RegExp(`(${escaped.join('|')})`, 'gi')
@@ -82,14 +112,19 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         return parts.map((part, i) => {
             const matched = sortedTerms.find(term => term.toLowerCase() === part.toLowerCase())
             if (matched && terms[matched]) {
-                return <abbr key={i} title={terms[matched]} className="glossary-term">{part}</abbr>
+                return <span key={i} data-tooltip={terms[matched]} className="glossary-term" tabIndex={0} role="note">{part}</span>
             }
             return part
         })
     }
 
+    // Translate key then wrap glossary terms
+    const tRich = (key: string): React.ReactNode => {
+        return richText(t(key))
+    }
+
     return (
-        <LanguageContext.Provider value={{ lang, setLang, t, tRich }}>
+        <LanguageContext.Provider value={{ lang, setLang, t, tRich, richText }}>
             {children}
         </LanguageContext.Provider>
     )
@@ -1137,6 +1172,216 @@ const translations: Record<string, Record<string, string>> = {
         'pd.cta.subtitle': 'Introduce your client. We handle the rest. You earn $3,500+.',
         'pd.cta.whatsapp': 'Send First Referral',
         'pd.cta.download': 'Get Commission Catalog',
+
+        // CLIENT LANDING (B2C)
+
+        // Navbar
+        'cl.nav.home': 'Home',
+        'cl.nav.method': 'Our Method',
+        'cl.nav.roadmap': 'Get Roadmap',
+
+        // Hero
+        'cl.hero.label': 'For Business Owners & Investors',
+        'cl.hero.title': 'Relocating to the UAE? We handle both sides.',
+        'cl.hero.subtitle': 'Coordinated exit from your home jurisdiction + bankable company setup in the UAE. One process, one team, partner firms in key markets.',
+        'cl.hero.cta': 'Get Your Banking Roadmap',
+        'cl.hero.ctaSub': 'Free. 5-7 business days. No commitment.',
+
+        // The Bridge
+        'cl.bridge.label': 'Two Sides, One Process',
+        'cl.bridge.title': 'Your UAE provider handles the UAE. Who handles the exit?',
+        'cl.bridge.exitTitle': 'Exit Side',
+        'cl.bridge.exitDesc': 'Partner firms in the UK, Germany, and the Netherlands handle tax exit, capital gains, regulatory compliance, and wind-down of local structures.',
+        'cl.bridge.entryTitle': 'Entry Side',
+        'cl.bridge.entryDesc': 'WTP handles UAE company formation, banking, visa, tax residency, and substance — using our Banking-First methodology.',
+        'cl.bridge.bridgeTitle': 'The Bridge',
+        'cl.bridge.bridgeDesc': 'We synchronize both sides into one timeline. Your exit advisor and our team work from a shared playbook, so nothing falls through the cracks.',
+        'cl.bridge.otherCountry': 'Coming from another jurisdiction? We coordinate with your existing advisor using our standard cross-border protocol.',
+
+        // Who This Is For
+        'cl.who.label': 'Is This For You?',
+        'cl.who.title': 'We work with clients who need more than just a company registration',
+        'cl.who.card1.title': 'Restructuring',
+        'cl.who.card1.desc': 'You\'re relocating your business to the UAE and need a structure that actually opens a bank account.',
+        'cl.who.card2.title': 'Tax Residency',
+        'cl.who.card2.desc': 'You need UAE tax residency that withstands scrutiny from your home country\'s tax authority.',
+        'cl.who.card3.title': 'Golden Visa + Investment',
+        'cl.who.card3.desc': 'You\'re investing in UAE property and want the visa, company structure, and tax planning handled as one.',
+        'cl.who.card4.title': 'Compliance Rescue',
+        'cl.who.card4.desc': 'You already have a UAE company but your bank rejected you — or your substance is questionable.',
+
+        // Banking-First Method
+        'cl.method.label': 'Our Method',
+        'cl.method.title': 'Banking-First: the correct order of operations',
+        'cl.method.subtitle': 'Most providers register first and hope for the best. We assess bankability first — before you spend a dirham on setup.',
+        'cl.method.step1.num': '01',
+        'cl.method.step1.title': 'Pre-Check',
+        'cl.method.step1.desc': 'We assess your profile, source of funds, and flag potential issues — both on the UAE side (bank readiness) and the exit side (tax exposure, substance requirements).',
+        'cl.method.step2.num': '02',
+        'cl.method.step2.title': 'Exit Coordination',
+        'cl.method.step2.desc': 'We connect you with our partner firm in your jurisdiction — or coordinate with your existing advisor — to plan the tax-correct exit.',
+        'cl.method.step3.num': '03',
+        'cl.method.step3.title': 'UAE Architecture',
+        'cl.method.step3.desc': 'We design the right structure based on your banking profile, business model, and residency goals. Free zone, mainland, or holding — chosen for bankability, not just cost.',
+        'cl.method.step4.num': '04',
+        'cl.method.step4.title': 'Synchronized Execution',
+        'cl.method.step4.desc': 'Exit and entry happen in the right order. Registration, banking, visa, substance — timed to your tax calendar.',
+
+        // Jurisdiction Comparison
+        'cl.compare.label': 'Why UAE?',
+        'cl.compare.title': 'If you\'re still deciding between jurisdictions — here\'s how they compare',
+        'cl.compare.conclusion': 'UAE wins on tax rate, visa program, and speed. But only if your banking is sorted. That\'s where we come in.',
+        'cl.compare.col.jurisdiction': 'Jurisdiction',
+        'cl.compare.col.corpTax': 'Corporate Tax',
+        'cl.compare.col.setup': 'Setup Time',
+        'cl.compare.col.banking': 'Banking',
+        'cl.compare.col.visa': 'Golden Visa',
+        'cl.compare.col.substance': 'Substance',
+        'cl.compare.uae.tax': '9%',
+        'cl.compare.uae.setup': '2-4 weeks',
+        'cl.compare.uae.banking': 'Strict but manageable',
+        'cl.compare.uae.visa': 'Yes (AED 2M)',
+        'cl.compare.uae.substance': 'Real',
+        'cl.compare.sg.tax': '17%',
+        'cl.compare.sg.setup': '1-3 weeks',
+        'cl.compare.sg.banking': 'Easy',
+        'cl.compare.sg.visa': 'No',
+        'cl.compare.sg.substance': 'Real',
+        'cl.compare.pt.tax': '21%',
+        'cl.compare.pt.setup': '4-8 weeks',
+        'cl.compare.pt.banking': 'Easy',
+        'cl.compare.pt.visa': 'Yes (EUR 500K)',
+        'cl.compare.pt.substance': 'Minimal',
+        'cl.compare.ch.tax': '8.5-24%',
+        'cl.compare.ch.setup': '4-12 weeks',
+        'cl.compare.ch.banking': 'Very strict',
+        'cl.compare.ch.visa': 'No',
+        'cl.compare.ch.substance': 'Real',
+        'cl.compare.mt.tax': '35%/5%*',
+        'cl.compare.mt.setup': '8-16 weeks',
+        'cl.compare.mt.banking': 'Moderate',
+        'cl.compare.mt.visa': 'Yes (EUR 700K)',
+        'cl.compare.mt.substance': 'Minimal',
+
+        // How We're Different
+        'cl.diff.label': 'Why WTP',
+        'cl.diff.title': 'How we\'re different from every other UAE provider',
+        'cl.diff.item1.title': 'Banking-First Process',
+        'cl.diff.item1.desc': 'We assess bank readiness and risk BEFORE registration. No "register first, hope for the best."',
+        'cl.diff.item2.title': 'Exit + Entry Coordination',
+        'cl.diff.item2.desc': 'Partner firms in UK, Germany, Netherlands handle the exit. We handle the entry. One synchronized timeline.',
+        'cl.diff.item3.title': 'Risk-Aware Filtering',
+        'cl.diff.item3.desc': 'We decline cases that won\'t pass compliance. This protects you from wasted time and money.',
+        'cl.diff.item4.title': 'Cost + Fee Transparency',
+        'cl.diff.item4.desc': 'Government fees passed through at cost. Our management fee is separate and clearly stated.',
+        'cl.diff.item5.title': 'Real Substance',
+        'cl.diff.item5.desc': 'Not virtual office theater. Actual management infrastructure and real operational presence.',
+        'cl.diff.item6.title': 'Single Point of Coordination',
+        'cl.diff.item6.desc': 'One project manager, one timeline, one communication channel. No chasing multiple providers.',
+
+        // Common Scenarios
+        'cl.scenarios.label': 'Common Scenarios',
+        'cl.scenarios.title': 'Specific situations we handle',
+        'cl.scenarios.uk.title': 'UK Non-Dom Changes',
+        'cl.scenarios.uk.desc': 'Non-dom remittance basis abolished from April 2025. We coordinate the restructuring with your UK tax advisor.',
+        'cl.scenarios.uk.link': 'See UK restructuring process',
+        'cl.scenarios.de.title': 'German Exit Tax',
+        'cl.scenarios.de.desc': 'Exit tax with 7-year installment plan and security requirements. We coordinate timing and structure with your German advisor.',
+        'cl.scenarios.de.link': 'See German exit coordination',
+        'cl.scenarios.nl.title': 'Netherlands Box 3',
+        'cl.scenarios.nl.desc': 'Box 3 reform changing parameters for fictional yield. We coordinate the optimal transition timing.',
+        'cl.scenarios.nl.link': 'See Dutch restructuring process',
+
+        // FAQ
+        'cl.faq.label': 'FAQ',
+        'cl.faq.title': 'Common questions',
+        'cl.faq.q1': 'I already have a tax advisor in my country. Do I need your partner firm?',
+        'cl.faq.a1': 'Not necessarily. We work with your existing advisor using our cross-border coordination protocol. If you don\'t have one, we can connect you with our partner firm in your jurisdiction.',
+        'cl.faq.q2': 'What countries do your partner firms cover?',
+        'cl.faq.a2': 'We have established relationships in the UK, Germany, and the Netherlands. For other jurisdictions, we either connect you with a vetted firm or coordinate directly with your advisor.',
+        'cl.faq.q3': 'Who manages the process — you or the partner firm?',
+        'cl.faq.a3': 'We do. WTP is the single point of coordination. You get one timeline, one project manager, one communication channel. Your exit advisor handles their scope; we handle ours; decisions are synchronized.',
+        'cl.faq.q4': 'Can you guarantee the bank account will open?',
+        'cl.faq.a4': 'No one can guarantee a bank decision. What we guarantee is that we won\'t start registration until we\'ve assessed bankability, chosen the right routing, and prepared a compliant package.',
+        'cl.faq.q5': 'I\'m from a country not listed. Can you help?',
+        'cl.faq.a5': 'If your profile passes our pre-check, yes. We work with clients from around the world. The key factors are source of funds, business model, and compliance readiness — not nationality.',
+        'cl.faq.q6': 'I already have a UAE company but the bank rejected me.',
+        'cl.faq.a6': 'Compliance Rescue is one of our core services. We assess what went wrong, restructure if needed, and re-apply through the correct banking channel.',
+        'cl.faq.q7': 'Do I need to physically move to the UAE?',
+        'cl.faq.a7': 'It depends on your substance requirements for tax residency. We design the minimum viable presence that satisfies both UAE regulations and your home country\'s exit criteria.',
+
+        // Final CTA
+        'cl.cta.title': 'Your UAE structure is only as good as your bank account.',
+        'cl.cta.text': 'Get a Banking Roadmap — a personalized assessment of your bankability, recommended structure, and step-by-step timeline.',
+        'cl.cta.button': 'Get Your Banking Roadmap',
+        'cl.cta.sub': 'Free. 5-7 business days. No commitment.',
+
+        // Roadmap Form
+        'cl.roadmap.label': 'Banking Roadmap',
+        'cl.roadmap.title': 'Get Your Banking Roadmap',
+        'cl.roadmap.subtitle': 'Tell us about your situation and we\'ll prepare a personalized assessment of your bankability, recommended structure, and step-by-step timeline.',
+        'cl.roadmap.nameLabel': 'Your name',
+        'cl.roadmap.namePlaceholder': 'John Smith',
+        'cl.roadmap.emailLabel': 'Email',
+        'cl.roadmap.emailPlaceholder': 'john@example.com',
+        'cl.roadmap.countryLabel': 'Country of current residence',
+        'cl.roadmap.countryPlaceholder': 'Select your country',
+        'cl.roadmap.situationLabel': 'Describe your situation',
+        'cl.roadmap.situationPlaceholder': 'Tell us about your business, what you\'re looking to achieve in the UAE, and any specific concerns or questions you have. The more detail you provide, the more useful your roadmap will be.',
+        'cl.roadmap.submit': 'Request Banking Roadmap',
+        'cl.roadmap.submitting': 'Sending...',
+        'cl.roadmap.success': 'Thank you! We\'ve received your request. You\'ll receive your personalized Banking Roadmap within 5-7 business days.',
+        'cl.roadmap.error': 'Something went wrong. Please try again or contact us directly.',
+        'cl.roadmap.consent': 'I agree to the',
+        'cl.roadmap.consentLink': 'Privacy Policy',
+        'cl.roadmap.what.title': 'What you\'ll receive:',
+        'cl.roadmap.what.item1': 'Bankability assessment based on your profile',
+        'cl.roadmap.what.item2': 'Recommended structure (free zone, mainland, or holding)',
+        'cl.roadmap.what.item3': 'Banking routing strategy',
+        'cl.roadmap.what.item4': 'Step-by-step timeline with cost estimate',
+        'cl.roadmap.what.item5': 'Risk verdict (Green / Yellow / Red)',
+
+        // Spoke: UK
+        'cl.uk.label': 'UK Non-Dom Restructuring',
+        'cl.uk.title': 'UK non-dom abolished. Your next move matters.',
+        'cl.uk.subtitle': 'The remittance basis ends April 2025. If you\'re restructuring to the UAE, the exit and the entry must be coordinated — or you pay twice.',
+        'cl.uk.trigger.title': 'What changed',
+        'cl.uk.trigger.desc': 'The UK abolished the non-dom remittance basis from April 2025. A new 4-year FIG (Foreign Income and Gains) regime replaces it for new arrivals. For existing non-doms, the transition creates a narrow window for restructuring.',
+        'cl.uk.risk.title': 'What\'s at stake',
+        'cl.uk.risk.item1': 'Worldwide income becomes taxable in the UK without remittance protection',
+        'cl.uk.risk.item2': 'Capital gains crystallization on exit if structured incorrectly',
+        'cl.uk.risk.item3': 'Pension and trust implications need coordination between UK and UAE advisors',
+        'cl.uk.exit.title': 'How we coordinate the exit',
+        'cl.uk.exit.desc': 'Our UK partner firm handles the tax exit: capital gains planning, pension review, trust restructuring, and HMRC notification timeline. We handle the UAE side: bankable company structure, visa, tax residency certificate, and real substance.',
+        'cl.uk.cta': 'Get Your Banking Roadmap',
+
+        // Spoke: Germany
+        'cl.de.label': 'German Exit Tax Coordination',
+        'cl.de.title': 'German exit tax is an engineering project, not a form.',
+        'cl.de.subtitle': 'Exit tax with 7-year installment plans, security requirements, and complex timing. The UAE structure must be ready before you trigger the exit.',
+        'cl.de.trigger.title': 'What changed',
+        'cl.de.trigger.desc': 'Germany tightened exit tax rules since 2022. Deferred payment was replaced with a mandatory installment plan (typically 7 years) plus security requirements. The tax applies to unrealized gains on shares in companies where you hold 1%+ ownership.',
+        'cl.de.risk.title': 'What\'s at stake',
+        'cl.de.risk.item1': 'Exit tax on unrealized capital gains (can be hundreds of thousands)',
+        'cl.de.risk.item2': 'Security deposit or bank guarantee required for installment plan',
+        'cl.de.risk.item3': 'Incorrect timing can trigger both German and UAE tax obligations simultaneously',
+        'cl.de.exit.title': 'How we coordinate the exit',
+        'cl.de.exit.desc': 'Our German partner firm handles the exit tax calculation, installment plan structuring, and security arrangement. We handle the UAE side: company architecture designed for German tax treaty compliance, banking, and substance that satisfies German Finanzamt requirements.',
+        'cl.de.cta': 'Get Your Banking Roadmap',
+
+        // Spoke: Netherlands
+        'cl.nl.label': 'Dutch Box 3 Restructuring',
+        'cl.nl.title': 'Box 3 reform is squeezing wealth holders. Plan the transition.',
+        'cl.nl.subtitle': 'Changing parameters for fictional yield and rising effective rates make the Netherlands increasingly expensive for wealth holders. The question is timing.',
+        'cl.nl.trigger.title': 'What changed',
+        'cl.nl.trigger.desc': 'The Netherlands continues to reform Box 3 taxation. The fictional yield system is being revised with new parameters for 2026, effectively increasing the tax burden on savings and investments. The Supreme Court ruling against the old system has created ongoing uncertainty.',
+        'cl.nl.risk.title': 'What\'s at stake',
+        'cl.nl.risk.item1': 'Increasing effective tax rates on wealth under Box 3',
+        'cl.nl.risk.item2': 'Ongoing regulatory uncertainty about future Box 3 parameters',
+        'cl.nl.risk.item3': 'Emigration tax implications on substantial interest (Box 2) holdings',
+        'cl.nl.exit.title': 'How we coordinate the exit',
+        'cl.nl.exit.desc': 'Our Dutch partner firm handles the Box 2/Box 3 transition planning, substantial interest tax calculations, and optimal emigration timing. We handle the UAE side: company structure, banking, and substance that satisfies Dutch Belastingdienst requirements for genuine relocation.',
+        'cl.nl.cta': 'Get Your Banking Roadmap',
     },
     ru: {
         // Navbar
@@ -2177,5 +2422,215 @@ const translations: Record<string, Record<string, string>> = {
         'pd.cta.subtitle': 'Познакомьте клиента. Мы сделаем остальное. Вы получите $3 500+.',
         'pd.cta.whatsapp': 'Отправить первый реферал',
         'pd.cta.download': 'Получить каталог комиссий',
+
+        // CLIENT LANDING (B2C) — RU stubs (English, to be translated)
+
+        // Navbar
+        'cl.nav.home': 'Home',
+        'cl.nav.method': 'Our Method',
+        'cl.nav.roadmap': 'Get Roadmap',
+
+        // Hero
+        'cl.hero.label': 'For Business Owners & Investors',
+        'cl.hero.title': 'Relocating to the UAE? We handle both sides.',
+        'cl.hero.subtitle': 'Coordinated exit from your home jurisdiction + bankable company setup in the UAE. One process, one team, partner firms in key markets.',
+        'cl.hero.cta': 'Get Your Banking Roadmap',
+        'cl.hero.ctaSub': 'Free. 5-7 business days. No commitment.',
+
+        // The Bridge
+        'cl.bridge.label': 'Two Sides, One Process',
+        'cl.bridge.title': 'Your UAE provider handles the UAE. Who handles the exit?',
+        'cl.bridge.exitTitle': 'Exit Side',
+        'cl.bridge.exitDesc': 'Partner firms in the UK, Germany, and the Netherlands handle tax exit, capital gains, regulatory compliance, and wind-down of local structures.',
+        'cl.bridge.entryTitle': 'Entry Side',
+        'cl.bridge.entryDesc': 'WTP handles UAE company formation, banking, visa, tax residency, and substance — using our Banking-First methodology.',
+        'cl.bridge.bridgeTitle': 'The Bridge',
+        'cl.bridge.bridgeDesc': 'We synchronize both sides into one timeline. Your exit advisor and our team work from a shared playbook, so nothing falls through the cracks.',
+        'cl.bridge.otherCountry': 'Coming from another jurisdiction? We coordinate with your existing advisor using our standard cross-border protocol.',
+
+        // Who This Is For
+        'cl.who.label': 'Is This For You?',
+        'cl.who.title': 'We work with clients who need more than just a company registration',
+        'cl.who.card1.title': 'Restructuring',
+        'cl.who.card1.desc': 'You\'re relocating your business to the UAE and need a structure that actually opens a bank account.',
+        'cl.who.card2.title': 'Tax Residency',
+        'cl.who.card2.desc': 'You need UAE tax residency that withstands scrutiny from your home country\'s tax authority.',
+        'cl.who.card3.title': 'Golden Visa + Investment',
+        'cl.who.card3.desc': 'You\'re investing in UAE property and want the visa, company structure, and tax planning handled as one.',
+        'cl.who.card4.title': 'Compliance Rescue',
+        'cl.who.card4.desc': 'You already have a UAE company but your bank rejected you — or your substance is questionable.',
+
+        // Banking-First Method
+        'cl.method.label': 'Our Method',
+        'cl.method.title': 'Banking-First: the correct order of operations',
+        'cl.method.subtitle': 'Most providers register first and hope for the best. We assess bankability first — before you spend a dirham on setup.',
+        'cl.method.step1.num': '01',
+        'cl.method.step1.title': 'Pre-Check',
+        'cl.method.step1.desc': 'We assess your profile, source of funds, and flag potential issues — both on the UAE side (bank readiness) and the exit side (tax exposure, substance requirements).',
+        'cl.method.step2.num': '02',
+        'cl.method.step2.title': 'Exit Coordination',
+        'cl.method.step2.desc': 'We connect you with our partner firm in your jurisdiction — or coordinate with your existing advisor — to plan the tax-correct exit.',
+        'cl.method.step3.num': '03',
+        'cl.method.step3.title': 'UAE Architecture',
+        'cl.method.step3.desc': 'We design the right structure based on your banking profile, business model, and residency goals. Free zone, mainland, or holding — chosen for bankability, not just cost.',
+        'cl.method.step4.num': '04',
+        'cl.method.step4.title': 'Synchronized Execution',
+        'cl.method.step4.desc': 'Exit and entry happen in the right order. Registration, banking, visa, substance — timed to your tax calendar.',
+
+        // Jurisdiction Comparison
+        'cl.compare.label': 'Why UAE?',
+        'cl.compare.title': 'If you\'re still deciding between jurisdictions — here\'s how they compare',
+        'cl.compare.conclusion': 'UAE wins on tax rate, visa program, and speed. But only if your banking is sorted. That\'s where we come in.',
+        'cl.compare.col.jurisdiction': 'Jurisdiction',
+        'cl.compare.col.corpTax': 'Corporate Tax',
+        'cl.compare.col.setup': 'Setup Time',
+        'cl.compare.col.banking': 'Banking',
+        'cl.compare.col.visa': 'Golden Visa',
+        'cl.compare.col.substance': 'Substance',
+        'cl.compare.uae.tax': '9%',
+        'cl.compare.uae.setup': '2-4 weeks',
+        'cl.compare.uae.banking': 'Strict but manageable',
+        'cl.compare.uae.visa': 'Yes (AED 2M)',
+        'cl.compare.uae.substance': 'Real',
+        'cl.compare.sg.tax': '17%',
+        'cl.compare.sg.setup': '1-3 weeks',
+        'cl.compare.sg.banking': 'Easy',
+        'cl.compare.sg.visa': 'No',
+        'cl.compare.sg.substance': 'Real',
+        'cl.compare.pt.tax': '21%',
+        'cl.compare.pt.setup': '4-8 weeks',
+        'cl.compare.pt.banking': 'Easy',
+        'cl.compare.pt.visa': 'Yes (EUR 500K)',
+        'cl.compare.pt.substance': 'Minimal',
+        'cl.compare.ch.tax': '8.5-24%',
+        'cl.compare.ch.setup': '4-12 weeks',
+        'cl.compare.ch.banking': 'Very strict',
+        'cl.compare.ch.visa': 'No',
+        'cl.compare.ch.substance': 'Real',
+        'cl.compare.mt.tax': '35%/5%*',
+        'cl.compare.mt.setup': '8-16 weeks',
+        'cl.compare.mt.banking': 'Moderate',
+        'cl.compare.mt.visa': 'Yes (EUR 700K)',
+        'cl.compare.mt.substance': 'Minimal',
+
+        // How We're Different
+        'cl.diff.label': 'Why WTP',
+        'cl.diff.title': 'How we\'re different from every other UAE provider',
+        'cl.diff.item1.title': 'Banking-First Process',
+        'cl.diff.item1.desc': 'We assess bank readiness and risk BEFORE registration. No "register first, hope for the best."',
+        'cl.diff.item2.title': 'Exit + Entry Coordination',
+        'cl.diff.item2.desc': 'Partner firms in UK, Germany, Netherlands handle the exit. We handle the entry. One synchronized timeline.',
+        'cl.diff.item3.title': 'Risk-Aware Filtering',
+        'cl.diff.item3.desc': 'We decline cases that won\'t pass compliance. This protects you from wasted time and money.',
+        'cl.diff.item4.title': 'Cost + Fee Transparency',
+        'cl.diff.item4.desc': 'Government fees passed through at cost. Our management fee is separate and clearly stated.',
+        'cl.diff.item5.title': 'Real Substance',
+        'cl.diff.item5.desc': 'Not virtual office theater. Actual management infrastructure and real operational presence.',
+        'cl.diff.item6.title': 'Single Point of Coordination',
+        'cl.diff.item6.desc': 'One project manager, one timeline, one communication channel. No chasing multiple providers.',
+
+        // Common Scenarios
+        'cl.scenarios.label': 'Common Scenarios',
+        'cl.scenarios.title': 'Specific situations we handle',
+        'cl.scenarios.uk.title': 'UK Non-Dom Changes',
+        'cl.scenarios.uk.desc': 'Non-dom remittance basis abolished from April 2025. We coordinate the restructuring with your UK tax advisor.',
+        'cl.scenarios.uk.link': 'See UK restructuring process',
+        'cl.scenarios.de.title': 'German Exit Tax',
+        'cl.scenarios.de.desc': 'Exit tax with 7-year installment plan and security requirements. We coordinate timing and structure with your German advisor.',
+        'cl.scenarios.de.link': 'See German exit coordination',
+        'cl.scenarios.nl.title': 'Netherlands Box 3',
+        'cl.scenarios.nl.desc': 'Box 3 reform changing parameters for fictional yield. We coordinate the optimal transition timing.',
+        'cl.scenarios.nl.link': 'See Dutch restructuring process',
+
+        // FAQ
+        'cl.faq.label': 'FAQ',
+        'cl.faq.title': 'Common questions',
+        'cl.faq.q1': 'I already have a tax advisor in my country. Do I need your partner firm?',
+        'cl.faq.a1': 'Not necessarily. We work with your existing advisor using our cross-border coordination protocol. If you don\'t have one, we can connect you with our partner firm in your jurisdiction.',
+        'cl.faq.q2': 'What countries do your partner firms cover?',
+        'cl.faq.a2': 'We have established relationships in the UK, Germany, and the Netherlands. For other jurisdictions, we either connect you with a vetted firm or coordinate directly with your advisor.',
+        'cl.faq.q3': 'Who manages the process — you or the partner firm?',
+        'cl.faq.a3': 'We do. WTP is the single point of coordination. You get one timeline, one project manager, one communication channel. Your exit advisor handles their scope; we handle ours; decisions are synchronized.',
+        'cl.faq.q4': 'Can you guarantee the bank account will open?',
+        'cl.faq.a4': 'No one can guarantee a bank decision. What we guarantee is that we won\'t start registration until we\'ve assessed bankability, chosen the right routing, and prepared a compliant package.',
+        'cl.faq.q5': 'I\'m from a country not listed. Can you help?',
+        'cl.faq.a5': 'If your profile passes our pre-check, yes. We work with clients from around the world. The key factors are source of funds, business model, and compliance readiness — not nationality.',
+        'cl.faq.q6': 'I already have a UAE company but the bank rejected me.',
+        'cl.faq.a6': 'Compliance Rescue is one of our core services. We assess what went wrong, restructure if needed, and re-apply through the correct banking channel.',
+        'cl.faq.q7': 'Do I need to physically move to the UAE?',
+        'cl.faq.a7': 'It depends on your substance requirements for tax residency. We design the minimum viable presence that satisfies both UAE regulations and your home country\'s exit criteria.',
+
+        // Final CTA
+        'cl.cta.title': 'Your UAE structure is only as good as your bank account.',
+        'cl.cta.text': 'Get a Banking Roadmap — a personalized assessment of your bankability, recommended structure, and step-by-step timeline.',
+        'cl.cta.button': 'Get Your Banking Roadmap',
+        'cl.cta.sub': 'Free. 5-7 business days. No commitment.',
+
+        // Roadmap Form
+        'cl.roadmap.label': 'Banking Roadmap',
+        'cl.roadmap.title': 'Get Your Banking Roadmap',
+        'cl.roadmap.subtitle': 'Tell us about your situation and we\'ll prepare a personalized assessment of your bankability, recommended structure, and step-by-step timeline.',
+        'cl.roadmap.nameLabel': 'Your name',
+        'cl.roadmap.namePlaceholder': 'John Smith',
+        'cl.roadmap.emailLabel': 'Email',
+        'cl.roadmap.emailPlaceholder': 'john@example.com',
+        'cl.roadmap.countryLabel': 'Country of current residence',
+        'cl.roadmap.countryPlaceholder': 'Select your country',
+        'cl.roadmap.situationLabel': 'Describe your situation',
+        'cl.roadmap.situationPlaceholder': 'Tell us about your business, what you\'re looking to achieve in the UAE, and any specific concerns or questions you have. The more detail you provide, the more useful your roadmap will be.',
+        'cl.roadmap.submit': 'Request Banking Roadmap',
+        'cl.roadmap.submitting': 'Sending...',
+        'cl.roadmap.success': 'Thank you! We\'ve received your request. You\'ll receive your personalized Banking Roadmap within 5-7 business days.',
+        'cl.roadmap.error': 'Something went wrong. Please try again or contact us directly.',
+        'cl.roadmap.consent': 'I agree to the',
+        'cl.roadmap.consentLink': 'Privacy Policy',
+        'cl.roadmap.what.title': 'What you\'ll receive:',
+        'cl.roadmap.what.item1': 'Bankability assessment based on your profile',
+        'cl.roadmap.what.item2': 'Recommended structure (free zone, mainland, or holding)',
+        'cl.roadmap.what.item3': 'Banking routing strategy',
+        'cl.roadmap.what.item4': 'Step-by-step timeline with cost estimate',
+        'cl.roadmap.what.item5': 'Risk verdict (Green / Yellow / Red)',
+
+        // Spoke: UK
+        'cl.uk.label': 'UK Non-Dom Restructuring',
+        'cl.uk.title': 'UK non-dom abolished. Your next move matters.',
+        'cl.uk.subtitle': 'The remittance basis ends April 2025. If you\'re restructuring to the UAE, the exit and the entry must be coordinated — or you pay twice.',
+        'cl.uk.trigger.title': 'What changed',
+        'cl.uk.trigger.desc': 'The UK abolished the non-dom remittance basis from April 2025. A new 4-year FIG (Foreign Income and Gains) regime replaces it for new arrivals. For existing non-doms, the transition creates a narrow window for restructuring.',
+        'cl.uk.risk.title': 'What\'s at stake',
+        'cl.uk.risk.item1': 'Worldwide income becomes taxable in the UK without remittance protection',
+        'cl.uk.risk.item2': 'Capital gains crystallization on exit if structured incorrectly',
+        'cl.uk.risk.item3': 'Pension and trust implications need coordination between UK and UAE advisors',
+        'cl.uk.exit.title': 'How we coordinate the exit',
+        'cl.uk.exit.desc': 'Our UK partner firm handles the tax exit: capital gains planning, pension review, trust restructuring, and HMRC notification timeline. We handle the UAE side: bankable company structure, visa, tax residency certificate, and real substance.',
+        'cl.uk.cta': 'Get Your Banking Roadmap',
+
+        // Spoke: Germany
+        'cl.de.label': 'German Exit Tax Coordination',
+        'cl.de.title': 'German exit tax is an engineering project, not a form.',
+        'cl.de.subtitle': 'Exit tax with 7-year installment plans, security requirements, and complex timing. The UAE structure must be ready before you trigger the exit.',
+        'cl.de.trigger.title': 'What changed',
+        'cl.de.trigger.desc': 'Germany tightened exit tax rules since 2022. Deferred payment was replaced with a mandatory installment plan (typically 7 years) plus security requirements. The tax applies to unrealized gains on shares in companies where you hold 1%+ ownership.',
+        'cl.de.risk.title': 'What\'s at stake',
+        'cl.de.risk.item1': 'Exit tax on unrealized capital gains (can be hundreds of thousands)',
+        'cl.de.risk.item2': 'Security deposit or bank guarantee required for installment plan',
+        'cl.de.risk.item3': 'Incorrect timing can trigger both German and UAE tax obligations simultaneously',
+        'cl.de.exit.title': 'How we coordinate the exit',
+        'cl.de.exit.desc': 'Our German partner firm handles the exit tax calculation, installment plan structuring, and security arrangement. We handle the UAE side: company architecture designed for German tax treaty compliance, banking, and substance that satisfies German Finanzamt requirements.',
+        'cl.de.cta': 'Get Your Banking Roadmap',
+
+        // Spoke: Netherlands
+        'cl.nl.label': 'Dutch Box 3 Restructuring',
+        'cl.nl.title': 'Box 3 reform is squeezing wealth holders. Plan the transition.',
+        'cl.nl.subtitle': 'Changing parameters for fictional yield and rising effective rates make the Netherlands increasingly expensive for wealth holders. The question is timing.',
+        'cl.nl.trigger.title': 'What changed',
+        'cl.nl.trigger.desc': 'The Netherlands continues to reform Box 3 taxation. The fictional yield system is being revised with new parameters for 2026, effectively increasing the tax burden on savings and investments. The Supreme Court ruling against the old system has created ongoing uncertainty.',
+        'cl.nl.risk.title': 'What\'s at stake',
+        'cl.nl.risk.item1': 'Increasing effective tax rates on wealth under Box 3',
+        'cl.nl.risk.item2': 'Ongoing regulatory uncertainty about future Box 3 parameters',
+        'cl.nl.risk.item3': 'Emigration tax implications on substantial interest (Box 2) holdings',
+        'cl.nl.exit.title': 'How we coordinate the exit',
+        'cl.nl.exit.desc': 'Our Dutch partner firm handles the Box 2/Box 3 transition planning, substantial interest tax calculations, and optimal emigration timing. We handle the UAE side: company structure, banking, and substance that satisfies Dutch Belastingdienst requirements for genuine relocation.',
+        'cl.nl.cta': 'Get Your Banking Roadmap',
     }
 }
