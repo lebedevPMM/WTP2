@@ -21,10 +21,11 @@ export const SUBDOMAIN_PREFIX = SUBDOMAIN_MAP[LANDING_ID]
 
 /**
  * Full domain for a given language version of THIS landing.
+ * EN lives on wtp.ae (migrated 2026-04-13), RU stays on wtpref.ru (Timeweb).
  */
 export function getDomain(lang: 'en' | 'ru'): string {
-    const tld = lang === 'en' ? 'com' : 'ru'
-    return `https://${SUBDOMAIN_PREFIX}wtpref.${tld}`
+    const rootDomain = lang === 'en' ? 'wtp.ae' : 'wtpref.ru'
+    return `https://${SUBDOMAIN_PREFIX}${rootDomain}`
 }
 
 /**

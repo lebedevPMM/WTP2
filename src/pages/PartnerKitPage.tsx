@@ -5,7 +5,7 @@ import { trackPdfDownload } from '../lib/analytics'
 
 const DocCard: React.FC<{
     title: string
-    desc: string
+    desc: React.ReactNode
     href: string
     btnLabel: string
     icon: React.ReactNode
@@ -73,35 +73,72 @@ const IconChecklist = () => (
     </svg>
 )
 
+const IconHowWeWork = () => (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+    </svg>
+)
+
+const IconWhatWeNeed = () => (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+        <polyline points="10 9 9 9 8 9" />
+    </svg>
+)
+
+const IconZip = () => (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+)
+
 const PartnerKitPage: React.FC = () => {
-    const { t, lang } = useLanguage()
+    const { t, tRich, lang } = useLanguage()
     const base = import.meta.env.BASE_URL
     const suffix = lang.toUpperCase()
     const pdfUrl = `${base}WTP_One_Pager_${suffix}.pdf`
     const previewUrl = `${base}WTP_One_Pager_${suffix}_preview.png`
 
-    const docsPath = lang === 'ru' ? `${base}docs/ru/process` : `${base}docs/process`
+    const processPath = lang === 'ru' ? `${base}docs/ru/process` : `${base}docs/process`
+    const partnerPath = lang === 'ru' ? `${base}docs/ru/partner` : `${base}docs/partner`
+    const kitZipUrl = `${base}WTP_Partner_Kit_${suffix}.zip`
 
     const docs = [
         {
+            key: 'howWeWork',
+            icon: <IconHowWeWork />,
+            href: `${partnerPath}/06-how-we-work.pdf`,
+        },
+        {
+            key: 'whatWeNeed',
+            icon: <IconWhatWeNeed />,
+            href: `${partnerPath}/07-what-we-need-upfront.pdf`,
+        },
+        {
             key: 'process',
             icon: <IconProcess />,
-            href: `${docsPath}/01-process-map.pdf`,
+            href: `${processPath}/01-process-map.pdf`,
         },
         {
             key: 'risk',
             icon: <IconRisk />,
-            href: `${docsPath}/06-risk-policy.pdf`,
+            href: `${processPath}/06-risk-policy.pdf`,
         },
         {
             key: 'packages',
             icon: <IconPackages />,
-            href: `${docsPath}/03-packages.pdf`,
+            href: `${processPath}/03-packages.pdf`,
         },
         {
             key: 'intake',
             icon: <IconChecklist />,
-            href: `${docsPath}/02-intake-checklist.pdf`,
+            href: `${processPath}/02-intake-checklist.pdf`,
         },
     ]
 
@@ -115,7 +152,7 @@ const PartnerKitPage: React.FC = () => {
                 <h1>{t('partnerKit.title')}</h1>
                 <div className="label" style={{ marginBottom: '16px' }}>{t('partnerKit.label')}</div>
                 <p className="subtitle" style={{ marginBottom: 0 }}>
-                    {t('partnerKit.subtitle')}
+                    {tRich('partnerKit.subtitle')}
                 </p>
             </section>
 
@@ -126,7 +163,7 @@ const PartnerKitPage: React.FC = () => {
                     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <h2 style={{ fontSize: '28px', marginBottom: '16px' }}>{t('partnerKit.onepager.title')}</h2>
                         <p className="text-body" style={{ marginBottom: '32px', maxWidth: '440px' }}>
-                            {t('partnerKit.onepager.desc')}
+                            {tRich('partnerKit.onepager.desc')}
                         </p>
                         <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="btn"
                             onClick={() => trackPdfDownload('one_pager', lang)}
@@ -169,7 +206,7 @@ const PartnerKitPage: React.FC = () => {
                         <DocCard
                             key={doc.key}
                             title={t(`partnerKit.${doc.key}.title`)}
-                            desc={t(`partnerKit.${doc.key}.desc`)}
+                            desc={tRich(`partnerKit.${doc.key}.desc`)}
                             href={doc.href}
                             btnLabel={t('partnerKit.download.btn')}
                             icon={doc.icon}
@@ -177,6 +214,62 @@ const PartnerKitPage: React.FC = () => {
                         />
                     ))}
                 </div>
+            </section>
+
+            {/* Document Library link */}
+            <section style={{
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: 'var(--radius-lg)',
+                padding: '32px',
+                marginBottom: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '24px',
+                flexWrap: 'wrap',
+            }}>
+                <div style={{ flex: 1, minWidth: '240px' }}>
+                    <h3 style={{ fontSize: '20px', marginBottom: '4px' }}>
+                        {lang === 'ru' ? 'Каталог всех документов' : 'Full Document Library'}
+                    </h3>
+                    <p className="text-body" style={{ fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
+                        {lang === 'ru'
+                            ? 'Все 60+ документов WTP в одном каталоге: one-pager\u2019ы и презентации по 8 продуктам, процессы, партнёрские материалы, лид-магниты. Фильтр по аудитории.'
+                            : 'All 60+ WTP documents in one catalog: one-pagers and presentations for 8 products, process docs, partner materials, lead magnets. Filterable by audience.'}
+                    </p>
+                </div>
+                <Link to="/library" className="btn btn-outline" style={{ whiteSpace: 'nowrap' }}>
+                    {lang === 'ru' ? 'Открыть каталог →' : 'Browse Library →'}
+                </Link>
+            </section>
+
+            {/* Full Kit Download */}
+            <section style={{
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: 'var(--radius-lg)',
+                padding: '40px',
+                marginBottom: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '24px',
+                flexWrap: 'wrap',
+            }}>
+                <div style={{ color: 'var(--text-tertiary)' }}>
+                    <IconZip />
+                </div>
+                <div style={{ flex: 1, minWidth: '240px' }}>
+                    <h3 style={{ fontSize: '20px', marginBottom: '4px' }}>{t('partnerKit.kit.title')}</h3>
+                    <p className="text-body" style={{ fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
+                        {tRich('partnerKit.kit.desc')}
+                    </p>
+                </div>
+                <a href={kitZipUrl} target="_blank" rel="noopener noreferrer" className="btn"
+                    onClick={() => trackPdfDownload('partner_kit_zip', lang)}
+                    style={{ whiteSpace: 'nowrap' }}>
+                    {t('partnerKit.kit.btn')}
+                </a>
             </section>
 
             {/* CTA */}
@@ -190,7 +283,7 @@ const PartnerKitPage: React.FC = () => {
             }}>
                 <h2 style={{ fontSize: '28px', marginBottom: '12px' }}>{t('partnerKit.cta.title')}</h2>
                 <p className="text-body" style={{ marginBottom: '32px', maxWidth: '480px', margin: '0 auto 32px' }}>
-                    {t('partnerKit.cta.text')}
+                    {tRich('partnerKit.cta.text')}
                 </p>
                 <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
                     <Link to="/submit-case" className="btn">{t('partnerKit.cta.btn')}</Link>

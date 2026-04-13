@@ -8,6 +8,8 @@ const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'))
 const TermsOfServicePage = lazy(() => import('./pages/TermsOfServicePage'))
 const SubmitCasePage = lazy(() => import('./pages/SubmitCasePage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
+const PartnerKitPage = lazy(() => import('./pages/PartnerKitPage'))
+const DocumentLibraryPage = lazy(() => import('./pages/DocumentLibraryPage'))
 
 // Landing-specific imports — only loaded for the matching VITE_LANDING.
 // Vite replaces LANDING_ID at build time, dead branches are tree-shaken.
@@ -18,7 +20,6 @@ const MainPages = LANDING_ID === 'main' ? {
     PartnersPage: lazy(() => import('./pages/PartnersPage')),
     RiskPage: lazy(() => import('./pages/RiskPage')),
     EngagementPage: lazy(() => import('./pages/EngagementPage')),
-    PartnerKitPage: lazy(() => import('./pages/PartnerKitPage')),
     UpdatesPage: lazy(() => import('./pages/UpdatesPage')),
     TermsPage: lazy(() => import('./pages/TermsPage')),
 } : null
@@ -62,7 +63,6 @@ function MainRoutes() {
             <Route path="products/:slug" element={<Lazy><P.ProductPage /></Lazy>} />
             <Route path="partners" element={<Lazy><P.PartnersPage /></Lazy>} />
             <Route path="risk" element={<Lazy><P.RiskPage /></Lazy>} />
-            <Route path="partner-kit" element={<Lazy><P.PartnerKitPage /></Lazy>} />
             <Route path="engagement" element={<Lazy><P.EngagementPage /></Lazy>} />
             <Route path="updates" element={<Lazy><P.UpdatesPage /></Lazy>} />
         </>
@@ -89,6 +89,9 @@ function App() {
                 )}
 
                 {/* Shared routes (all landings) */}
+                <Route path="partner-kit" element={<Lazy><PartnerKitPage /></Lazy>} />
+                <Route path="library" element={<Lazy><DocumentLibraryPage /></Lazy>} />
+                <Route path="documents" element={<Lazy><DocumentLibraryPage /></Lazy>} />
                 <Route path="privacy" element={<Lazy><PrivacyPolicyPage /></Lazy>} />
                 <Route path="terms-of-service" element={<Lazy><TermsOfServicePage /></Lazy>} />
                 <Route path="submit-case" element={<Lazy><SubmitCasePage /></Lazy>} />
