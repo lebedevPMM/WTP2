@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wtpref.ru/sitemap.xml
+Sitemap: https://wtp.ae/sitemap.xml

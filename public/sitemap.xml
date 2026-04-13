@@ -1,52 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wtpref.ru/</loc>
+    <loc>https://wtp.ae/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://wtpref.ru/process</loc>
+    <loc>https://wtp.ae/process</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wtpref.ru/partner-kit</loc>
+    <loc>https://wtp.ae/partner-kit</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wtpref.ru/submit-case</loc>
+    <loc>https://wtp.ae/submit-case</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://wtpref.ru/contact</loc>
+    <loc>https://wtp.ae/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://wtpref.ru/privacy</loc>
+    <loc>https://wtp.ae/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://wtpref.ru/terms-of-service</loc>
+    <loc>https://wtp.ae/terms-of-service</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://banking.wtpref.ru/</loc>
+    <loc>https://banking.wtp.ae/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://realestate.wtpref.ru/</loc>
+    <loc>https://realestate.wtp.ae/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://partners.wtpref.ru/</loc>
+    <loc>https://partners.wtp.ae/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://client.wtp.ae/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

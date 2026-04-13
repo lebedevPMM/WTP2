@@ -5,8 +5,8 @@ const landing = process.env.VITE_LANDING || 'main'
 const lang = process.env.VITE_LANG || 'en'
 
 const subdomain = landing === 'main' ? '' : `${landing}.`
-const tld = lang === 'en' ? 'com' : 'ru'
-const siteUrl = `https://${subdomain}wtpref.${tld}`
+const domain = lang === 'en' ? 'wtp.ae' : 'wtpref.ru'
+const siteUrl = `https://${subdomain}${domain}`
 
 const meta: Record<string, Record<string, { title: string; description: string; keywords: string }>> = {
     main: {
@@ -123,9 +123,12 @@ function htmlMetaPlugin(): Plugin {
     }
 }
 
+const cfPages = process.env.VITE_CF_PAGES === '1'
+const base = cfPages && landing !== 'main' ? `/${landing}/` : '/'
+
 export default defineConfig({
     plugins: [react(), htmlMetaPlugin()],
-    base: '/',
+    base,
     build: {
         outDir: `dist/${landing}-${lang}`,
     },
