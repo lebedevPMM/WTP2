@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../lib/LanguageContext'
 import { trackPdfDownload } from '../lib/analytics'
@@ -336,6 +336,18 @@ const DocumentLibraryPage: React.FC = () => {
     const base = import.meta.env.BASE_URL
     const L = labels[lang as 'en' | 'ru']
     const [audience, setAudience] = useState<Audience>('all')
+
+    // HIDDEN PAGE — accessible by direct URL only, not indexed by search engines.
+    // Inject <meta name="robots" content="noindex,nofollow"> on mount, remove on unmount.
+    useEffect(() => {
+        const meta = document.createElement('meta')
+        meta.name = 'robots'
+        meta.content = 'noindex,nofollow'
+        document.head.appendChild(meta)
+        return () => {
+            document.head.removeChild(meta)
+        }
+    }, [])
 
     const allDocs = useMemo(() => buildCatalog(), [])
 

@@ -216,34 +216,6 @@ const PartnerKitPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* Document Library link */}
-            <section style={{
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '32px',
-                marginBottom: '40px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '24px',
-                flexWrap: 'wrap',
-            }}>
-                <div style={{ flex: 1, minWidth: '240px' }}>
-                    <h3 style={{ fontSize: '20px', marginBottom: '4px' }}>
-                        {lang === 'ru' ? 'Каталог всех документов' : 'Full Document Library'}
-                    </h3>
-                    <p className="text-body" style={{ fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
-                        {lang === 'ru'
-                            ? 'Все 60+ документов WTP в одном каталоге: one-pager\u2019ы и презентации по 8 продуктам, процессы, партнёрские материалы, лид-магниты. Фильтр по аудитории.'
-                            : 'All 60+ WTP documents in one catalog: one-pagers and presentations for 8 products, process docs, partner materials, lead magnets. Filterable by audience.'}
-                    </p>
-                </div>
-                <Link to="/library" className="btn btn-outline" style={{ whiteSpace: 'nowrap' }}>
-                    {lang === 'ru' ? 'Открыть каталог →' : 'Browse Library →'}
-                </Link>
-            </section>
-
             {/* Full Kit Download */}
             <section style={{
                 background: 'var(--bg-card)',
