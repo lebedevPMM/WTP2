@@ -39,6 +39,9 @@ const ClientPages = LANDING_ID === 'client' ? {
     SpokePage: lazy(() => import('./pages/SpokePage')),
 } : null
 
+const TrcPage = LANDING_ID === 'trc'
+    ? lazy(() => import('./pages/TrcLandingPage')) : null
+
 // Shared loading fallback for lazy-loaded pages
 const PageFallback = (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
@@ -87,6 +90,7 @@ function App() {
                         <Route path="dutch-box3" element={<Lazy><ClientPages.SpokePage market="nl" /></Lazy>} />
                     </>
                 )}
+                {TrcPage && <Route index element={<Lazy><TrcPage /></Lazy>} />}
 
                 {/* Shared routes (all landings) */}
                 <Route path="partner-kit" element={<Lazy><PartnerKitPage /></Lazy>} />
