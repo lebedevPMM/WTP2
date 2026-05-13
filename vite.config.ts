@@ -69,18 +69,6 @@ const meta: Record<string, Record<string, { title: string; description: string; 
             keywords: 'релокация ОАЭ, регистрация компании ОАЭ, корпоративный банкинг Дубай, координация выхода, Banking-First, Golden Visa',
         },
     },
-    trc: {
-        en: {
-            title: 'WTP - UAE Tax Residency Certificate (TRC) | Russia–UAE Treaty 2026',
-            description: 'Tax Residency Certificate from FTA UAE for the new Russia–UAE double taxation treaty. Filing in ~5 working days. Apostille not required for the Russia treaty.',
-            keywords: 'UAE TRC, Tax Residency Certificate, FTA UAE, Russia UAE treaty 2026, tax residency, FNS, dividends withholding',
-        },
-        ru: {
-            title: 'Налоговый сертификат резидента ОАЭ (TRC) — оформление под СИДН 2026',
-            description: 'Оформление TRC от FTA ОАЭ под новое СИДН Россия–ОАЭ 2026: ставка 10% вместо 15%+, закрытие вопроса с резидентством, требования и пакет документов. Срок подачи ~5 рабочих дней.',
-            keywords: 'TRC ОАЭ, налоговый сертификат резидента ОАЭ, FTA, СИДН Россия ОАЭ 2026, налоговое резидентство, дивиденды, ФНС',
-        },
-    },
 }
 
 const currentMeta = meta[landing]?.[lang] || meta.main.en

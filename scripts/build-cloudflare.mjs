@@ -15,16 +15,8 @@
 import { execSync } from 'child_process'
 import { cpSync, rmSync, mkdirSync, copyFileSync, writeFileSync } from 'fs'
 
-// Each entry: [landing-id, lang]. Order matters — 'main' must be first
-// (its dist is copied to the OUT_DIR root, others are merged under /{landing}/).
-const LANDINGS = [
-    ['main', 'en'],
-    ['banking', 'en'],
-    ['realestate', 'en'],
-    ['partners', 'en'],
-    ['client', 'en'],
-    ['trc', 'ru'],
-]
+const LANDINGS = ['main', 'banking', 'realestate', 'partners', 'client']
+const LANG = 'en'
 const OUT_DIR = 'dist/cloudflare'
 
 // Essential public files to copy for sub-landings (not PDFs/ZIPs)
@@ -39,14 +31,14 @@ console.log('=== Type checking ===')
 execSync('npx tsc --noEmit', { stdio: 'inherit' })
 
 // 2. Build each landing
-for (const [landing, lang] of LANDINGS) {
-    console.log(`\n=== Building ${landing}-${lang} ===`)
+for (const landing of LANDINGS) {
+    console.log(`\n=== Building ${landing}-${LANG} ===`)
     execSync('npx vite build', {
         stdio: 'inherit',
         env: {
             ...process.env,
             VITE_LANDING: landing,
-            VITE_LANG: lang,
+            VITE_LANG: LANG,
             VITE_CF_PAGES: '1',
         },
     })
@@ -57,12 +49,11 @@ console.log(`\n=== Merging into ${OUT_DIR} ===`)
 rmSync(OUT_DIR, { recursive: true, force: true })
 
 // Main landing at root — full copy (includes all public assets, PDFs, etc.)
-const [, mainLang] = LANDINGS[0]
-cpSync(`dist/main-${mainLang}`, OUT_DIR, { recursive: true })
+cpSync(`dist/main-${LANG}`, OUT_DIR, { recursive: true })
 
 // Sub-landings — only index.html, assets/ (JS/CSS), and essential public files
-for (const [landing, lang] of LANDINGS.slice(1)) {
-    const src = `dist/${landing}-${lang}`
+for (const landing of LANDINGS.slice(1)) {
+    const src = `dist/${landing}-${LANG}`
     const dest = `${OUT_DIR}/${landing}`
 
     // Copy index.html
@@ -138,7 +129,6 @@ export default {
         else if (host.startsWith('realestate.')) landing = 'realestate';
         else if (host.startsWith('partners.')) landing = 'partners';
         else if (host.startsWith('client.')) landing = 'client';
-        else if (host.startsWith('trc.')) landing = 'trc';
 
         if (landing) {
             if (isStaticAsset) {
@@ -174,7 +164,6 @@ export default {
         if (path.startsWith('/realestate')) return fetchAsset('/realestate/index.html');
         if (path.startsWith('/partners')) return fetchAsset('/partners/index.html');
         if (path.startsWith('/client')) return fetchAsset('/client/index.html');
-        if (path.startsWith('/trc')) return fetchAsset('/trc/index.html');
         return fetchAsset('/index.html');
     }
 };
@@ -196,6 +185,5 @@ console.log('    banking.wtp.ae      → banking')
 console.log('    realestate.wtp.ae   → realestate')
 console.log('    partners.wtp.ae     → partners')
 console.log('    client.wtp.ae       → client')
-console.log('    trc.wtp.ae          → trc (RU)')
 console.log('  Legacy (301 redirect to wtp.ae):')
 console.log('    *.wtpref.com        → *.wtp.ae')

@@ -63,26 +63,3 @@ export const roadmapFormSchema = z.object({
 })
 
 export type RoadmapFormData = z.infer<typeof roadmapFormSchema>
-
-// TRC Lead Form (3 fields: name, phone, messenger)
-export const trcFormSchema = z.object({
-    name: z.string()
-        .min(2, 'Укажите имя')
-        .max(100, 'Слишком длинное значение'),
-
-    phone: z.string()
-        .min(7, 'Укажите телефон')
-        .max(20, 'Слишком длинный номер')
-        .regex(/^[+\d\s\-()]{7,20}$/, 'Допустимы цифры, +, -, скобки, пробел'),
-
-    messenger: z.enum(['telegram', 'whatsapp', 'phone'], {
-        message: 'Выберите способ связи',
-    }),
-
-    // Honeypot — must remain empty
-    website: z.string().max(0, 'Bot detected').optional().or(z.literal('')),
-
-    consentPrivacy: z.literal(true, 'Необходимо согласие с политикой конфиденциальности'),
-})
-
-export type TrcFormData = z.infer<typeof trcFormSchema>

@@ -76,48 +76,6 @@ export async function submitContactToBitrix(data: {
     })
 }
 
-// TRC Lead (UAE Tax Residency Certificate landing — 3 fields + UTM)
-export async function submitTrcLeadToBitrix(data: {
-    name: string
-    phone: string
-    messenger: 'telegram' | 'whatsapp' | 'phone'
-    utm?: Record<string, string>
-}): Promise<BitrixResponse> {
-    const messengerLabel: Record<typeof data.messenger, string> = {
-        telegram: 'Telegram',
-        whatsapp: 'WhatsApp',
-        phone: 'Звонок',
-    }
-
-    const utm = data.utm || {}
-    const utmEntries = Object.entries(utm).filter(([, v]) => v)
-    const utmLines = utmEntries.length
-        ? utmEntries.map(([k, v]) => `  ${k}: ${v}`).join('\n')
-        : '  нет'
-
-    const comments = [
-        'Продукт: Налоговый сертификат резидента ОАЭ (TRC)',
-        `Предпочтительный мессенджер: ${messengerLabel[data.messenger]}`,
-        'Источник: TRC Landing (trc.wtp.ae)',
-        'UTM:',
-        utmLines,
-    ].join('\n')
-
-    const fields: BitrixLeadFields = {
-        TITLE: `TRC Lead: ${data.name}`,
-        NAME: data.name,
-        PHONE: [{ VALUE: data.phone, VALUE_TYPE: 'WORK' }],
-        COMMENTS: comments,
-        SOURCE_ID: 'WEB',
-    }
-
-    if (data.messenger === 'telegram') {
-        fields.UF_CRM_TELEGRAM = data.phone
-    }
-
-    return createLead(fields)
-}
-
 // Banking Roadmap request (B2C client form)
 export async function submitRoadmapToBitrix(data: {
     name: string
