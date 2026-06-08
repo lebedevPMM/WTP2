@@ -142,6 +142,12 @@ html {
   gap: 16px;
 }
 
+.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
 .flex-col {
   display: flex;
   flex-direction: column;
@@ -845,7 +851,8 @@ footer {
 
   .grid-2,
   .grid-3,
-  .grid-4 {
+  .grid-4,
+  .grid-5 {
     grid-template-columns: 1fr;
   }
 

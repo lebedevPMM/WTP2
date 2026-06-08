@@ -1,4 +1,25 @@
+# robots.txt — WTP (wtp.ae) — Cloudflare Pages SPA
+# Allow full crawl; explicitly permit render-critical assets; reference sitemap index.
+
 User-agent: *
+Allow: /
+
+# Render-critical assets (let crawlers fetch CSS/JS for full-page rendering)
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+
+# AI-answer / LLM crawlers — explicitly permitted (AEO surface)
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://wtp.ae/sitemap.xml

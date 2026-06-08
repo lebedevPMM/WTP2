@@ -2,15 +2,26 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
 import { useLanguage, OTHER_DOMAIN, OTHER_LANG_LABEL } from '../lib/LanguageContext'
-import { IS_FOCUSED_LANDING } from '../config/landing'
+import { IS_FOCUSED_LANDING, LANDING_ID } from '../config/landing'
 import { resetConsentStatus } from '../lib/consent'
 
+// Cross-landing hub-and-spoke links (EN portfolio). Descriptive, keyword-rich anchors.
+// Rendered on EN only (G1 scope); the current landing is filtered out to avoid a self-link.
+const WTP_SERVICE_LINKS = [
+    { id: 'main', href: 'https://wtp.ae/', label: 'UAE execution partner' },
+    { id: 'banking', href: 'https://banking.wtp.ae/', label: 'UAE corporate bank account opening' },
+    { id: 'realestate', href: 'https://realestate.wtp.ae/', label: 'Dubai real-estate agent referral' },
+    { id: 'partners', href: 'https://partners.wtp.ae/', label: 'Monetise client referrals' },
+    { id: 'client', href: 'https://client.wtp.ae/', label: 'UAE relocation for HNWI' },
+]
+
 const Footer: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, lang } = useLanguage()
+    const showServices = lang === 'en'
 
     return (
         <footer id="contact" role="contentinfo">
-            <div className="container grid-4">
+            <div className={`container ${showServices ? 'grid-5' : 'grid-4'}`}>
                 <div>
                     <div style={{ marginBottom: '24px' }}>
                         <Logo variant="white" height={40} />
@@ -26,6 +37,21 @@ const Footer: React.FC = () => {
                         <a href="tel:+971600575294" style={{ color: 'inherit', textDecoration: 'none' }}>+971 600 575-294</a>
                     </p>
                 </div>
+                {showServices && (
+                    <div>
+                        <span className="label">WTP Services</span>
+                        {WTP_SERVICE_LINKS.filter((s) => s.id !== LANDING_ID).map((s) => (
+                            <a
+                                key={s.id}
+                                href={s.href}
+                                className="text-body"
+                                style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}
+                            >
+                                {s.label}
+                            </a>
+                        ))}
+                    </div>
+                )}
                 <div>
                     <span className="label">{t('footer.legal')}</span>
                     <Link to="/terms-of-service" className="text-body" style={{ display: 'block', marginBottom: '8px', textDecoration: 'none' }}>{t('footer.tos')}</Link>

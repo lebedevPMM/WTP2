@@ -1,5 +1,6 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { getSchemaJsonLd } from './scripts/seo-schema.mjs'
 
 const landing = process.env.VITE_LANDING || 'main'
 const lang = process.env.VITE_LANG || 'en'
@@ -7,13 +8,15 @@ const lang = process.env.VITE_LANG || 'en'
 const subdomain = landing === 'main' ? '' : `${landing}.`
 const domain = lang === 'en' ? 'wtp.ae' : 'wtpref.ru'
 const siteUrl = `https://${subdomain}${domain}`
+// EN host of THIS landing — the hreflang x-default target (EN is primary).
+const enSiteUrl = `https://${subdomain}wtp.ae`
 
 const meta: Record<string, Record<string, { title: string; description: string; keywords: string }>> = {
     main: {
         en: {
-            title: 'WTP - UAE Execution Partner | Company Formation & Banking',
-            description: 'WTP is your UAE execution partner for company formation, corporate banking, and compliance. We handle the complexity so you can focus on growth.',
-            keywords: 'UAE company formation, corporate banking, Dubai business setup, DIFC, compliance, WTP',
+            title: 'WTP — UAE Execution Partner: Banking-First Setup',
+            description: 'Your UAE execution partner. We confirm the bank will open before you register a company — banking-first setup, exit coordination, Golden Visa.',
+            keywords: 'UAE business relocation partner, UAE corporate banking, Banking-First company setup, DIFC, ADGM, Golden Visa, exit tax coordination',
         },
         ru: {
             title: 'WTP - Партнер по операциям в ОАЭ | Регистрация компаний и банкинг',
@@ -23,9 +26,9 @@ const meta: Record<string, Record<string, { title: string; description: string; 
     },
     banking: {
         en: {
-            title: 'WTP - Corporate Banking in UAE | Account Opening & Compliance',
-            description: 'Expert corporate banking services in the UAE. We open accounts, handle compliance, and solve banking challenges for international businesses.',
-            keywords: 'UAE corporate banking, business account UAE, bank account opening Dubai, banking compliance',
+            title: 'UAE Corporate Bank Account Opening | Banking-First',
+            description: 'Open a UAE corporate bank account before you register the company. Pre-Screen tells you the bank\'s answer in 5–7 days. Foreign owners, DIFC, ADGM.',
+            keywords: 'UAE corporate bank account opening, business bank account UAE, Banking-First, bank account opening Dubai, DIFC, ADGM, banking compliance',
         },
         ru: {
             title: 'WTP - Корпоративный банкинг в ОАЭ | Открытие счетов',
@@ -35,9 +38,9 @@ const meta: Record<string, Record<string, { title: string; description: string; 
     },
     realestate: {
         en: {
-            title: 'WTP - Real Estate Operations in UAE | Property Deals & Compliance',
-            description: 'Professional real estate execution in the UAE. From property structuring to compliance, we handle operational complexity for real estate investors.',
-            keywords: 'UAE real estate, property investment Dubai, real estate compliance, property structuring UAE',
+            title: 'Earn $3,500+ Per Client | Dubai Agent Referral | WTP',
+            description: 'Dubai real estate agents: earn $3,500+ per client on the banking, visa and setup your buyers need after the deal. Refer in 3 messages, zero cost.',
+            keywords: 'Dubai real estate agent referral, earn commission referring clients, post-deal commission UAE, after-sale banking visa setup, real estate agent partner program',
         },
         ru: {
             title: 'WTP - Недвижимость в ОАЭ | Сделки и комплаенс',
@@ -47,9 +50,9 @@ const meta: Record<string, Record<string, { title: string; description: string; 
     },
     partners: {
         en: {
-            title: 'WTP - Partner Program | Refer Clients to UAE Services',
-            description: 'Join WTP Partner Program. Refer clients for UAE company formation, banking, and compliance services. Transparent process and reliable execution.',
-            keywords: 'WTP partner program, UAE services referral, business partner Dubai, company formation partner',
+            title: 'Monetize UAE Referrals | We Open the Bank, You Earn',
+            description: 'Refer the clients you already send for free. We open the Dubai bank and handle compliance; you keep the client and earn commission on every deal.',
+            keywords: 'monetize client referrals UAE, UAE referral partner program, white-label company setup, Banking-First, earn commission Dubai banking, wealth advisor partner',
         },
         ru: {
             title: 'WTP - Партнерская программа | Рекомендуйте клиентов',
@@ -59,9 +62,9 @@ const meta: Record<string, Record<string, { title: string; description: string; 
     },
     client: {
         en: {
-            title: 'WTP - UAE Relocation Partner | Exit Coordination & Banking-First Setup',
-            description: 'WTP orchestrates your complete relocation — coordinated exit from your jurisdiction and bankable company setup in the UAE through our international partner network.',
-            keywords: 'UAE relocation, company formation UAE, corporate banking Dubai, exit tax coordination, UK non-dom UAE, German exit tax, Banking-First, Golden Visa',
+            title: 'UAE Relocation for HNWI | Exit + Bankable Setup | WTP',
+            description: 'Relocating to the UAE? We coordinate your home-jurisdiction exit and a bankable company setup — one team, banking sorted before you register.',
+            keywords: 'UAE relocation for HNWI, UAE relocation, exit tax coordination, UK non-dom UAE, German exit tax, Dutch Box 3, Banking-First, Golden Visa, bankable company setup',
         },
         ru: {
             title: 'WTP - Релокация бизнеса в ОАЭ | Координация выхода и Banking-First',
@@ -119,6 +122,27 @@ function htmlMetaPlugin(): Plugin {
                     /<meta name="twitter:image" content=".*?" \/>/,
                     `<meta name="twitter:image" content="${siteUrl}/og-image.png" />`,
                 )
+                // Self-canonical (landing root). Runtime updater in Layout.tsx keeps this
+                // tag current for SPA sub-routes (client spokes).
+                .replace(
+                    '<link rel="canonical" href="" />',
+                    `<link rel="canonical" href="${siteUrl}/" />`,
+                )
+                // hreflang cluster: self + x-default(EN). RU partner pairing ships in G2.
+                .replace(
+                    '<!--HREFLANG-->',
+                    [
+                        `<link rel="alternate" hreflang="${lang}" href="${siteUrl}/" />`,
+                        lang !== 'en'
+                            ? `<link rel="alternate" hreflang="en" href="${enSiteUrl}/" />`
+                            : '',
+                        `<link rel="alternate" hreflang="x-default" href="${enSiteUrl}/" />`,
+                    ]
+                        .filter(Boolean)
+                        .join('\n    '),
+                )
+                // Static JSON-LD (Organization + Service + BreadcrumbList [+ FAQPage / ItemList]).
+                .replace('<!--JSONLD-->', getSchemaJsonLd(landing))
         },
     }
 }
