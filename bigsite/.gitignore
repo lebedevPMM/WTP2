@@ -1,0 +1,4 @@
+# Playwright MCP scratch artifacts (DOM snapshots from verification runs)
+.playwright-mcp/
+
+# Build output / deps are covered by the repo-root .gitignore (node_modules, dist)

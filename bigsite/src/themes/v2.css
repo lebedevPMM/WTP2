@@ -1,0 +1,1135 @@
+/* ============================================================================
+   THEME V2 — "THE CONTROL ROOM" — site-wide skin
+   Swiss-technical ops console on cool light graphite.
+   Paper #EDEFF2 · graphite ink #14161A · one signal amber #FF8A00
+   (AA text derivatives: #BC5500 large / #9A4600 small).
+   Archivo Expanded 850–900 display · IBM Plex Mono telemetry · hairline grid.
+   Every rule is scoped under html[data-theme="v2"]. No @import / @font-face
+   (fonts are injected by ThemeSwitch).
+   ============================================================================ */
+
+/* ---------------------------------------------------------------- 0. TOKENS
+   The whole site (incl. inline styles) consumes these custom properties.
+   Old (midnight) → new (control room):
+   --deep  #08071a → #EDEFF2 paper        --ink    #edebf6 → #14161A graphite
+   --deep-2 #0d0b22 → #E6E9ED paper-2     --gold   #ffc65a → #9A4600 amber-AA-small
+   --deep-3 #13102e → #E1E4E9 paper-3dn   --amber  #f5a623 → #FF8A00 signal
+   --cta    grad amber→rose → SOLID #FF8A00 (ink text ≈7.3:1)
+   --gold-grad gold→amber  → solid amber (flat signal, no glitter)
+   --rose   #e0518a → #BC5500 (rose is banned in the control room)            */
+html[data-theme="v2"] {
+  --deep: #edeff2;
+  --deep-2: #e6e9ed;
+  --deep-3: #e1e4e9;
+  --ink: #14161a;
+  --ink-70: rgba(20, 22, 26, 0.78);
+  --ink-55: rgba(20, 22, 26, 0.66);
+  --ink-40: rgba(20, 22, 26, 0.58); /* lifted from .4 — lowest text alpha still AA on paper */
+  --line: rgba(20, 22, 26, 0.14);
+  --gold: #9a4600;
+  --amber: #ff8a00;
+  --rose: #bc5500;
+  --cta: #ff8a00;
+  --gold-grad: linear-gradient(135deg, #ff8a00, #ff8a00);
+  --nav-bg: rgba(237, 239, 242, 0.92);
+  --font-display: "Archivo", "Helvetica Neue", system-ui, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", system-ui, sans-serif;
+
+  /* tailwind @theme aliases, in case any utility class consumes them */
+  --color-deep: #edeff2;
+  --color-deep-2: #e6e9ed;
+  --color-deep-3: #e1e4e9;
+  --color-ink: #14161a;
+  --color-gold: #9a4600;
+  --color-amber: #ff8a00;
+  --color-rose: #bc5500;
+  --color-line: rgba(20, 22, 26, 0.14);
+
+  /* v2-internal tokens */
+  --v2-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --v2-paper-3: #f7f8fa; /* raised: hover rows, stations, dropdown panel */
+  --v2-line-2: rgba(20, 22, 26, 0.24); /* strong hairline: frames, module rules */
+  --v2-ink-45: rgba(20, 22, 26, 0.48); /* decoration only — never words */
+  --v2-amber-deep: #bc5500; /* amber as large text on paper */
+  --v2-amber-text: #9a4600; /* amber as small text on paper */
+  --v2-screen: #14161a; /* the dark ops plates */
+  --v2-screen-ink: #e9ebee;
+  --v2-screen-muted: rgba(233, 235, 238, 0.62);
+  --v2-screen-line: rgba(233, 235, 238, 0.16);
+
+  color-scheme: light;
+  background: var(--deep);
+  accent-color: var(--amber);
+}
+
+/* ------------------------------------------------------------- 1. BASE TYPE */
+html[data-theme="v2"] body {
+  background: var(--deep);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 430;
+  font-size: 16.5px;
+  letter-spacing: 0;
+}
+
+/* Display: Archivo Expanded, heavy, uppercase, tight leading */
+html[data-theme="v2"] h1,
+html[data-theme="v2"] h2,
+html[data-theme="v2"] h3,
+html[data-theme="v2"] .display {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 880;
+  letter-spacing: -0.01em;
+  line-height: 0.97;
+}
+
+html[data-theme="v2"] h1,
+html[data-theme="v2"] h2 {
+  text-transform: uppercase;
+}
+
+html[data-theme="v2"] h3 {
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+/* article bodies keep sentence-case section headings (readability) */
+html[data-theme="v2"] .prose h2,
+html[data-theme="v2"] .prose h3 {
+  text-transform: none;
+  letter-spacing: -0.012em;
+  line-height: 1.12;
+}
+
+html[data-theme="v2"] ::selection {
+  background: var(--ink);
+  color: var(--deep);
+}
+
+html[data-theme="v2"] a:focus-visible,
+html[data-theme="v2"] button:focus-visible,
+html[data-theme="v2"] input:focus-visible,
+html[data-theme="v2"] textarea:focus-visible,
+html[data-theme="v2"] select:focus-visible {
+  outline: 2px solid var(--v2-amber-deep);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------- 2. PRIMITIVES (index.css) */
+
+/* hairline grid feel: every module opens with a 1px graphite rule */
+html[data-theme="v2"] .section {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+
+/* eyebrow → mono micro-label `IDX / NAME` with a square amber tick */
+html[data-theme="v2"] .eyebrow {
+  font-family: var(--v2-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-55);
+  gap: 10px;
+}
+
+html[data-theme="v2"] .eyebrow::before {
+  width: 5px;
+  height: 5px;
+  background: var(--amber);
+}
+
+/* gradient headline → solid graphite (light theme) */
+html[data-theme="v2"] .h-grad {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  color: var(--ink);
+}
+
+/* gold-clip accent → flat amber AA derivative (display sizes) */
+html[data-theme="v2"] .g {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  color: var(--v2-amber-deep);
+}
+
+/* buttons: solid signal amber, squared, mono caps, instant 150ms */
+html[data-theme="v2"] .btn {
+  border-radius: 2px;
+  background: var(--cta);
+  color: #14161a;
+  font-family: var(--v2-mono);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  box-shadow: none;
+  transition: background 0.15s ease-out, border-color 0.15s ease-out;
+}
+
+html[data-theme="v2"] .btn:hover {
+  transform: none;
+  box-shadow: none;
+  background: #ef7d00;
+}
+
+html[data-theme="v2"] .btn:active {
+  transform: translateY(1px);
+}
+
+html[data-theme="v2"] .btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--v2-line-2);
+  box-shadow: none;
+}
+
+html[data-theme="v2"] .btn-ghost:hover {
+  transform: none;
+  box-shadow: none;
+  background: var(--v2-paper-3);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* cards → ruled modules: paper field, graphite hairline, corner ticks,
+   hover = amber left edge + border snap (no lift, no glow) */
+html[data-theme="v2"] .card {
+  position: relative;
+  background: var(--deep);
+  border: 1px solid var(--v2-line-2);
+  border-radius: 0;
+  box-shadow: none;
+  transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out,
+    background 0.15s ease-out;
+}
+
+html[data-theme="v2"] .card::before,
+html[data-theme="v2"] .card::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+  transition: border-color 0.15s ease-out;
+}
+
+html[data-theme="v2"] .card::before {
+  top: 3px;
+  left: 3px;
+  border-top: 1px solid var(--v2-ink-45);
+  border-left: 1px solid var(--v2-ink-45);
+}
+
+html[data-theme="v2"] .card::after {
+  bottom: 3px;
+  right: 3px;
+  border-bottom: 1px solid var(--v2-ink-45);
+  border-right: 1px solid var(--v2-ink-45);
+}
+
+html[data-theme="v2"] .card:hover {
+  transform: none;
+  border-color: var(--ink);
+  background: var(--v2-paper-3);
+  box-shadow: inset 3px 0 0 var(--amber);
+}
+
+html[data-theme="v2"] .card:hover::before,
+html[data-theme="v2"] .card:hover::after {
+  border-color: var(--amber);
+}
+
+/* chips → mono ID plates */
+html[data-theme="v2"] .chip {
+  border-radius: 2px;
+  background: transparent;
+  border: 1px solid var(--v2-line-2);
+  color: var(--v2-amber-text);
+  font-family: var(--v2-mono);
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* inner-page hero band: ruled baseline under the H1 block */
+html[data-theme="v2"] .page-hero {
+  border-bottom: 1px solid var(--line);
+}
+
+html[data-theme="v2"] .page-hero .lead {
+  color: var(--ink-70);
+}
+
+/* prose: technical-document links */
+html[data-theme="v2"] .prose {
+  color: var(--ink-70);
+}
+
+html[data-theme="v2"] .prose a {
+  color: var(--v2-amber-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(154, 70, 0, 0.4);
+}
+
+html[data-theme="v2"] .prose a:hover {
+  text-decoration-color: var(--v2-amber-text);
+}
+
+/* ---------------------------------------------------------------- 3. MEGANAV */
+
+/* solid (light) state: paper console bar; white PNG logo → graphite via filter */
+html[data-theme="v2"] .meganav-root.meganav-solid img {
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.85);
+}
+
+/* top-level items → mono caps with amber active underline (box-shadow, since
+   color is inline var-driven) */
+html[data-theme="v2"] .meganav-item > a {
+  font-family: var(--v2-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12.5px;
+  transition: box-shadow 0.15s ease-out;
+}
+
+html[data-theme="v2"] .meganav-item > a:hover {
+  box-shadow: inset 0 -2px 0 var(--amber);
+}
+
+/* transparent state sits over the dark hero feed → re-light the ink vars
+   (inline styles consume vars, so no !important needed) */
+html[data-theme="v2"] .meganav-root.meganav-transparent {
+  --ink: #e9ebee;
+  --ink-70: rgba(233, 235, 238, 0.8);
+  --ink-55: rgba(233, 235, 238, 0.66);
+  --ink-40: rgba(233, 235, 238, 0.55);
+  --line: rgba(233, 235, 238, 0.18);
+}
+
+/* dropdown panel — inline HARDCODED bg rgba(13,11,34,.96), radius 14, dark
+   shadow (MegaNav.tsx:138,141,142) → !important required */
+html[data-theme="v2"] .meganav-item > div {
+  background: #fbfcfd !important;
+  border-radius: 2px !important;
+  box-shadow: 0 18px 44px rgba(20, 22, 26, 0.14) !important;
+  border-color: var(--v2-line-2);
+  /* dropdown can open while nav is transparent over the dark hero —
+     re-pin graphite ink inside the light panel */
+  --ink: #14161a;
+  --ink-70: rgba(20, 22, 26, 0.78);
+  --ink-55: rgba(20, 22, 26, 0.66);
+  --deep-3: #e1e4e9; /* JS hover bg resolves to raised grey */
+}
+
+/* dropdown links — inline radius 9 (MegaNav.tsx:151) → squared */
+html[data-theme="v2"] .meganav-item > div a {
+  border-radius: 0 !important;
+  font-size: 13.5px;
+}
+
+/* mobile drawer — inline HARDCODED bg rgba(8,7,26,.98) (MegaNav.tsx:188)
+   → paper drawer, graphite ink re-pinned */
+html[data-theme="v2"] .meganav-mobile {
+  background: rgba(237, 239, 242, 0.98) !important;
+  --ink: #14161a;
+  --ink-70: rgba(20, 22, 26, 0.78);
+  --ink-55: rgba(20, 22, 26, 0.66);
+  --ink-40: rgba(20, 22, 26, 0.58);
+  --line: rgba(20, 22, 26, 0.14);
+}
+
+html[data-theme="v2"] .meganav-burger {
+  color: var(--ink);
+}
+
+/* ----------------------------------------------------------------- 4. FOOTER */
+
+/* recessed paper-2 plate (bg is inline var(--deep-2) → automatic).
+   White logo → graphite. Column titles → mono labels. */
+html[data-theme="v2"] footer img {
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.85);
+}
+
+html[data-theme="v2"] .footer-grid div[style*=".14em"] {
+  font-family: var(--v2-mono);
+  font-weight: 500;
+}
+
+html[data-theme="v2"] footer a {
+  transition: color 0.15s ease-out;
+}
+
+html[data-theme="v2"] footer a:hover {
+  color: var(--v2-amber-text);
+}
+
+/* --------------------------------------------------------------- 5. STATBAR */
+
+/* inline HARDCODED borderRadius:16 (StatBar.tsx:11) → squared */
+html[data-theme="v2"] .statbar {
+  border-radius: 0 !important;
+  border-color: var(--v2-line-2);
+  font-variant-numeric: tabular-nums;
+  /* numeral font is inline `fontFamily: var(--font-display)` → re-pin the var
+     inside the statbar so the big values render IBM Plex Mono */
+  --font-display: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html[data-theme="v2"] .statbar .g {
+  letter-spacing: -0.04em;
+}
+
+/* ----------------------------------------------- 6. STEPPER (route stations) */
+
+/* cells: inline HARDCODED borderRadius:14 + active bg rgba(255,198,90,.08)
+   (StepperBankingFirst.tsx:18,20) → squared station modules on paper-3 */
+html[data-theme="v2"] .stepper > div {
+  border-radius: 0 !important;
+  background: var(--v2-paper-3) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* number disc: inline borderRadius:50% (StepperBankingFirst.tsx:28)
+   → square station marker; active fills signal amber via --gold-grad */
+html[data-theme="v2"] .stepper > div > div:first-child {
+  border-radius: 0 !important;
+}
+
+/* ------------------------------------------------- 7. TABLES (spec sheets) */
+
+/* comparison wrapper: inline HARDCODED borderRadius:16
+   (JurisdictionComparisonTable.tsx:5) → squared frame */
+html[data-theme="v2"] div[style*="overflow-x: auto"],
+html[data-theme="v2"] div[style*="overflow-x:auto"] {
+  border-radius: 0 !important;
+  border-color: var(--v2-line-2);
+}
+
+html[data-theme="v2"] table {
+  font-variant-numeric: tabular-nums;
+  /* header cells set fontFamily: var(--font-display) inline → mono headers */
+  --font-display: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html[data-theme="v2"] th {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* UAE column header: inline HARDCODED gold tint rgba(255,198,90,.1)
+   (JurisdictionComparisonTable.tsx:16) → neutral raised cell + amber top tick
+   (both CSSOM serializations covered) */
+html[data-theme="v2"] th[style*="255, 198, 90"],
+html[data-theme="v2"] th[style*="255,198,90"] {
+  background: var(--v2-paper-3) !important;
+  box-shadow: inset 0 2px 0 var(--amber);
+}
+
+/* ------------------------------------- 8. AVATARS / BYLINE / BREADCRUMB */
+
+/* avatars → square monogram cells (v2 operator vocabulary).
+   img: inline border rgba(255,198,90,.35) + radius 50% (Avatar.tsx:17,20);
+   initials div: inline radius 50% + rose glow (Avatar.tsx:31,40) → !important */
+html[data-theme="v2"] img[alt][style*="50%"] {
+  border-radius: 2px !important;
+  border-color: var(--v2-line-2) !important;
+}
+
+html[data-theme="v2"] div[aria-label][style*="50%"] {
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+
+/* breadcrumb (only plain <nav> inside main) → mono telemetry trail */
+html[data-theme="v2"] main nav {
+  font-family: var(--v2-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------- 9. PRESCREEN PANEL (dark ops plate) */
+
+/* inline gradient(deep-2→deep-3) + HARDCODED borderRadius:24
+   (PreScreenCTABlock.tsx:16,17) → solid dark screen, squared, registration
+   marks on the corners; ink vars re-pinned light for inline consumers */
+html[data-theme="v2"] .prescreen-panel {
+  position: relative;
+  background: var(--v2-screen) !important;
+  border-radius: 2px !important;
+  border-color: var(--v2-line-2);
+  --ink: #e9ebee;
+  --ink-70: rgba(233, 235, 238, 0.78);
+  --ink-55: rgba(233, 235, 238, 0.62);
+  --ink-40: rgba(233, 235, 238, 0.5);
+  --line: rgba(233, 235, 238, 0.16);
+  --gold: #ff8a00; /* amber is 7.3:1 on the dark plate */
+}
+
+/* "+" registration marks (decoration, graphite on paper) */
+html[data-theme="v2"] .prescreen-panel::before,
+html[data-theme="v2"] .prescreen-panel::after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  pointer-events: none;
+  background: linear-gradient(var(--v2-ink-45), var(--v2-ink-45)) center / 13px 1px
+      no-repeat,
+    linear-gradient(var(--v2-ink-45), var(--v2-ink-45)) center / 1px 13px no-repeat;
+}
+
+html[data-theme="v2"] .prescreen-panel::before {
+  top: -7px;
+  left: -7px;
+}
+
+html[data-theme="v2"] .prescreen-panel::after {
+  bottom: -7px;
+  right: -7px;
+}
+
+html[data-theme="v2"] .prescreen-panel .h-grad {
+  color: var(--v2-screen-ink);
+}
+
+html[data-theme="v2"] .prescreen-panel .eyebrow {
+  color: var(--v2-screen-muted);
+}
+
+html[data-theme="v2"] .prescreen-panel .btn-ghost {
+  border-color: rgba(233, 235, 238, 0.34);
+  color: var(--v2-screen-ink);
+}
+
+html[data-theme="v2"] .prescreen-panel .btn-ghost:hover {
+  background: rgba(233, 235, 238, 0.07);
+  border-color: var(--v2-screen-ink);
+}
+
+/* -------------------------------------- 10. HOME HERO — the monitored feed */
+
+/* The scroll-video stage STAYS a dark cinematic plate inside the light theme.
+   Re-pin light ink + signal amber for all inline var consumers. */
+html[data-theme="v2"] .hero-stage {
+  --ink: #e9ebee;
+  --ink-70: rgba(233, 235, 238, 0.8);
+  --ink-55: rgba(233, 235, 238, 0.66);
+  --ink-40: rgba(233, 235, 238, 0.55);
+  --line: rgba(233, 235, 238, 0.18);
+  --gold: #ff8a00;
+  background: var(--v2-screen);
+}
+
+/* restore the light display gradient inside the feed (cool, not lilac) */
+html[data-theme="v2"] .hero-stage .h-grad {
+  background: linear-gradient(180deg, #ffffff 30%, #c7ccd6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ffffff;
+}
+
+html[data-theme="v2"] .hero-stage .g {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--amber);
+}
+
+html[data-theme="v2"] .hero-stage .eyebrow {
+  color: rgba(233, 235, 238, 0.7);
+}
+
+html[data-theme="v2"] .hero-stage .btn-ghost {
+  border-color: rgba(233, 235, 238, 0.34);
+  color: var(--v2-screen-ink);
+}
+
+html[data-theme="v2"] .hero-stage .btn-ghost:hover {
+  background: rgba(233, 235, 238, 0.07);
+  border-color: var(--v2-screen-ink);
+}
+
+/* thin amber scanline where the feed meets the graphite paper, plus a mono
+   feed tag in the lower-left corner (decoration, pointer-safe) */
+html[data-theme="v2"] .hero-stage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--amber);
+  z-index: 6;
+  pointer-events: none;
+}
+
+html[data-theme="v2"] .hero-stage::before {
+  content: "FEED 01 / ROUTE-DRAW — LIVE";
+  position: absolute;
+  left: 32px;
+  bottom: 14px;
+  z-index: 6;
+  pointer-events: none;
+  font-family: var(--v2-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: rgba(233, 235, 238, 0.55);
+}
+
+/* ------------------------------------------------------- 11. FORMS / INPUTS */
+
+/* contact inputs: inline HARDCODED borderRadius:10 (Contact.tsx:84,90) */
+html[data-theme="v2"] input,
+html[data-theme="v2"] textarea,
+html[data-theme="v2"] select {
+  border-radius: 2px !important;
+  font-family: var(--v2-mono);
+  font-size: 14px;
+}
+
+html[data-theme="v2"] ::placeholder {
+  color: var(--ink-40);
+}
+
+/* ------------------------------- 12. INLINE-BLOCKER SHIMS (page-level) */
+
+/* every feature panel / author pill carrying inline `background: var(--deep-2)`
+   + hardcoded radius 14–24 (Home.tsx:151, About.tsx:85, PreScreen.tsx:98,
+   InsightsHub.tsx:77+97, Contact.tsx:53, BankingFirst.tsx:74,
+   ServicesOverview.tsx:109) → squared ruled modules */
+html[data-theme="v2"] div[style*="var(--deep-2)"],
+html[data-theme="v2"] a[style*="var(--deep-2)"] {
+  border-radius: 2px !important;
+  border-color: var(--v2-line-2);
+}
+
+/* CasesHub active filter chip: inline HARDCODED bg rgba(255,198,90,0.12)
+   (CasesHub.tsx:61) → neutral raised plate, amber underline tick */
+html[data-theme="v2"] .chip[style*="255, 198, 90"],
+html[data-theme="v2"] .chip[style*="255,198,90"] {
+  background: var(--v2-paper-3) !important;
+  box-shadow: inset 0 -2px 0 var(--amber);
+}
+
+/* JurisdictionsHub teaser card: inline gradient starting at gold tint
+   rgba(255,198,90,.06) (JurisdictionsHub.tsx:45) → flat recessed paper */
+html[data-theme="v2"] .card[style*="255, 198, 90"],
+html[data-theme="v2"] .card[style*="255,198,90"] {
+  background: var(--deep-2) !important;
+}
+
+/* ===== FX LAYER (2026-06-12 PM) ============================================
+   Driven by the runtime annotator src/theme/fx/v2/index.tsx (mounted only
+   while v2 is active). Naming: `data-v2fx-*` flags + `v2fx-*` classes +
+   `--v2fx-d` stagger var. Everything stays scoped to html[data-theme="v2"],
+   so leftover annotations are inert in other themes.
+
+   SURGICAL OVERRIDES OF EXISTING RULES (no original line edited — appended
+   rules win the cascade at equal specificity):
+   o1. `.card::before/::after` transition (was border-color only, §2) →
+       re-declared with `transform 0.15s` added, so corner ticks can nudge
+       on hover and accept the draw-in animation.
+   o2. `.card` transition on ANNOTATED cards ([data-v2fx-r]) → re-declared
+       to add opacity/transform reveal while KEEPING the original
+       border-color/background/box-shadow 0.15s hover snap.
+   o3. `.stepper` gains `position: relative` (anchor for the injected
+       connector strip; inline styles set no position). The strip itself is
+       a <span>, so the `.stepper > div` !important plates (§6) ignore it.
+   o4. `.eyebrow::before` gains a pulse animation (status-dot grammar);
+       square + color from §2 are untouched.
+   All hidden initial states live under (prefers-reduced-motion:
+   no-preference) — reduced motion gets the full static page.
+   ========================================================================== */
+
+@keyframes v2fx-blink {
+  0%,
+  49.9% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes v2fx-tick-in {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes v2fx-rail-in {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+/* ------------------------------------------------ FX1 · status-dot chips */
+
+/* eyebrow square pulses like an armed indicator (mechanical two-state blink,
+   no fade) — static under reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-theme="v2"] .eyebrow::before {
+    animation: v2fx-blink 2s linear infinite;
+  }
+}
+
+/* footer status line — content injected from CSS only (no DOM surgery) */
+html[data-theme="v2"] .footer-cta::after {
+  content: "STATUS: INTAKE OPEN";
+  flex: none;
+  font-family: var(--v2-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  color: var(--v2-amber-text);
+  border: 1px solid var(--v2-line-2);
+  padding: 7px 11px 7px 24px;
+  background: linear-gradient(var(--amber), var(--amber)) 11px 50% / 5px 5px
+    no-repeat;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------- FX2 · reveal primitives */
+
+/* generic fade-up for annotated modules (cards, statbar, prescreen panel).
+   o2: border/background/box-shadow re-listed so .card hover snap survives. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  html[data-theme="v2"] [data-v2fx-r] {
+    transition: opacity 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+      transform 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+      border-color 0.15s ease-out, background 0.15s ease-out,
+      box-shadow 0.15s ease-out;
+    transition-delay: var(--v2fx-d, 0s), var(--v2fx-d, 0s), 0s, 0s, 0s;
+  }
+
+  html[data-theme="v2"] [data-v2fx-r]:not(.v2fx-in) {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* -------------------------------- FX3 · card registration ticks (draw) */
+
+/* o1: ticks get a transform transition for the 2px hover nudge */
+html[data-theme="v2"] .card::before,
+html[data-theme="v2"] .card::after {
+  transition: transform 0.15s ease-out, border-color 0.15s ease-out;
+}
+
+html[data-theme="v2"] .card:hover::before {
+  transform: translate(-2px, -2px);
+}
+
+html[data-theme="v2"] .card:hover::after {
+  transform: translate(2px, 2px);
+}
+
+/* draw-in: scale 0→1 from each tick's own corner, 0.3s, staggered after the
+   card lands (one-shot animation so hover transitions stay 0.15s afterwards) */
+html[data-theme="v2"] .card[data-v2fx-r]::before {
+  transform-origin: top left;
+}
+
+html[data-theme="v2"] .card[data-v2fx-r]::after {
+  transform-origin: bottom right;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  html[data-theme="v2"] .card[data-v2fx-r]:not(.v2fx-in)::before,
+  html[data-theme="v2"] .card[data-v2fx-r]:not(.v2fx-in)::after {
+    transform: scale(0);
+  }
+
+  html[data-theme="v2"] .card[data-v2fx-r].v2fx-in::before {
+    animation: v2fx-tick-in 0.3s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+    animation-delay: calc(var(--v2fx-d, 0s) + 0.1s);
+  }
+
+  html[data-theme="v2"] .card[data-v2fx-r].v2fx-in::after {
+    animation: v2fx-tick-in 0.3s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+    animation-delay: calc(var(--v2fx-d, 0s) + 0.16s);
+  }
+}
+
+/* ----------------------------------- FX4 · section frame corner ticks */
+
+/* every module's top rule gets registration brackets at the wrap edges;
+   they draw in clockwise (left first, right +60ms) when the module enters */
+html[data-theme="v2"] .section[data-v2fx-s]::before,
+html[data-theme="v2"] .section[data-v2fx-s]::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+}
+
+html[data-theme="v2"] .section[data-v2fx-s]::before {
+  left: calc((100% - min(100%, 1240px)) / 2);
+  border-top: 1px solid var(--v2-ink-45);
+  border-left: 1px solid var(--v2-ink-45);
+  transform-origin: top left;
+}
+
+html[data-theme="v2"] .section[data-v2fx-s]::after {
+  right: calc((100% - min(100%, 1240px)) / 2);
+  border-top: 1px solid var(--v2-ink-45);
+  border-right: 1px solid var(--v2-ink-45);
+  transform-origin: top right;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  html[data-theme="v2"] .section[data-v2fx-s]:not(.v2fx-in)::before,
+  html[data-theme="v2"] .section[data-v2fx-s]:not(.v2fx-in)::after {
+    transform: scale(0);
+  }
+
+  html[data-theme="v2"] .section[data-v2fx-s].v2fx-in::before {
+    animation: v2fx-tick-in 0.3s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+  }
+
+  html[data-theme="v2"] .section[data-v2fx-s].v2fx-in::after {
+    animation: v2fx-tick-in 0.3s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+    animation-delay: 0.06s;
+  }
+}
+
+/* ------------------------------- FX5 · mechanical heading line reveals */
+
+/* physical line wraps built by the annotator (offsetTop grouping). The
+   heading becomes a column flex so the 0.12em pad/negative-margin pair
+   (descender tolerance at the 0.97 display leading) cannot margin-collapse —
+   net line height stays exactly the authored leading → zero layout shift.
+   Wraps are reverted on FX unmount. */
+html[data-theme="v2"] .v2fx-h {
+  display: flex;
+  flex-direction: column;
+}
+
+html[data-theme="v2"] .v2fx-line {
+  display: block;
+  overflow: hidden;
+  overflow: visible clip; /* clip y only; x overhang stays visible */
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+html[data-theme="v2"] .v2fx-line-in {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  html[data-theme="v2"] .v2fx-h .v2fx-line-in {
+    transform: translateY(130%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    transition-delay: var(--v2fx-d, 0s);
+  }
+
+  html[data-theme="v2"] .v2fx-h.v2fx-in .v2fx-line-in {
+    transform: none;
+  }
+}
+
+/* --------------------------------- FX6 · padded telemetry counters */
+
+html[data-theme="v2"] .v2fx-ct {
+  font-variant-numeric: tabular-nums;
+}
+
+/* leading pad zeros: half-alpha instrumentation, never information */
+html[data-theme="v2"] .v2fx-ct-pad {
+  opacity: 0.35;
+}
+
+/* ------------------------------ FX7 · stepper connector (route grammar) */
+
+/* o3: anchor for the injected strip (inline styles set no position) */
+html[data-theme="v2"] .stepper {
+  position: relative;
+}
+
+/* the strip sits in the 32px gap above the station cells; station centers
+   use the exact 4-column grid math (cell = (100% − 3×14px gaps) / 4, marker
+   x = column center), so it stays aligned at any width */
+html[data-theme="v2"] .v2fx-stepline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -24px;
+  height: 12px;
+  display: block;
+  pointer-events: none;
+}
+
+html[data-theme="v2"] .v2fx-stepline::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  left: calc((100% - 42px) / 8);
+  width: calc((100% - 42px) * 0.75 + 42px);
+  background: var(--line);
+}
+
+html[data-theme="v2"] .v2fx-stepline svg {
+  position: absolute;
+  top: calc(50% - 4px);
+  height: 8px;
+  left: calc((100% - 42px) / 8);
+  width: calc((100% - 42px) * 0.75 + 42px);
+  overflow: visible;
+  display: block;
+}
+
+html[data-theme="v2"] .v2fx-stepline svg line {
+  stroke: var(--amber);
+  stroke-width: 1.5;
+}
+
+html[data-theme="v2"] .v2fx-stepline i {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  transform: translate(-50%, -50%);
+  background: var(--deep);
+  border: 1px solid var(--v2-line-2);
+  display: grid;
+  place-items: center;
+}
+
+html[data-theme="v2"] .v2fx-stepline i b {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: var(--amber);
+}
+
+html[data-theme="v2"] .v2fx-stepline i:nth-of-type(1) {
+  left: calc((100% - 42px) / 8);
+}
+
+html[data-theme="v2"] .v2fx-stepline i:nth-of-type(2) {
+  left: calc((100% - 42px) * 3 / 8 + 14px);
+}
+
+html[data-theme="v2"] .v2fx-stepline i:nth-of-type(3) {
+  left: calc((100% - 42px) * 5 / 8 + 28px);
+}
+
+html[data-theme="v2"] .v2fx-stepline i:nth-of-type(4) {
+  left: calc((100% - 42px) * 7 / 8 + 42px);
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+  /* amber line draws left→right, then station dots fill sequentially */
+  html[data-theme="v2"] .v2fx-stepline svg line {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.1s;
+  }
+
+  html[data-theme="v2"] .stepper.v2fx-in .v2fx-stepline svg line {
+    stroke-dashoffset: 0;
+  }
+
+  html[data-theme="v2"] .v2fx-stepline i b {
+    transform: scale(0);
+    transition: transform 0.2s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  html[data-theme="v2"] .v2fx-stepline i:nth-of-type(1) b {
+    transition-delay: 0.15s;
+  }
+
+  html[data-theme="v2"] .v2fx-stepline i:nth-of-type(2) b {
+    transition-delay: 0.4s;
+  }
+
+  html[data-theme="v2"] .v2fx-stepline i:nth-of-type(3) b {
+    transition-delay: 0.65s;
+  }
+
+  html[data-theme="v2"] .v2fx-stepline i:nth-of-type(4) b {
+    transition-delay: 0.9s;
+  }
+
+  html[data-theme="v2"] .stepper.v2fx-in .v2fx-stepline i b {
+    transform: scale(1);
+  }
+
+  /* station cells rise under the drawing line */
+  html[data-theme="v2"] .stepper[data-v2fx-st] > div {
+    transition: opacity 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+      transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  html[data-theme="v2"] .stepper[data-v2fx-st] > div:nth-child(2) {
+    transition-delay: 0.06s;
+  }
+
+  html[data-theme="v2"] .stepper[data-v2fx-st] > div:nth-child(3) {
+    transition-delay: 0.12s;
+  }
+
+  html[data-theme="v2"] .stepper[data-v2fx-st] > div:nth-child(4) {
+    transition-delay: 0.18s;
+  }
+
+  html[data-theme="v2"] .stepper[data-v2fx-st]:not(.v2fx-in) > div {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (max-width: 900px) {
+  /* grid folds to 2×2 below 900 — the strip geometry no longer applies */
+  html[data-theme="v2"] .v2fx-stepline {
+    display: none;
+  }
+}
+
+/* ----------------------------------------- FX8 · telemetry HUD overlay */
+
+/* IDX nn / nn · scroll % · live GST clock. Own overlay node (annotator-built),
+   aria-hidden, pointer-safe, z below the ThemeSwitch pill (998). */
+html[data-theme="v2"] .v2fx-hud {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  html[data-theme="v2"] .v2fx-hud {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 12px;
+    background: rgba(247, 248, 250, 0.94);
+    border: 1px solid var(--v2-line-2);
+    font-family: var(--v2-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: var(--ink-55);
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
+    user-select: none;
+    white-space: pre;
+  }
+
+  /* the one amber tick */
+  html[data-theme="v2"] .v2fx-hud::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background: var(--amber);
+  }
+
+  html[data-theme="v2"] .v2fx-hud-g {
+    display: inline-flex;
+    align-items: center;
+    white-space: pre;
+  }
+
+  html[data-theme="v2"] .v2fx-hud-b {
+    color: var(--ink);
+  }
+
+  html[data-theme="v2"] .v2fx-hud-p {
+    color: var(--ink);
+    opacity: 0.32;
+  }
+
+  html[data-theme="v2"] .v2fx-hud-s {
+    color: var(--v2-ink-45);
+  }
+}
+
+@media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
+  html[data-theme="v2"] .v2fx-hud::before {
+    animation: v2fx-blink 2s linear infinite;
+  }
+}
+
+/* -------------------------------------- FX9 · page frame rails (boot) */
+
+/* the concept's two vertical hairlines at the wrap edges; swept in once per
+   route via .v2fx-boot (class re-applied by the annotator on navigation) */
+html[data-theme="v2"] .v2fx-rails {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  html[data-theme="v2"] .v2fx-rails {
+    display: block;
+  }
+
+  html[data-theme="v2"] .v2fx-rail {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    display: block;
+    background: var(--line);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  html[data-theme="v2"] .v2fx-rail-l {
+    left: calc((100% - min(100%, 1240px)) / 2);
+  }
+
+  html[data-theme="v2"] .v2fx-rail-r {
+    right: calc((100% - min(100%, 1240px)) / 2);
+  }
+}
+
+@media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
+  html[data-theme="v2"] .v2fx-boot .v2fx-rail {
+    animation: v2fx-rail-in 0.48s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+    transform-origin: top;
+  }
+
+  html[data-theme="v2"] .v2fx-boot .v2fx-rail-r {
+    animation-delay: 0.06s;
+  }
+}
+
+/* ------------------------------------------- FX10 · mobile light mode */
+
+/* ≤900px: reveals collapse to a light opacity fade; ticks stay static;
+   counters / decode / strip / HUD are never annotated or are display:none */
+@media (prefers-reduced-motion: no-preference) and (max-width: 900px) {
+  html[data-theme="v2"] [data-v2fx-r],
+  html[data-theme="v2"] .stepper[data-v2fx-st] {
+    transition: opacity 0.35s ease-out;
+  }
+
+  html[data-theme="v2"] [data-v2fx-r]:not(.v2fx-in),
+  html[data-theme="v2"] .stepper[data-v2fx-st]:not(.v2fx-in) {
+    opacity: 0;
+  }
+}
+
+/* ===== END FX LAYER ===== */

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Design-concept routes (not for indexing — see audit P1-11)
+Disallow: /variants
+Disallow: /v1
+Disallow: /v2
+Disallow: /v3
+# Post-form confirmation
+Disallow: /thank-you
+
+Sitemap: https://wtp.ae/sitemap.xml

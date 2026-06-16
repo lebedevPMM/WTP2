@@ -1,0 +1,644 @@
+/* ============================================================================
+   THEME V3 — "MIDNIGHT ROUTE" — site-wide skin
+   Cinematic dark luxury 2.0. A night flight over surveyed terrain:
+   one gold, drawn in real ink across every page.
+
+   Scope: every rule lives under html[data-theme="v3"].
+   Fonts (injected by ThemeSwitch, NOT here):
+     display — Cormorant Garamond 400–700 (+ italic)
+     body    — Albert Sans variable 300–800
+
+   TOKEN MAP (old → new)
+     --deep      #08071a            → #08071a (kept — the night ground)
+     --deep-2    #0d0b22            → #0c0a22
+     --deep-3    #13102e            → #110e2b
+     --ink       #edebf6            → #efedf8  (tints: 78/62/42%)
+     --line      ink @ 14%          → gold-tinged hairline rgba(227,181,100,.15)
+     --gold      #ffc65a            → #e3b564  (hi #f4d48e · deep #9a7434)
+     --amber     #f5a623            → #c99a4b  (deep amber inside the gold family)
+     --rose      #e0518a            → #9a7434  (rose is dead; strays land on gold-deep)
+     --cta       amber→rose 135deg  → gold→deep-amber 135deg (casino killed)
+     --gold-grad gold→amber 120deg  → gold-hi→gold→bronze 115deg (ink-gradient)
+     --nav-bg    rgba(8,7,26,.82)   → rgba(7,6,24,.92) (deeper, more cinema)
+     --font-display Inter Tight     → Cormorant Garamond
+     --font-body    Inter           → Albert Sans
+
+   !important USES — each one beats an inline style, documented at the rule:
+     1. .hero-stage h1 letter-spacing      (inline letterSpacing:-0.03em, Hero.tsx:157)
+     2. .statbar > div background-image    (inline background shorthand, StatBar.tsx:14)
+     3. .statbar .g font-weight            (inline fontWeight:800, StatBar.tsx:15)
+     4. .stepper > div background-image    (inline background shorthand, StepperBankingFirst.tsx:20)
+     5. .prescreen-panel background/border-color (inline shorthands, PreScreenCTABlock.tsx:17-18)
+     6. .meganav-item > div background/box-shadow (hardcoded rgba(13,11,34,.96) + shadow, MegaNav.tsx:138,142)
+     7. .meganav-item > a:hover color      (inline color blocks any hover, MegaNav.tsx:124)
+     8. footer a:hover color               (inline color blocks any hover, Footer.tsx)
+     9. .btn-lg font-size/padding/letter-spacing (inline {16px / 15px 32px}, ui.tsx:22)
+    10. Avatar fallback box-shadow         (hardcoded rose glow rgba(224,81,138,.28), Avatar.tsx:40)
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   1 · TOKENS — the skin's whole leverage. Inline styles consume these vars.
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] {
+  --deep: #08071a;
+  --deep-2: #0c0a22;
+  --deep-3: #110e2b;
+
+  --ink: #efedf8;
+  --ink-70: rgba(239, 237, 248, 0.78);
+  --ink-55: rgba(239, 237, 248, 0.62);
+  --ink-40: rgba(239, 237, 248, 0.42);
+
+  --line: rgba(227, 181, 100, 0.15);
+
+  --gold: #e3b564;
+  --amber: #c99a4b;
+  --rose: #9a7434;
+
+  --cta: linear-gradient(135deg, #e3b564, #c99a4b);
+  --gold-grad: linear-gradient(115deg, #f4d48e 8%, #e3b564 52%, #c8964b 96%);
+  --nav-bg: rgba(7, 6, 24, 0.92);
+
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body: "Albert Sans", "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
+
+  /* v3-local helpers */
+  --v3-gold-hi: #f4d48e;
+  --v3-gold-deep: #9a7434;
+  --v3-hair: rgba(227, 181, 100, 0.14);
+  --v3-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Tailwind v4 @theme aliases (utilities compile to var(--color-*)) */
+  --color-deep: #08071a;
+  --color-deep-2: #0c0a22;
+  --color-deep-3: #110e2b;
+  --color-ink: #efedf8;
+  --color-gold: #e3b564;
+  --color-amber: #c99a4b;
+  --color-rose: #9a7434;
+  --color-line: rgba(227, 181, 100, 0.15);
+
+  scrollbar-color: rgba(154, 116, 52, 0.85) #0a0920;
+  accent-color: #e3b564;
+}
+
+/* ----------------------------------------------------------------------------
+   2 · GROUND + ATMOSPHERE
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] body {
+  background: var(--deep);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  font-optical-sizing: auto;
+}
+
+/* film grain — fixed viewport overlay, tiny SVG turbulence tile, 3% */
+html[data-theme="v3"] body::after {
+  content: "";
+  position: fixed;
+  inset: -2%;
+  z-index: 900; /* above page chrome, below ThemeSwitch (998) */
+  pointer-events: none;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html[data-theme="v3"] ::selection {
+  background: #e3b564;
+  color: #1c1206;
+}
+
+html[data-theme="v3"] a:focus-visible,
+html[data-theme="v3"] button:focus-visible,
+html[data-theme="v3"] input:focus-visible,
+html[data-theme="v3"] textarea:focus-visible,
+html[data-theme="v3"] select:focus-visible,
+html[data-theme="v3"] summary:focus-visible {
+  outline: 2px solid #e3b564;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ----------------------------------------------------------------------------
+   3 · TYPOGRAPHY — Cormorant display metrics (serif ≠ Inter Tight)
+   Weight 600, tightened leading, near-zero tracking; lining figures so
+   "30%", "$15–50K", "01" set like engraved numerals, not oldstyle text figs.
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] h1,
+html[data-theme="v3"] h2,
+html[data-theme="v3"] h3,
+html[data-theme="v3"] .display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  font-feature-settings: "lnum" 1;
+}
+
+/* italic gold emphasis — the load-bearing phrase inside any display headline */
+html[data-theme="v3"] h1 .g,
+html[data-theme="v3"] h2 .g,
+html[data-theme="v3"] h3 .g,
+html[data-theme="v3"] .display .g {
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* white → pale-violet ink gradient, retuned; shorthand resets background-clip,
+   so the clip trio is re-declared here on purpose */
+html[data-theme="v3"] .h-grad {
+  background: linear-gradient(180deg, #ffffff 26%, #d8d2ee 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html[data-theme="v3"] .g {
+  font-feature-settings: "lnum" 1;
+}
+
+/* labels stay grotesk: quiet, letterspaced, gold */
+html[data-theme="v3"] .eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+}
+html[data-theme="v3"] .eyebrow::before {
+  width: 30px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+html[data-theme="v3"] .prose {
+  font-size: 17px;
+  line-height: 1.78;
+}
+html[data-theme="v3"] .prose h2 {
+  font-size: clamp(26px, 2.6vw, 33px);
+  margin-top: 40px;
+}
+html[data-theme="v3"] .prose h3 {
+  font-size: 23px;
+}
+html[data-theme="v3"] .prose a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(227, 181, 100, 0.35);
+  transition: border-color 0.4s var(--v3-ease), color 0.4s var(--v3-ease);
+}
+html[data-theme="v3"] .prose a:hover {
+  color: var(--v3-gold-hi);
+  border-bottom-color: rgba(244, 212, 142, 0.8);
+}
+html[data-theme="v3"] .prose blockquote {
+  margin: 26px 0;
+  padding: 4px 0 4px 22px;
+  border-left: 1px solid rgba(227, 181, 100, 0.45);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.45;
+  color: var(--ink-70);
+}
+
+/* ----------------------------------------------------------------------------
+   4 · BUTTONS — casino killed. Solid gold→deep-amber, deep-ink text,
+   soft gold glow, hover = glow intensify. NO translateY bounce.
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] .btn {
+  font-family: var(--font-body);
+  font-weight: 650;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 14px 26px;
+  color: #1a130a;
+  background: var(--cta);
+  box-shadow:
+    0 16px 44px rgba(227, 181, 100, 0.25),
+    0 2px 10px rgba(0, 0, 0, 0.35);
+  transition:
+    filter 0.45s var(--v3-ease),
+    box-shadow 0.45s var(--v3-ease),
+    border-color 0.45s var(--v3-ease),
+    background 0.45s var(--v3-ease),
+    color 0.45s var(--v3-ease);
+}
+html[data-theme="v3"] .btn:hover {
+  transform: none; /* overrides base translateY(-1px) bounce */
+  filter: brightness(1.07);
+  box-shadow:
+    0 20px 58px rgba(227, 181, 100, 0.38),
+    0 2px 10px rgba(0, 0, 0, 0.35);
+}
+html[data-theme="v3"] .btn svg {
+  transition: transform 0.45s var(--v3-ease);
+}
+html[data-theme="v3"] .btn:hover svg {
+  transform: translateX(3px);
+}
+
+html[data-theme="v3"] .btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(227, 181, 100, 0.32);
+  box-shadow: none;
+  filter: none;
+}
+html[data-theme="v3"] .btn-ghost:hover {
+  transform: none;
+  filter: none;
+  border-color: rgba(227, 181, 100, 0.75);
+  background: rgba(227, 181, 100, 0.06);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+/* !important #9 — Button large variant hardcodes inline {fontSize:16px,
+   padding:"15px 32px"} (ui.tsx:22); 16px uppercase letterspaced would shout */
+html[data-theme="v3"] .btn-lg {
+  font-size: 13.5px !important;
+  letter-spacing: 0.12em !important;
+  padding: 17px 34px !important;
+}
+
+/* ----------------------------------------------------------------------------
+   5 · CHIPS / CARDS / HAIRLINES
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] .chip {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(227, 181, 100, 0.05);
+  border: 1px solid rgba(227, 181, 100, 0.3);
+}
+
+/* card refit — deeper ground, gold-tinged hairline; hover = hairline ignites,
+   shadow deepens over 500ms. Radius 16 stays. No lift bounce. */
+html[data-theme="v3"] .card {
+  background:
+    linear-gradient(180deg, rgba(17, 14, 43, 0.5), rgba(12, 10, 34, 0) 64%),
+    #0c0a22;
+  border: 1px solid var(--v3-hair);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.22);
+  transition:
+    border-color 0.5s var(--v3-ease),
+    box-shadow 0.5s var(--v3-ease),
+    background-color 0.5s var(--v3-ease);
+}
+html[data-theme="v3"] .card:hover {
+  transform: none; /* overrides base translateY(-3px) */
+  border-color: rgba(227, 181, 100, 0.46);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.48),
+    0 0 40px rgba(227, 181, 100, 0.06);
+}
+html[data-theme="v3"] .card h3 {
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------------
+   6 · PAGE HERO (inner pages) — vignette + faint topographic contour field.
+   Background-only: zero layout impact.
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] .page-hero {
+  background-image:
+    radial-gradient(130% 130% at 50% 12%, rgba(3, 2, 12, 0) 52%, rgba(3, 2, 12, 0.5) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 440' fill='none'%3E%3Cg stroke='%23e3b564' stroke-width='1'%3E%3Cpath stroke-opacity='.10' d='M60 388c-44-60-30-140 22-186s60-118 130-138 168-18 224 36 116 142 96 216-92 110-178 116S104 448 60 388Z'/%3E%3Cpath stroke-opacity='.08' d='M112 366c-34-48-22-112 18-150s48-94 104-110 134-14 178 28 94 114 78 174-74 88-142 92-202 14-236-34Z'/%3E%3Cpath stroke-opacity='.12' d='M160 344c-26-36-16-86 14-114s36-72 80-84 102-11 136 21 71 87 59 132-56 67-108 70-155 11-181-25Z'/%3E%3Cpath stroke-opacity='.07' d='M205 322c-18-26-11-60 10-80s25-50 56-59 71-8 95 15 50 61 41 92-39 47-75 49-109 8-127-17Z'/%3E%3Cpath stroke-opacity='.05' d='M244 302c-11-16-7-38 6-50s16-32 35-37 45-5 60 9 31 38 26 58-25 29-47 31-69 5-80-11Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, right -140px top -60px;
+  background-size: cover, 700px auto;
+}
+
+/* ----------------------------------------------------------------------------
+   7 · STATBAR — gold-glow numerals on warm hairline grid
+   (cell separators come free: the 1px grid gap shows the container's
+   background, now var(--line) = gold hairline)
+---------------------------------------------------------------------------- */
+/* !important #2 — cells set inline `background: var(--deep-2)` (shorthand
+   resets background-image), so the numeral glow needs the override */
+html[data-theme="v3"] .statbar > div {
+  background-image: radial-gradient(
+    62% 64% at 50% 22%,
+    rgba(227, 181, 100, 0.11),
+    transparent 72%
+  ) !important;
+}
+/* !important #3 — inline fontWeight:800 would resolve to faux-heavy 700;
+   DNA numerals are Cormorant 500, engraved not shouted */
+html[data-theme="v3"] .statbar .g {
+  font-weight: 500 !important;
+  letter-spacing: 0;
+  text-shadow: 0 0 34px rgba(227, 181, 100, 0.2);
+}
+
+/* ----------------------------------------------------------------------------
+   8 · STEPPER — Bank → Company → Visa → Assets as route stations
+---------------------------------------------------------------------------- */
+/* !important #4 — station cards set inline background shorthand
+   (active: rgba gold-wash / idle: var(--deep-2)); sheen layers on top of
+   either state via the background-image longhand */
+html[data-theme="v3"] .stepper > div {
+  background-image: linear-gradient(
+    180deg,
+    rgba(244, 212, 142, 0.05),
+    rgba(244, 212, 142, 0) 42%
+  ) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.24);
+  transition: border-color 0.5s var(--v3-ease), box-shadow 0.5s var(--v3-ease);
+}
+/* station numeral roundel — inline font-family already flips to Cormorant;
+   give it engraved lining figures */
+html[data-theme="v3"] .stepper > div > div:first-child {
+  font-feature-settings: "lnum" 1;
+}
+/* station note line */
+html[data-theme="v3"] .stepper > div > div:nth-of-type(3) {
+  letter-spacing: 0.01em;
+}
+
+/* ----------------------------------------------------------------------------
+   9 · MEGANAV — deepened, refined; gold hairline world
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] .meganav-root {
+  /* nav ground + border arrive via --nav-bg and --line tokens */
+  letter-spacing: 0.01em;
+}
+
+/* desktop item links: animated gold underline (background-image is free —
+   inline style only sets color/padding) */
+html[data-theme="v3"] .meganav-item > a {
+  background-image: linear-gradient(90deg, var(--gold), var(--v3-gold-hi));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 14px calc(100% - 7px);
+  transition: background-size 0.45s var(--v3-ease), color 0.45s var(--v3-ease);
+}
+html[data-theme="v3"] .meganav-item > a:hover,
+html[data-theme="v3"] .meganav-item:hover > a {
+  background-size: calc(100% - 28px) 1px;
+  /* !important #7 — inline `color: var(--ink-70)` blocks any hover color */
+  color: var(--ink) !important;
+}
+
+/* dropdown panel refit */
+/* !important #6 — panel background rgba(13,11,34,.96) and box-shadow are
+   hardcoded inline (MegaNav.tsx:138,142) */
+html[data-theme="v3"] .meganav-item > div {
+  background: rgba(9, 8, 28, 0.97) !important;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(227, 181, 100, 0.07),
+    inset 0 1px 0 rgba(244, 212, 142, 0.06) !important;
+}
+
+/* mobile sheet (rgba(8,7,26,.98) hardcoded inline) already equals the v3
+   ground #08071a — intentionally left untouched */
+html[data-theme="v3"] .meganav-burger {
+  transition: color 0.4s var(--v3-ease);
+}
+html[data-theme="v3"] .meganav-burger:hover {
+  color: var(--gold);
+}
+
+/* ----------------------------------------------------------------------------
+   10 · FOOTER — quiet terminal of the route
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] footer {
+  background-image: linear-gradient(
+    180deg,
+    rgba(227, 181, 100, 0.025),
+    rgba(227, 181, 100, 0) 220px
+  );
+}
+/* !important #8 — footer links set inline `color`, blocking hover styling */
+html[data-theme="v3"] footer a:hover {
+  color: var(--v3-gold-hi) !important;
+}
+html[data-theme="v3"] footer a {
+  transition: color 0.4s var(--v3-ease);
+}
+
+/* ----------------------------------------------------------------------------
+   11 · PRESCREEN PANEL — the gold-rimmed terminal node of the route
+---------------------------------------------------------------------------- */
+/* !important #5 — inline shorthands `background: linear-gradient(...)` and
+   `border: 1px solid var(--line)` (PreScreenCTABlock.tsx:17-18) */
+html[data-theme="v3"] .prescreen-panel {
+  position: relative;
+  background:
+    radial-gradient(86% 90% at 50% 0%, rgba(227, 181, 100, 0.1), transparent 62%),
+    linear-gradient(180deg, #0d0b24, #110e2b) !important;
+  border-color: rgba(227, 181, 100, 0.32) !important;
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(227, 181, 100, 0.07),
+    inset 0 1px 0 rgba(244, 212, 142, 0.1);
+}
+/* the route arrives: hairline dropping into the node… */
+html[data-theme="v3"] .prescreen-panel::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -64px;
+  width: 1px;
+  height: 60px;
+  transform: translateX(-0.5px);
+  background: linear-gradient(180deg, transparent, var(--gold));
+  pointer-events: none;
+}
+/* …and the station dot ignites on the rim */
+html[data-theme="v3"] .prescreen-panel::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow:
+    0 0 0 3px rgba(227, 181, 100, 0.18),
+    0 0 18px rgba(227, 181, 100, 0.65);
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------------------
+   12 · HOME HERO (.hero-stage) — already this theme's world; retune the
+   headline for serif metrics, keep the scrub mechanics untouched
+---------------------------------------------------------------------------- */
+/* !important #1 — h1 carries inline letterSpacing:"-0.03em" (Hero.tsx:157),
+   correct for Inter Tight, too tight for Cormorant at clamp sizes */
+html[data-theme="v3"] .hero-stage h1 {
+  letter-spacing: -0.012em !important;
+  font-weight: 600;
+  line-height: 1.03;
+}
+html[data-theme="v3"] .hero-stage .eyebrow {
+  letter-spacing: 0.3em;
+}
+/* cinematic vignette inside the sticky frame — sits above video (z0) and
+   scrim (z1), below the beat copy (z3); pointer-transparent, layout-safe */
+html[data-theme="v3"] .hero-stage > div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    124% 104% at 50% 44%,
+    transparent 56%,
+    rgba(3, 2, 12, 0.52) 100%
+  );
+}
+
+/* ----------------------------------------------------------------------------
+   13 · FORMS (Contact / PreScreen) — outline-based focus (inline border
+   shorthand owns border-color, outline is free)
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] input,
+html[data-theme="v3"] textarea,
+html[data-theme="v3"] select {
+  font-family: var(--font-body);
+  caret-color: #e3b564;
+  transition: outline-color 0.3s var(--v3-ease);
+}
+html[data-theme="v3"] input::placeholder,
+html[data-theme="v3"] textarea::placeholder {
+  color: var(--ink-40);
+}
+html[data-theme="v3"] input:focus-visible,
+html[data-theme="v3"] textarea:focus-visible {
+  outline: 1px solid rgba(227, 181, 100, 0.65);
+  outline-offset: 0;
+}
+
+/* FAQ disclosure markers (ServiceTemplate <summary>) */
+html[data-theme="v3"] summary {
+  transition: color 0.4s var(--v3-ease);
+}
+html[data-theme="v3"] summary:hover {
+  color: var(--v3-gold-hi);
+}
+
+/* ----------------------------------------------------------------------------
+   14 · TABLES (JurisdictionComparisonTable) — engraved figures, warm rules
+---------------------------------------------------------------------------- */
+html[data-theme="v3"] table {
+  font-feature-settings: "lnum" 1;
+}
+html[data-theme="v3"] th {
+  letter-spacing: 0.01em;
+}
+
+/* ----------------------------------------------------------------------------
+   15 · AVATAR — kill the last rose artifact
+---------------------------------------------------------------------------- */
+/* !important #10 — fallback monogram hardcodes a pink glow
+   boxShadow: 0 4px 16px rgba(224,81,138,.28) (Avatar.tsx:40). Its gradient is
+   already rescued by the --rose remap; this rewarms the shadow. Defensive
+   attribute match (no class hook exists) — silently no-ops if unmatched. */
+html[data-theme="v3"] div[aria-label][style*="border-radius: 50%"] {
+  box-shadow: 0 4px 16px rgba(227, 181, 100, 0.22) !important;
+}
+
+/* ----------------------------------------------------------------------------
+   16 · REDUCED MOTION — the skin's own transitions collapse politely
+---------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="v3"] .btn,
+  html[data-theme="v3"] .btn svg,
+  html[data-theme="v3"] .card,
+  html[data-theme="v3"] .stepper > div,
+  html[data-theme="v3"] .meganav-item > a,
+  html[data-theme="v3"] footer a,
+  html[data-theme="v3"] summary,
+  html[data-theme="v3"] .prose a {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== FX LAYER — ROUTE SPINE (2026-06-12 PM) =====
+   The /v3 concept's signature element, site-wide: a gold route line engraved
+   down the left margin of every Layout page, drawn by scroll, with station
+   nodes igniting per section. DOM is mounted by src/theme/fx/v3/index.tsx
+   (portal into document.body, geometry measured at runtime); everything
+   visual lives here. No existing rule above was modified.
+
+   Stacking: host z5 — above page ground/sections (static, z-auto), below
+   MegaNav (z50), body grain (z900, fixed) and ThemeSwitch (z998). The line
+   occupies only the empty left margin (x ≈ 22–60px), so it never crosses the
+   content column (.wrap text starts ≥ 32px at the 1100px gate, 132px at 1440).
+============================================================================ */
+
+/* host strip — document-positioned by JS (top/width/height inline);
+   contain:strict caps layout/paint cost to the 120px band */
+html[data-theme="v3"] .v3fx-spine-host {
+  position: absolute;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+  contain: strict;
+}
+
+/* the svg fades in from nothing below the hero / page top */
+html[data-theme="v3"] .v3fx-spine {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 110px);
+  mask-image: linear-gradient(180deg, transparent, #000 110px);
+}
+
+/* soft gold halo under the ink (concept grammar: blurred twin path) */
+html[data-theme="v3"] .v3fx-spine-glow {
+  fill: none;
+  stroke: rgba(227, 181, 100, 0.2);
+  stroke-width: 6;
+  filter: blur(6px);
+}
+
+/* the engraved ink itself */
+html[data-theme="v3"] .v3fx-spine-path {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.5;
+  opacity: 0.9;
+}
+
+/* station nodes — dark until the ink arrives, then gold + restrained glow */
+html[data-theme="v3"] .v3fx-spine-node {
+  fill: var(--deep);
+  stroke: rgba(227, 181, 100, 0.5);
+  stroke-width: 1.2;
+  transition:
+    fill 0.6s var(--v3-ease),
+    stroke 0.6s var(--v3-ease),
+    filter 0.6s var(--v3-ease);
+}
+html[data-theme="v3"] .v3fx-spine-node.is-lit {
+  fill: var(--gold);
+  stroke: var(--v3-gold-hi);
+  filter: drop-shadow(0 0 8px rgba(227, 181, 100, 0.65));
+}
+
+/* terminal ring — the final CTA station (prescreen panel) */
+html[data-theme="v3"] .v3fx-spine-ring {
+  fill: none;
+  stroke: rgba(227, 181, 100, 0.35);
+  stroke-width: 1;
+}
+
+/* reduced motion: JS renders the spine fully drawn + lit with no loop;
+   node ignition transitions collapse like the rest of the skin */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="v3"] .v3fx-spine-node {
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ===== END FX LAYER — ROUTE SPINE ===== */

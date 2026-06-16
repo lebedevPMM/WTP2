@@ -1,0 +1,888 @@
+/* ============================================================
+   THEME V1 — "The Private Ledger" — site-wide skin
+   Warm-paper FT-Weekend × Swiss private-bank editorial.
+   Paper #F7F2E8 · ink #181510 · oxblood #6E1423 · foil hairlines.
+   Fraunces display / Newsreader body / IBM Plex Mono figures.
+   Every rule scoped under html[data-theme="v1"].
+   Fonts are injected by ThemeSwitch — no @import / @font-face here.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1 · TOKEN REMAP — the master move. The whole site (including
+   inline styles) consumes these custom properties.
+   ------------------------------------------------------------ */
+html[data-theme="v1"] {
+  /* surfaces: deep navy plates -> archival paper */
+  --deep: #f7f2e8;        /* page ground */
+  --deep-2: #f0e8d7;      /* band / panel ground (ledger paper) */
+  --deep-3: #e9dfc8;      /* deepest paper: table heads, hover fills */
+
+  /* ink ladder (AA+ on paper: 13:1 / 8.1:1 / 5.4:1 / 4.7:1) */
+  --ink: #181510;
+  --ink-70: #4f4838;
+  --ink-55: #635a45;
+  --ink-40: #756b55;
+
+  --line: rgba(24, 21, 16, 0.16);
+
+  /* accent: gold gloss retires; oxblood ink takes every accent seat.
+     (Real gold survives only inside .hero-stage and as the one foil
+     hairline on the pre-screen card.) */
+  --gold: #6e1423;
+  --amber: #56101c;
+  --rose: #56101c;
+  --cta: #6e1423;
+  --gold-grad: linear-gradient(120deg, #6e1423, #56101c);
+
+  --nav-bg: rgba(250, 246, 238, 0.92);
+
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+
+  /* private tokens for this skin */
+  --v1t-mono: "IBM Plex Mono", "Courier New", monospace;
+  --v1t-paper: #f7f2e8;
+  --v1t-oxblood: #6e1423;
+  --v1t-oxblood-deep: #56101c;
+  --v1t-rule-strong: rgba(24, 21, 16, 0.55);
+  --v1t-wash: rgba(110, 20, 35, 0.045);
+  --v1t-foil: linear-gradient(90deg, #c7a04f, #8e6f26 55%, #c7a04f);
+
+  background: #f7f2e8;
+  color-scheme: light;
+  accent-color: #6e1423;
+}
+
+/* ------------------------------------------------------------
+   2 · GROUND — paper body, faint grain, print selection
+   ------------------------------------------------------------ */
+html[data-theme="v1"] body {
+  background-color: var(--v1t-paper);
+  /* archival paper grain — SVG turbulence at ~4.5% alpha, layout-inert */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23p)' opacity='0.045'/%3E%3C/svg%3E");
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+html[data-theme="v1"] ::selection {
+  background: var(--v1t-oxblood);
+  color: var(--v1t-paper);
+}
+
+html[data-theme="v1"] :focus-visible {
+  outline: 2px solid var(--v1t-oxblood);
+  outline-offset: 3px;
+}
+
+html[data-theme="v1"] input,
+html[data-theme="v1"] textarea,
+html[data-theme="v1"] select,
+html[data-theme="v1"] button {
+  font-family: inherit;
+}
+
+/* ------------------------------------------------------------
+   3 · TYPOGRAPHY — Fraunces display, light with black emphasis
+   ------------------------------------------------------------ */
+html[data-theme="v1"] h1,
+html[data-theme="v1"] h2,
+html[data-theme="v1"] h3,
+html[data-theme="v1"] .display {
+  font-family: var(--font-display);
+  font-weight: 380;
+  letter-spacing: -0.015em;
+  line-height: 1.06;
+  font-optical-sizing: auto;
+}
+
+/* gradient-clipped headlines become near-solid ink (still clipped,
+   so the base class mechanics keep working) */
+html[data-theme="v1"] .h-grad {
+  background: linear-gradient(180deg, #252016 10%, #181510 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* gold-gradient emphasis spans -> red-ink emphasis (gold foil reads
+   poorly on paper at text sizes) */
+html[data-theme="v1"] .g {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  color: var(--v1t-oxblood);
+}
+
+/* eyebrows: small caps on a short rule, oxblood ink */
+html[data-theme="v1"] .eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.24em;
+  color: var(--gold); /* = oxblood here, gold inside the hero */
+}
+html[data-theme="v1"] .eyebrow::before {
+  background: currentColor;
+  height: 1px;
+}
+
+html[data-theme="v1"] .page-hero h1 {
+  font-weight: 340;
+  letter-spacing: -0.018em;
+  line-height: 1.02;
+}
+html[data-theme="v1"] .page-hero .lead {
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.6;
+  color: var(--ink-70);
+}
+/* hairline where the page masthead meets the body — zero layout cost */
+html[data-theme="v1"] .page-hero {
+  background-image: linear-gradient(var(--line), var(--line));
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+}
+
+/* breadcrumbs read as mono folio line (Breadcrumb nav carries a JSON-LD
+   script child — used as a stable hook) */
+html[data-theme="v1"] nav:has(> span > script[type="application/ld+json"]),
+html[data-theme="v1"] nav:has(> script[type="application/ld+json"]) {
+  font-family: var(--v1t-mono);
+  letter-spacing: 0.06em;
+}
+
+/* ------------------------------------------------------------
+   4 · BUTTONS — engraved plate, not glossy pill
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .btn {
+  background: var(--cta);
+  color: #f9f4ea;
+  border: 1px solid var(--v1t-oxblood);
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  box-shadow: none;
+  transition: background 0.18s ease, border-color 0.18s ease,
+    transform 0.12s ease;
+}
+html[data-theme="v1"] .btn:hover {
+  background: var(--v1t-oxblood-deep);
+  border-color: var(--v1t-oxblood-deep);
+  transform: none; /* nothing floats */
+  box-shadow: none;
+}
+html[data-theme="v1"] .btn:active {
+  transform: translateY(1px); /* letterpress */
+}
+
+html[data-theme="v1"] .btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(24, 21, 16, 0.45);
+  box-shadow: none;
+}
+html[data-theme="v1"] .btn-ghost:hover {
+  color: var(--v1t-oxblood);
+  border-color: var(--v1t-oxblood);
+  background: var(--v1t-wash);
+  transform: none;
+}
+
+/* ------------------------------------------------------------
+   5 · CARDS & CHIPS — ruled panels on paper
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .card {
+  background: transparent; /* the grain shows through; the rule defines it */
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  box-shadow: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+html[data-theme="v1"] .card:hover {
+  border-color: rgba(110, 20, 35, 0.55);
+  background: var(--v1t-wash);
+  transform: none; /* cards do not levitate off a ledger */
+  box-shadow: none;
+}
+html[data-theme="v1"] .card h3 {
+  font-weight: 560;
+  letter-spacing: -0.008em;
+}
+
+html[data-theme="v1"] .chip {
+  background: transparent;
+  color: var(--v1t-oxblood);
+  border: 1px solid rgba(110, 20, 35, 0.45);
+  border-radius: 2px;
+  font-family: var(--v1t-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------
+   6 · SECTION FURNITURE — hairline rules do the structure
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .section + .section {
+  background-image: linear-gradient(var(--line), var(--line));
+  background-size: 100% 1px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+html[data-theme="v1"] .hair {
+  background: var(--line);
+}
+
+html[data-theme="v1"] .muted {
+  color: var(--ink-70);
+}
+html[data-theme="v1"] .muted-2 {
+  color: var(--ink-55);
+}
+
+/* ------------------------------------------------------------
+   7 · PROSE — article pages set like an essay
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .prose {
+  font-family: var(--font-body);
+  font-size: 18.5px;
+  line-height: 1.72;
+  color: var(--ink-70);
+}
+html[data-theme="v1"] .prose strong {
+  color: var(--ink);
+}
+html[data-theme="v1"] .prose a {
+  color: var(--v1t-oxblood);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+html[data-theme="v1"] .prose a:hover {
+  text-decoration-thickness: 2px;
+}
+html[data-theme="v1"] .prose blockquote {
+  margin: 26px 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--v1t-oxblood);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 440;
+  color: var(--ink);
+}
+/* the drop cap — one per article, oxblood Fraunces */
+html[data-theme="v1"] .prose > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-weight: 740;
+  font-size: 3.4em;
+  line-height: 0.8;
+  float: left;
+  padding: 0.08em 0.12em 0 0;
+  color: var(--v1t-oxblood);
+}
+
+/* ------------------------------------------------------------
+   8 · STATBAR — masthead figures strip becomes a ledger band
+   (cells already paint on --deep-2 with --line grid via tokens)
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .statbar {
+  /* inline borderRadius:16 is hardcoded — square the ledger */
+  border-radius: 0 !important;
+}
+html[data-theme="v1"] .statbar .g {
+  color: var(--ink);
+  /* inline fontWeight:800 is hardcoded; ledger figures are set light */
+  font-weight: 360 !important;
+  letter-spacing: -0.01em;
+}
+/* provenance line under each figure -> mono source registry
+   (size stays the inline 11px; only face/tracking/case re-set) */
+html[data-theme="v1"] .statbar > div > div:nth-child(3) {
+  font-family: var(--v1t-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------
+   9 · STEPPER — Bank → Company → Visa → Assets as ruled entries
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .stepper > div {
+  border-radius: 2px !important; /* inline borderRadius:14 hardcoded */
+}
+/* active step circle paints var(--gold-grad) (now oxblood) but its
+   number color is hardcoded #1a0d10 — restore paper-on-oxblood */
+html[data-theme="v1"] .stepper div[style*="gold-grad"] {
+  color: #f7f2e8 !important;
+}
+
+/* ------------------------------------------------------------
+   10 · COMPARISON TABLE — private bank fee-ledger typography
+   ------------------------------------------------------------ */
+html[data-theme="v1"] table {
+  font-variant-numeric: tabular-nums;
+}
+html[data-theme="v1"] th {
+  letter-spacing: 0.01em;
+}
+/* zebra rows, heads and the UAE highlight column re-theme via tokens;
+   the wrapper's inline 16px radius is squared by the normalizer (§16) */
+
+/* ------------------------------------------------------------
+   11 · AVATARS — initials fallback becomes an oxblood monogram
+   (gradient div is the only inline consumer of var(--rose))
+   ------------------------------------------------------------ */
+html[data-theme="v1"] [style*="var(--rose)"] {
+  color: #f7f2e8 !important; /* inline #1a0d10 unreadable on oxblood */
+  box-shadow: none !important; /* inline pink glow hardcoded */
+}
+
+/* ------------------------------------------------------------
+   12 · MEGANAV — paper masthead
+   ------------------------------------------------------------ */
+/* solid (scrolled / inner pages): translucent paper via --nav-bg token;
+   white PNG wordmark inked down to print (hue-safe crush) */
+html[data-theme="v1"] .meganav-root.meganav-solid img {
+  filter: grayscale(1) brightness(0.14) sepia(0.32);
+}
+/* top-level items carry a static inline color; a :hover state cannot be
+   expressed inline, so the editorial hover needs !important (solid nav only —
+   oxblood would sink into the dark hero in the transparent state) */
+html[data-theme="v1"] .meganav-root.meganav-solid .meganav-item > a:hover {
+  color: var(--v1t-oxblood) !important;
+}
+
+/* transparent state sits on the dark hero photograph — keep its type
+   light by re-declaring the ink ladder locally (inline styles consume
+   these vars, so no !important needed) */
+html[data-theme="v1"] .meganav-root.meganav-transparent {
+  --ink: #f5f2ec;
+  --ink-70: rgba(245, 242, 236, 0.85);
+  --ink-55: rgba(245, 242, 236, 0.68);
+  --ink-40: rgba(245, 242, 236, 0.45);
+  --line: rgba(245, 242, 236, 0.18);
+}
+
+/* dropdown panels: background/border/shadow/radius are hardcoded inline
+   (MegaNav.tsx 138–142) — force paper panel; re-declare ink ladder so
+   panels opened over the transparent hero state stay readable */
+html[data-theme="v1"] .meganav-item > div {
+  --ink: #181510;
+  --ink-70: #4f4838;
+  --ink-55: #635a45;
+  --line: rgba(24, 21, 16, 0.16);
+  background: var(--nav-bg) !important;
+  border: 1px solid rgba(24, 21, 16, 0.22) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 18px 44px rgba(24, 21, 16, 0.14) !important;
+}
+
+/* mobile sheet: background hardcoded inline (MegaNav.tsx 188) */
+html[data-theme="v1"] .meganav-mobile {
+  --ink: #181510;
+  --ink-70: #4f4838;
+  --ink-55: #635a45;
+  --line: rgba(24, 21, 16, 0.16);
+  background: rgba(250, 246, 238, 0.98) !important;
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------
+   13 · FOOTER — colophon on deep paper, broadsheet double rule
+   (inline border/background shorthand hardcodes the 1px top rule)
+   ------------------------------------------------------------ */
+html[data-theme="v1"] footer {
+  border-top: 3px solid var(--ink) !important;
+  background-image: linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 4px,
+    var(--ink) 4px,
+    var(--ink) 5px,
+    transparent 5px
+  ) !important;
+}
+html[data-theme="v1"] footer img {
+  filter: grayscale(1) brightness(0.14) sepia(0.32);
+}
+/* footer links carry static inline colors — same pseudo-state case as nav */
+html[data-theme="v1"] footer a:hover {
+  color: var(--v1t-oxblood) !important;
+}
+
+/* ------------------------------------------------------------
+   14 · PRE-SCREEN PANEL — the RSVP card (double frame + the one
+   permitted gold-foil hairline on paper)
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .prescreen-panel {
+  position: relative;
+  /* the panel's inline border reads var(--line) — re-declare it locally so
+     the frame sets in full ink, no !important required */
+  --line: rgba(24, 21, 16, 0.8);
+  outline: 1px solid rgba(24, 21, 16, 0.35);
+  outline-offset: 5px;
+}
+html[data-theme="v1"] .prescreen-panel::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: var(--v1t-foil);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------
+   15 · HERO STAGE — stays the dark front-page photograph.
+   Restore the cinematic palette locally; type becomes Fraunces
+   but stays light-on-dark with the gold eyebrow.
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .hero-stage {
+  --ink: #edebf6;
+  --ink-70: rgba(237, 235, 246, 0.78);
+  --ink-55: rgba(237, 235, 246, 0.6);
+  --ink-40: rgba(237, 235, 246, 0.4);
+  --line: rgba(237, 235, 246, 0.14);
+  --gold: #ffc65a;
+  --amber: #f5a623;
+  --rose: #e0518a;
+  --gold-grad: linear-gradient(120deg, #ffc65a, #f5a623);
+  background: #08071a;
+}
+html[data-theme="v1"] .hero-stage .h-grad {
+  background: linear-gradient(180deg, #fff 30%, #cfc8f0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+html[data-theme="v1"] .hero-stage .g {
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: inherit;
+}
+html[data-theme="v1"] .hero-stage .btn-ghost {
+  color: var(--ink);
+  border-color: rgba(237, 235, 246, 0.38);
+}
+html[data-theme="v1"] .hero-stage .btn-ghost:hover {
+  color: #fff;
+  border-color: rgba(237, 235, 246, 0.7);
+  background: rgba(237, 235, 246, 0.06);
+}
+html[data-theme="v1"] .hero-stage .eyebrow {
+  font-weight: 640;
+}
+
+/* paper edge: where the photograph hands off to the page —
+   fade to paper plus the broadsheet double rule at the seam */
+html[data-theme="v1"] .hero-stage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(70px, 12vh, 130px);
+  pointer-events: none;
+  z-index: 5;
+  background:
+    linear-gradient(0deg, #181510 0, #181510 3px, transparent 3px),
+    linear-gradient(0deg, transparent 0, transparent 6px, #181510 6px, #181510 7px, transparent 7px),
+    linear-gradient(180deg, rgba(247, 242, 232, 0) 0%, rgba(247, 242, 232, 0.85) 70%, #f7f2e8 100%);
+}
+
+/* ------------------------------------------------------------
+   16 · RADIUS NORMALIZER — the dark theme's soft 9–24px pills are
+   hardcoded inline across panels/inputs/dropdowns; the ledger is
+   squared. (Attribute match on serialized inline style; 999px pills,
+   50% avatars and class-driven radii are untouched.)
+   ------------------------------------------------------------ */
+html[data-theme="v1"] [style*="border-radius: 9px"],
+html[data-theme="v1"] [style*="border-radius: 10px"],
+html[data-theme="v1"] [style*="border-radius: 14px"],
+html[data-theme="v1"] [style*="border-radius: 16px"],
+html[data-theme="v1"] [style*="border-radius: 20px"],
+html[data-theme="v1"] [style*="border-radius: 24px"] {
+  border-radius: 2px !important;
+}
+
+/* ============================================================
+   ===== FX LAYER (2026-06-12 PM) =====
+   Award-pass motion for the Ledger. Every rule below is gated on
+   .v1fx-* classes that ONLY the runtime annotator
+   (src/theme/fx/v1/index.tsx) applies — no JS, no class, no
+   effect, and nothing is ever hidden. Annotations left behind are
+   inert outside html[data-theme="v1"] by scoping.
+   Timing language: entrances 0.7–1.0s on cubic-bezier(.16,1,.3,1),
+   hovers 0.2–0.4s, staggers 40–90ms. Ink + oxblood only; nothing
+   floats, everything settles.
+   ============================================================ */
+
+html[data-theme="v1"] {
+  --v1fx-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---- shared keyframes (v1fx-prefixed to stay collision-free) ---- */
+@keyframes v1fxRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes v1fxFade {
+  from { opacity: 0; }
+}
+@keyframes v1fxRule {
+  to { transform: scaleX(1); }
+}
+
+/* ------------------------------------------------------------
+   FX·1 generic reveal — rise with the hand-tuned --d rhythm the
+   annotator assigns (eyebrow 0 → headline 140 → lede 260 → rest).
+   Animation (not transition) with `backwards` fill only: once it
+   ends, the element returns to plain stylesheet values, so later
+   hover transitions/outlines are untouched.
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .v1fx-rev { opacity: 0; }
+html[data-theme="v1"] .v1fx-rev.is-in {
+  opacity: 1;
+  animation: v1fxRise 0.85s var(--v1fx-ease) backwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* ------------------------------------------------------------
+   FX·2 drawn hairline rules — the existing section-opening rule
+   (background-image hairline) draws itself left→right by
+   animating background-size 0%→100%.
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .section.v1fx-sec + .section.v1fx-sec { background-size: 0% 1px; }
+html[data-theme="v1"] .section.v1fx-sec + .section.v1fx-sec.is-in {
+  background-size: 100% 1px;
+  transition: background-size 0.9s var(--v1fx-ease) 0.08s;
+}
+/* masthead seam under inner-page heroes draws after the headline */
+html[data-theme="v1"] .page-hero.v1fx-sec { background-size: 0% 1px; }
+html[data-theme="v1"] .page-hero.v1fx-sec.is-in {
+  background-size: 100% 1px;
+  transition: background-size 1s var(--v1fx-ease) 0.35s;
+}
+
+/* ------------------------------------------------------------
+   FX·3 masked line-by-line headline reveal — annotator wraps each
+   word in an overflow-clipped mask; all words on one measured line
+   share --lnd so the line rises as a unit. Padding+negative margin
+   give Fraunces ascenders/descenders paint room at line-height
+   1.02 without any layout shift.
+   ------------------------------------------------------------ */
+@media (min-width: 900px) {
+  html[data-theme="v1"] .v1fx-lines .v1fx-wm {
+    display: inline-block;
+    overflow: clip;
+    max-width: 100%;
+    padding: 0.13em 0 0.18em;
+    margin: -0.13em 0 -0.18em;
+  }
+  html[data-theme="v1"] .v1fx-lines .v1fx-w {
+    display: inline-block;
+    transform: translateY(130%);
+  }
+  html[data-theme="v1"] .v1fx-lines.is-in .v1fx-w {
+    transform: none;
+    animation: v1fxLineUp 0.8s var(--v1fx-ease) backwards;
+    animation-delay: var(--lnd, 0ms);
+  }
+  @keyframes v1fxLineUp {
+    from { transform: translateY(130%); }
+  }
+}
+
+/* ------------------------------------------------------------
+   FX·4 panel clip reveal — cards/stepper cells uncrop from an
+   inset window. `backwards` fill only: after settling, clip-path
+   and transform are gone, so focus outlines and hover states are
+   never swallowed.
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .v1fx-clip { opacity: 0; }
+html[data-theme="v1"] .v1fx-clip.is-in {
+  opacity: 1;
+  animation: v1fxClip 0.9s var(--v1fx-ease) backwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes v1fxClip {
+  from { opacity: 0; clip-path: inset(9% 5% 9% 5%); transform: translateY(12px); }
+  60% { opacity: 1; }
+  to { opacity: 1; clip-path: inset(0 0 0 0); transform: none; }
+}
+
+/* ------------------------------------------------------------
+   FX·5 statbar → ledger band. Strong top/bottom rules draw
+   left→right, the interior hairline grid + outer 1px frame fade
+   in (the !important pair beats the component's inline border/
+   background — same pattern §8 already uses), cells rise on a
+   90ms cascade, figures count up (JS), and the mono provenance
+   registry rises 150ms after the figures land (.is-fin).
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .statbar .g,
+html[data-theme="v1"] .card .g {
+  font-variant-numeric: lining-nums tabular-nums; /* count-up must not jitter */
+}
+@media (min-width: 900px) {
+  html[data-theme="v1"] .statbar.v1fx-ledger {
+    position: relative;
+    border-color: transparent !important;
+    background: transparent !important;
+    transition: border-color 0.5s ease 0.55s, background-color 0.5s ease 0.4s;
+  }
+  html[data-theme="v1"] .statbar.v1fx-ledger.is-in {
+    border-color: var(--line) !important;
+    background: var(--line) !important;
+  }
+  html[data-theme="v1"] .statbar.v1fx-ledger::before,
+  html[data-theme="v1"] .statbar.v1fx-ledger::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--v1t-rule-strong);
+    transform: scaleX(0);
+    transform-origin: left center;
+    pointer-events: none;
+    z-index: 1;
+  }
+  html[data-theme="v1"] .statbar.v1fx-ledger::before { top: 0; }
+  html[data-theme="v1"] .statbar.v1fx-ledger::after { bottom: 0; }
+  html[data-theme="v1"] .statbar.v1fx-ledger.is-in::before {
+    animation: v1fxRule 0.9s var(--v1fx-ease) both;
+  }
+  html[data-theme="v1"] .statbar.v1fx-ledger.is-in::after {
+    animation: v1fxRule 0.9s var(--v1fx-ease) 0.12s both;
+  }
+  html[data-theme="v1"] .statbar.v1fx-ledger > div { opacity: 0; }
+  html[data-theme="v1"] .statbar.v1fx-ledger.is-in > div {
+    opacity: 1;
+    animation: v1fxRise 0.8s var(--v1fx-ease) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+  html[data-theme="v1"] .statbar.v1fx-ledger .v1fx-prov { opacity: 0; }
+  html[data-theme="v1"] .statbar.v1fx-ledger.is-fin .v1fx-prov {
+    opacity: 1;
+    animation: v1fxProv 0.7s var(--v1fx-ease) backwards;
+  }
+  @keyframes v1fxProv {
+    from { opacity: 0; transform: translateY(7px); }
+  }
+}
+
+/* ------------------------------------------------------------
+   FX·6 tables → ruled ledger frames: shell rises, the strong rule
+   under the column heads draws, entries set themselves row by row.
+   ------------------------------------------------------------ */
+html[data-theme="v1"] .v1fx-tbl { opacity: 0; }
+html[data-theme="v1"] .v1fx-tbl.is-in {
+  opacity: 1;
+  animation: v1fxRise 0.85s var(--v1fx-ease) backwards;
+}
+@media (min-width: 900px) {
+  html[data-theme="v1"] .v1fx-tbl tbody tr { opacity: 0; }
+  html[data-theme="v1"] .v1fx-tbl.is-in tbody tr {
+    opacity: 1;
+    animation: v1fxFade 0.55s ease-out backwards;
+    animation-delay: calc(180ms + var(--ri, 0) * 45ms);
+  }
+  html[data-theme="v1"] .v1fx-tbl th { position: relative; }
+  html[data-theme="v1"] .v1fx-tbl th::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: var(--v1t-rule-strong);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  html[data-theme="v1"] .v1fx-tbl.is-in th::after {
+    animation: v1fxRule 0.8s var(--v1fx-ease) 0.12s both;
+  }
+}
+
+/* ------------------------------------------------------------
+   FX·7 pre-screen panel — the document seals itself: panel rises,
+   the offset outline frame sets 0.4s in, then the one permitted
+   gold-foil hairline draws from its centre.
+   ------------------------------------------------------------ */
+@media (min-width: 900px) {
+  html[data-theme="v1"] .prescreen-panel.v1fx-seal {
+    opacity: 0;
+    outline-color: transparent;
+  }
+  html[data-theme="v1"] .prescreen-panel.v1fx-seal.is-in {
+    opacity: 1;
+    animation: v1fxRise 0.9s var(--v1fx-ease) backwards;
+    outline-color: rgba(24, 21, 16, 0.35);
+    transition: outline-color 0.5s ease 0.4s;
+  }
+  html[data-theme="v1"] .prescreen-panel.v1fx-seal::before {
+    transform: scaleX(0);
+    transform-origin: 50% 50%; /* centre-out, matching the centred foil */
+  }
+  html[data-theme="v1"] .prescreen-panel.v1fx-seal.is-in::before {
+    animation: v1fxRule 0.85s var(--v1fx-ease) 0.5s both;
+  }
+}
+
+/* ------------------------------------------------------------
+   FX·8 footer colophon — while .v1fx-foot is armed, §13's static
+   double rule is blanked and redrawn as two pseudo-rules with the
+   same geometry (3px bar in the border band + 1px rule 4px below),
+   each drawing left→right on entry.
+   ------------------------------------------------------------ */
+@media (min-width: 900px) {
+  html[data-theme="v1"] footer.v1fx-foot {
+    position: relative;
+    border-top-color: transparent !important;
+    background-image: none !important;
+  }
+  html[data-theme="v1"] footer.v1fx-foot::before,
+  html[data-theme="v1"] footer.v1fx-foot::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left center;
+    pointer-events: none;
+  }
+  html[data-theme="v1"] footer.v1fx-foot::before { top: -3px; height: 3px; }
+  html[data-theme="v1"] footer.v1fx-foot::after { top: 4px; height: 1px; }
+  html[data-theme="v1"] footer.v1fx-foot.is-in::before {
+    animation: v1fxRule 1s var(--v1fx-ease) both;
+  }
+  html[data-theme="v1"] footer.v1fx-foot.is-in::after {
+    animation: v1fxRule 1s var(--v1fx-ease) 0.14s both;
+  }
+}
+
+/* ------------------------------------------------------------
+   FX·9 word roll-over links — whole word, two stacked copies in
+   an overflow-clipped mask. The duplicate carries [hidden], so it
+   stays display:none in every other theme; only v1 re-displays it.
+   line-height 1.4 tightens the roll travel without changing the
+   link's own line box (the strut keeps layout identical).
+   ------------------------------------------------------------ */
+@media (min-width: 900px) {
+  html[data-theme="v1"] .v1fx-roll {
+    display: inline-block;
+    position: relative;
+    overflow: clip;
+    line-height: 1.4;
+  }
+  html[data-theme="v1"] .v1fx-roll-a,
+  html[data-theme="v1"] .v1fx-roll-b {
+    display: inline-block;
+    transition: transform 0.38s var(--v1fx-ease);
+  }
+  html[data-theme="v1"] .v1fx-roll-b {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    white-space: nowrap;
+  }
+  html[data-theme="v1"] footer a:hover .v1fx-roll-a,
+  html[data-theme="v1"] footer a:hover .v1fx-roll-b,
+  html[data-theme="v1"] footer a:focus-visible .v1fx-roll-a,
+  html[data-theme="v1"] footer a:focus-visible .v1fx-roll-b,
+  html[data-theme="v1"] .card:hover .v1fx-roll-a,
+  html[data-theme="v1"] .card:hover .v1fx-roll-b,
+  html[data-theme="v1"] .card:focus-visible .v1fx-roll-a,
+  html[data-theme="v1"] .card:focus-visible .v1fx-roll-b {
+    transform: translateY(-100%);
+  }
+}
+
+/* ------------------------------------------------------------
+   FX·10 clamped grain drift — annotator-owned fixed overlay (same
+   turbulence tile as the body paper at half strength) counter-
+   drifts ~2.5% of scroll, transform-only. Removed on unmount.
+   ------------------------------------------------------------ */
+@media (min-width: 900px) {
+  html[data-theme="v1"] .v1fx-grain {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: -200px;
+    bottom: -200px;
+    z-index: 2000;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23p)' opacity='0.045'/%3E%3C/svg%3E");
+    will-change: transform;
+  }
+}
+
+/* ------------------------------------------------------------
+   FX·11 reduced motion — the annotator already annotates nothing
+   under prefers-reduced-motion; this block is armor for a
+   mid-session OS toggle: every FX state collapses to its final,
+   pre-drawn, fully visible value.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="v1"] .v1fx-rev,
+  html[data-theme="v1"] .v1fx-clip,
+  html[data-theme="v1"] .v1fx-tbl,
+  html[data-theme="v1"] .v1fx-tbl tbody tr,
+  html[data-theme="v1"] .statbar.v1fx-ledger > div,
+  html[data-theme="v1"] .statbar.v1fx-ledger .v1fx-prov,
+  html[data-theme="v1"] .prescreen-panel.v1fx-seal {
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  html[data-theme="v1"] .v1fx-lines .v1fx-w {
+    transform: none !important;
+    animation: none !important;
+  }
+  html[data-theme="v1"] .v1fx-sec {
+    background-size: 100% 1px !important;
+    transition: none !important;
+  }
+  html[data-theme="v1"] .statbar.v1fx-ledger {
+    border-color: var(--line) !important;
+    background: var(--line) !important;
+    transition: none !important;
+  }
+  html[data-theme="v1"] .statbar.v1fx-ledger::before,
+  html[data-theme="v1"] .statbar.v1fx-ledger::after,
+  html[data-theme="v1"] footer.v1fx-foot::before,
+  html[data-theme="v1"] footer.v1fx-foot::after,
+  html[data-theme="v1"] .prescreen-panel.v1fx-seal::before,
+  html[data-theme="v1"] .v1fx-tbl th::after {
+    transform: scaleX(1) !important;
+    animation: none !important;
+  }
+  html[data-theme="v1"] .prescreen-panel.v1fx-seal {
+    outline-color: rgba(24, 21, 16, 0.35) !important;
+  }
+  html[data-theme="v1"] .v1fx-roll-a,
+  html[data-theme="v1"] .v1fx-roll-b {
+    transition: none !important;
+  }
+  html[data-theme="v1"] .v1fx-grain {
+    display: none !important;
+  }
+}
