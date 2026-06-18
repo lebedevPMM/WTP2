@@ -52,8 +52,8 @@ export function Hero() {
       const t = Math.min(Math.max((x - e0) / (e1 - e0), 0), 1);
       return t * t * (3 - 2 * t);
     };
+    const f = 0.05;
     const bump = (p: number, a: number, b: number) => {
-      const f = 0.05;
       return Math.min(smooth(a, a + f, p), 1 - smooth(b - f, b, p));
     };
     const progress = () => {
@@ -77,7 +77,11 @@ export function Hero() {
       }
       fill.style.height = p * 100 + "%";
       beatRefs.current.forEach((b, i) => {
-        if (b) b.style.opacity = String(bump(p, beats[i].in, beats[i].out));
+        if (!b) return;
+        // Beat 0 (H1 + offer + CTA) is visible at rest so the page states its value on first
+        // paint, before any scroll; it only fades OUT as beat 1 takes over. Beats 1-2 cross-fade in.
+        const op = i === 0 ? 1 - smooth(beats[0].out - f, beats[0].out, p) : bump(p, beats[i].in, beats[i].out);
+        b.style.opacity = String(op);
       });
       raf = requestAnimationFrame(loop);
     };
@@ -126,7 +130,7 @@ export function Hero() {
               ),
               p: "Most routes to a UAE-centered structure dead-end at the bank. Scroll — and watch the route draw itself.",
               quiet: "We deliver bankable structures, not company setups.",
-              cta: false,
+              cta: true,
             },
             {
               eyebrow: "The banking ridge",
@@ -154,7 +158,7 @@ export function Hero() {
               ref={(el) => {
                 beatRefs.current[i] = el;
               }}
-              style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", width: "100%", opacity: 0 }}
+              style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", width: "100%", opacity: i === 0 ? 1 : 0 }}
             >
               <div className="wrap">
                 <div style={{ maxWidth: 560, pointerEvents: "auto" }}>

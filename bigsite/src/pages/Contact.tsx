@@ -89,7 +89,7 @@ export default function Contact() {
               <span style={{ fontSize: 13.5, color: "var(--ink-55)" }}>What's the situation? (optional)</span>
               <textarea name="note" rows={3} style={{ padding: "12px 14px", borderRadius: 10, border: "1px solid var(--line)", background: "var(--deep)", color: "var(--ink)", fontSize: 15, resize: "vertical" }} />
             </label>
-            <Button>{state === "sending" ? "Sending…" : "Submit pre-screen request"}</Button>
+            <Button>{state === "sending" ? "Sending…" : "Request my pre-screen"}</Button>
             {state === "offline" && (
               <p style={{ fontSize: 13, color: "var(--gold)" }}>
                 Couldn't submit just now — reach us directly at{" "}
