@@ -17,7 +17,7 @@ export function StepperBankingFirst({ current }: { current?: 1 | 2 | 3 | 4 }) {
               padding: "22px 18px",
               borderRadius: 14,
               border: `1px solid ${active ? "var(--gold)" : "var(--line)"}`,
-              background: active ? "rgba(255,198,90,.08)" : "var(--deep-2)",
+              background: active ? "rgba(227,181,100,.08)" : "var(--deep-2)",
               position: "relative",
             }}
           >

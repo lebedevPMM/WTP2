@@ -48,7 +48,7 @@ export default function JurisdictionsHub() {
           className="card"
           style={{
             padding: "40px",
-            background: "linear-gradient(180deg, rgba(255,198,90,.06), var(--deep-2))",
+            background: "linear-gradient(180deg, rgba(227,181,100,.06), var(--deep-2))",
           }}
         >
           <Eyebrow>Our home market</Eyebrow>

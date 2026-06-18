@@ -17,7 +17,7 @@ export function Avatar({ expert, size = 48 }: { expert: Expert; size?: number })
           borderRadius: "50%",
           flexShrink: 0,
           objectFit: "cover",
-          border: "1px solid rgba(255,198,90,.35)",
+          border: "1px solid rgba(227,181,100,.35)",
         }}
       />
     );
@@ -37,7 +37,7 @@ export function Avatar({ expert, size = 48 }: { expert: Expert; size?: number })
         fontSize: size * 0.36,
         color: "#1a0d10",
         background: "linear-gradient(135deg, var(--gold), var(--rose))",
-        boxShadow: "0 4px 16px rgba(224,81,138,.28)",
+        boxShadow: "0 4px 16px rgba(227,181,100,.22)",
       }}
     >
       {expert.initials}

@@ -58,7 +58,7 @@ export default function CasesHub() {
                   ...(on
                     ? {
                         border: "1px solid var(--gold)",
-                        background: "rgba(255,198,90,0.12)",
+                        background: "rgba(227,181,100,0.12)",
                         color: "var(--gold)",
                       }
                     : {}),

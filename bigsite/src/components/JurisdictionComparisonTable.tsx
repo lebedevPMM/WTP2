@@ -13,7 +13,7 @@ export function JurisdictionComparisonTable({ columns }: { columns: Jurisdiction
                 style={{
                   textAlign: "left",
                   padding: "16px 18px",
-                  background: c === "uae" ? "rgba(255,198,90,.1)" : "var(--deep-3)",
+                  background: c === "uae" ? "rgba(227,181,100,.1)" : "var(--deep-3)",
                   fontFamily: "var(--font-display)",
                   fontWeight: 700,
                   fontSize: 15,
@@ -36,7 +36,7 @@ export function JurisdictionComparisonTable({ columns }: { columns: Jurisdiction
                     padding: "14px 18px",
                     fontSize: 14,
                     color: c === "uae" ? "var(--ink)" : "var(--ink-70)",
-                    background: c === "uae" ? "rgba(255,198,90,.04)" : "transparent",
+                    background: c === "uae" ? "rgba(227,181,100,.04)" : "transparent",
                     fontWeight: c === "uae" ? 600 : 400,
                   }}
                 >
