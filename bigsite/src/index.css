@@ -56,6 +56,14 @@ a { color: inherit; text-decoration: none; }
 
 ::selection { background: var(--gold); color: #1a0d10; }
 
+/* ---- Living contour-map watermark (see components/ContourBackground.tsx) ----
+   Fixed + isolate keeps the canvas's internal "lighter" compositing
+   self-contained — no CSS blend over content, so it stays white-out-safe.
+   Content sits above it via relative + z-index:1. */
+.topo { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; isolation: isolate; }
+.topo canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+main, footer { position: relative; z-index: 1; }
+
 /* ---- shared primitives ---- */
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 @media (max-width: 640px) { .wrap { padding: 0 20px; } }

@@ -4,6 +4,7 @@ import { MegaNav } from "./MegaNav";
 import { Footer } from "./Footer";
 import { ThemeSwitch } from "../theme/ThemeSwitch";
 import { ThemeFX } from "../theme/fx/ThemeFX";
+import ContourBackground from "./ContourBackground";
 
 export function Layout() {
   const loc = useLocation();
@@ -39,6 +40,7 @@ export function Layout() {
       >
         Skip to content
       </a>
+      <ContourBackground />
       {/* Dev-only design-direction switcher. Gated out of prod: data-theme is the
           single source of theme (themed() + ThemeFX read it; only applyTheme inside
           ThemeSwitch sets it). With no switcher in prod it's never set, so ?theme=

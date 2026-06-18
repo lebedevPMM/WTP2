@@ -59,8 +59,9 @@ html[data-theme="v3"] {
   --gold-grad: linear-gradient(115deg, #f4d48e 8%, #e3b564 52%, #c8964b 96%);
   --nav-bg: rgba(7, 6, 24, 0.92);
 
-  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  --font-body: "Albert Sans", "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", "Albert Sans", "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 
   /* v3-local helpers */
   --v3-gold-hi: #f4d48e;
@@ -122,8 +123,8 @@ html[data-theme="v3"] summary:focus-visible {
 }
 
 /* ----------------------------------------------------------------------------
-   3 · TYPOGRAPHY — Cormorant display metrics (serif ≠ Inter Tight)
-   Weight 600, tightened leading, near-zero tracking; lining figures so
+   3 · TYPOGRAPHY — Fraunces display metrics (variable serif, opsz 144)
+   Weight 440 (pinned to loaded axis), near-zero tracking; lining figures so
    "30%", "$15–50K", "01" set like engraved numerals, not oldstyle text figs.
 ---------------------------------------------------------------------------- */
 html[data-theme="v3"] h1,
@@ -131,9 +132,10 @@ html[data-theme="v3"] h2,
 html[data-theme="v3"] h3,
 html[data-theme="v3"] .display {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 440;
+  letter-spacing: 0.002em;
   line-height: 1.05;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
   font-feature-settings: "lnum" 1;
 }
 
@@ -161,10 +163,10 @@ html[data-theme="v3"] .g {
 
 /* labels stay grotesk: quiet, letterspaced, gold */
 html[data-theme="v3"] .eyebrow {
-  font-family: var(--font-body);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-weight: 500;
   font-size: 11px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
 }
 html[data-theme="v3"] .eyebrow::before {
   width: 30px;
@@ -476,7 +478,7 @@ html[data-theme="v3"] .prescreen-panel::after {
    correct for Inter Tight, too tight for Cormorant at clamp sizes */
 html[data-theme="v3"] .hero-stage h1 {
   letter-spacing: -0.012em !important;
-  font-weight: 600;
+  font-weight: 440;
   line-height: 1.03;
 }
 html[data-theme="v3"] .hero-stage .eyebrow {
