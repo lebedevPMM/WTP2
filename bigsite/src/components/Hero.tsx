@@ -161,9 +161,15 @@ export function Hero() {
                   <span className="eyebrow" style={{ marginBottom: 20 }}>
                     {b.eyebrow}
                   </span>
-                  <h1 className="h-grad" style={{ fontSize: "clamp(38px,5.6vw,72px)", margin: "20px 0", letterSpacing: "-0.03em" }}>
-                    {b.h}
-                  </h1>
+                  {i === 0 ? (
+                    <h1 className="h-grad" style={{ fontSize: "clamp(38px,5.6vw,72px)", margin: "20px 0", letterSpacing: "-0.03em" }}>
+                      {b.h}
+                    </h1>
+                  ) : (
+                    <h2 className="h-grad" style={{ fontSize: "clamp(38px,5.6vw,72px)", margin: "20px 0", letterSpacing: "-0.03em" }}>
+                      {b.h}
+                    </h2>
+                  )}
                   <p style={{ fontSize: "clamp(16px,1.5vw,19px)", color: "var(--ink-70)", maxWidth: 460, marginBottom: 26 }}>{b.p}</p>
                   {b.quiet && (
                     <p style={{ marginTop: 6, fontSize: 13.5, color: "var(--ink-55)", display: "flex", alignItems: "center", gap: 9 }}>

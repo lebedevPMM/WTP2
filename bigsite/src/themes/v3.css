@@ -476,7 +476,8 @@ html[data-theme="v3"] .prescreen-panel::after {
 ---------------------------------------------------------------------------- */
 /* !important #1 — h1 carries inline letterSpacing:"-0.03em" (Hero.tsx:157),
    correct for Inter Tight, too tight for Cormorant at clamp sizes */
-html[data-theme="v3"] .hero-stage h1 {
+html[data-theme="v3"] .hero-stage h1,
+html[data-theme="v3"] .hero-stage h2 {
   letter-spacing: -0.012em !important;
   font-weight: 440;
   line-height: 1.03;

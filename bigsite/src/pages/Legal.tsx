@@ -79,8 +79,12 @@ const docs: Record<string, { title: string; body: ReactNode }> = {
         <h3>Retention &amp; your rights</h3>
         <p>
           We keep enquiry data only as long as needed for the purpose above and applicable record-
-          keeping rules. You can ask us to access, correct, or delete your data at{" "}
-          <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>.
+          keeping rules. Our lawful basis is your consent and our legitimate interest in responding
+          to your enquiry. You can ask us to access, correct, delete, port, or object to the
+          processing of your data at{" "}
+          <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>. If you
+          are covered by the EU/UK GDPR or a similar regime, you may also lodge a complaint with your
+          local data-protection supervisory authority.
         </p>
       </>
     ),
@@ -117,6 +121,72 @@ const docs: Record<string, { title: string; body: ReactNode }> = {
       </>
     ),
   },
+
+  cookies: {
+    title: "Cookie Policy",
+    body: (
+      <>
+        <p>
+          This policy explains how this WTP — Welcome To Paradise website uses cookies and similar
+          technologies, and the choices you have.
+        </p>
+        <h3>What we use</h3>
+        <p>
+          We keep cookies to a minimum. Strictly necessary cookies make the site work — navigation,
+          security, and remembering your progress through a form. Where we measure how the site is
+          used, we rely on privacy-respecting analytics. We do not use advertising or cross-site
+          tracking cookies, and we do not sell or share cookie data with advertisers.
+        </p>
+        <h3>Your choices</h3>
+        <p>
+          You can refuse or delete cookies in your browser settings at any time; blocking strictly
+          necessary cookies may stop parts of the site from working. Where the law requires consent
+          for non-essential cookies, we ask for it before they are set.
+        </p>
+        <h3>More</h3>
+        <p>
+          Cookies that handle personal data are also covered by our{" "}
+          <a href="/legal/privacy" style={{ color: "var(--gold)" }}>Privacy Policy</a>. Questions:{" "}
+          <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>.
+        </p>
+      </>
+    ),
+  },
+
+  regulatory: {
+    title: "Regulatory Status",
+    body: (
+      <>
+        <p>
+          WTP — Welcome To Paradise is an advisory and facilitation provider. We help clients
+          prepare for, and navigate, banking, company formation, residency and structuring in the
+          United Arab Emirates.
+        </p>
+        <h3>What we are not</h3>
+        <p>
+          WTP is not a bank, law firm, audit firm, tax adviser, or licensed financial-services firm.
+          We are not licensed or regulated by the Central Bank of the UAE, the Dubai Financial
+          Services Authority (DIFC), the Financial Services Regulatory Authority (ADGM), the
+          Securities and Commodities Authority, or the Virtual Assets Regulatory Authority, and
+          nothing on this site is an offer of regulated financial services.
+        </p>
+        <h3>Third-party decisions</h3>
+        <p>
+          Account opening, licensing, visa issuance and regulatory approvals are decided by the
+          relevant banks, free zones, and authorities under their own rules and at their own
+          discretion. WTP facilitates and prepares the file; it does not approve, guarantee, or
+          control those outcomes.
+        </p>
+        <h3>Engagement terms govern</h3>
+        <p>
+          Any service we provide is governed by a signed engagement letter that sets out scope, fees
+          and responsibilities. Where specific regulated advice is needed, we work with appropriately
+          licensed professionals. Questions:{" "}
+          <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>.
+        </p>
+      </>
+    ),
+  },
 };
 
 export default function Legal() {
@@ -130,7 +200,7 @@ export default function Legal() {
       <h1 className="h-grad" style={{ marginBottom: 22 }}>{d.title}</h1>
       <div className="prose">{d.body}</div>
       <p style={{ marginTop: 32, fontSize: 13, color: "var(--ink-40)" }}>
-        Draft for review — not yet counsel-approved.
+        Last updated 18 June 2026 · Draft for review — not yet counsel-approved.
       </p>
     </Section>
   );

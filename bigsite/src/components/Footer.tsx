@@ -92,7 +92,9 @@ export function Footer() {
           <span>© {new Date().getFullYear()} WTP</span>
           <Link to="/legal/privacy">Privacy</Link>
           <Link to="/legal/terms">Terms</Link>
+          <Link to="/legal/cookies">Cookies</Link>
           <Link to="/legal/disclaimer">Disclaimer</Link>
+          <Link to="/legal/regulatory">Regulatory</Link>
           <span style={{ maxWidth: 620, lineHeight: 1.5 }}>
             WTP provides advisory and facilitation services; not regulated investment, tax, or legal advice unless explicitly stated.
           </span>
