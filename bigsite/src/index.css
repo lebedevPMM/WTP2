@@ -126,7 +126,8 @@ main, footer { position: relative; z-index: 1; }
 /* ---- responsive: nav + grids ---- */
 @media (max-width: 900px) {
   .meganav-desktop, .meganav-right { display: none !important; }
-  .meganav-burger { display: inline-flex !important; }
+  /* >=44px tap target (WCAG 2.2): pad the 24px icon, negative margin cancels layout shift */
+  .meganav-burger { display: inline-flex !important; align-items: center; justify-content: center; padding: 10px; margin: -10px; }
   .footer-grid { grid-template-columns: 1fr 1fr !important; }
   .footer-cta { flex-direction: column; align-items: flex-start !important; }
   .statbar { grid-template-columns: 1fr 1fr !important; }
