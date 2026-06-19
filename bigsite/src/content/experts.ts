@@ -1,7 +1,7 @@
 // Named experts — the authority layer (doctrine: every page carries a named expert).
 // Roster reconciled to the links-* founder personal pages (source of truth) on 2026-06-19.
 
-export type ExpertId = "ivan" | "oleg" | "olya" | "kostya" | "ilya";
+export type ExpertId = "ivan" | "sergey" | "oleg" | "olya" | "kostya" | "ilya";
 
 export interface Expert {
   id: ExpertId;
@@ -25,6 +25,17 @@ export const experts: Record<ExpertId, Expert> = {
     signature: "Ivan",
     initials: "IV",
     photo: "/experts/ivan.jpg",
+    services: [],
+  },
+  sergey: {
+    id: "sergey",
+    name: "Sergey Kravtsov",
+    title: "Owner",
+    scope: "UAE corporate structures, company formation, banking and international settlements — for clients and partners across the CIS",
+    credibility: "The Owner you deal with directly — one team, one point of responsibility, and a structure that holds for the long run.",
+    signature: "Sergey",
+    initials: "SK",
+    photo: "/experts/sergey.jpg",
     services: [],
   },
   oleg: {
@@ -73,9 +84,9 @@ export const experts: Record<ExpertId, Expert> = {
   },
 };
 
-// NOTE: Sergey Kravtsov (Owner) has a personal page + photo (links-sergey) but is intentionally not in the public expert roster — confirm with founder.
 export const expertList: Expert[] = [
   experts.ivan,
+  experts.sergey,
   experts.oleg,
   experts.olya,
   experts.kostya,
