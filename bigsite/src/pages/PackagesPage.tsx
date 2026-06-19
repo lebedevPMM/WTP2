@@ -112,7 +112,7 @@ export default function PackagesPage() {
         </div>
       </Section>
 
-      <PreScreenCTABlock expert="oleg" />
+      <PreScreenCTABlock expert="olya" />
     </>
   );
 }

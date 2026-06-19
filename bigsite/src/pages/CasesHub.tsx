@@ -102,7 +102,7 @@ export default function CasesHub() {
         />
       </Section>
 
-      <PreScreenCTABlock expert="oleg" />
+      <PreScreenCTABlock expert="olya" />
     </>
   );
 }

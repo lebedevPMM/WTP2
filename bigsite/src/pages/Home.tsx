@@ -160,7 +160,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <PreScreenCTABlock expert="oleg" />
+      <PreScreenCTABlock expert="olya" />
     </>
   );
 }

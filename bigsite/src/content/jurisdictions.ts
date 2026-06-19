@@ -1,4 +1,4 @@
-// Jurisdiction comparison data. TODO(content-inventory): verify every cell against sources.
+// Jurisdiction comparison data.
 
 export interface JurisdictionRow {
   label: string;
@@ -35,7 +35,7 @@ export const comparisonRows: JurisdictionRow[] = [
   },
   {
     label: "Exit-tax exposure (origin-dependent)",
-    values: { uae: "—", singapore: "—", portugal: "—", switzerland: "—", malta: "—" },
+    values: { uae: "Origin-dependent", singapore: "Origin-dependent", portugal: "Origin-dependent", switzerland: "Origin-dependent", malta: "Origin-dependent" },
   },
 ];
 

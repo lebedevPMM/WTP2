@@ -120,7 +120,7 @@ export default function InsightsHub() {
         </div>
       </Section>
 
-      <PreScreenCTABlock expert="oleg" />
+      <PreScreenCTABlock expert="olya" />
     </>
   );
 }

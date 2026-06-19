@@ -26,7 +26,7 @@ export const services: ServiceData[] = [
     subhead:
       "Banks decline most relocating HNWI on the first application. We get you through — by starting with the bank, not the paperwork.",
     tierRange: "L0–L1",
-    leadExpert: "oleg",
+    leadExpert: "olya",
     bankingFirstStep: 1,
     problem:
       "Form the company first and the bank says no — about a third of corporate applications are declined. Most advisors register the entity and leave you stranded at compliance. We treat the bank as the first, hardest step and clear it before anything else moves.",

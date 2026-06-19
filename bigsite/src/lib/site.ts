@@ -3,12 +3,12 @@ export const site = {
   name: "WTP",
   full: "WTP — Welcome To Paradise",
   domain: "wtp.ae",
-  email: "hello@wtpbrokers.com",
+  email: "hello@wtp.ae",
   phone: "+971 600 575-294",
   phoneHref: "tel:+971600575294",
   telegram: "https://t.me/wtpbrokers",
   whatsapp: "https://wa.me/971600575294",
-  office: "Media City, Dubai, UAE",
+  office: "Dubai Media City, Arenco Tower, Office 1207",
   linkedin: "https://www.linkedin.com/company/wtpbrokers",
 } as const;
 

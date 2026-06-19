@@ -23,17 +23,17 @@ export interface CaseStudy {
 export const cases: CaseStudy[] = [
   {
     slug: "difc-holding-mining",
-    title: "DIFC holding for a mining-equipment business — a structure two rivals mispriced",
+    title: "DIFC holding for a mining-equipment business",
     situationTag: "DIFC holding · Mining",
     situation:
-      "An EU-citizen entrepreneur (wealth from a 2014 sale of a significant equity stake) came to WTP after three Dubai consultancies each priced a single DIFC licence combining mining-equipment trading and investment activity. He was rightly skeptical — their answers went vague on the regulatory detail.",
+      "An EU-citizen entrepreneur (wealth from a prior business sale of a significant equity stake) came to WTP after three Dubai consultancies each priced a single DIFC licence combining mining-equipment trading and investment activity. He was skeptical — their answers went vague on the regulatory detail.",
     constraint:
-      "In DIFC, trading and investment fall under separate regulatory regimes; one licence cannot cover both. His profile also auto-triggered enhanced due diligence — an expanded pack of source-of-wealth evidence, statements, birth certificate, proof of non-Russian citizenship, and notarized legalization of each document.",
+      "In DIFC, trading and investment fall under separate regulatory regimes; one licence cannot cover both. His profile also auto-triggered enhanced due diligence — an expanded pack of source-of-wealth evidence, statements, birth certificate, proof of citizenship, and notarized legalization of each document.",
     action:
-      "We confirmed the impossibility with DIFC in writing, then built a two-entity model (a DIFC holding company plus a DIFC trading entity). We assembled and legalized the full EDD pack — DIFC cleared without supplementary requests — and pre-aligned the compliance file with Mashreq Bank before submission. We also handled office, residence, domain and business-service setup.",
+      "We confirmed the impossibility with DIFC in writing, then built a two-entity model (a DIFC holding company plus a DIFC trading entity). We assembled and legalized the full EDD pack — DIFC cleared without supplementary requests — and pre-aligned the compliance file with a leading UAE bank before submission. We also handled office, residence, domain and business-service setup.",
     outcomeMetric:
-      "DIFC structure + Mashreq account, EDD cleared. Came in materially leaner than two mispriced competitor bids.",
-    timeframe: "10 weeks (vs 5–7 months the classic way)",
+      "DIFC structure + a UAE bank account, EDD cleared.",
+    timeframe: "~10 weeks",
     verified: true,
     services: ["business-setup", "banking"],
     jurisdictions: ["uae"],
@@ -54,7 +54,7 @@ export const cases: CaseStudy[] = [
     verified: true,
     services: ["banking", "business-setup"],
     jurisdictions: ["uae"],
-    leadExpert: "oleg",
+    leadExpert: "olya",
   },
   {
     slug: "spanish-manufacturer-ifza-structuring",
@@ -78,11 +78,11 @@ export const cases: CaseStudy[] = [
     title: "AI company on Dubai Mainland — launched remotely around a visa freeze",
     situationTag: "AI startup · Mainland",
     situation:
-      "A Spanish multi-family office referred an investor who had backed two AI developers and wanted a full UAE structure — operating internationally while serving Dubai directly. Dubai Mainland was chosen for maximum flexibility. It looked routine.",
+      "A family office referred an investor who wanted a full UAE structure — operating internationally while serving Dubai directly. Dubai Mainland was chosen for maximum flexibility. It looked routine.",
     constraint:
-      "Execution surfaced three blocks. One founder's Tajikistan passport hit a UAE visa-policy tightening — his tourist visa was rejected, risking a full stop. Then a biometric-system failure during residency processing, and an Emirates-ID delay in the central system.",
+      "Execution surfaced three blocks. One founder's high-scrutiny passport hit a UAE visa-policy tightening — his tourist visa was rejected, risking a full stop. Then a biometric-system failure during residency processing, and an Emirates-ID delay in the central system.",
     action:
-      "We restructured the formation: a power of attorney and remote incorporation using the second founder's documents, after which the first founder entered on an Entry Permit against his partnership — not a tourist visa. We arranged same-day biometric re-capture at another centre and went direct to immigration for a same-day Emirates ID so he flew out on schedule. Corporate, personal and online banking opened; cards couriered by DHL. WTP then ran the operational back-office for the full year.",
+      "We restructured the formation: a power of attorney and remote incorporation using the second founder's documents, after which the first founder entered on an Entry Permit against his partnership — not a tourist visa. We arranged same-day biometric re-capture at another centre and went direct to immigration for a same-day Emirates ID so he flew out on schedule. Corporate, personal and online banking opened; cards couriered. WTP then ran the operational back-office for the full year.",
     outcomeMetric: "Company, residency, banking + multi-year ops",
     timeframe: "launched on schedule",
     verified: true,
@@ -116,7 +116,7 @@ export const cases: CaseStudy[] = [
     constraint:
       "Selling at that point would have lost money. And the real trap comes after a successful exit: capital is available but strategy isn't, so investors buy weak projects at hype and lose the next cycle.",
     action:
-      "We advised waiting for handover, then sold the completed unit. The redeployment was prepared before closing — a pre-launch allocation in Dubai Islands, short-term-rental plus appreciation, with a strong unit selected on launch day. We then closed the full perimeter: Golden Visa, an ownership structure reviewed for exit and tax, and a will for succession.",
+      "We advised waiting for handover, then sold the completed unit. The redeployment was prepared before closing — a pre-launch allocation in Dubai Islands, short-term-rental plus appreciation, with a unit selected on launch day. We then closed the full perimeter: Golden Visa, an ownership structure reviewed for exit and tax, and a will for succession.",
     outcomeMetric: "~9–10% annualized return + Golden Visa",
     timeframe: "exit timed to handover",
     verified: true,

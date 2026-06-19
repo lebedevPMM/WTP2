@@ -178,7 +178,7 @@ export default function PreScreen() {
         </div>
       </Section>
 
-      <PreScreenCTABlock expert="oleg" />
+      <PreScreenCTABlock expert="olya" />
     </>
   );
 }

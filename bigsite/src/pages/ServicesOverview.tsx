@@ -200,7 +200,7 @@ export default function ServicesOverview() {
         </div>
       </Section>
 
-      <PreScreenCTABlock expert="oleg" />
+      <PreScreenCTABlock expert="olya" />
     </>
   );
 }

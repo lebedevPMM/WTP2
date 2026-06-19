@@ -145,7 +145,7 @@ export default function BankingFirst() {
       </Section>
 
       {/* 8. CTA */}
-      <PreScreenCTABlock expert="oleg" />
+      <PreScreenCTABlock expert="olya" />
     </>
   );
 }

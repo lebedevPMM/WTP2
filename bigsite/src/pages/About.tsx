@@ -54,7 +54,7 @@ export default function About() {
       <Section>
         <StatBar
           stats={[
-            { value: "5,000+", label: "deals closed across the group", source: "group track record" },
+            { value: "~5,000", label: "deals closed across the group", source: "group track record" },
             { value: "100+ HNWI", label: "mandates delivered", source: "WTP client base" },
             { value: "50", label: "partners in 15 countries", source: "WTP network" },
             { value: "7+", label: "UAE banks", source: "WTP banking desk" },
