@@ -1,5 +1,5 @@
 // Named experts — the authority layer (doctrine: every page carries a named expert).
-// TODO(content-inventory): reconcile bios/titles with WTP2-content-inventory.md.
+// Roster reconciled to the links-* founder personal pages (source of truth) on 2026-06-19.
 
 export type ExpertId = "ivan" | "oleg" | "olya" | "kostya" | "ilya";
 
@@ -19,7 +19,7 @@ export const experts: Record<ExpertId, Expert> = {
   ivan: {
     id: "ivan",
     name: "Ivan Olenichev",
-    title: "CEO & Founder",
+    title: "Founder & CEO",
     scope: "Strategy, structuring, client mandates",
     credibility: "Built WTP around one hard truth: the bank is the gate, so we start there.",
     signature: "Ivan",
@@ -29,36 +29,38 @@ export const experts: Record<ExpertId, Expert> = {
   },
   oleg: {
     id: "oleg",
-    name: "Oleg",
-    title: "Banking & Investments",
-    scope: "UAE account opening, compliance, investment structuring",
-    credibility: "Runs the pre-screen that gets relocating HNWI through banks that decline most first applications.",
+    name: "Oleg Karasev",
+    title: "Investments & Capital",
+    scope: "Capital markets, investment structuring, UAE real estate, late-stage private deals",
+    credibility: "Thirteen years inside capital markets — weighs global markets, UAE property and late-stage US private deals as one portfolio strategy.",
     signature: "Oleg",
     initials: "OL",
     photo: "/experts/oleg.jpg",
-    services: ["banking", "assets-wealth"],
+    services: ["assets-wealth"],
   },
   olya: {
     id: "olya",
-    name: "Olya",
-    title: "Legal, Visas & Setup",
-    scope: "Company formation, residency, Golden Visa, legal structuring",
-    credibility: "Sequences the company, residency and visa steps around your assets — not the other way round.",
+    name: "Olga Zueva",
+    title: "Company, Banking & Visas",
+    scope: "Company formation, bank account opening, residency, visas, compliance",
+    credibility: "100+ applications: runs company, bank account, visa and compliance as one process — the bank account is the real test, not the company.",
     signature: "Olya",
     initials: "OY",
     photo: "/experts/olya.jpg",
-    services: ["business-setup", "residency-visa", "assets-wealth"],
+    services: ["business-setup", "banking", "residency-visa"],
   },
   kostya: {
     id: "kostya",
-    name: "Kostya",
-    title: "Real Estate",
-    scope: "Property acquisition, residency-by-investment real estate",
-    credibility: "Maps property purchases to residency thresholds so the asset works twice.",
+    name: "Konstantin Horodko",
+    title: "Real Estate & Investments",
+    scope: "Dubai property acquisition, residency-by-investment real estate",
+    credibility: "Direct lines to leading UAE developers — weighs Dubai property as an investment: yield, payment structure, horizon and exit.",
     signature: "Kostya",
     initials: "KO",
+    photo: "/experts/horodko.jpg",
     services: ["assets-wealth"],
   },
+  // TODO: real name + photo pending from founder
   ilya: {
     id: "ilya",
     name: "Ilya",
@@ -71,6 +73,7 @@ export const experts: Record<ExpertId, Expert> = {
   },
 };
 
+// NOTE: Sergey Kravtsov (Owner) has a personal page + photo (links-sergey) but is intentionally not in the public expert roster — confirm with founder.
 export const expertList: Expert[] = [
   experts.ivan,
   experts.oleg,
