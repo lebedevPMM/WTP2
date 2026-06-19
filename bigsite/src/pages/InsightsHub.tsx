@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Section, Eyebrow, Button } from "../components/ui";
+import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { ArticleCard } from "../components/ArticleCard";
 import { Avatar } from "../components/Avatar";
@@ -89,37 +89,7 @@ export default function InsightsHub() {
         </div>
       </Section>
 
-      {/* Resources teaser */}
-      <Section>
-        <div
-          style={{
-            padding: "40px",
-            borderRadius: 20,
-            background: "var(--deep-2)",
-            border: "1px solid var(--line)",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 20,
-          }}
-        >
-          <div style={{ maxWidth: 520 }}>
-            <Eyebrow>Beyond the guides</Eyebrow>
-            <h2 style={{ fontSize: "clamp(22px,3vw,32px)", marginTop: 14 }} className="h-grad">
-              Want it tailored to your situation?
-            </h2>
-            <p className="muted" style={{ fontSize: 16, marginTop: 12 }}>
-              The guides cover the general case. Your structure, jurisdiction and bank are specific — a
-              pre-screen turns the reading into a roadmap built for you.
-            </p>
-          </div>
-          <Button to="/contact" large>
-            Book a pre-screen
-          </Button>
-        </div>
-      </Section>
-
+      {/* The Pre-Screen lives in the nav and below — no in-list pitch (MESSAGE-SPEC: Insights CTA = none). */}
       <PreScreenCTABlock expert="olya" />
     </>
   );

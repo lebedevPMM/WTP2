@@ -59,9 +59,6 @@ export default function InsightsCategory() {
           {label} <span className="g">guides</span>
         </h1>
         <p className="lead">{leadByCategoryText[category]}</p>
-        <div style={{ marginTop: 28 }}>
-          <Button to="/contact">Book a pre-screen</Button>
-        </div>
       </Section>
 
       {/* Category lead expert */}
