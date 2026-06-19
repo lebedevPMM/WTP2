@@ -88,7 +88,7 @@ export function Footer() {
           <Button to="/contact">Book a pre-screen</Button>
         </div>
 
-        <div style={{ padding: "22px 0 40px", borderTop: "1px solid var(--line)", display: "flex", flexWrap: "wrap", gap: "10px 22px", alignItems: "center", fontSize: 12.5, color: "var(--ink-40)" }}>
+        <div style={{ padding: "22px 0 14px", borderTop: "1px solid var(--line)", display: "flex", flexWrap: "wrap", gap: "10px 22px", alignItems: "center", fontSize: 12.5, color: "var(--ink-40)" }}>
           <span>© {new Date().getFullYear()} WTP</span>
           <Link to="/legal/privacy">Privacy</Link>
           <Link to="/legal/terms">Terms</Link>
@@ -98,6 +98,11 @@ export function Footer() {
           <span style={{ maxWidth: 620, lineHeight: 1.5 }}>
             WTP provides advisory and facilitation services; not regulated investment, tax, or legal advice unless explicitly stated.
           </span>
+        </div>
+
+        <div style={{ padding: "0 0 38px", fontSize: 11, color: "var(--ink-40)", lineHeight: 1.6, maxWidth: 820 }}>
+          WTP is a brand of ILEGAL CONSULTANCY CO. L.L.C (management consultancy · licence 1162594) and Wellcome to
+          Paradise Real Estate Brokers L.L.C (ORN 35551 · licence 1181286) — Dubai Media City, Arenco Tower, Office 1207.
         </div>
       </div>
     </footer>

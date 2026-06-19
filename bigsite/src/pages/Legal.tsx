@@ -13,7 +13,7 @@ const docs: Record<string, { title: string; body: ReactNode }> = {
     body: (
       <>
         <p>
-          Welcome to Paradise Real Estate Brokers L.L.C ("WTP", "we") provides advisory and facilitation
+          WTP ("we") provides advisory and facilitation
           services: company formation, banking facilitation, residency and visa support, and related
           structuring assistance in the United Arab Emirates.
         </p>
@@ -55,7 +55,7 @@ const docs: Record<string, { title: string; body: ReactNode }> = {
     body: (
       <>
         <p>
-          This policy explains how Welcome to Paradise Real Estate Brokers L.L.C handles personal data you provide through
+          This policy explains how WTP handles personal data you provide through
           this website (for example, when you request a pre-screen or contact us).
         </p>
         <h3>What we collect</h3>
@@ -94,7 +94,7 @@ const docs: Record<string, { title: string; body: ReactNode }> = {
     body: (
       <>
         <p>
-          These terms govern your use of the Welcome to Paradise Real Estate Brokers L.L.C website. By using the site you
+          These terms govern your use of the WTP website. By using the site you
           accept them.
         </p>
         <h3>The website</h3>
@@ -127,7 +127,7 @@ const docs: Record<string, { title: string; body: ReactNode }> = {
     body: (
       <>
         <p>
-          This policy explains how this Welcome to Paradise Real Estate Brokers L.L.C website uses cookies and similar
+          This policy explains how this WTP website uses cookies and similar
           technologies, and the choices you have.
         </p>
         <h3>What we use</h3>
@@ -158,33 +158,32 @@ const docs: Record<string, { title: string; body: ReactNode }> = {
     body: (
       <>
         <p>
-          Welcome to Paradise Real Estate Brokers L.L.C ("WTP") is a company licensed in the United
-          Arab Emirates. Its licensed activity is real estate brokerage, registered with the competent
-          UAE real estate authority.
+          WTP is a brand used by two UAE-licensed companies that share one Dubai office. The service
+          on this website is provided by whichever company is licensed for that activity.
         </p>
-        <h3>How our other services work</h3>
+        <h3>Who provides what</h3>
         <p>
-          Beyond real estate, we help clients prepare for and navigate banking, company formation,
-          residency and structuring. We provide these on an advisory and facilitation basis — we
-          prepare and coordinate files and introduce you to licensed providers. WTP is not a bank,
-          law firm, audit firm, tax adviser, or licensed financial-services firm, and we do not
-          provide regulated financial, legal, or tax advice.
+          Advisory and facilitation — banking, company formation, residency and structuring — is
+          provided by ILEGAL CONSULTANCY CO. L.L.C, a UAE management consultancy (licence 1162594).
+          Real-estate brokerage is provided by an affiliated licensed broker, Wellcome to Paradise
+          Real Estate Brokers L.L.C (ORN 35551, licence 1181286). Both are registered at Dubai Media
+          City, Arenco Tower, Office 1207.
         </p>
-        <h3>Who is regulated for what</h3>
+        <h3>What WTP is not</h3>
         <p>
-          WTP is not licensed or regulated by the Central Bank of the UAE, the Dubai Financial
-          Services Authority (DIFC), the Financial Services Regulatory Authority (ADGM), the
-          Securities and Commodities Authority, or the Virtual Assets Regulatory Authority, and
-          nothing on this site is an offer of regulated financial services. Regulated work — bank
-          accounts, licences, visas, audited structures — is carried out by the relevant banks, free
-          zones, authorities and licensed professionals under their own rules and at their own
-          discretion. WTP facilitates and prepares; it does not approve, guarantee, or control those
-          outcomes.
+          WTP is not a bank, law firm, audit firm, tax adviser, or licensed financial-services firm,
+          and it is not licensed or regulated by the Central Bank of the UAE, the Dubai Financial
+          Services Authority (DIFC), the Financial Services Regulatory Authority (ADGM), the Securities
+          and Commodities Authority, or the Virtual Assets Regulatory Authority. Nothing on this site
+          is an offer of regulated financial services or regulated advice.
         </p>
-        <h3>Engagement terms govern</h3>
+        <h3>Third-party decisions</h3>
         <p>
-          Any service we provide is governed by a signed engagement letter that sets out scope, fees
-          and responsibilities. Questions:{" "}
+          Bank accounts, licences, visas and audited structures are granted by the relevant banks,
+          free zones, authorities and licensed professionals under their own rules and at their own
+          discretion. WTP prepares and coordinates the file and introduces you to licensed providers;
+          it does not approve, guarantee, or control those outcomes. Any engagement is governed by a
+          signed letter that sets out scope, fees and responsibilities. Questions:{" "}
           <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>.
         </p>
       </>
