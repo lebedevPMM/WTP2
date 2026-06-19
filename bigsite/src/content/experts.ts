@@ -60,16 +60,16 @@ export const experts: Record<ExpertId, Expert> = {
     photo: "/experts/horodko.jpg",
     services: ["assets-wealth"],
   },
-  // TODO: real name + photo pending from founder
   ilya: {
     id: "ilya",
-    name: "Ilya",
-    title: "Finance & VARA",
-    scope: "Crypto, VARA licensing, digital-asset compliance",
-    credibility: "Handles the digital-asset and VARA-regulated side most advisors won't touch.",
-    signature: "Ilya",
-    initials: "IL",
-    services: ["assets-wealth"],
+    name: "Ilia Ostashov",
+    title: "Founder & Private Client Advisor",
+    scope: "Private-client advisory for HNWI — non-standard banking profiles, multi-country structures, long-term asset control",
+    credibility: "A founder you deal with directly — the single point of accountability across banking, structures, residency and asset protection.",
+    signature: "Ilia",
+    initials: "IO",
+    photo: "/experts/ilia.jpg",
+    services: [],
   },
 };
 
