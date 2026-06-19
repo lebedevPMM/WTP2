@@ -24,14 +24,14 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* Proof bar — provenance on every number (SPEC law #5). TODO: replace with verified mandate stats. */}
+      {/* Proof bar — provenance on every number (SPEC law #5). Confirmed mandate stats. */}
       <Section>
         <StatBar
           stats={[
-            { value: "~30%", label: "of honest applications banks decline", source: "WTP pre-screen data" },
-            { value: "5–7 days", label: "to a Banking Roadmap", source: "L0 pre-screen" },
-            { value: "4–8 wks", label: "typical full mandate", source: "WTP engagement model" },
-            { value: "0%", label: "personal income tax in the UAE", source: "UAE tax code" },
+            { value: "100+", label: "UAE accounts opened", source: "WTP track record" },
+            { value: "90%+", label: "of pre-screened cases reach a working account", source: "WTP pre-screen data" },
+            { value: "7+", label: "UAE banks we work across", source: "WTP banking desk" },
+            { value: "3 days–1 wk", label: "to a personal account once approved", source: "typical timeline" },
           ]}
         />
       </Section>

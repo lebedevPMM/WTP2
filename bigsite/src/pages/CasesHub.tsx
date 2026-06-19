@@ -83,17 +83,21 @@ export default function CasesHub() {
         )}
       </Section>
 
-      {/* Honest aggregate stats — provenance on every number (SPEC law #5). No fabricated count. */}
+      {/* Honest aggregate stats — provenance on every number (SPEC law #5). Confirmed figures. */}
       <Section>
         <StatBar
           stats={[
-            { value: "5–7 days", label: "to a Banking Roadmap", source: "L0 pre-screen" },
-            { value: "4–8 wks", label: "typical full mandate", source: "WTP engagement model" },
             {
               value: "~30%",
-              label: "first-application bank declines we work around",
+              label: "of first bank applications are declined",
+              source: "industry + WTP intake",
+            },
+            {
+              value: "90%+",
+              label: "of our pre-screened cases reach a working account",
               source: "WTP pre-screen data",
             },
+            { value: "100+ HNWI", label: "mandates delivered", source: "WTP client base" },
           ]}
         />
       </Section>

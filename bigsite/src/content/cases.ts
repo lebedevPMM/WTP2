@@ -31,7 +31,8 @@ export const cases: CaseStudy[] = [
       "In DIFC, trading and investment fall under separate regulatory regimes; one licence cannot cover both. His profile also auto-triggered enhanced due diligence — an expanded pack of source-of-wealth evidence, statements, birth certificate, proof of non-Russian citizenship, and notarized legalization of each document.",
     action:
       "We confirmed the impossibility with DIFC in writing, then built a two-entity model (a DIFC holding company plus a DIFC trading entity). We assembled and legalized the full EDD pack — DIFC cleared without supplementary requests — and pre-aligned the compliance file with Mashreq Bank before submission. We also handled office, residence, domain and business-service setup.",
-    outcomeMetric: "DIFC structure + Mashreq account, EDD cleared",
+    outcomeMetric:
+      "DIFC structure + Mashreq account, EDD cleared. Came in materially leaner than two mispriced competitor bids.",
     timeframe: "10 weeks (vs 5–7 months the classic way)",
     verified: true,
     services: ["business-setup", "banking"],
@@ -47,8 +48,8 @@ export const cases: CaseStudy[] = [
     constraint:
       "Compliance review found three structural errors: a licence/activity mismatch (a General Trading licence over electronics, equipment, investment holding and asset management reads to a bank as a payment vehicle); no operational narrative (no customers, suppliers or pipeline); and incorporation before any bank pre-check, so the entity was already non-bankable.",
     action:
-      "We renegotiated the licence activities with the regulator down to what banks accept, wrote a business-model memorandum for compliance review, assembled source-of-wealth documentation, and produced letters of intent from counterparties to evidence a real commercial pipeline.",
-    outcomeMetric: "Corporate account opened",
+      "We renegotiated the licence activities with the regulator down to what banks accept, wrote a business-model memorandum for compliance review, assembled source-of-wealth documentation, and produced letters of intent from counterparties to evidence a real commercial pipeline. The case was recovered after a first bank 'no' — rebuilt into a file a bank could actually approve.",
+    outcomeMetric: "Corporate account opened. Saved weeks and avoided unnecessary structuring cost.",
     timeframe: "after 4 months stalled elsewhere",
     verified: true,
     services: ["banking", "business-setup"],
@@ -98,8 +99,8 @@ export const cases: CaseStudy[] = [
     constraint:
       "The prior broker had filed the application with no logical structure, so the bank couldn't reach a decision. It was also a mortgage-to-mortgage deal — both buyer and seller carried mortgages, doubling the banks involved and the break risk — against a tight budget in a location pricing above it.",
     action:
-      "Rather than wait on the bank, we went into the branch the next day, sat with the banker, found where the file had broken, and rebuilt it as a structured case (income, transaction and documentation logic). Pre-approval issued in two business days. A focused search plus seller negotiation then closed a unit in the target location.",
-    outcomeMetric: "Closed below list, in budget",
+      "Rather than wait on the bank, we went into the branch the next day, sat with the banker, found where the file had broken, and rebuilt it as a structured case (income, transaction and documentation logic) — recovered after a first bank 'no'. Pre-approval issued in two business days. A focused search plus seller negotiation then closed a unit in the target location.",
+    outcomeMetric: "Closed below list, in budget. Saved weeks against a lapsing pre-approval.",
     timeframe: "1.5 months (dual-mortgage)",
     verified: true,
     services: ["assets-wealth"],

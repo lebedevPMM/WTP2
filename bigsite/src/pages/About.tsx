@@ -50,14 +50,14 @@ export default function About() {
         <StepperBankingFirst />
       </Section>
 
-      {/* Credibility strap */}
+      {/* Credibility strap — confirmed figures, provenance on every number (SPEC law #5). */}
       <Section>
         <StatBar
           stats={[
-            { value: "5–7 days", label: "to a Banking Roadmap", source: "L0 pre-screen" },
-            { value: "4–8 wks", label: "typical full mandate", source: "WTP engagement model" },
-            { value: "~30%", label: "of honest applications banks decline", source: "WTP pre-screen data" },
-            { value: "0%", label: "personal income tax in the UAE", source: "UAE tax code" },
+            { value: "25+ yrs", label: "combined at the table", source: "Oleg 13y; partners 7y+ each" },
+            { value: "100+ HNWI", label: "mandates delivered", source: "WTP client base" },
+            { value: "50", label: "partners in 15 countries", source: "WTP network" },
+            { value: "7+", label: "UAE banks", source: "WTP banking desk" },
           ]}
         />
       </Section>
