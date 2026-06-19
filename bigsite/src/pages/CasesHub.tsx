@@ -88,11 +88,6 @@ export default function CasesHub() {
         <StatBar
           stats={[
             {
-              value: "~30%",
-              label: "of first bank applications are declined",
-              source: "industry + WTP intake",
-            },
-            {
               value: "90%+",
               label: "of our pre-screened cases reach a working account",
               source: "WTP pre-screen data",

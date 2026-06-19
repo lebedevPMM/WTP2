@@ -22,8 +22,8 @@ export const comparisonRows: JurisdictionRow[] = [
     values: { uae: "0%", singapore: "up to 24%", portugal: "up to 48%", switzerland: "up to ~40%", malta: "up to 35%" },
   },
   {
-    label: "Banking access (relocating HNWI)",
-    values: { uae: "Hard but solvable — our specialty", singapore: "Selective", portugal: "Moderate", switzerland: "Relationship-led", malta: "Moderate" },
+    label: "Banking access (incoming HNWI)",
+    values: { uae: "Hard but solvable", singapore: "Selective", portugal: "Moderate", switzerland: "Relationship-led", malta: "Moderate" },
   },
   {
     label: "Residency cost / threshold",

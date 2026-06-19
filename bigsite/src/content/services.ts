@@ -24,12 +24,12 @@ export const services: ServiceData[] = [
     line: "Banking",
     outcomeHeadline: "Open a UAE bank account without the 6-month wait",
     subhead:
-      "Banks decline most relocating HNWI on the first application. We get you through — by starting with the bank, not the paperwork.",
+      "Banks decline most HNWI on the first application. We get you through — by starting with the bank, not the paperwork.",
     tierRange: "L0–L1",
     leadExpert: "olya",
     bankingFirstStep: 1,
     problem:
-      "Form the company first and the bank says no — about a third of corporate applications are declined. Most advisors register the entity and leave you stranded at compliance. We treat the bank as the first, hardest step and clear it before anything else moves.",
+      "Form the company first and the bank says no — a meaningful share of corporate applications are declined. Most advisors register the entity and leave you stranded at compliance. We treat the bank as the first, hardest step and clear it before anything else moves.",
     steps: [
       { title: "Pre-screen", outcome: "We assess bankability before you spend a dirham." },
       { title: "Banking roadmap", outcome: "A named bank, a named officer, a realistic timeline." },
@@ -42,7 +42,7 @@ export const services: ServiceData[] = [
       { tier: "L1", label: "Account opening", includes: "Full application, compliance prep, account opened with IBAN." },
     ],
     faqs: [
-      { q: "Why do banks decline relocating HNWI?", a: "Source-of-funds, residency status and structure mismatches. About 30% of honest applications are declined — we fix the causes before you apply." },
+      { q: "Why do banks decline honest money?", a: "Source-of-funds, residency status and structure mismatches. A meaningful share of honest applications are declined — we fix the causes before you apply." },
       { q: "How long does it take?", a: "The pre-screen takes 5–7 days; a full mandate runs 4–8 weeks. You get a realistic timeline up front, not a generic promise." },
     ],
   },
@@ -98,14 +98,14 @@ export const services: ServiceData[] = [
   {
     slug: "assets-wealth",
     line: "Assets & Wealth",
-    outcomeHeadline: "Protect and grow your wealth after the move",
+    outcomeHeadline: "Keep the structure efficient once it's built",
     subhead:
       "Once you're banked and resident, the work is keeping the structure efficient — real estate, investments, digital assets.",
     tierRange: "L3",
     leadExpert: "olya",
     bankingFirstStep: 4,
     problem:
-      "The move is the start, not the finish. Real estate, investment accounts and digital assets each carry their own compliance and tax contour. We keep the whole structure coherent.",
+      "Opening the account is the start, not the finish. Real estate, investment accounts and digital assets each carry their own compliance and tax contour. We keep the whole structure coherent.",
     steps: [
       { title: "Asset review", outcome: "Where everything sits and what the 9% CT and substance rules mean." },
       { title: "Real estate", outcome: "Property that doubles as a residency and a store of value (Kostya)." },

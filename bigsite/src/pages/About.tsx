@@ -14,11 +14,12 @@ export default function About() {
         <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "About" }]} />
         <Eyebrow>About</Eyebrow>
         <h1 className="h-grad" style={{ fontSize: "clamp(32px,5vw,56px)", margin: "18px 0" }}>
-          Why <span className="g">banking-first</span> exists
+          The back office <span className="g">behind the fortune</span>
         </h1>
         <p className="lead">
-          Most advisors register your company and disappear the moment the bank says no. We do the opposite — we start at
-          the hardest step and build the rest of the structure around it.
+          The discreet team a fortune keeps on quiet retainer — banking, structures, residency, succession — handled by
+          people who do only this, named and accountable for the outcome. The UAE is a tool we deploy when it fits the
+          outcome, never the pitch.
         </p>
       </Section>
 

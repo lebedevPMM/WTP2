@@ -41,7 +41,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "free-zone-general-trading-remediation",
-    title: "Three bank rejections, no account in four months — remediated to an open account",
+    title: "Three bank rejections — remediated to an open account",
     situationTag: "Free Zone · Remediation",
     situation:
       "The client had formed a Free Zone General Trading entity through another agency, then spent four months failing to open a corporate account: three rejections and two banks that never responded. Then he engaged WTP.",
@@ -49,7 +49,7 @@ export const cases: CaseStudy[] = [
       "Compliance review found three structural errors: a licence/activity mismatch (a General Trading licence over electronics, equipment, investment holding and asset management reads to a bank as a payment vehicle); no operational narrative (no customers, suppliers or pipeline); and incorporation before any bank pre-check, so the entity was already non-bankable.",
     action:
       "We renegotiated the licence activities with the regulator down to what banks accept, wrote a business-model memorandum for compliance review, assembled source-of-wealth documentation, and produced letters of intent from counterparties to evidence a real commercial pipeline. The case was recovered after a first bank 'no' — rebuilt into a file a bank could actually approve.",
-    outcomeMetric: "Corporate account opened. Saved weeks and avoided unnecessary structuring cost.",
+    outcomeMetric: "Corporate account opened.",
     timeframe: "after 4 months stalled elsewhere",
     verified: true,
     services: ["banking", "business-setup"],
@@ -61,7 +61,7 @@ export const cases: CaseStudy[] = [
     title: "Spanish manufacturer: an IFZA order reframed into a bankable structure",
     situationTag: "EU manufacturer · IFZA",
     situation:
-      "A pet-accessories manufacturer in Spain — selling globally, Asia-focused — evaluated relocating its tax base to the UAE via a single-owner IFZA setup. The questions were operational: reporting regime, mandatory accountant, hidden costs, moving funds out.",
+      "A pet-accessories manufacturer in Spain — selling globally, Asia-focused — weighed a single-owner IFZA setup for its tax base. The questions were operational: reporting regime, mandatory accountant, hidden costs, moving funds out.",
     constraint:
       "With no UAE market activity, the planned structure triggered three risks before setup: economic substance (a single owner with no UAE operations risks failing the Qualifying Free Zone tests and being taxed at 9% instead of 0%); owner tax residency (UAE corporate savings don't survive attribution if the owner stays tax-resident in Spain); and bankability (a General Trading licence with no UAE counterparties is flagged as a payment-vehicle structure).",
     action:
@@ -117,7 +117,7 @@ export const cases: CaseStudy[] = [
       "Selling at that point would have lost money. And the real trap comes after a successful exit: capital is available but strategy isn't, so investors buy weak projects at hype and lose the next cycle.",
     action:
       "We advised waiting for handover, then sold the completed unit. The redeployment was prepared before closing — a pre-launch allocation in Dubai Islands, short-term-rental plus appreciation, with a unit selected on launch day. We then closed the full perimeter: Golden Visa, an ownership structure reviewed for exit and tax, and a will for succession.",
-    outcomeMetric: "~9–10% annualized return + Golden Visa",
+    outcomeMetric: "Clean exit, redeployment, Golden Visa and succession in one sequence.",
     timeframe: "exit timed to handover",
     verified: true,
     services: ["assets-wealth", "residency-visa"],

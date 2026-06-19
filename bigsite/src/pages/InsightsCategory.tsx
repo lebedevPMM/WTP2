@@ -14,7 +14,7 @@ import {
 } from "../content/articles";
 
 const leadByCategory: Record<Category, ExpertId> = {
-  banking: "oleg",
+  banking: "olya",
   "residency-visa": "olya",
   "business-setup": "olya",
   "assets-tax": "ilya",
@@ -22,7 +22,7 @@ const leadByCategory: Record<Category, ExpertId> = {
 
 const leadByCategoryText: Record<Category, string> = {
   banking:
-    "How relocating HNWI actually clear UAE banks — source-of-funds, structure and the file that gets you through.",
+    "How honest money actually clears a UAE bank — source-of-funds, structure, and the file that gets you through.",
   "residency-visa":
     "Residency and visa routes sequenced around your assets, not the other way round — so the structure underneath holds.",
   "business-setup":

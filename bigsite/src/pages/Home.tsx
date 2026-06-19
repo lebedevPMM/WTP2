@@ -41,7 +41,7 @@ export default function Home() {
         <div style={{ maxWidth: 760 }}>
           <Eyebrow>What we are</Eyebrow>
           <h2 style={{ fontSize: "clamp(28px,4vw,46px)", margin: "20px 0 16px" }} className="h-grad">
-            The discreet team that runs <span className="g">a fortune's UAE base.</span>
+            The discreet team that runs <span className="g">a fortune's banking, structure and succession.</span>
           </h2>
           <p className="muted" style={{ fontSize: 18 }}>
             Banking, company, structures, residency and succession — handled end to end by one accountable team, the way a

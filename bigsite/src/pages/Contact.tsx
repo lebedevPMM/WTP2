@@ -9,7 +9,7 @@ import { submitPreScreen } from "../lib/bitrix";
 // Contact / Book a pre-screen — the conversion surface.
 // Booking: cal.com embed when VITE_CALCOM_LINK is set; lead form always posts to Bitrix24.
 export default function Contact() {
-  const oleg = getExpert("oleg");
+  const olya = getExpert("olya");
   const [state, setState] = useState<"idle" | "sending" | "done" | "offline">("idle");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -73,7 +73,7 @@ export default function Contact() {
             {[
               { label: "Full name", type: "text", name: "name", required: true },
               { label: "Email", type: "email", name: "email", required: true },
-              { label: "Where are you relocating from?", type: "text", name: "origin", required: false },
+              { label: "Where are you based today?", type: "text", name: "origin", required: false },
             ].map((f) => (
               <label key={f.name} style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                 <span style={{ fontSize: 13.5, color: "var(--ink-55)" }}>{f.label}</span>
@@ -104,10 +104,10 @@ export default function Contact() {
             <div className="card" style={{ padding: 24, marginBottom: 16 }}>
               <Eyebrow>Who you'll speak with</Eyebrow>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 16 }}>
-                <Avatar expert={oleg} size={48} />
+                <Avatar expert={olya} size={48} />
                 <div>
-                  <div style={{ fontWeight: 700, fontFamily: "var(--font-display)" }}>{oleg.name}</div>
-                  <div style={{ fontSize: 13, color: "var(--gold)" }}>{oleg.title}</div>
+                  <div style={{ fontWeight: 700, fontFamily: "var(--font-display)" }}>{olya.name}</div>
+                  <div style={{ fontSize: 13, color: "var(--gold)" }}>{olya.title}</div>
                 </div>
               </div>
             </div>

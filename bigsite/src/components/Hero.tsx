@@ -128,7 +128,7 @@ export function Hero() {
                   The back office for <span className="g">private wealth.</span>
                 </>
               ),
-              p: "The discreet team that runs a fortune's banking, structures, residency and succession in the UAE — so it keeps working, quietly.",
+              p: "The discreet team that runs a fortune's banking, structures, residency and succession — so it keeps working, quietly.",
               quiet: "We deliver bankable structures, not company setups.",
               cta: true,
             },
@@ -182,12 +182,17 @@ export function Hero() {
                     </p>
                   )}
                   {b.cta && (
-                    <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                      <Button to="/contact">Book a free pre-screen</Button>
-                      <Button to="/banking-first" ghost>
-                        How it works
-                      </Button>
-                    </div>
+                    <>
+                      <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+                        <Button to="/contact">Request a Pre-Screen</Button>
+                        <Button to="/banking-first" ghost>
+                          How it works
+                        </Button>
+                      </div>
+                      <p style={{ marginTop: 14, fontSize: 13.5, color: "var(--ink-55)" }}>
+                        No pitch. If we can't take your case, we'll tell you.
+                      </p>
+                    </>
                   )}
                 </div>
               </div>

@@ -38,10 +38,10 @@ export const products: ProductData[] = [
     "slug": "pre-screen",
     "displayName": "Pre-Screen (Bankability Assessment)",
     "isEntryPoint": true,
-    "entryPointNote": "Pre-Screen is the mandatory first step before any WTP engagement. It runs the Banking-First GO/NO-GO check on your profile, so you commit to a company, visa, or account only once the hardest constraint — bankability — is confirmed. About 30% of cases are honestly declined here, by design, before anyone pays for registration.",
+    "entryPointNote": "Pre-Screen is the mandatory first step before any WTP engagement. It runs the Banking-First GO/NO-GO check on your profile, so you commit to a company, visa, or account only once the hardest constraint — bankability — is confirmed. A meaningful share of cases are honestly declined here, by design, before anyone pays for registration.",
     "oneLiner": "Find out whether your profile is bankable — before you spend a month and real money finding out the hard way.",
     "heroSubhead": "A diagnostic that runs the hard checks first — KYC/AML, sanctions and source-of-funds, realistic bank fit, and tax exposure — and hands you a clear GO / NO-GO verdict with a documented roadmap. Banking-First, because a company without a working account is dead weight.",
-    "problem": "Most providers start with company registration and only test bankability afterwards — and that order is backwards wherever you operate. A bank can decline your profile for reasons that have nothing to do with your company — citizenship, ownership structure, untraceable source of funds, sanctions or PEP exposure — and roughly 30% of applications are declined at the screening stage. Worse, every failed bank application is recorded and lowers your odds on the next attempt, so a rushed first try can quietly burn the access you were counting on. Without a pre-check, you can spend months assembling a structure that was never going to clear, then discover the blocker only at the bank counter.",
+    "problem": "Most providers start with company registration and only test bankability afterwards — and that order is backwards wherever you operate. A bank can decline your profile for reasons that have nothing to do with your company — citizenship, ownership structure, untraceable source of funds, sanctions or PEP exposure — and a meaningful share of applications are declined at the screening stage. Worse, every failed bank application is recorded and lowers your odds on the next attempt, so a rushed first try can quietly burn the access you were counting on. Without a pre-check, you can spend months assembling a structure that was never going to clear, then discover the blocker only at the bank counter.",
     "solution": "Pre-Screen is a structured Banking-First diagnostic done before any registration or application. You describe your situation and goals; we send a focused document checklist (KYC Light). Over 5-7 days we run the analysis offline — KYC/AML pre-screening, sanctions, PEP and source-of-funds review, a realistic read on which banks will actually open for your profile, and your current tax-residency and double-taxation exposure. You receive a Risk Map and a sequenced roadmap, walk through them in a 60-minute consultation, and get a plain verdict: GO, NO-GO, or GO-with-conditions. If the honest answer is \"don't proceed,\" that is the deliverable — there is no upsell attached to it. If there is no lawful route, we decline rather than improvise one.",
     "steps": [
       {
@@ -88,7 +88,7 @@ export const products: ProductData[] = [
       "Proof of residential address — utility bill or bank statement, typically within 3 months",
       "A short CV or description of your activity",
       "Documented source of funds — contracts, dividends, financial statements, or sale agreements",
-      "Honest, full disclosure of citizenships (including second passports), past and current residencies, ownership structure, and any sanctions or PEP exposure"
+      "Honest, full disclosure of citizenships (including any additional citizenships), past and current residencies, ownership structure, and any sanctions or PEP exposure"
     ],
     "tiers": [
       {
@@ -122,7 +122,7 @@ export const products: ProductData[] = [
       },
       {
         "q": "What happens if you tell me not to proceed?",
-        "a": "Then that is the result you paid for, and it is a good outcome — you have avoided spending months and money on a structure that would not clear. There is no upsell attached. About 30% of cases are honestly declined at this stage; saying no when it is warranted is part of how we work."
+        "a": "Then that is the result you paid for, and it is a good outcome — you have avoided spending months and money on a structure that would not clear. There is no upsell attached. A meaningful share of cases are honestly declined at this stage; saying no when it is warranted is part of how we work."
       },
       {
         "q": "Why screen before opening an account instead of just applying?",
@@ -154,8 +154,8 @@ export const products: ProductData[] = [
     "entryPointNote": "X-Ray is the recommended first step for any capital owner entering the WTP pipeline. It produces the verdict and roadmap that decide whether and how to proceed to structuring, banking, or ongoing oversight — so the page should orient newcomers and route them to a pre-screen rather than sell a downstream service.",
     "oneLiner": "A full audit of your capital — assets, risks, structure, jurisdictions — consolidated into one map with a roadmap.",
     "heroSubhead": "Most capital owners hold assets across several countries and never see the whole picture in one place. X-Ray consolidates everything — real estate, business, instruments, crypto, liabilities, cashflow — into a single capital map, surfaces hidden losses and risks, and hands you a concrete 6-12 month roadmap. It is a systematic analysis, not a consultation.",
-    "problem": "When your assets are spread across jurisdictions, you stop managing capital and start managing chaos. There is no unified picture, so you don't actually know your real net worth. Inefficiencies stay hidden: underperforming assets, tax gaps, currency and country imbalances, liquidity that isn't where you need it. And without consolidation, any strategic decision — where to grow, what to protect, how to restructure — is a guess. (presentation p2)",
-    "solution": "X-Ray gives you, for the first time, a view of your capital as a single system rather than a pile of separate assets. We run a deep audit across every asset class and your liabilities, cashflow and jurisdictions; detect the inefficiencies and risks hiding in the structure; and consolidate it all into one capital map — net worth, structure, cashflow, and a risk map in one place. On top of that map sits a strategy and a 6-12 month roadmap: goals, target structure, allocation, jurisdictions, protection, with concrete steps. Because it is run through the lens of banks and regulators, the verdict is honest — if part of the picture won't pass, we tell you directly. (presentation p3, p5, p6; one-pager)",
+    "problem": "When your assets are spread across jurisdictions, you stop managing capital and start managing chaos. There is no unified picture, so you don't actually know your real net worth. Inefficiencies stay hidden: underperforming assets, tax gaps, currency and country imbalances, liquidity that isn't where you need it. And without consolidation, any strategic decision — where to grow, what to protect, how to restructure — is a guess.",
+    "solution": "X-Ray gives you, for the first time, a view of your capital as a single system rather than a pile of separate assets. We run a deep audit across every asset class and your liabilities, cashflow and jurisdictions; detect the inefficiencies and risks hiding in the structure; and consolidate it all into one capital map — net worth, structure, cashflow, and a risk map in one place. On top of that map sits a strategy and a 6-12 month roadmap: goals, target structure, allocation, jurisdictions, protection, with concrete steps. Because it is run through the lens of banks and regulators, the verdict is honest — if part of the picture won't pass, we tell you directly.",
     "steps": [
       {
         "title": "Light X-Ray (free)",
@@ -229,23 +229,23 @@ export const products: ProductData[] = [
     "faqs": [
       {
         "q": "Is this just a consultation?",
-        "a": "No. A consultation is a conversation; X-Ray is a systematic analysis with a deliverable. You receive a consolidated capital map, a risk map across taxes, banks and structure, and a written 6-12 month roadmap with concrete steps. (presentation p1, p5)"
+        "a": "No. A consultation is a conversation; X-Ray is a systematic analysis with a deliverable. You receive a consolidated capital map, a risk map across taxes, banks and structure, and a written 6-12 month roadmap with concrete steps."
       },
       {
         "q": "My assets are spread across several countries and a few asset classes. Can you actually consolidate that?",
-        "a": "Yes — that is the core of the work. We audit real estate, business interests, financial instruments and crypto alongside liabilities and cashflow, across every jurisdiction, and bring them into one unified picture so you can see your real net worth and structure in a single place. (presentation p2, p3, p5)"
+        "a": "Yes — that is the core of the work. We audit real estate, business interests, financial instruments and crypto alongside liabilities and cashflow, across every jurisdiction, and bring them into one unified picture so you can see your real net worth and structure in a single place."
       },
       {
         "q": "Do I have to commit to the full audit upfront?",
-        "a": "No. It starts with a free 30-45 minute Light X-Ray that surfaces 3-5 key risks and quick wins. Only if it's worth your while do you move to the Full X-Ray. Every step delivers value and every step is your choice. (presentation p4, p6)"
+        "a": "No. It starts with a free 30-45 minute Light X-Ray that surfaces 3-5 key risks and quick wins. Only if it's worth your while do you move to the Full X-Ray. Every step delivers value and every step is your choice."
       },
       {
         "q": "Will you manage or invest my money after the audit?",
-        "a": "X-Ray itself does not include discretionary management, trading on your behalf, or any return guarantee. It gives you the map, the strategy and the roadmap; ongoing oversight and management are a separate engagement you can choose to take up afterward. (presentation p4; brief: Wealth Management / Portfolio Oversight, NOT included)"
+        "a": "X-Ray itself does not include discretionary management, trading on your behalf, or any return guarantee. It gives you the map, the strategy and the roadmap; ongoing oversight and management are a separate engagement you can choose to take up afterward."
       },
       {
         "q": "What if part of my structure won't hold up to bank or regulator scrutiny?",
-        "a": "We tell you directly. The audit is run through the lens of banks and regulators, so the verdict is honest — if something won't pass, you'll know before you act on it, not after. Across diagnostics of this kind, a meaningful share of cases (around 30%) come back as decline rather than proceed. (one-pager)"
+        "a": "We tell you directly. The audit is run through the lens of banks and regulators, so the verdict is honest — if something won't pass, you'll know before you act on it, not after. Across diagnostics of this kind, a meaningful share of cases come back as decline rather than proceed."
       }
     ],
     "ctaToPreScreen": "See your capital as one system before you make another move. Start with a free Light X-Ray pre-screen: in 30-45 minutes we map your 3-5 biggest risks and quick wins, then you decide whether the full audit is worth it. No commitment, no upselling — just an honest read on where you stand.",

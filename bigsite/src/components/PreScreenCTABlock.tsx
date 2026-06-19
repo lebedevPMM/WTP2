@@ -2,7 +2,7 @@ import { Button } from "./ui";
 import { Avatar } from "./Avatar";
 import { getExpert, type ExpertId } from "../content/experts";
 
-export function PreScreenCTABlock({ expert = "oleg" }: { expert?: ExpertId }) {
+export function PreScreenCTABlock({ expert = "olya" }: { expert?: ExpertId }) {
   const e = getExpert(expert);
   return (
     <section className="section" style={{ textAlign: "center" }}>
@@ -28,6 +28,9 @@ export function PreScreenCTABlock({ expert = "oleg" }: { expert?: ExpertId }) {
             <Button to="/contact" large>
               Book a pre-screen with {e.name}
             </Button>
+            <p style={{ color: "var(--ink-55)", fontSize: 13.5, margin: 0 }}>
+              No pitch. If we can't take your case, we'll tell you.
+            </p>
             <div style={{ display: "flex", alignItems: "center", gap: 11, color: "var(--ink-55)", fontSize: 13.5 }}>
               <Avatar expert={e} size={34} />
               <span>

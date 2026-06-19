@@ -35,7 +35,7 @@ export default function UAE() {
         />
         <Eyebrow>Jurisdiction</Eyebrow>
         <h1 className="h-grad" style={{ fontSize: "clamp(32px,5vw,56px)", margin: "18px 0" }}>
-          Banking, residency, and <span className="g">zero personal income tax</span> in the UAE
+          We read the UAE the way a <span className="g">private bank does</span> — then clear the account most applications stall on
         </h1>
         <p className="lead">
           The headline numbers are real — but the account is where most applications stall. We map the UAE the way a

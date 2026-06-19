@@ -47,7 +47,7 @@ const ROADMAP: string[] = [
 ];
 
 export default function PreScreen() {
-  const oleg = getExpert("oleg");
+  const olya = getExpert("olya");
 
   return (
     <>
@@ -98,7 +98,7 @@ export default function PreScreen() {
         <div style={{ padding: "40px", borderRadius: 20, background: "var(--deep-2)", border: "1px solid var(--line)", maxWidth: 860 }}>
           <Eyebrow>Why banks decline</Eyebrow>
           <h2 style={{ fontSize: "clamp(24px,3.2vw,36px)", margin: "16px 0 14px" }} className="h-grad">
-            <span className="g">~30%</span> of honest applications get declined
+            A <span className="g">meaningful share</span> of honest applications get declined
           </h2>
           <p className="muted" style={{ fontSize: 18 }}>
             Not because anything is wrong with the applicant — but because the source-of-funds story, the
@@ -174,7 +174,7 @@ export default function PreScreen() {
           A named expert, not a sales desk
         </h2>
         <div style={{ maxWidth: 440 }}>
-          <ExpertBioCard expert={oleg} />
+          <ExpertBioCard expert={olya} />
         </div>
       </Section>
 

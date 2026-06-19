@@ -59,10 +59,11 @@ export default function BankingFirst() {
           <p className="muted" style={{ fontSize: 18 }}>
             The standard playbook registers the entity, leases an office, files for the visa — and only then walks you to
             the bank. By that point the structure is fixed, and if it doesn't fit the bank's risk model, you're stuck.
-            Roughly a third of honest applications are declined on the first pass. We treat the bank as the first, hardest
-            gate and clear it before anything else is committed, so the company, the visa and the assets are all shaped to
-            pass compliance — not to fight it.
+            <span className="g"> ~30%</span> of honest applications are declined on the first pass. We treat the bank as the
+            first, hardest gate and clear it before anything else is committed, so the company, the visa and the assets are
+            all shaped to pass compliance — not to fight it.
           </p>
+          <p style={{ fontSize: 13, color: "var(--ink-40)", marginTop: 12 }}>Source: WTP pre-screen data</p>
         </div>
       </Section>
 
