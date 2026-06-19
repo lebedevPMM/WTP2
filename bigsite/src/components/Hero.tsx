@@ -122,28 +122,28 @@ export function Hero() {
         <div style={{ position: "absolute", inset: 0, zIndex: 3, pointerEvents: "none" }}>
           {[
             {
-              eyebrow: "We've surveyed the terrain",
+              eyebrow: "The back office for private wealth",
               h: (
                 <>
-                  We've mapped the <span className="g">only route through.</span>
+                  The back office for <span className="g">private wealth.</span>
                 </>
               ),
-              p: "Most routes to a UAE-centered structure dead-end at the bank. Scroll — and watch the route draw itself.",
+              p: "The discreet team that runs a fortune's banking, structures, residency and succession in the UAE — so it keeps working, quietly.",
               quiet: "We deliver bankable structures, not company setups.",
               cta: true,
             },
             {
-              eyebrow: "The banking ridge",
+              eyebrow: "Why us",
               h: (
                 <>
-                  Banking is the <span className="g">wall everyone hits.</span>
+                  We clear the compliance <span className="g">others can't.</span>
                 </>
               ),
-              p: "Form the company first and the bank says no — about a third of corporate applications are declined. We cross at the one pass.",
+              p: "Source of funds, structure, residency — the questions that get honest money declined. Closing them is the whole craft.",
               cta: false,
             },
             {
-              eyebrow: "The hub",
+              eyebrow: "One accountable team",
               h: (
                 <>
                   Your structure, <span className="g">end to end.</span>

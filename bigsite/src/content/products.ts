@@ -145,7 +145,7 @@ export const products: ProductData[] = [
     "category": "diagnostics",
     "categoryName": "Start Here",
     "href": "/banking-first/pre-screen",
-    "leadExpert": "oleg"
+    "leadExpert": "olya"
   },
   {
     "slug": "xray",
@@ -252,7 +252,7 @@ export const products: ProductData[] = [
     "category": "diagnostics",
     "categoryName": "Start Here",
     "href": "/services/diagnostics/xray",
-    "leadExpert": "oleg"
+    "leadExpert": "olya"
   },
   {
     "slug": "open-bank-account",
@@ -367,7 +367,7 @@ export const products: ProductData[] = [
     "category": "banking",
     "categoryName": "Banking & Capital",
     "href": "/services/banking/open-bank-account",
-    "leadExpert": "oleg"
+    "leadExpert": "olya"
   },
   {
     "slug": "escrow",
@@ -587,7 +587,7 @@ export const products: ProductData[] = [
     "category": "banking",
     "categoryName": "Banking & Capital",
     "href": "/services/banking/factoring",
-    "leadExpert": "oleg"
+    "leadExpert": "olya"
   },
   {
     "slug": "open-company",

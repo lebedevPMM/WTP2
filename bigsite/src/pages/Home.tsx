@@ -36,16 +36,17 @@ export default function Home() {
         />
       </Section>
 
-      {/* The banking wall */}
+      {/* Identity — per MESSAGE-SPEC the home leads with who we are + the edge, not "banks say no" */}
       <Section className="section" >
         <div style={{ maxWidth: 760 }}>
-          <Eyebrow>The banking wall</Eyebrow>
+          <Eyebrow>What we are</Eyebrow>
           <h2 style={{ fontSize: "clamp(28px,4vw,46px)", margin: "20px 0 16px" }} className="h-grad">
-            Everyone tells you to set up a company first. <span className="g">Then the bank says no.</span>
+            The discreet team that runs <span className="g">a fortune's UAE base.</span>
           </h2>
           <p className="muted" style={{ fontSize: 18 }}>
-            The hard step isn't the licence — it's the account. We start where everyone else gets stuck, and build the
-            structure to be bankable from day one.
+            Banking, company, structures, residency and succession — handled end to end by one accountable team, the way a
+            family office runs a household. You make the decisions; we make them work, and clear the compliance that stops
+            everyone else.
           </p>
         </div>
       </Section>
