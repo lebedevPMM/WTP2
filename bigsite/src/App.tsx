@@ -1,42 +1,48 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
-import Home from "./pages/Home";
-import ServiceTemplate from "./templates/ServiceTemplate";
-import ProductTemplate from "./templates/ProductTemplate";
-import CaseTemplate from "./templates/CaseTemplate";
-import ArticleTemplate from "./templates/ArticleTemplate";
-import JurisdictionComparator from "./templates/JurisdictionComparator";
-import Contact from "./pages/Contact";
-import ThankYou from "./pages/ThankYou";
-import Legal from "./pages/Legal";
-import Team from "./pages/Team";
-import NotFound from "./pages/NotFound";
-import BankingFirst from "./pages/BankingFirst";
-import PreScreen from "./pages/PreScreen";
-import ServicesOverview from "./pages/ServicesOverview";
-import PackagesPage from "./pages/PackagesPage";
-import JurisdictionsHub from "./pages/JurisdictionsHub";
-import UAE from "./pages/UAE";
-import CasesHub from "./pages/CasesHub";
-import InsightsHub from "./pages/InsightsHub";
-import InsightsCategory from "./pages/InsightsCategory";
-import About from "./pages/About";
-import Partners from "./pages/Partners";
-import VariantsIndex from "./variants/VariantsIndex";
-import V1Page from "./variants/v1/V1Page";
-import V2Page from "./variants/v2/V2Page";
-import V3Page from "./variants/v3/V3Page";
+import Home from "./pages/Home"; // eager: it's the LCP-critical landing route
 import { themed } from "./theme/ThemedRoute";
-import V1Home from "./themed/v1/V1Home";
-import V1BankingFirst from "./themed/v1/V1BankingFirst";
-import V1ServicesOverview from "./themed/v1/V1ServicesOverview";
-import V1Service from "./themed/v1/V1Service";
-import V1Contact from "./themed/v1/V1Contact";
-import V2Home from "./themed/v2/V2Home";
-import V2BankingFirst from "./themed/v2/V2BankingFirst";
-import V2ServicesOverview from "./themed/v2/V2ServicesOverview";
-import V2Service from "./themed/v2/V2Service";
-import V2Contact from "./themed/v2/V2Contact";
+
+// Every non-home route is code-split. The themed v1/v2 redesigns and the /v* design-round
+// pages are dev-gate only (unreachable under the promoted v3 theme), so lazy() removes
+// them from the initial bundle entirely; router navigations use startTransition, which
+// keeps the current page on screen while a chunk loads (fallback effectively never shows).
+const ServiceTemplate = lazy(() => import("./templates/ServiceTemplate"));
+const ProductTemplate = lazy(() => import("./templates/ProductTemplate"));
+const CaseTemplate = lazy(() => import("./templates/CaseTemplate"));
+const ArticleTemplate = lazy(() => import("./templates/ArticleTemplate"));
+const JurisdictionComparator = lazy(() => import("./templates/JurisdictionComparator"));
+const Contact = lazy(() => import("./pages/Contact"));
+const ThankYou = lazy(() => import("./pages/ThankYou"));
+const Legal = lazy(() => import("./pages/Legal"));
+const Team = lazy(() => import("./pages/Team"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const BankingFirst = lazy(() => import("./pages/BankingFirst"));
+const PreScreen = lazy(() => import("./pages/PreScreen"));
+const ServicesOverview = lazy(() => import("./pages/ServicesOverview"));
+const PackagesPage = lazy(() => import("./pages/PackagesPage"));
+const JurisdictionsHub = lazy(() => import("./pages/JurisdictionsHub"));
+const UAE = lazy(() => import("./pages/UAE"));
+const CasesHub = lazy(() => import("./pages/CasesHub"));
+const InsightsHub = lazy(() => import("./pages/InsightsHub"));
+const InsightsCategory = lazy(() => import("./pages/InsightsCategory"));
+const About = lazy(() => import("./pages/About"));
+const Partners = lazy(() => import("./pages/Partners"));
+const VariantsIndex = lazy(() => import("./variants/VariantsIndex"));
+const V1Page = lazy(() => import("./variants/v1/V1Page"));
+const V2Page = lazy(() => import("./variants/v2/V2Page"));
+const V3Page = lazy(() => import("./variants/v3/V3Page"));
+const V1Home = lazy(() => import("./themed/v1/V1Home"));
+const V1BankingFirst = lazy(() => import("./themed/v1/V1BankingFirst"));
+const V1ServicesOverview = lazy(() => import("./themed/v1/V1ServicesOverview"));
+const V1Service = lazy(() => import("./themed/v1/V1Service"));
+const V1Contact = lazy(() => import("./themed/v1/V1Contact"));
+const V2Home = lazy(() => import("./themed/v2/V2Home"));
+const V2BankingFirst = lazy(() => import("./themed/v2/V2BankingFirst"));
+const V2ServicesOverview = lazy(() => import("./themed/v2/V2ServicesOverview"));
+const V2Service = lazy(() => import("./themed/v2/V2Service"));
+const V2Contact = lazy(() => import("./themed/v2/V2Contact"));
 
 // Radical per-theme page redesigns: under theme v1/v2 these routes render
 // structurally different implementations; base look is unchanged.
@@ -48,36 +54,38 @@ const ThemedContact = themed(Contact, { v1: V1Contact, v2: V2Contact });
 
 export default function App() {
   return (
-    <Routes>
-      {/* Design-round variants — standalone, outside Layout (own nav/footer) */}
-      <Route path="/variants" element={<VariantsIndex />} />
-      <Route path="/v1" element={<V1Page />} />
-      <Route path="/v2" element={<V2Page />} />
-      <Route path="/v3" element={<V3Page />} />
-      <Route element={<Layout />}>
-        <Route path="/" element={<ThemedHome />} />
-        <Route path="/banking-first" element={<ThemedBankingFirst />} />
-        <Route path="/banking-first/pre-screen" element={<PreScreen />} />
-        <Route path="/services" element={<ThemedServicesOverview />} />
-        <Route path="/services/:line" element={<ThemedService />} />
-        <Route path="/services/:line/:product" element={<ProductTemplate />} />
-        <Route path="/packages" element={<PackagesPage />} />
-        <Route path="/jurisdictions" element={<JurisdictionsHub />} />
-        <Route path="/jurisdictions/uae" element={<UAE />} />
-        <Route path="/jurisdictions/:slug" element={<JurisdictionComparator />} />
-        <Route path="/cases" element={<CasesHub />} />
-        <Route path="/cases/:slug" element={<CaseTemplate />} />
-        <Route path="/insights" element={<InsightsHub />} />
-        <Route path="/insights/:category" element={<InsightsCategory />} />
-        <Route path="/insights/:category/:slug" element={<ArticleTemplate />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/about/team" element={<Team />} />
-        <Route path="/partners" element={<Partners />} />
-        <Route path="/contact" element={<ThemedContact />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/legal/:doc" element={<Legal />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        {/* Design-round variants — standalone, outside Layout (own nav/footer) */}
+        <Route path="/variants" element={<VariantsIndex />} />
+        <Route path="/v1" element={<V1Page />} />
+        <Route path="/v2" element={<V2Page />} />
+        <Route path="/v3" element={<V3Page />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<ThemedHome />} />
+          <Route path="/banking-first" element={<ThemedBankingFirst />} />
+          <Route path="/banking-first/pre-screen" element={<PreScreen />} />
+          <Route path="/services" element={<ThemedServicesOverview />} />
+          <Route path="/services/:line" element={<ThemedService />} />
+          <Route path="/services/:line/:product" element={<ProductTemplate />} />
+          <Route path="/packages" element={<PackagesPage />} />
+          <Route path="/jurisdictions" element={<JurisdictionsHub />} />
+          <Route path="/jurisdictions/uae" element={<UAE />} />
+          <Route path="/jurisdictions/:slug" element={<JurisdictionComparator />} />
+          <Route path="/cases" element={<CasesHub />} />
+          <Route path="/cases/:slug" element={<CaseTemplate />} />
+          <Route path="/insights" element={<InsightsHub />} />
+          <Route path="/insights/:category" element={<InsightsCategory />} />
+          <Route path="/insights/:category/:slug" element={<ArticleTemplate />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/about/team" element={<Team />} />
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/contact" element={<ThemedContact />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/legal/:doc" element={<Legal />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }

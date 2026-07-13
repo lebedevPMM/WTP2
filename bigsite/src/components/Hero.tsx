@@ -31,14 +31,29 @@ export function Hero() {
 
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // preload the frame set; a drawImage of a decoded image is cheap + synchronous
+    // Progressive frame loading. Eagerly fetching all frames (~3MB of jpeg) on mount starves
+    // fonts/CSS on mobile connections and pushes FCP/LCP past 4s — so only the frame the
+    // resting hero actually shows loads now; the rest wait for window load or first scroll,
+    // whichever comes first. drawIndex falls back to the nearest loaded frame meanwhile.
     const images: HTMLImageElement[] = [];
-    for (let i = 0; i < FRAME_COUNT; i++) {
+    const loadFrame = (i: number) => {
+      if (images[i]) return;
       const img = new Image();
       img.decoding = "async";
       img.src = frameUrl(i);
       images[i] = img;
-    }
+    };
+    loadFrame(reduced ? FRAME_COUNT - 1 : 0);
+    let warmed = false;
+    const warm = () => {
+      if (warmed) return;
+      warmed = true;
+      for (let i = 0; i < FRAME_COUNT; i++) loadFrame(i);
+    };
+    const warmSoon = () => setTimeout(warm, 200);
+    if (document.readyState === "complete") warmSoon();
+    else window.addEventListener("load", warmSoon, { once: true });
+    window.addEventListener("scroll", warm, { once: true, passive: true });
     const ready = (i: number) => !!images[i] && images[i].complete && images[i].naturalWidth > 0;
 
     let dpr = 1, cw = 0, ch = 0, raf = 0, lastDrawn = -1, cur = 0;
@@ -114,6 +129,8 @@ export function Hero() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("load", warmSoon);
+      window.removeEventListener("scroll", warm);
     };
   }, []);
 
