@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { Seo } from "../components/Seo";
 import { Hero } from "../components/Hero";
 import { Section, Eyebrow, Button } from "../components/ui";
 import { StatBar } from "../components/StatBar";
@@ -23,6 +24,11 @@ const segments = [
 export default function Home() {
   return (
     <>
+      <Seo
+        title="WTP — The back office for private wealth."
+        description="WTP is the back office for private wealth — banking access, structures, succession and residency, executed where they work best. The UAE is our home market, not our pitch. Book a pre-screen with a named expert."
+        canonical="/"
+      />
       <Hero />
 
       {/* Proof bar — provenance on every number (SPEC law #5). Confirmed mandate stats. */}

@@ -13,6 +13,7 @@
   <url><loc>https://wtp.ae/contact</loc></url>
   <url><loc>https://wtp.ae/cases</loc></url>
   <url><loc>https://wtp.ae/insights</loc></url>
+  <url><loc>https://wtp.ae/partners</loc></url>
 
   <url><loc>https://wtp.ae/services/banking</loc></url>
   <url><loc>https://wtp.ae/services/business-setup</loc></url>
@@ -31,10 +32,12 @@
   <url><loc>https://wtp.ae/jurisdictions/singapore</loc></url>
   <url><loc>https://wtp.ae/jurisdictions/portugal</loc></url>
   <url><loc>https://wtp.ae/jurisdictions/switzerland</loc></url>
+  <url><loc>https://wtp.ae/jurisdictions/malta</loc></url>
 
   <url><loc>https://wtp.ae/insights/assets-tax</loc></url>
   <url><loc>https://wtp.ae/insights/banking</loc></url>
   <url><loc>https://wtp.ae/insights/business-setup</loc></url>
+  <url><loc>https://wtp.ae/insights/residency-visa</loc></url>
 
   <url><loc>https://wtp.ae/insights/assets-tax/uk-non-dom-leaving-for-the-uae</loc></url>
   <url><loc>https://wtp.ae/insights/assets-tax/german-exit-tax-before-you-move</loc></url>
@@ -43,10 +46,21 @@
   <url><loc>https://wtp.ae/insights/banking/sanctions-competency-not-a-workaround</loc></url>
   <url><loc>https://wtp.ae/insights/business-setup/what-relocating-clients-actually-need</loc></url>
   <url><loc>https://wtp.ae/insights/business-setup/execution-partner-not-a-dubai-office</loc></url>
+  <url><loc>https://wtp.ae/insights/banking/why-banks-decline-relocating-hnwi</loc></url>
+  <url><loc>https://wtp.ae/insights/assets-tax/uae-9-percent-corporate-tax-trap</loc></url>
+  <url><loc>https://wtp.ae/insights/residency-visa/golden-visa-around-your-assets</loc></url>
 
   <url><loc>https://wtp.ae/cases/jewellery-dnfbp-meydan-crypto-payments</loc></url>
+  <url><loc>https://wtp.ae/cases/difc-holding-mining</loc></url>
+  <url><loc>https://wtp.ae/cases/free-zone-general-trading-remediation</loc></url>
+  <url><loc>https://wtp.ae/cases/spanish-manufacturer-ifza-structuring</loc></url>
+  <url><loc>https://wtp.ae/cases/ai-company-mainland-remote-launch</loc></url>
+  <url><loc>https://wtp.ae/cases/dubai-mortgage-to-mortgage</loc></url>
+  <url><loc>https://wtp.ae/cases/dubai-property-exit-golden-visa</loc></url>
 
   <url><loc>https://wtp.ae/legal/disclaimer</loc></url>
   <url><loc>https://wtp.ae/legal/privacy</loc></url>
   <url><loc>https://wtp.ae/legal/terms</loc></url>
+  <url><loc>https://wtp.ae/legal/cookies</loc></url>
+  <url><loc>https://wtp.ae/legal/regulatory</loc></url>
 </urlset>
