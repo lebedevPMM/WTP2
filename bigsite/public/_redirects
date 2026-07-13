@@ -1,1 +1,23 @@
+# Legacy routes of the old wtp.ae SPA → nearest bigsite equivalent (301, cutover-prep).
+# Static assets are served before these rules, so real files are unaffected.
+/process              /banking-first                                        301
+/process/*            /banking-first                                        301
+/products             /services                                             301
+/products/*           /services                                             301
+/risk                 /insights/banking/what-risk-aware-actually-means      301
+/engagement           /packages                                             301
+/updates              /insights                                             301
+/roadmap              /about                                                301
+/library              /insights                                             301
+/documents            /insights                                             301
+/uk-non-dom           /insights/assets-tax/uk-non-dom-leaving-for-the-uae   301
+/german-exit-tax      /insights/assets-tax/german-exit-tax-before-you-move  301
+/dutch-box3           /insights/assets-tax                                  301
+/partner-kit          /partners                                             301
+/submit-case          /contact                                              301
+/privacy              /legal/privacy                                        301
+/terms-of-service     /legal/terms                                          301
+/terms                /legal/terms                                          301
+
+# SPA fallback for anything without a prerendered snapshot or asset
 /*    /index.html   200

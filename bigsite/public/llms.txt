@@ -1,0 +1,37 @@
+# WTP — The back office for private wealth
+
+> WTP is a UAE-based back office for private wealth: banking access, corporate and
+> holding structures, residency and succession — executed by a named in-house team.
+> The UAE is WTP's home market, not the product it sells; work is executed in the
+> jurisdiction that fits the client. Regulated services (legal, audit, licensed
+> financial activities) are performed by licensed partners; WTP runs the process.
+
+Key facts:
+- Positioning: back office for private wealth (banking-first: bankability is designed before structures are built)
+- Home market: United Arab Emirates (Dubai); cross-jurisdiction execution (UAE, Singapore, Portugal, Switzerland, Malta and others)
+- Track record: 100+ UAE bank accounts opened; 90%+ of accepted cases reach a working account (pre-screen data)
+- Model: pre-screen first — cases WTP cannot take are declined upfront
+- Entity: Welcome to Paradise Real Estate Brokers L.L.C (Dubai, UAE)
+
+## Core pages
+- [Home](https://wtp.ae/): what WTP is and how it works
+- [Banking-First](https://wtp.ae/banking-first): the banking-first method — bankability before structure
+- [Pre-screen](https://wtp.ae/banking-first/pre-screen): request a case pre-screen
+- [Services](https://wtp.ae/services): banking, business setup, residency & visas, assets & wealth
+- [Packages](https://wtp.ae/packages): engagement levels
+- [Jurisdictions](https://wtp.ae/jurisdictions): UAE and comparison with Singapore, Portugal, Switzerland, Malta
+- [Cases](https://wtp.ae/cases): anonymized client cases
+- [Insights](https://wtp.ae/insights): articles on banking, taxes, residency, business setup
+- [About](https://wtp.ae/about): the team — named people, not a brand wall
+- [Partners](https://wtp.ae/partners): partner program
+- [Contact](https://wtp.ae/contact): contact and pre-screen form
+
+## Frequently referenced articles
+- [UK non-dom leaving for the UAE](https://wtp.ae/insights/assets-tax/uk-non-dom-leaving-for-the-uae)
+- [German exit tax before you move](https://wtp.ae/insights/assets-tax/german-exit-tax-before-you-move)
+- [Why banks decline relocating HNWIs](https://wtp.ae/insights/banking/why-banks-decline-relocating-hnwi)
+- [The UAE 9% corporate tax trap](https://wtp.ae/insights/assets-tax/uae-9-percent-corporate-tax-trap)
+
+## Legal
+- [Regulatory status](https://wtp.ae/legal/regulatory): what WTP does and does not do itself
+- [Privacy](https://wtp.ae/legal/privacy) · [Terms](https://wtp.ae/legal/terms) · [Disclaimer](https://wtp.ae/legal/disclaimer)
