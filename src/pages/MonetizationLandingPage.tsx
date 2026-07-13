@@ -88,17 +88,17 @@ const MonetizationLandingPage: React.FC = () => {
                 <h2>{t('ml.problem.title')}</h2>
                 <div className="grid-3 ml-problem-grid">
                     <Card accentGradient="var(--accent-magma)" hasAccentTop>
-                        <p className="text-body">{t('ml.problem.card1')}</p>
+                        <p className="text-body">{tRich('ml.problem.card1')}</p>
                     </Card>
                     <Card accentGradient="var(--accent-gold)" hasAccentTop>
-                        <p className="text-body">{t('ml.problem.card2')}</p>
+                        <p className="text-body">{tRich('ml.problem.card2')}</p>
                     </Card>
                     <Card accentGradient="var(--accent-teal)" hasAccentTop>
-                        <p className="text-body">{t('ml.problem.card3')}</p>
+                        <p className="text-body">{tRich('ml.problem.card3')}</p>
                     </Card>
                 </div>
                 <div className="ml-solution-bridge">
-                    <p className="ml-solution-text">{t('ml.problem.solution')}</p>
+                    <p className="ml-solution-text">{tRich('ml.problem.solution')}</p>
                 </div>
             </section>
 
@@ -279,19 +279,19 @@ const MonetizationLandingPage: React.FC = () => {
                     <div className="ml-case-body">
                         <div className="ml-case-row">
                             <span className="ml-case-label">{t('ml.case.situation.label')}</span>
-                            <p>{t('ml.case.situation.text')}</p>
+                            <p>{tRich('ml.case.situation.text')}</p>
                         </div>
                         <div className="ml-case-row">
                             <span className="ml-case-label">{t('ml.case.partner.label')}</span>
-                            <p>{t('ml.case.partner.text')}</p>
+                            <p>{tRich('ml.case.partner.text')}</p>
                         </div>
                         <div className="ml-case-row">
                             <span className="ml-case-label">{t('ml.case.wtp.label')}</span>
-                            <p>{t('ml.case.wtp.text')}</p>
+                            <p>{tRich('ml.case.wtp.text')}</p>
                         </div>
                         <div className="ml-case-result">
                             <span className="ml-case-label">{t('ml.case.result.label')}</span>
-                            <p>{t('ml.case.result.text')}</p>
+                            <p>{tRich('ml.case.result.text')}</p>
                         </div>
                     </div>
                 </div>
@@ -318,10 +318,10 @@ const MonetizationLandingPage: React.FC = () => {
                             {t('ml.risk.accept.title')}
                         </h3>
                         <ul>
-                            <li>{t('ml.risk.accept.item1')}</li>
-                            <li>{t('ml.risk.accept.item2')}</li>
-                            <li>{t('ml.risk.accept.item3')}</li>
-                            <li>{t('ml.risk.accept.item4')}</li>
+                            <li>{tRich('ml.risk.accept.item1')}</li>
+                            <li>{tRich('ml.risk.accept.item2')}</li>
+                            <li>{tRich('ml.risk.accept.item3')}</li>
+                            <li>{tRich('ml.risk.accept.item4')}</li>
                         </ul>
                     </div>
                     <div className="ml-risk-col ml-risk-decline">
@@ -330,10 +330,10 @@ const MonetizationLandingPage: React.FC = () => {
                             {t('ml.risk.decline.title')}
                         </h3>
                         <ul>
-                            <li>{t('ml.risk.decline.item1')}</li>
-                            <li>{t('ml.risk.decline.item2')}</li>
-                            <li>{t('ml.risk.decline.item3')}</li>
-                            <li>{t('ml.risk.decline.item4')}</li>
+                            <li>{tRich('ml.risk.decline.item1')}</li>
+                            <li>{tRich('ml.risk.decline.item2')}</li>
+                            <li>{tRich('ml.risk.decline.item3')}</li>
+                            <li>{tRich('ml.risk.decline.item4')}</li>
                         </ul>
                     </div>
                 </div>
@@ -374,7 +374,7 @@ const MonetizationLandingPage: React.FC = () => {
                                     role="region"
                                     aria-labelledby={`ml-faq-q-${i}`}
                                 >
-                                    <p className="text-body">{t(`ml.faq.a${i}`)}</p>
+                                    <p className="text-body">{tRich(`ml.faq.a${i}`)}</p>
                                 </div>
                             )}
                         </div>
@@ -386,7 +386,7 @@ const MonetizationLandingPage: React.FC = () => {
             <section className="ml-final-cta">
                 <h2 className="ml-final-title">{t('ml.cta.title')}</h2>
                 <p className="text-body ml-final-subtitle">
-                    {t('ml.cta.text')}
+                    {tRich('ml.cta.text')}
                 </p>
                 <div className="ml-final-buttons">
                     <Button href="/submit-case" onClick={() => trackCtaClick('submit_case', 'ml_final')}>

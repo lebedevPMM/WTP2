@@ -6,7 +6,7 @@ import { useLanguage } from '../lib/LanguageContext'
 import { trackCtaClick } from '../lib/analytics'
 
 const PartnersPage: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, tRich } = useLanguage()
 
     return (
         <div className="container" style={{ paddingBottom: '120px' }}>
@@ -30,7 +30,7 @@ const PartnersPage: React.FC = () => {
                     {[1, 2, 3, 4].map(i => (
                         <Card key={i} style={{ minHeight: '160px' }}>
                             <h4 style={{ fontSize: '18px' }}>{t(`partnersPage.who${i}.title`)}</h4>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t(`partnersPage.who${i}.desc`)}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich(`partnersPage.who${i}.desc`)}</p>
                         </Card>
                     ))}
                 </div>
@@ -45,25 +45,25 @@ const PartnersPage: React.FC = () => {
                     <Card accentGradient="var(--accent-magma)" hasAccentTop>
                         <div>
                             <h4>{t('partnersPage.own.title')}</h4>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('partnersPage.own.desc')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('partnersPage.own.desc')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-gold)" hasAccentTop>
                         <div>
                             <h4>{t('partnersPage.trans.title')}</h4>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('partnersPage.trans.desc')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('partnersPage.trans.desc')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-teal)" hasAccentTop>
                         <div>
                             <h4>{t('partnersPage.ctrl.title')}</h4>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('partnersPage.ctrl.desc')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('partnersPage.ctrl.desc')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-nebula)" hasAccentTop>
                         <div>
                             <h4>{t('partnersPage.qual.title')}</h4>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('partnersPage.qual.desc')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('partnersPage.qual.desc')}</p>
                         </div>
                     </Card>
                 </div>

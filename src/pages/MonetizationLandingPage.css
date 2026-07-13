@@ -133,6 +133,10 @@
   margin-top: 32px;
 }
 
+.ml-protection-grid .card {
+  justify-content: flex-start;
+}
+
 /* Mid-page CTA */
 .ml-mid-cta {
   display: flex;

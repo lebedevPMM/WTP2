@@ -178,7 +178,7 @@ WTP's 10-stage delivery workflow. Every client engagement follows this sequence.
 - Accounting and bookkeeping (if L3)
 - Employee visa processing (if L3)
 - Quarterly review calls with partner/client
-- Upsell opportunities: wealth management, real estate, foundation
+- Additional services available: wealth management, real estate, foundation
 
 **Output:** Long-term relationship, recurring revenue.
 
@@ -186,7 +186,6 @@ WTP's 10-stage delivery workflow. Every client engagement follows this sequence.
 
 ## Key Principles
 
-<!-- TODO: Костя — переформулировать пункт 1 ключевых принципов (команда отметила что непонятно) -->
 1. **No corporate setup before banking confirmation** — bankability determines the path
 2. **Risk verdict before commitment** — no engagement letter without pre-screen
 3. **Partner is always informed** — weekly updates minimum

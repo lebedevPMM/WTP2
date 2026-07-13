@@ -34,8 +34,6 @@ WTP offers four engagement tiers. Each level builds on the previous one. The rec
 
 ## Level 1 — Entry
 
-<!-- TODO: Костя — L1 описан без открытия компании, но команда говорит это невозможно. Уточнить формулировку после звонка -->
-
 **For:** Individual clients who need basic UAE setup — visa, bank account, tax residency.
 
 | Item | Details |
@@ -91,8 +89,6 @@ WTP offers four engagement tiers. Each level builds on the previous one. The rec
 ---
 
 ## Level 3 — Control
-
-<!-- TODO: Костя — широкий ценовой диапазон L3. Уточнить: сузить, убрать цены, или пояснить от чего зависит? -->
 
 **For:** Clients with ongoing operational needs — accounting, employee management, wealth structuring.
 

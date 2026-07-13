@@ -6,7 +6,7 @@ import { useLanguage } from '../lib/LanguageContext'
 import { trackCtaClick } from '../lib/analytics'
 
 const EngagementPage: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, tRich } = useLanguage()
 
     return (
         <div className="container" style={{ paddingBottom: '120px' }}>
@@ -27,7 +27,7 @@ const EngagementPage: React.FC = () => {
                     <span className="label">{t('engPage.referral.label')}</span>
                 </div>
                 <p className="text-body" style={{ maxWidth: '700px', marginBottom: '40px', fontSize: '16px' }}>
-                    {t('engPage.referral.intro')}
+                    {tRich('engPage.referral.intro')}
                 </p>
 
                 <h3 style={{ marginBottom: '24px' }}>{t('engPage.referral.how')}</h3>
@@ -37,7 +37,7 @@ const EngagementPage: React.FC = () => {
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'baseline' }}>
                                 <span className="label" style={{ marginBottom: 0 }}>0{i}</span>
                                 <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>
-                                    {t(`engPage.referral.step${i}`)}
+                                    {tRich(`engPage.referral.step${i}`)}
                                 </p>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ const EngagementPage: React.FC = () => {
                     {[1, 2, 3].map(i => (
                         <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'baseline' }}>
                             <span style={{ color: 'var(--text-tertiary)' }}>-</span>
-                            <p className="text-body">{t(`engPage.referral.best${i}`)}</p>
+                            <p className="text-body">{tRich(`engPage.referral.best${i}`)}</p>
                         </div>
                     ))}
                 </div>
@@ -65,7 +65,7 @@ const EngagementPage: React.FC = () => {
                     <span className="label">{t('engPage.whitelabel.label')}</span>
                 </div>
                 <p className="text-body" style={{ maxWidth: '700px', marginBottom: '40px', fontSize: '16px' }}>
-                    {t('engPage.whitelabel.intro')}
+                    {tRich('engPage.whitelabel.intro')}
                 </p>
 
                 <h3 style={{ marginBottom: '24px' }}>{t('engPage.whitelabel.how')}</h3>
@@ -75,7 +75,7 @@ const EngagementPage: React.FC = () => {
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'baseline' }}>
                                 <span className="label" style={{ marginBottom: 0 }}>0{i}</span>
                                 <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>
-                                    {t(`engPage.whitelabel.step${i}`)}
+                                    {tRich(`engPage.whitelabel.step${i}`)}
                                 </p>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ const EngagementPage: React.FC = () => {
                     {[1, 2, 3].map(i => (
                         <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'baseline' }}>
                             <span style={{ color: 'var(--text-tertiary)' }}>-</span>
-                            <p className="text-body">{t(`engPage.whitelabel.best${i}`)}</p>
+                            <p className="text-body">{tRich(`engPage.whitelabel.best${i}`)}</p>
                         </div>
                     ))}
                 </div>
@@ -99,13 +99,13 @@ const EngagementPage: React.FC = () => {
                     <h2>{t('engPage.protection.title')}</h2>
                     <span className="label">{t('engPage.protection.label')}</span>
                 </div>
-                <p className="text-body" style={{ marginBottom: '40px' }}>{t('engPage.protection.subtitle')}</p>
+                <p className="text-body" style={{ marginBottom: '40px' }}>{tRich('engPage.protection.subtitle')}</p>
                 <div className="grid-2">
                     {(['crm', 'contact', 'terms', 'commission'] as const).map(key => (
                         <Card key={key} accentGradient="var(--accent-gold)" hasAccentTop>
                             <div>
                                 <h3 className="card-heading" style={{ fontSize: '18px' }}>{t(`engPage.prot.${key}`)}</h3>
-                                <p className="text-body" style={{ fontSize: '13px' }}>{t(`engPage.prot.${key}Desc`)}</p>
+                                <p className="text-body" style={{ fontSize: '13px' }}>{tRich(`engPage.prot.${key}Desc`)}</p>
                             </div>
                         </Card>
                     ))}

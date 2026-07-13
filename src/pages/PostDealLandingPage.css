@@ -1,5 +1,5 @@
 /* PostDealLandingPage — L2a Post-Deal RE Agent Landing */
-/* Prefix: pd- | Palette: warm light, WhatsApp green CTAs, gold money highlights */
+/* Prefix: pd- | Palette: warm light, deep green #2C7A56 CTAs, gold #C5A572 highlights */
 
 /* ================================================================
    1. HERO
@@ -32,7 +32,7 @@
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  background: #25D366;
+  background: #2C7A56;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -66,11 +66,11 @@
 .pd-wa-btn:hover {
   background: #20bd5a;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 8px 24px rgba(44, 122, 86, 0.25);
 }
 
 .pd-wa-btn:focus-visible {
-  outline: 2px solid #25D366;
+  outline: 2px solid #2C7A56;
   outline-offset: 2px;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .pd-wa-btn.pd-wa-btn-outline svg {
-  color: #25D366;
+  color: #2C7A56;
 }
 
 /* ================================================================
@@ -803,9 +803,9 @@
     left: 0;
     right: 0;
     z-index: 999;
-    background: #25D366;
+    background: #2C7A56;
     padding: 12px 24px;
-    box-shadow: 0 -4px 20px rgba(37, 211, 102, 0.3);
+    box-shadow: 0 -4px 20px rgba(44, 122, 86, 0.25);
     align-items: center;
     justify-content: center;
   }

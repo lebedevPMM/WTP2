@@ -16,7 +16,7 @@ import { hasAnalyticsConsent } from './consent'
 
 // GA4 disabled — WTP needs to create their own GA4 property
 // and replace this with their Measurement ID (G-XXXXXXXXXX)
-const GA4_ID = ''
+const GA4_ID = 'G-WXCVJE9VG3'
 let ga4Initialized = false
 
 declare global {
@@ -36,12 +36,23 @@ export function initGA4(): void {
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`
     document.head.appendChild(script)
 
+    // Use the exact Google-recommended dataLayer pattern.
+    // gtag.js parses queued entries as Arguments objects, not plain arrays.
+    const script2 = document.createElement('script')
+    script2.textContent = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${GA4_ID}');
+    `
+    document.head.appendChild(script2)
+
+    // Expose gtag for SPA tracking
     window.dataLayer = window.dataLayer || []
-    window.gtag = function (...args: unknown[]) {
-        window.dataLayer!.push(args)
+    window.gtag = function () {
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer!.push(arguments)
     }
-    window.gtag('js', new Date())
-    window.gtag('config', GA4_ID, { send_page_view: false })
 
     ga4Initialized = true
 }

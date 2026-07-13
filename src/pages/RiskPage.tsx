@@ -7,7 +7,7 @@ import { useLanguage } from '../lib/LanguageContext'
 import { trackCtaClick } from '../lib/analytics'
 
 const RiskPage: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, tRich } = useLanguage()
 
     return (
         <div className="container" style={{ paddingBottom: '120px' }}>
@@ -37,7 +37,7 @@ const RiskPage: React.FC = () => {
                     <span className="label">{t('riskPage.green.label')}</span>
                 </div>
                 <p className="text-body" style={{ maxWidth: '700px', marginBottom: '32px', fontSize: '16px' }}>
-                    {t('riskPage.green.intro')}
+                    {tRich('riskPage.green.intro')}
                 </p>
                 <h3 style={{ marginBottom: '24px' }}>{t('riskPage.green.criteria')}</h3>
                 <div className="grid-2">
@@ -45,7 +45,7 @@ const RiskPage: React.FC = () => {
                         <div key={i} className="list-item" style={{ borderTop: i <= 2 ? '1px solid var(--border-subtle)' : 'none' }}>
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                                 <div className="dot green" style={{ marginTop: '6px', flexShrink: 0 }} />
-                                <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{t(`riskPage.green.c${i}`)}</p>
+                                <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{tRich(`riskPage.green.c${i}`)}</p>
                             </div>
                         </div>
                     ))}
@@ -59,7 +59,7 @@ const RiskPage: React.FC = () => {
                     <span className="label">{t('riskPage.yellow.label')}</span>
                 </div>
                 <p className="text-body" style={{ maxWidth: '700px', marginBottom: '32px', fontSize: '16px' }}>
-                    {t('riskPage.yellow.intro')}
+                    {tRich('riskPage.yellow.intro')}
                 </p>
 
                 <h3 style={{ marginBottom: '24px' }}>{t('riskPage.yellow.criteria')}</h3>
@@ -68,7 +68,7 @@ const RiskPage: React.FC = () => {
                         <div key={i} className="list-item" style={{ borderTop: i <= 2 ? '1px solid var(--border-subtle)' : 'none' }}>
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                                 <div className="dot yellow" style={{ marginTop: '6px', flexShrink: 0 }} />
-                                <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{t(`riskPage.yellow.c${i}`)}</p>
+                                <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{tRich(`riskPage.yellow.c${i}`)}</p>
                             </div>
                         </div>
                     ))}
@@ -78,7 +78,7 @@ const RiskPage: React.FC = () => {
                 <div className="grid-2">
                     {[1, 2, 3, 4].map(i => (
                         <Card key={i} style={{ minHeight: '120px' }}>
-                            <p className="text-body" style={{ fontSize: '14px', color: 'var(--text-primary)' }}>{t(`riskPage.yellow.cond${i}`)}</p>
+                            <p className="text-body" style={{ fontSize: '14px', color: 'var(--text-primary)' }}>{tRich(`riskPage.yellow.cond${i}`)}</p>
                         </Card>
                     ))}
                 </div>
@@ -91,7 +91,7 @@ const RiskPage: React.FC = () => {
                     <span className="label">{t('riskPage.red.label')}</span>
                 </div>
                 <p className="text-body" style={{ maxWidth: '700px', marginBottom: '32px', fontSize: '16px' }}>
-                    {t('riskPage.red.intro')}
+                    {tRich('riskPage.red.intro')}
                 </p>
                 <h3 style={{ marginBottom: '24px' }}>{t('riskPage.red.criteria')}</h3>
                 <div className="grid-2">
@@ -99,7 +99,7 @@ const RiskPage: React.FC = () => {
                         <div key={i} className="list-item" style={{ borderTop: i <= 2 ? '1px solid var(--border-subtle)' : 'none' }}>
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                                 <div style={{ background: '#cd3e30', color: '#fff', fontSize: '12px', padding: '2px 8px', borderRadius: '4px', height: '20px', display: 'flex', alignItems: 'center', flexShrink: 0 }}>!</div>
-                                <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{t(`riskPage.red.c${i}`)}</p>
+                                <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{tRich(`riskPage.red.c${i}`)}</p>
                             </div>
                         </div>
                     ))}

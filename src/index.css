@@ -753,6 +753,16 @@ section {
   /* box-shadow removed to match snippet fidelity */
 }
 
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--bg-body);
+}
+
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 13px;
+}
+
 .btn-outline {
   background: transparent;
   border: 1px solid var(--border-subtle);
@@ -1161,7 +1171,7 @@ footer {
 /* Skip Link (accessibility) */
 .skip-link {
   position: absolute;
-  top: -50px;
+  top: -100px;
   left: 16px;
   background: var(--text-primary);
   color: var(--bg-body);
@@ -1171,10 +1181,16 @@ footer {
   text-decoration: none;
   z-index: 10000;
   transition: top 0.2s ease;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .skip-link:focus {
   top: 8px;
+  clip: auto;
+  overflow: visible;
+  white-space: normal;
 }
 
 /* Cookie Consent Banner */
@@ -1443,12 +1459,109 @@ button:focus-visible,
   outline-offset: 2px;
 }
 
-/* Glossary tooltips */
+/* Glossary tooltips — works on desktop (hover) and mobile (tap) */
 .glossary-term {
+  position: relative;
   text-decoration: underline dotted var(--text-tertiary);
   text-underline-offset: 3px;
   cursor: help;
   font-style: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.glossary-term::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-primary, #1a1a1a);
+  color: var(--text-inverse, #fff);
+  font-size: 13px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: normal;
+  width: max-content;
+  max-width: 260px;
+  text-align: left;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Arrow */
+.glossary-term::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--bg-primary, #1a1a1a);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  z-index: 1001;
+}
+
+/* Desktop: show on hover */
+.glossary-term:hover::after,
+.glossary-term:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile: show on tap (focus) */
+.glossary-term:focus::after,
+.glossary-term:focus::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.glossary-term:focus {
+  outline: none;
+  text-decoration-color: var(--accent-gold, #c5a572);
+}
+
+/* Flip tooltip below if near top of viewport — handled by edge class */
+.glossary-term--bottom::after {
+  bottom: auto;
+  top: calc(100% + 6px);
+}
+
+.glossary-term--bottom::before {
+  bottom: auto;
+  top: calc(100% + 2px);
+  border-top-color: transparent;
+  border-bottom-color: var(--bg-primary, #1a1a1a);
+}
+
+/* Mobile: tooltip as bottom toast — always same position, above sticky CTA */
+@media (max-width: 768px) {
+  .glossary-term::after {
+    position: fixed;
+    bottom: 80px;
+    left: 16px;
+    right: 16px;
+    top: auto;
+    transform: none;
+    max-width: none;
+    width: auto;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  .glossary-term::before {
+    display: none;
+  }
 }
 
 /* Ensure reduced-motion users still see focus */

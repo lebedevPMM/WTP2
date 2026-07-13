@@ -322,7 +322,7 @@ const productData: ProductDataMap = {
 
 const ProductPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>()
-    const { lang, t } = useLanguage()
+    const { lang, t, richText } = useLanguage()
     const data = slug ? productData[lang]?.[slug] || productData['en']?.[slug] : null
 
     if (!data) {
@@ -347,7 +347,7 @@ const ProductPage: React.FC = () => {
                 </div>
                 <span className="label">{data.subtitle}</span>
                 <h1 style={{ fontSize: '48px' }}>{data.title}</h1>
-                <p className="subtitle" style={{ marginBottom: 0 }}>{data.intro}</p>
+                <p className="subtitle" style={{ marginBottom: 0 }}>{richText(data.intro)}</p>
             </section>
 
             <section>
@@ -359,7 +359,7 @@ const ProductPage: React.FC = () => {
                     {data.services.map((svc) => (
                         <Card key={svc.name} style={{ minHeight: '160px' }}>
                             <h3 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>{svc.name}</h3>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{svc.desc}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{richText(svc.desc)}</p>
                         </Card>
                     ))}
                 </div>
@@ -376,7 +376,7 @@ const ProductPage: React.FC = () => {
                             <div key={i} className="list-item" style={{ borderTop: i < 2 ? '1px solid var(--border-subtle)' : 'none' }}>
                                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                                     <div style={{ background: '#cd3e30', color: '#fff', fontSize: '12px', padding: '2px 8px', borderRadius: '4px', height: '20px', display: 'flex', alignItems: 'center', flexShrink: 0 }}>!</div>
-                                    <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{flag}</p>
+                                    <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{richText(flag)}</p>
                                 </div>
                             </div>
                         ))}
@@ -390,7 +390,7 @@ const ProductPage: React.FC = () => {
                     <span className="label">{t('product.outcome')}</span>
                 </div>
                 <Card style={{ borderColor: 'var(--border-focus)', background: 'transparent' }}>
-                    <p className="text-body" style={{ fontSize: '16px', color: 'var(--text-primary)' }}>{data.result}</p>
+                    <p className="text-body" style={{ fontSize: '16px', color: 'var(--text-primary)' }}>{richText(data.result)}</p>
                 </Card>
             </section>
 

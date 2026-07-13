@@ -9,7 +9,7 @@ const JURISDICTIONS = ['uae', 'sg', 'pt', 'ch', 'mt'] as const
 const COMPARE_COLS = ['jurisdiction', 'corpTax', 'setup', 'banking', 'visa', 'substance'] as const
 
 const ClientLandingPage: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, tRich } = useLanguage()
 
     return (
         <div className="container">
@@ -17,7 +17,7 @@ const ClientLandingPage: React.FC = () => {
             <section className="cl-hero">
                 <span className="label">{t('cl.hero.label')}</span>
                 <h1>{t('cl.hero.title')}</h1>
-                <p className="subtitle">{t('cl.hero.subtitle')}</p>
+                <p className="subtitle">{tRich('cl.hero.subtitle')}</p>
                 <Button href="/roadmap" onClick={() => trackCtaClick('roadmap', 'client_hero')}>
                     {t('cl.hero.cta')}
                 </Button>
@@ -31,17 +31,17 @@ const ClientLandingPage: React.FC = () => {
                 <div className="cl-bridge-grid">
                     <div className="cl-bridge-card">
                         <h3>{t('cl.bridge.exitTitle')}</h3>
-                        <p className="text-body">{t('cl.bridge.exitDesc')}</p>
+                        <p className="text-body">{tRich('cl.bridge.exitDesc')}</p>
                     </div>
                     <div className="cl-bridge-connector">
                         <span className="cl-bridge-label">{t('cl.bridge.bridgeTitle')}</span>
                     </div>
                     <div className="cl-bridge-card">
                         <h3>{t('cl.bridge.entryTitle')}</h3>
-                        <p className="text-body">{t('cl.bridge.entryDesc')}</p>
+                        <p className="text-body">{tRich('cl.bridge.entryDesc')}</p>
                     </div>
                 </div>
-                <p className="cl-bridge-note">{t('cl.bridge.otherCountry')}</p>
+                <p className="cl-bridge-note">{tRich('cl.bridge.otherCountry')}</p>
             </section>
 
             {/* 3. Who This Is For */}
@@ -52,7 +52,7 @@ const ClientLandingPage: React.FC = () => {
                     {[1, 2, 3, 4].map((i) => (
                         <div key={i} className="cl-who-card">
                             <h3>{t(`cl.who.card${i}.title`)}</h3>
-                            <p className="text-body">{t(`cl.who.card${i}.desc`)}</p>
+                            <p className="text-body">{tRich(`cl.who.card${i}.desc`)}</p>
                         </div>
                     ))}
                 </div>
@@ -62,13 +62,13 @@ const ClientLandingPage: React.FC = () => {
             <section className="cl-method">
                 <span className="label">{t('cl.method.label')}</span>
                 <h2>{t('cl.method.title')}</h2>
-                <p className="subtitle">{t('cl.method.subtitle')}</p>
+                <p className="subtitle">{tRich('cl.method.subtitle')}</p>
                 <div className="cl-method-grid">
                     {[1, 2, 3, 4].map((i) => (
                         <div key={i} className="cl-method-step">
                             <span className="cl-method-num">{t(`cl.method.step${i}.num`)}</span>
                             <h3>{t(`cl.method.step${i}.title`)}</h3>
-                            <p>{t(`cl.method.step${i}.desc`)}</p>
+                            <p>{tRich(`cl.method.step${i}.desc`)}</p>
                         </div>
                     ))}
                 </div>
@@ -99,7 +99,7 @@ const ClientLandingPage: React.FC = () => {
                         ))}
                     </tbody>
                 </table>
-                <p className="cl-compare-conclusion">{t('cl.compare.conclusion')}</p>
+                <p className="cl-compare-conclusion">{tRich('cl.compare.conclusion')}</p>
             </section>
 
             {/* 6. How We're Different */}
@@ -110,7 +110,7 @@ const ClientLandingPage: React.FC = () => {
                     {[1, 2, 3, 4, 5, 6].map((i) => (
                         <div key={i} className="cl-diff-item">
                             <h3>{t(`cl.diff.item${i}.title`)}</h3>
-                            <p>{t(`cl.diff.item${i}.desc`)}</p>
+                            <p>{tRich(`cl.diff.item${i}.desc`)}</p>
                         </div>
                     ))}
                 </div>
@@ -123,21 +123,21 @@ const ClientLandingPage: React.FC = () => {
                 <div className="cl-scenarios-grid">
                     <div className="cl-scenario-card">
                         <h3>{t('cl.scenarios.uk.title')}</h3>
-                        <p>{t('cl.scenarios.uk.desc')}</p>
+                        <p>{tRich('cl.scenarios.uk.desc')}</p>
                         <Link to="/uk-non-dom" className="cl-scenario-link">
                             {t('cl.scenarios.uk.link')} &rarr;
                         </Link>
                     </div>
                     <div className="cl-scenario-card">
                         <h3>{t('cl.scenarios.de.title')}</h3>
-                        <p>{t('cl.scenarios.de.desc')}</p>
+                        <p>{tRich('cl.scenarios.de.desc')}</p>
                         <Link to="/german-exit-tax" className="cl-scenario-link">
                             {t('cl.scenarios.de.link')} &rarr;
                         </Link>
                     </div>
                     <div className="cl-scenario-card">
                         <h3>{t('cl.scenarios.nl.title')}</h3>
-                        <p>{t('cl.scenarios.nl.desc')}</p>
+                        <p>{tRich('cl.scenarios.nl.desc')}</p>
                         <Link to="/dutch-box3" className="cl-scenario-link">
                             {t('cl.scenarios.nl.link')} &rarr;
                         </Link>
@@ -168,7 +168,7 @@ const ClientLandingPage: React.FC = () => {
                                 </svg>
                             </summary>
                             <div className="cl-faq-answer">
-                                <p>{t(`cl.faq.a${i}`)}</p>
+                                <p>{tRich(`cl.faq.a${i}`)}</p>
                             </div>
                         </details>
                     ))}
@@ -178,7 +178,7 @@ const ClientLandingPage: React.FC = () => {
             {/* 9. Final CTA */}
             <section className="cl-final-cta">
                 <h2>{t('cl.cta.title')}</h2>
-                <p className="text-body">{t('cl.cta.text')}</p>
+                <p className="text-body">{tRich('cl.cta.text')}</p>
                 <Button href="/roadmap" onClick={() => trackCtaClick('roadmap', 'client_final')}>
                     {t('cl.cta.button')}
                 </Button>

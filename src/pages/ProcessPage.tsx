@@ -152,7 +152,7 @@ const processData: ProcessDataMap = {
 
 const ProcessPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>()
-    const { lang, t } = useLanguage()
+    const { lang, t, richText } = useLanguage()
     const data = slug ? processData[lang]?.[slug] || processData['en']?.[slug] : null
 
     if (!data) {
@@ -173,7 +173,7 @@ const ProcessPage: React.FC = () => {
                 </div>
                 <span className="label">{data.subtitle}</span>
                 <h1 style={{ fontSize: '48px' }}>{data.title}</h1>
-                <p className="subtitle" style={{ marginBottom: 0 }}>{data.intro}</p>
+                <p className="subtitle" style={{ marginBottom: 0 }}>{richText(data.intro)}</p>
             </section>
 
             <section>
@@ -186,7 +186,7 @@ const ProcessPage: React.FC = () => {
                         <div key={i} className="list-item" style={{ borderTop: i < 2 ? '1px solid var(--border-subtle)' : 'none' }}>
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'baseline' }}>
                                 <span className="label" style={{ marginBottom: 0 }}>0{i + 1}</span>
-                                <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{action}</p>
+                                <p className="text-body" style={{ width: '100%', color: 'var(--text-primary)' }}>{richText(action)}</p>
                             </div>
                         </div>
                     ))}
@@ -199,7 +199,7 @@ const ProcessPage: React.FC = () => {
                     <span className="label">{t('processPage.outcome')}</span>
                 </div>
                 <Card style={{ borderColor: 'var(--border-focus)', background: 'transparent' }}>
-                    <p className="text-body" style={{ fontSize: '16px', color: 'var(--text-primary)' }}>{data.result}</p>
+                    <p className="text-body" style={{ fontSize: '16px', color: 'var(--text-primary)' }}>{richText(data.result)}</p>
                 </Card>
             </section>
 

@@ -8,7 +8,7 @@ import { trackCtaClick } from '../lib/analytics'
 import './RealEstateLandingPage.css'
 
 const RealEstateLandingPage: React.FC = () => {
-    const { t } = useLanguage()
+    const { t, tRich } = useLanguage()
 
     return (
         <div className="container">
@@ -23,7 +23,7 @@ const RealEstateLandingPage: React.FC = () => {
                 <span className="label">{t('reLanding.label')}</span>
                 <h1>{t('reLanding.hero.title')}</h1>
                 <p className="subtitle">
-                    {t('reLanding.hero.subtitle')}
+                    {tRich('reLanding.hero.subtitle')}
                 </p>
                 <div style={{ display: 'flex', gap: '16px' }}>
                     <Button href="/submit-case" onClick={() => trackCtaClick('submit_case', 're_landing_hero')}>
@@ -43,19 +43,19 @@ const RealEstateLandingPage: React.FC = () => {
                     <Card accentGradient="var(--accent-magma)" hasAccentTop>
                         <div>
                             <h3 className="card-heading">{t('reLanding.problem.banking.title')}</h3>
-                            <p className="text-body">{t('reLanding.problem.banking.text')}</p>
+                            <p className="text-body">{tRich('reLanding.problem.banking.text')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-gold)" hasAccentTop>
                         <div>
                             <h3 className="card-heading">{t('reLanding.problem.visa.title')}</h3>
-                            <p className="text-body">{t('reLanding.problem.visa.text')}</p>
+                            <p className="text-body">{tRich('reLanding.problem.visa.text')}</p>
                         </div>
                     </Card>
                     <Card accentGradient="var(--accent-teal)" hasAccentTop>
                         <div>
                             <h3 className="card-heading">{t('reLanding.problem.tax.title')}</h3>
-                            <p className="text-body">{t('reLanding.problem.tax.text')}</p>
+                            <p className="text-body">{tRich('reLanding.problem.tax.text')}</p>
                         </div>
                     </Card>
                 </div>
@@ -69,29 +69,29 @@ const RealEstateLandingPage: React.FC = () => {
                         <h2>{t('reLanding.solution.title')}</h2>
                     </div>
                     <div className="flex-col">
-                        <p className="text-body">{t('reLanding.solution.text')}</p>
+                        <p className="text-body">{tRich('reLanding.solution.text')}</p>
                     </div>
                 </div>
                 <div className="grid-2 re-solution-cards">
                     <div className="re-solution-item">
                         <div className="re-solution-number">01</div>
                         <h3>{t('reLanding.solution.point1.title')}</h3>
-                        <p className="text-body">{t('reLanding.solution.point1.text')}</p>
+                        <p className="text-body">{tRich('reLanding.solution.point1.text')}</p>
                     </div>
                     <div className="re-solution-item">
                         <div className="re-solution-number">02</div>
                         <h3>{t('reLanding.solution.point2.title')}</h3>
-                        <p className="text-body">{t('reLanding.solution.point2.text')}</p>
+                        <p className="text-body">{tRich('reLanding.solution.point2.text')}</p>
                     </div>
                     <div className="re-solution-item">
                         <div className="re-solution-number">03</div>
                         <h3>{t('reLanding.solution.point3.title')}</h3>
-                        <p className="text-body">{t('reLanding.solution.point3.text')}</p>
+                        <p className="text-body">{tRich('reLanding.solution.point3.text')}</p>
                     </div>
                     <div className="re-solution-item">
                         <div className="re-solution-number">04</div>
                         <h3>{t('reLanding.solution.point4.title')}</h3>
-                        <p className="text-body">{t('reLanding.solution.point4.text')}</p>
+                        <p className="text-body">{tRich('reLanding.solution.point4.text')}</p>
                     </div>
                 </div>
             </section>
@@ -106,7 +106,7 @@ const RealEstateLandingPage: React.FC = () => {
                             <h3 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>
                                 {t('reLanding.svc1.title')}
                             </h3>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('reLanding.svc1.text')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('reLanding.svc1.text')}</p>
                         </div>
                     </Card>
                     <Card style={{ minHeight: '200px' }}>
@@ -114,7 +114,7 @@ const RealEstateLandingPage: React.FC = () => {
                             <h3 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>
                                 {t('reLanding.svc2.title')}
                             </h3>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('reLanding.svc2.text')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('reLanding.svc2.text')}</p>
                         </div>
                     </Card>
                     <Card style={{ minHeight: '200px' }}>
@@ -122,7 +122,7 @@ const RealEstateLandingPage: React.FC = () => {
                             <h3 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>
                                 {t('reLanding.svc3.title')}
                             </h3>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('reLanding.svc3.text')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('reLanding.svc3.text')}</p>
                         </div>
                     </Card>
                     <Card style={{ minHeight: '200px' }}>
@@ -130,7 +130,7 @@ const RealEstateLandingPage: React.FC = () => {
                             <h3 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>
                                 {t('reLanding.svc4.title')}
                             </h3>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('reLanding.svc4.text')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('reLanding.svc4.text')}</p>
                         </div>
                     </Card>
                     <Card style={{ minHeight: '200px' }}>
@@ -138,7 +138,7 @@ const RealEstateLandingPage: React.FC = () => {
                             <h3 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>
                                 {t('reLanding.svc5.title')}
                             </h3>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('reLanding.svc5.text')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('reLanding.svc5.text')}</p>
                         </div>
                     </Card>
                     <Card style={{ minHeight: '200px' }}>
@@ -146,7 +146,7 @@ const RealEstateLandingPage: React.FC = () => {
                             <h3 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>
                                 {t('reLanding.svc6.title')}
                             </h3>
-                            <p className="text-body" style={{ fontSize: '13px' }}>{t('reLanding.svc6.text')}</p>
+                            <p className="text-body" style={{ fontSize: '13px' }}>{tRich('reLanding.svc6.text')}</p>
                         </div>
                     </Card>
                 </div>
@@ -161,21 +161,21 @@ const RealEstateLandingPage: React.FC = () => {
                         <div className="re-market-value">{t('reLanding.market.stat1.value')}</div>
                         <div className="re-market-label">{t('reLanding.market.stat1.label')}</div>
                         <p className="text-body" style={{ marginTop: '16px', fontSize: '13px' }}>
-                            {t('reLanding.market.stat1.text')}
+                            {tRich('reLanding.market.stat1.text')}
                         </p>
                     </div>
                     <div className="re-market-card">
                         <div className="re-market-value">{t('reLanding.market.stat2.value')}</div>
                         <div className="re-market-label">{t('reLanding.market.stat2.label')}</div>
                         <p className="text-body" style={{ marginTop: '16px', fontSize: '13px' }}>
-                            {t('reLanding.market.stat2.text')}
+                            {tRich('reLanding.market.stat2.text')}
                         </p>
                     </div>
                     <div className="re-market-card">
                         <div className="re-market-value">{t('reLanding.market.stat3.value')}</div>
                         <div className="re-market-label">{t('reLanding.market.stat3.label')}</div>
                         <p className="text-body" style={{ marginTop: '16px', fontSize: '13px' }}>
-                            {t('reLanding.market.stat3.text')}
+                            {tRich('reLanding.market.stat3.text')}
                         </p>
                     </div>
                 </div>
@@ -186,11 +186,11 @@ const RealEstateLandingPage: React.FC = () => {
                 <span className="label">{t('reLanding.process.label')}</span>
                 <h2>{t('reLanding.process.title')}</h2>
                 <div className="re-process-grid">
-                    <ProcessStep number="01" title={t('reLanding.process.step1.title')} description={t('reLanding.process.step1.desc')} active />
-                    <ProcessStep number="02" title={t('reLanding.process.step2.title')} description={t('reLanding.process.step2.desc')} />
-                    <ProcessStep number="03" title={t('reLanding.process.step3.title')} description={t('reLanding.process.step3.desc')} />
-                    <ProcessStep number="04" title={t('reLanding.process.step4.title')} description={t('reLanding.process.step4.desc')} />
-                    <ProcessStep number="05" title={t('reLanding.process.step5.title')} description={t('reLanding.process.step5.desc')} />
+                    <ProcessStep number="01" title={t('reLanding.process.step1.title')} description={tRich('reLanding.process.step1.desc')} active />
+                    <ProcessStep number="02" title={t('reLanding.process.step2.title')} description={tRich('reLanding.process.step2.desc')} />
+                    <ProcessStep number="03" title={t('reLanding.process.step3.title')} description={tRich('reLanding.process.step3.desc')} />
+                    <ProcessStep number="04" title={t('reLanding.process.step4.title')} description={tRich('reLanding.process.step4.desc')} />
+                    <ProcessStep number="05" title={t('reLanding.process.step5.title')} description={tRich('reLanding.process.step5.desc')} />
                 </div>
             </section>
 
@@ -208,7 +208,7 @@ const RealEstateLandingPage: React.FC = () => {
                                 </svg>
                             </div>
                             <p className="text-body" style={{ color: 'var(--text-primary)' }}>
-                                {t(`reLanding.redflags.item${i}`)}
+                                {tRich(`reLanding.redflags.item${i}`)}
                             </p>
                         </div>
                     ))}
@@ -219,7 +219,7 @@ const RealEstateLandingPage: React.FC = () => {
             <section style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 120px auto' }}>
                 <h2 style={{ fontSize: '32px' }}>{t('reLanding.cta.title')}</h2>
                 <p className="text-body" style={{ marginBottom: '32px' }}>
-                    {t('reLanding.cta.text')}
+                    {tRich('reLanding.cta.text')}
                 </p>
                 <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
                     <Button href="/submit-case" onClick={() => trackCtaClick('submit_case', 're_landing_bottom')}>

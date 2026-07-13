@@ -9,9 +9,7 @@
     "dev:banking": "VITE_LANDING=banking vite",
     "dev:realestate": "VITE_LANDING=realestate vite",
     "dev:partners": "VITE_LANDING=partners vite",
-
     "build": "tsc && vite build",
-
     "build:main:en": "VITE_LANDING=main VITE_LANG=en tsc && VITE_LANDING=main VITE_LANG=en vite build",
     "build:main:ru": "VITE_LANDING=main VITE_LANG=ru tsc && VITE_LANDING=main VITE_LANG=ru vite build",
     "build:banking:en": "VITE_LANDING=banking VITE_LANG=en tsc && VITE_LANDING=banking VITE_LANG=en vite build",
@@ -24,9 +22,10 @@
     "dev:client:ru": "VITE_LANDING=client VITE_LANG=ru vite",
     "build:client:en": "VITE_LANDING=client VITE_LANG=en tsc && VITE_LANDING=client VITE_LANG=en vite build",
     "build:client:ru": "VITE_LANDING=client VITE_LANG=ru tsc && VITE_LANDING=client VITE_LANG=ru vite build",
-
-    "build:all": "npm run build:main:en && npm run build:main:ru && npm run build:banking:en && npm run build:banking:ru && npm run build:realestate:en && npm run build:realestate:ru && npm run build:partners:en && npm run build:partners:ru && npm run build:client:en && npm run build:client:ru",
-
+    "dev:trc": "VITE_LANDING=trc VITE_LANG=ru vite",
+    "build:trc:ru": "VITE_LANDING=trc VITE_LANG=ru tsc && VITE_LANDING=trc VITE_LANG=ru vite build",
+    "build:all": "npm run build:main:en && npm run build:main:ru && npm run build:banking:en && npm run build:banking:ru && npm run build:realestate:en && npm run build:realestate:ru && npm run build:partners:en && npm run build:partners:ru && npm run build:client:en && npm run build:client:ru && npm run build:trc:ru",
+    "build:cf": "node scripts/build-cloudflare.mjs",
     "preview": "vite preview",
     "pdf": "node scripts/generate-pdf.mjs",
     "predeploy": "npm run build:main:en",
@@ -45,6 +44,8 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "lucide-react": "^0.563.0",
+    "marked": "^18.0.0",
+    "playwright": "^1.59.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-hook-form": "^7.71.1",
