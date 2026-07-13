@@ -132,3 +132,4 @@ scripts/generate-playbook-docx.py
 public/WTP_Partner_Kit_EN.zip
 public/WTP_Partner_Kit_RU.zip
 public/WTP_Partner_Kit_RU/
+.wrangler/
