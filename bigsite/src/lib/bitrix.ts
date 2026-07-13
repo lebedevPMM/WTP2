@@ -1,6 +1,8 @@
-// Bitrix24 lead capture — mirrors the existing WTP app integration.
-// Set VITE_BITRIX_WEBHOOK_URL (inbound webhook base, no trailing slash) to enable.
-const BITRIX_WEBHOOK_URL = (import.meta.env.VITE_BITRIX_WEBHOOK_URL as string) || "";
+// Bitrix24 lead capture — posts to our own /api/lead Pages Function, which holds the
+// inbound webhook URL as a server-side secret (BITRIX_WEBHOOK_URL). Shipping the webhook
+// in the client bundle would let anyone scrape it and spam the CRM.
+// The function answers { ok:false, offline:true } until the secret is configured, and the
+// UI falls back to direct channels — same graceful behavior as before.
 
 interface LeadFields {
   TITLE: string;
@@ -16,10 +18,6 @@ export async function submitPreScreen(data: {
   origin?: string;
   note?: string;
 }): Promise<{ ok: boolean; offline?: boolean }> {
-  if (!BITRIX_WEBHOOK_URL) {
-    // No webhook configured yet — surface gracefully; the UI falls back to channels.
-    return { ok: false, offline: true };
-  }
   const comments = [
     `Relocating from: ${data.origin || "—"}`,
     "",
@@ -35,10 +33,15 @@ export async function submitPreScreen(data: {
     SOURCE_ID: "WEB",
   };
 
-  const res = await fetch(`${BITRIX_WEBHOOK_URL}/crm.lead.add.json`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ fields }),
-  });
-  return { ok: res.ok };
+  try {
+    const res = await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fields }),
+    });
+    const body = (await res.json().catch(() => ({}))) as { ok?: boolean; offline?: boolean };
+    return { ok: res.ok && body.ok === true, offline: body.offline };
+  } catch {
+    return { ok: false, offline: true };
+  }
 }
