@@ -5,6 +5,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 npm run build
+node scripts/prerender.mjs
 printf '/*\n  X-Robots-Tag: noindex\n' > dist/_headers
 # --branch main = the project's Production environment (custom domain test.wtp.ae
 # serves Production only; a branch-named deploy lands in Preview and never goes live).

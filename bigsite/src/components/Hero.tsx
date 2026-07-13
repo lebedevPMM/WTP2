@@ -137,6 +137,15 @@ export function Hero() {
   return (
     <div ref={stageRef} className="hero-stage" style={{ position: "relative", height: "420vh" }}>
       <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", background: "#06050f" }}>
+        {/* Static first frame in the HTML so the browser paints the hero (the LCP element)
+            straight from markup, long before JS boots; the canvas draws the same pixels
+            over it once React mounts, so the swap is invisible. */}
+        <img
+          src={frameUrl(0)}
+          alt=""
+          fetchPriority="high"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "60% 50%", zIndex: 0 }}
+        />
         <canvas
           ref={canvasRef}
           aria-hidden="true"
