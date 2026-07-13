@@ -6,4 +6,6 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 npm run build
 printf '/*\n  X-Robots-Tag: noindex\n' > dist/_headers
-npx wrangler pages deploy dist --project-name wtp-test --commit-dirty=true
+# --branch main = the project's Production environment (custom domain test.wtp.ae
+# serves Production only; a branch-named deploy lands in Preview and never goes live).
+npx wrangler pages deploy dist --project-name wtp-test --branch main --commit-dirty=true
