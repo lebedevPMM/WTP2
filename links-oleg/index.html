@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oleg Karasev — Investments &amp; Capital, WTP</title>
+  <meta name="description" content="Oleg Karasev — Investments & Capital at WTP. Capital markets, UAE real estate and access to late-stage US private deals — weighed as one strategy. Thirteen years inside BCS, venture at Mindrock, broker and late-stage venture today with NVB. Direct contact.">
+  <meta property="og:title" content="Oleg Karasev — Investments & Capital, WTP">
+  <meta property="og:description" content="Capital markets, UAE real estate and late-stage US private deals — weighed as one strategy, explained in plain language. Risk first, scenarios always. Direct contact.">
+  <meta property="og:image" content="https://wtp.ae/og-image.png">
+  <meta property="og:url" content="https://ok.wtp.ae/">
+  <meta property="og:type" content="profile">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="https://wtp.ae/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-body: #F5F3EE;
+      --bg-card: #FFFFFF;
+      --text-primary: #0A0A0A;
+      --text-secondary: #4A4A4A;
+      --text-muted: #767676;
+      --border-subtle: #E5E1D8;
+      --border-card: #EDE9DE;
+      --accent-gold: #B8860B;
+      --accent-gold-deep: #8B6914;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    }
+
+    html { overflow-x: hidden; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-body);
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      padding: 56px 24px 80px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 540px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* Eyebrow */
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .avatar-wrap {
+      width: 152px;
+      height: 152px;
+      border-radius: 50%;
+      position: relative;
+      padding: 6px;
+    }
+
+    @media (max-width: 420px) {
+      .avatar-wrap { width: 132px; height: 132px; }
+    }
+
+    .avatar-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid var(--border-subtle);
+      pointer-events: none;
+    }
+
+    /* Initials avatar (placeholder until a real photo is dropped in — see README) */
+    .avatar-initials {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #FBFAF6 0%, #EFEbe0 100%);
+      border: 1.5px solid var(--accent-gold);
+      box-shadow: inset 0 0 0 1px rgba(184,134,11,0.12);
+    }
+
+    .avatar-initials span {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: var(--accent-gold-deep);
+      line-height: 1;
+      transform: translateY(1px);
+    }
+
+    @media (max-width: 420px) {
+      .avatar-initials span { font-size: 46px; }
+    }
+
+    /* Real photo variant — uncomment <img> in markup, this styles it */
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .name {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+    }
+
+    .role {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+    }
+
+    .role .role-sep {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      vertical-align: middle;
+      margin: 0 10px 2px;
+    }
+
+    /* About blocks */
+    .about {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .about-block {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .about-block::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 0;
+      width: 2px;
+      height: calc(100% - 6px);
+      background: linear-gradient(180deg, var(--accent-gold), var(--accent-gold-deep));
+      opacity: 0.7;
+    }
+
+    .about-block .label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-gold-deep);
+      margin-bottom: 8px;
+    }
+
+    .about-block p {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    .about-block p em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* Contact section (lead + channels) */
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-lead {
+      text-align: center;
+    }
+
+    .contact-lead .lead-line {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .contact-lead .lead-sub {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .contact-lead .lead-sub strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Contact channels — 3-channel grid (Email / Telegram / WhatsApp) */
+    .channels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .channel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 20px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+      min-height: 90px;
+    }
+
+    .channel:hover {
+      border-color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    .channel.disabled {
+      opacity: 0.45;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .channel svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .channel span {
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: var(--text-secondary);
+    }
+
+    /* Audience CTA cards */
+    .audiences {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .audience-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .audience {
+      display: block;
+      padding: 28px 28px 26px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--text-primary);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .audience::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 28px;
+      right: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-deep));
+      opacity: 0.85;
+    }
+
+    .audience:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -12px rgba(0,0,0,0.12);
+      border-color: var(--text-primary);
+    }
+
+    .audience-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .audience h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+
+    .audience p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    .audience-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: 0.2px;
+    }
+
+    .audience-cta .arrow {
+      transition: transform 0.2s ease;
+    }
+
+    .audience:hover .audience-cta .arrow {
+      transform: translateX(4px);
+    }
+
+    /* Event block (hidden by default) */
+    .event {
+      display: none;
+      padding: 20px 24px;
+      background: var(--text-primary);
+      color: var(--bg-body);
+      border-radius: 14px;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+    }
+
+    .event[data-show="true"] {
+      display: flex;
+    }
+
+    .event .event-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 4px;
+    }
+
+    .event-text { flex: 1; }
+
+    .event h4 {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .event p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .event .arrow {
+      color: var(--accent-gold);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 8px;
+      padding-top: 24px;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.2px;
+    }
+
+    .footer a {
+      color: var(--text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1px;
+      transition: border-color 0.2s ease;
+    }
+
+    .footer a:hover {
+      border-color: var(--text-primary);
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 420px) {
+      body { padding: 40px 18px 64px; }
+      .page { gap: 32px; }
+      .name { font-size: 32px; }
+      .audience { padding: 24px 22px 22px; }
+      .audience::before { left: 22px; right: 22px; }
+      .audience h3 { font-size: 21px; }
+      .channels { gap: 10px; }
+      .channel { padding: 16px 8px; min-height: 82px; }
+      .channel span { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <p class="eyebrow">WTP &nbsp;·&nbsp; UAE Execution Partner</p>
+
+    <header class="hero">
+      <div class="avatar-wrap">
+        <img class="avatar" src="oleg-400.jpg" srcset="oleg-400.jpg 1x, oleg-800.jpg 2x" alt="Oleg Karasev" width="100" height="100" decoding="async">
+      </div>
+      <h1 class="name">Oleg Karasev</h1>
+      <p class="role">Investments &amp; Capital<span class="role-sep"></span>WTP</p>
+    </header>
+
+    <section class="about">
+      <div class="about-block">
+        <div class="label">Who I am</div>
+        <p>Capital markets, end to end. Thirteen years inside <em>BCS</em> — one of Russia&rsquo;s largest brokers — then venture at <em>Mindrock</em>, and today broker and late-stage venture deals across Armenia and the US with <em>NVB</em>. My native ground is securities markets: cycles, rates, currencies, and the logic that moves capital between them.</p>
+      </div>
+      <div class="about-block">
+        <div class="label">What I do at WTP</div>
+        <p>I help clients and partners see <em>structure, not single deals</em> — where each asset sits in the whole picture: risk, horizon, liquidity, and the share of the portfolio it deserves. Global markets, UAE real estate, and access to strong late-stage US private companies before they go public &mdash; weighed as one capital strategy and explained in plain language. <em>Risk first, scenarios always, the weak points named before you commit.</em></p>
+      </div>
+    </section>
+
+    <section class="contact" aria-label="Stay in touch">
+      <div class="contact-lead">
+        <p class="lead-line">Let&rsquo;s keep the line open.</p>
+        <p class="lead-sub">Save a channel below &mdash; <strong>each one reaches me directly</strong>, not a team inbox. After a quick meeting, this is how we don&rsquo;t lose each other.</p>
+      </div>
+
+      <div class="channels" aria-label="Direct contact channels">
+      <!-- TODO(confirm): email below assumes the wtp.ae pattern — replace if different -->
+      <a class="channel" href="mailto:oleg@wtp.ae" aria-label="Email Oleg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span>Email</span>
+      </a>
+      <!-- TODO(provide): Telegram handle — disabled until provided -->
+      <a class="channel disabled" href="#" aria-label="Telegram — coming soon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 16.21 9.62 19c.36 0 .51-.15.7-.34l1.68-1.6 3.48 2.55c.64.36 1.1.17 1.27-.59l2.31-10.81c.21-.95-.34-1.32-.96-1.09L3.45 12.65c-.93.36-.92.88-.16 1.12l4.2 1.31 9.74-6.13c.46-.3.88-.13.53.18z"/></svg>
+        <span>Telegram</span>
+      </a>
+      <!-- TODO(provide): WhatsApp number — disabled until provided -->
+      <a class="channel disabled" href="#" aria-label="WhatsApp — coming soon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36A9.4 9.4 0 0 1 21.46 12c0 5.2-4.23 9.4-9.42 9.5zM20.52 3.45A11.36 11.36 0 0 0 2.18 17.07L.5 23.5l6.59-1.73a11.4 11.4 0 0 0 5.44 1.39h.01c6.27 0 11.38-5.1 11.38-11.38a11.3 11.3 0 0 0-3.4-8.33z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      </div>
+    </section>
+
+    <section class="audiences" aria-label="Choose your path">
+      <p class="audience-label">Where to next</p>
+
+      <a class="audience" href="https://wtp.ae/" target="_blank" rel="noopener">
+        <div class="audience-eyebrow">For Clients</div>
+        <h3>Move yourself or your business to the UAE.</h3>
+        <p>Company formation, banking, residency, real estate and compliance — coordinated by one team, under one point of responsibility.</p>
+        <span class="audience-cta">Open the client site<span class="arrow">→</span></span>
+      </a>
+
+      <a class="audience" href="https://partners.wtp.ae/" target="_blank" rel="noopener">
+        <div class="audience-eyebrow">For Partners</div>
+        <h3>Refer your client. Keep your relationship.</h3>
+        <p>For lawyers, advisors, family offices and brokers in the CIS and beyond. One contact on the case, clear terms, and a structure that holds in the long run.</p>
+        <span class="audience-cta">Open the partner site<span class="arrow">→</span></span>
+      </a>
+    </section>
+
+    <a class="event" id="event-block" href="#" target="_blank" rel="noopener">
+      <div class="event-text">
+        <div class="event-tag">From the event</div>
+        <h4>Good to meet you.</h4>
+        <p>Tap here for the follow-up note.</p>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <footer class="footer">
+      <p>&copy; 2026 WTP &nbsp;·&nbsp; <a href="https://wtp.ae" target="_blank" rel="noopener">wtp.ae</a></p>
+    </footer>
+
+  </main>
+
+  <script>
+    (function() {
+      var params = new URL(location.href).searchParams;
+      var event = params.get('event');
+      if (!event) return;
+      var block = document.getElementById('event-block');
+      if (!block) return;
+      var presets = {
+        'forum': {
+          tag: 'Private Client Forum · Dubai',
+          title: 'Good to meet you at the forum.',
+          body: 'Tap here for the follow-up note and intro deck.',
+          href: 'https://wtp.ae/'
+        }
+      };
+      var preset = presets[event];
+      if (preset) {
+        block.querySelector('.event-tag').textContent = preset.tag;
+        block.querySelector('h4').textContent = preset.title;
+        block.querySelector('p').textContent = preset.body;
+        block.setAttribute('href', preset.href);
+      } else {
+        var msg = params.get('msg');
+        if (msg) block.querySelector('p').textContent = msg.slice(0, 140);
+      }
+      block.setAttribute('data-show', 'true');
+    })();
+  </script>
+</body>
+</html>

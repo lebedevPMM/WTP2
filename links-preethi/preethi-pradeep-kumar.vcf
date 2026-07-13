@@ -1,0 +1,17 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Pradeep Kumar;Preethi;;;
+FN:Preethi Pradeep Kumar
+ORG:WTP — Welcome To Paradise;
+TITLE:Administrative Manager
+EMAIL;TYPE=INTERNET,PREF:Preethi@wtp.ae
+TEL;TYPE=CELL,VOICE,PREF:+971545084242
+URL;TYPE=Personal:https://pp.wtp.ae
+URL;TYPE=Work:https://wtp.ae
+URL;TYPE=Telegram:https://t.me/preethi_wtp
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/preethipradeepkumar/
+X-SOCIALPROFILE;TYPE=telegram:https://t.me/preethi_wtp
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/preethipradeepkumar/
+NOTE:Administrative Manager at WTP. Born and raised in the UAE\, 4+ years in real estate operations. Runs daily operations\, internal processes and the coordination that keeps sales\, leasing and back office moving as one. Direct line to operations at WTP.
+ADR;TYPE=WORK:;;Dubai;;;;United Arab Emirates
+END:VCARD
