@@ -255,7 +255,7 @@ export function MegaNav({ transparent = false }: { transparent?: boolean }) {
 
         <div className="meganav-right" style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <span style={{ fontSize: 13, fontWeight: 600, color: "var(--ink-55)" }}>EN</span>
-          <Button to="/contact">Book a pre-screen</Button>
+          <Button to="/contact">Request a pre-screen</Button>
         </div>
 
         <button
@@ -296,7 +296,7 @@ export function MegaNav({ transparent = false }: { transparent?: boolean }) {
             </div>
           ))}
           <div style={{ marginTop: 18 }}>
-            <Button to="/contact" large>Book a pre-screen</Button>
+            <Button to="/contact" large>Request a pre-screen</Button>
           </div>
         </div>
       )}

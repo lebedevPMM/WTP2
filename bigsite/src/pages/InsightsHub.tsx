@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { ArticleCard } from "../components/ArticleCard";
 import { Avatar } from "../components/Avatar";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
@@ -12,9 +13,17 @@ export default function InsightsHub() {
   const featured = articles.find((a) => a.featured) ?? latestArticles(1)[0];
   const rest = articles.filter((a) => a.slug !== featured?.slug);
   const categories = Object.entries(categoryLabel) as [Category, string][];
+  // The rail is "Written by our experts" — show only experts who have actually authored a guide.
+  const authorIds = new Set(articles.map((a) => a.author));
+  const authors = expertList.filter((e) => authorIds.has(e.id));
 
   return (
     <>
+      <Seo
+        title="Insights — WTP"
+        description="Practical guides on UAE banking, residency, company setup and tax — each written and signed by the named WTP expert who handles it."
+        canonical="/insights"
+      />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Insights" }]} />
         <Eyebrow>Insights</Eyebrow>
@@ -65,7 +74,7 @@ export default function InsightsHub() {
       <Section>
         <Eyebrow>Written by our experts</Eyebrow>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 20 }}>
-          {expertList.map((e) => (
+          {authors.map((e) => (
             <Link
               key={e.id}
               to="/about/team"

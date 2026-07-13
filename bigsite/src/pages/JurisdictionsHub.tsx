@@ -26,7 +26,7 @@ export default function JurisdictionsHub() {
           We compare them banking-first — on tax, on access, and on how fast you're operational.
         </p>
         <div style={{ marginTop: 28 }}>
-          <Button to="/contact">Book a pre-screen</Button>
+          <Button to="/contact">Request a pre-screen</Button>
         </div>
       </Section>
 

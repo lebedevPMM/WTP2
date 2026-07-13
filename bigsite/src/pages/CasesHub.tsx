@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { StatBar } from "../components/StatBar";
 import { CaseCard } from "../components/CaseCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
@@ -10,10 +11,10 @@ type Filter = "all" | "banking" | "business-setup" | "residency-visa" | "assets-
 
 const filters: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
-  { id: "banking", label: "Banking" },
+  { id: "banking", label: "Banking & Capital" },
   { id: "business-setup", label: "Business Setup" },
-  { id: "residency-visa", label: "Residency & Visa" },
-  { id: "assets-wealth", label: "Assets & Wealth" },
+  { id: "residency-visa", label: "Residency & Mobility" },
+  { id: "assets-wealth", label: "Wealth Structuring" },
 ];
 
 export default function CasesHub() {
@@ -24,6 +25,11 @@ export default function CasesHub() {
 
   return (
     <>
+      <Seo
+        title="Cases & results — WTP"
+        description="Real, anonymized WTP mandates — situation, constraint, action, outcome. Each one led by a named expert who owns the result."
+        canonical="/cases"
+      />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Cases & Results" }]} />
         <Eyebrow>Proof</Eyebrow>
@@ -78,7 +84,7 @@ export default function CasesHub() {
           </div>
         ) : (
           <p className="muted" style={{ fontSize: 16 }}>
-            No mandates in this line yet — book a pre-screen and yours could be the first.
+            No mandates in this line yet — request a pre-screen and yours could be the first.
           </p>
         )}
       </Section>
@@ -89,7 +95,7 @@ export default function CasesHub() {
           stats={[
             {
               value: "90%+",
-              label: "of our pre-screened cases reach a working account",
+              label: "of the cases we take on reach a working account",
               source: "WTP pre-screen data",
             },
             { value: "100+ HNWI", label: "mandates delivered", source: "WTP client base" },

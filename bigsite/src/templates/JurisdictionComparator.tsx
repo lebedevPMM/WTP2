@@ -5,6 +5,7 @@ import { JurisdictionComparisonTable } from "../components/JurisdictionCompariso
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { NotFound } from "../pages/NotFound";
 import { getComparator, type JurisdictionId } from "../content/jurisdictions";
+import { Seo } from "../components/Seo";
 
 export default function JurisdictionComparator() {
   const { slug } = useParams();
@@ -13,6 +14,11 @@ export default function JurisdictionComparator() {
 
   return (
     <>
+      <Seo
+        title={`${p.title} — WTP`}
+        description={p.whoSuits}
+        canonical={`/jurisdictions/${p.slug}`}
+      />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Jurisdictions", href: "/jurisdictions" }, { label: p.title }]} />
         <Eyebrow>Comparison</Eyebrow>
@@ -30,7 +36,7 @@ export default function JurisdictionComparator() {
             <p style={{ marginTop: 14, fontSize: 16, color: "var(--ink-70)" }}>{p.whoSuits}</p>
           </div>
           <div className="card" style={{ padding: 26 }}>
-            <Eyebrow>Why banking-first points to the UAE</Eyebrow>
+            <Eyebrow>The banking-first read</Eyebrow>
             <p style={{ marginTop: 14, fontSize: 16, color: "var(--ink-70)" }}>{p.bankingFirstTake}</p>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import type { ExpertId } from "./experts";
 
 // The 4 product lines — one ServiceTemplate, fed by these data objects.
-// TODO(content-inventory): enrich steps/deliverables/faqs from L2/L3 landing strategy docs.
 
 export interface ServiceData {
   slug: string;
@@ -21,7 +20,7 @@ export interface ServiceData {
 export const services: ServiceData[] = [
   {
     slug: "banking",
-    line: "Banking",
+    line: "Banking & Capital",
     outcomeHeadline: "Open a UAE bank account without the 6-month wait",
     subhead:
       "Banks decline most HNWI on the first application. We get you through — by starting with the bank, not the paperwork.",
@@ -71,7 +70,7 @@ export const services: ServiceData[] = [
   },
   {
     slug: "residency-visa",
-    line: "Residency & Visa",
+    line: "Residency & Mobility",
     outcomeHeadline: "UAE residency & the Golden Visa, structured around your assets",
     subhead:
       "Residency is a means, not the goal. We structure it around where your wealth sits and where it's going.",
@@ -97,25 +96,25 @@ export const services: ServiceData[] = [
   },
   {
     slug: "assets-wealth",
-    line: "Assets & Wealth",
+    line: "Wealth Structuring",
     outcomeHeadline: "Keep the structure efficient once it's built",
     subhead:
       "Once you're banked and resident, the work is keeping the structure efficient — real estate, investments, digital assets.",
     tierRange: "L3",
-    leadExpert: "olya",
+    leadExpert: "ilya",
     bankingFirstStep: 4,
     problem:
       "Opening the account is the start, not the finish. Real estate, investment accounts and digital assets each carry their own compliance and tax contour. We keep the whole structure coherent.",
     steps: [
       { title: "Asset review", outcome: "Where everything sits and what the 9% CT and substance rules mean." },
       { title: "Real estate", outcome: "Property that doubles as a residency and a store of value (Kostya)." },
-      { title: "Investments & digital", outcome: "Investment and VARA-regulated digital-asset structuring (Oleg · Ilya)." },
+      { title: "Investments & digital", outcome: "Investment and VARA-regulated digital-asset structuring (Oleg · Ilia)." },
     ],
     deliverables: ["Asset structure review", "Real estate acquisition", "Investment account setup", "VARA / digital-asset compliance"],
     tiers: [{ tier: "L3", label: "Wealth structuring", includes: "Ongoing structuring across real estate, investments, and digital assets." }],
     faqs: [
-      { q: "Does the UAE really have zero personal income tax?", a: "Personal income is untaxed; corporate profits face 9% CT above AED 375K (in effect since 1 June 2023). We structure for both." },
-      { q: "Can you handle crypto?", a: "Yes — Ilya handles VARA-regulated digital-asset compliance most advisors avoid." },
+      { q: "Does the UAE really have zero personal income tax?", a: "Personal income is untaxed; corporate profits face 9% CT above AED 375,000 (in effect since 1 June 2023). We structure for both." },
+      { q: "Can you handle crypto?", a: "Yes — Ilia handles VARA-regulated digital-asset compliance most advisors avoid." },
     ],
   },
 ];

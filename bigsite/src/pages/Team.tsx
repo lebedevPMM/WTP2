@@ -1,5 +1,6 @@
 import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { expertList } from "../content/experts";
@@ -7,6 +8,11 @@ import { expertList } from "../content/experts";
 export default function Team() {
   return (
     <>
+      <Seo
+        title="Team & experts — WTP"
+        description="The named experts behind every WTP mandate — banking, structures, residency and assets, each signed by the person accountable for it."
+        canonical="/about/team"
+      />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Team & Experts" }]} />
         <Eyebrow>Real people, named, accountable</Eyebrow>

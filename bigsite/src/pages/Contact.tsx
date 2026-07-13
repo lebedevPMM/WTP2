@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { Avatar } from "../components/Avatar";
 import { getExpert } from "../content/experts";
 import { site, CALCOM_LINK } from "../lib/site";
 import { submitPreScreen } from "../lib/bitrix";
 
-// Contact / Book a pre-screen — the conversion surface.
+// Contact / Request a pre-screen — the conversion surface.
 // Booking: cal.com embed when VITE_CALCOM_LINK is set; lead form always posts to Bitrix24.
 export default function Contact() {
   const olya = getExpert("olya");
@@ -27,7 +28,7 @@ export default function Contact() {
         window.location.href = "/thank-you";
         return;
       }
-      setState(r.offline ? "offline" : "offline");
+      setState("offline");
     } catch {
       setState("offline");
     }
@@ -35,11 +36,16 @@ export default function Contact() {
 
   return (
     <>
+      <Seo
+        title="Request a pre-screen — WTP"
+        description="Request a 15-minute pre-screen with a named WTP expert — a realistic read on your bankability and a Banking Roadmap in 5–7 days."
+        canonical="/contact"
+      />
       <Section className="page-hero">
-        <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Book a pre-screen" }]} />
+        <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Request a pre-screen" }]} />
         <Eyebrow>The pre-screen</Eyebrow>
         <h1 className="h-grad" style={{ fontSize: "clamp(32px,5vw,56px)", margin: "18px 0" }}>
-          Book your 15-minute pre-screen
+          Request your 15-minute pre-screen
         </h1>
         <p className="lead">
           A named expert assesses your bankability and gives you a realistic Banking Roadmap — 5–7 days, no obligation.
@@ -52,7 +58,7 @@ export default function Contact() {
           <Eyebrow>Pick a time</Eyebrow>
           <div style={{ marginTop: 20, borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)", background: "var(--deep-2)" }}>
             <iframe
-              title="Book a pre-screen"
+              title="Request a pre-screen"
               src={`https://cal.com/${CALCOM_LINK}?embed=true&theme=dark`}
               style={{ width: "100%", height: 680, border: 0, display: "block" }}
             />

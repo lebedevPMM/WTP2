@@ -21,6 +21,7 @@ import CasesHub from "./pages/CasesHub";
 import InsightsHub from "./pages/InsightsHub";
 import InsightsCategory from "./pages/InsightsCategory";
 import About from "./pages/About";
+import Partners from "./pages/Partners";
 import VariantsIndex from "./variants/VariantsIndex";
 import V1Page from "./variants/v1/V1Page";
 import V2Page from "./variants/v2/V2Page";
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="/insights/:category/:slug" element={<ArticleTemplate />} />
         <Route path="/about" element={<About />} />
         <Route path="/about/team" element={<Team />} />
+        <Route path="/partners" element={<Partners />} />
         <Route path="/contact" element={<ThemedContact />} />
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/legal/:doc" element={<Legal />} />

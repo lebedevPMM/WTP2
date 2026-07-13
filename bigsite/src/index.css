@@ -146,13 +146,17 @@ main, footer { position: relative; z-index: 1; }
   .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  /* !important defeats inline gridTemplateColumns on the asymmetric .grid-2 splits
+     (Contact form 1.3fr/1fr, CaseTemplate 2fr/1fr) — same trick as .statbar/.stepper above */
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
 }
 
 /* page hero band for inner pages (non-home) */
 .page-hero { padding: 80px 0 48px; }
 .page-hero h1 { font-size: clamp(32px, 5vw, 56px); margin-bottom: 18px; }
 .page-hero .lead { font-size: clamp(16px, 1.6vw, 20px); color: var(--ink-70); max-width: 620px; }
+/* placed AFTER the base .page-hero so it wins on mobile (same specificity → source order) */
+@media (max-width: 640px) { .page-hero { padding: 52px 0 24px; } }
 
 .prose { max-width: 720px; font-size: 17px; line-height: 1.75; color: var(--ink-70); }
 .prose h2, .prose h3 { color: var(--ink); margin: 32px 0 12px; }

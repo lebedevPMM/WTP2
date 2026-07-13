@@ -141,7 +141,7 @@ export const products: ProductData[] = [
         "a": "Yes. It is the entry point for every engagement. We confirm the hardest constraint — bankability — before you commit to a company, visa, or account, so you are not building on an assumption."
       }
     ],
-    "ctaToPreScreen": "Book your Pre-Screen. Get an honest GO / NO-GO read on your bankability — and a roadmap — before you commit to anything else.",
+    "ctaToPreScreen": "Request your Pre-Screen. Get an honest GO / NO-GO read on your bankability — and a roadmap — before you commit to anything else.",
     "category": "diagnostics",
     "categoryName": "Start Here",
     "href": "/banking-first/pre-screen",
@@ -262,7 +262,7 @@ export const products: ProductData[] = [
     "oneLiner": "A working bank account that clears compliance on the first attempt — personal or corporate, even for the complex profiles other providers decline.",
     "heroSubhead": "Banking access for complex private-wealth profiles — personal and corporate. We match you to the bank that will actually open, prepare the Source of Funds package to its exact standard, and stay on it through to a working account, including profiles other providers turn away. The problem we solve is access; the UAE is simply where we open most.",
     "problem": "Since 2022, UAE banks have sharply tightened onboarding. Applicants with complex profiles — a Russian or CIS passport, crypto-derived income, multiple jurisdictions, an unconventional business model — receive rejections with no explanation, accounts frozen after opening, and Source of Funds requests months later. Applying \"and hoping it works\" is a strategic mistake: every declined application is recorded in the Al Etihad Credit Bureau and lowers the odds of the next one. Source of Funds is the single largest cause of rejection. Banks in the UAE do not accept verbal explanations — they expect documented, traceable funds, and each bank weighs profiles differently. Filing the same template everywhere is how applicants burn their best banks before they understand the rules.",
-    "solution": "WTP treats the account as a targeting problem, not a paperwork problem. We start by analysing your profile — citizenship, residency, income, business model, expected turnover — then match you to the specific bank that realistically opens for that profile, rather than filing everywhere at once. The core of the work is the Source of Funds package: structure, wording, and supporting documents prepared to that bank's exact requirements, since SOF drives most rejections. We manage the process end to end — application filing and tracking, booking and supporting the in-bank visit, and answering compliance follow-ups. If the bank requests more, we refine the package and resubmit rather than abandon the case. We work with High Risk profiles others turn away — and where there is no lawful route, we say so up front instead of wasting a credit-bureau record.",
+    "solution": "WTP treats the account as a targeting problem, not a paperwork problem. We start by analysing your profile — citizenship, residency, income, business model, expected turnover — then match you to the specific bank that realistically opens for that profile, rather than filing everywhere at once. The core of the work is the Source of Funds package: structure, wording, and supporting documents prepared to that bank's exact requirements, since SOF drives most rejections. We manage the process end to end — application filing and tracking, booking and supporting the in-bank visit, and answering compliance follow-ups. If the bank requests more, we refine the package and resubmit rather than abandon the case. We work with high-risk profiles others turn away — and where there is no lawful route, we say so up front instead of wasting a credit-bureau record.",
     "steps": [
       {
         "title": "Profiling (Day 1)",
@@ -340,7 +340,7 @@ export const products: ProductData[] = [
     "faqs": [
       {
         "q": "Can you open an account for a Russian or CIS passport holder?",
-        "a": "Yes. High Risk profiles — including a Russian passport with UAE residence permit, crypto-derived income, or multiple jurisdictions — are a core part of what we do. The approach is the same: we match you to a bank that works with your profile and build a Source of Funds package to its requirements. The one firm condition is a lawful route and a traceable source of funds; where there is no lawful path, we tell you up front rather than file and damage your record."
+        "a": "Yes. High-risk profiles — including a Russian passport with UAE residence permit, crypto-derived income, or multiple jurisdictions — are a core part of what we do. The approach is the same: we match you to a bank that works with your profile and build a Source of Funds package to its requirements. The one firm condition is a lawful route and a traceable source of funds; where there is no lawful path, we tell you up front rather than file and damage your record."
       },
       {
         "q": "Why not just apply to several banks myself and see what happens?",
@@ -594,22 +594,22 @@ export const products: ProductData[] = [
     "displayName": "Open a UAE Company",
     "isEntryPoint": false,
     "entryPointNote": "",
-    "oneLiner": "A UAE company built to pass the bank — zone, license and structure matched to your model before you register.",
-    "heroSubhead": "Most agents register a company, then the client can't open an account. We work the other way: we verify the bank will accept your structure first, then register. Zone, license type and activity codes are all set by banking requirements — so you get a working business, not a license on the wall.",
-    "problem": "A UAE company is easy to register and useless without a bank account behind it. The common path is to pay an agent, receive a license, and only then discover the bank declines the structure — the activity codes, zone or ownership don't fit compliance. Every failed bank application is on record; after two to three rejections the odds of opening an account drop sharply. The result is a company that can hold a license on the wall but cannot operate, invoice or move money.",
-    "solution": "We reverse the order. Before any paperwork, a Pre-screen tests whether a bank will accept your business model, ownership and source of funds. Only on a clear scenario do we design the structure — zone (mainland or freezone), license type and activity codes chosen for what the bank approves, not for zone marketing. Then we register the company, secure the lease and establishment card, and run the bank application as one project under one manager and one timeline. You end with a company that is bankable, not one you hope will pass.",
+    "oneLiner": "A UAE company built to pass the bank — zone, licence and structure matched to your model before you register.",
+    "heroSubhead": "Most agents register a company, then the client can't open an account. We work the other way: we verify the bank will accept your structure first, then register. Zone, licence type and activity codes are all set by banking requirements — so you get a working business, not a licence on the wall.",
+    "problem": "A UAE company is easy to register and useless without a bank account behind it. The common path is to pay an agent, receive a licence, and only then discover the bank declines the structure — the activity codes, zone or ownership don't fit compliance. Every failed bank application is on record; after two to three rejections the odds of opening an account drop sharply. The result is a company that can hold a licence on the wall but cannot operate, invoice or move money.",
+    "solution": "We reverse the order. Before any paperwork, a Pre-Screen tests whether a bank will accept your business model, ownership and source of funds. Only on a clear scenario do we design the structure — zone (mainland or freezone), licence type and activity codes chosen for what the bank approves, not for zone marketing. Then we register the company, secure the lease and establishment card, and run the bank application as one project under one manager and one timeline. You end with a company that is bankable, not one you hope will pass.",
     "steps": [
       {
-        "title": "Pre-screen",
+        "title": "Pre-Screen",
         "outcome": "Your business model, KYC profile and source of funds are tested against banking and compliance requirements — a clear GO / NO-GO before any money is spent on registration. Typically 5-7 days."
       },
       {
         "title": "Architecture",
-        "outcome": "Zone (mainland or freezone), license type, activity codes and ownership structure are designed around what the bank will accept — not generic zone marketing. Typically around week 2."
+        "outcome": "Zone (mainland or freezone), licence type, activity codes and ownership structure are designed around what the bank will accept — not generic zone marketing. Typically around week 2."
       },
       {
         "title": "Registration",
-        "outcome": "Company registered, trade license issued, lease/office secured and establishment card obtained — the full document set a bank needs. Typically 2-4 weeks."
+        "outcome": "Company registered, trade licence issued, lease/office secured and establishment card obtained — the full document set a bank needs. Typically 2-4 weeks."
       },
       {
         "title": "Bank",
@@ -617,10 +617,10 @@ export const products: ProductData[] = [
       }
     ],
     "includes": [
-      "Pre-screen and banking strategy",
-      "Jurisdiction and license-type selection (mainland or freezone)",
+      "Pre-Screen and banking strategy",
+      "Jurisdiction and licence-type selection (mainland or freezone)",
       "Company registration",
-      "Trade License",
+      "Trade Licence",
       "Lease / virtual office",
       "Establishment Card",
       "Corporate bank account application",
@@ -633,13 +633,13 @@ export const products: ProductData[] = [
       "Real presence / economic substance build-out",
       "Day-to-day operational management of the business"
     ],
-    "timeline": "End to end, roughly 4-8 weeks from Pre-screen to an opened corporate account: Pre-screen 5-7 days, architecture around week 2, registration 2-4 weeks, bank application 1-3 weeks. Timelines depend on the chosen jurisdiction, the bank, and how quickly documents are provided.",
+    "timeline": "End to end, roughly 4-8 weeks from Pre-Screen to an opened corporate account: Pre-Screen 5-7 days, architecture around week 2, registration 2-4 weeks, bank application 1-3 weeks. Timelines depend on the chosen jurisdiction, the bank, and how quickly documents are provided.",
     "requirements": [
       "A clear, accurate description of the intended business activity",
       "A transparent ownership structure (UBOs disclosed)",
       "Documented, traceable source of funds",
       "Documents provided by the client on time",
-      "No conflicting sanctions or compliance exposure (assessed at Pre-screen)"
+      "No conflicting sanctions or compliance exposure (assessed at Pre-Screen)"
     ],
     "tiers": [
       {
@@ -655,7 +655,7 @@ export const products: ProductData[] = [
       {
         "tier": "L2",
         "label": "Setup",
-        "includes": "Where this product lives. Company Setup & License plus the corporate bank account and VAT / Corporate Tax registration — the bankable structure that lets you operate, alongside real-estate and family services."
+        "includes": "Where this product lives. Company Setup & Licence plus the corporate bank account and VAT / Corporate Tax registration — the bankable structure that lets you operate, alongside real-estate and family services."
       },
       {
         "tier": "L3",
@@ -670,26 +670,26 @@ export const products: ProductData[] = [
     "faqs": [
       {
         "q": "Why do you check the bank before registering the company?",
-        "a": "Because the bank is the hard part, not the license. The zone, license type and activity codes all affect whether a bank will open an account. If we register first and the structure doesn't fit, the application is declined — and every rejection is recorded, which lowers the odds on the next attempt. Pre-screening first means you only register a structure a bank has indicated it will accept."
+        "a": "Because the bank is the hard part, not the licence. The zone, licence type and activity codes all affect whether a bank will open an account. If we register first and the structure doesn't fit, the application is declined — and every rejection is recorded, which lowers the odds on the next attempt. Pre-Screening first means you only register a structure a bank has indicated it will accept."
       },
       {
         "q": "Mainland or freezone — which do I need?",
-        "a": "It depends on your business model, where your clients are, and what your target bank approves. We choose the jurisdiction from those requirements rather than from zone marketing. Some models are stronger in a freezone; others need mainland to satisfy the bank or the activity. That decision is made in the Architecture step, after the Pre-screen."
+        "a": "It depends on your business model, where your clients are, and what your target bank approves. We choose the jurisdiction from those requirements rather than from zone marketing. Some models are stronger in a freezone; others need mainland to satisfy the bank or the activity. That decision is made in the Architecture step, after the Pre-Screen."
       },
       {
         "q": "Is the bank account guaranteed?",
-        "a": "No honest provider can guarantee an account — approval is the bank's decision under its own compliance rules. What we do is verify acceptability before you register and prepare a clean, matched application, which is why this approach is designed so you end up with both a company and a working account rather than a license on the wall."
+        "a": "No honest provider can guarantee an account — approval is the bank's decision under its own compliance rules. What we do is verify acceptability before you register and prepare a clean, matched application, which is why this approach is designed so you end up with both a company and a working account rather than a licence on the wall."
       },
       {
         "q": "What's not included in this product?",
-        "a": "This covers formation through to the corporate account application: registration, trade license, lease, establishment card and the bank application. It does not include ongoing accounting and reporting, VAT and Corporate Tax registration, or economic-substance build-out — those are separate services and are bundled into the higher Control package if you want everything managed under one roof."
+        "a": "This covers formation through to the corporate account application: registration, trade licence, lease, establishment card and the bank application. It does not include ongoing accounting and reporting, VAT and Corporate Tax registration, or economic-substance build-out — those are separate services and are bundled into the Setup package if you want everything managed under one roof."
       },
       {
         "q": "Do I have to fly to the UAE?",
         "a": "Plan for a short visit. Parts of company formation and the bank's onboarding (and any linked visa biometrics) require you to be physically present in the UAE. We compress the in-country steps into a single trip and run the rest asynchronously, so you don't wait on site for the final documents."
       }
     ],
-    "ctaToPreScreen": "Start with a Pre-screen. Before any registration, we'll test whether a bank will accept your structure and map the zone, license and account that fit your model — so you never pay to register a company that can't operate. Book your Pre-screen to get a clear GO / NO-GO and your banking-first roadmap.",
+    "ctaToPreScreen": "Start with a Pre-Screen. Before any registration, we'll test whether a bank will accept your structure and map the zone, licence and account that fit your model — so you never pay to register a company that can't operate. Request your Pre-Screen to get a clear GO / NO-GO and your banking-first roadmap.",
     "category": "business-setup",
     "categoryName": "Business Setup",
     "href": "/services/business-setup/open-company",
@@ -844,7 +844,7 @@ export const products: ProductData[] = [
     "notIncluded": [
       "Management of the foundation's assets",
       "Investment decisions made on your behalf",
-      "Aggressive or non-compliant tax optimization",
+      "Aggressive or non-compliant tax optimisation",
       "Concealment of assets from regulators or authorities",
       "Inheritance tax planning for assets outside the UAE",
       "Cross-border inheritance dispute representation"

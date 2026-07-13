@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { marked } from "marked";
 import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { Byline } from "../components/Byline";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { ArticleCard } from "../components/ArticleCard";
@@ -30,6 +31,12 @@ export default function ArticleTemplate() {
 
   return (
     <>
+      <Seo
+        title={`${a.title} — WTP`}
+        description={a.excerpt}
+        canonical={`/insights/${a.category}/${a.slug}`}
+        ogType="article"
+      />
       <Section style={{}} className="page-hero">
         <div style={{ maxWidth: 740, margin: "0 auto" }}>
           <Breadcrumb

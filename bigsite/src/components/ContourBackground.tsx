@@ -117,12 +117,20 @@ function ContourBackground() {
       if (reduced) drawLight(W * 0.6, H * 0.42, true);
     }
 
+    // Cap the watermark redraw at ~30fps. The gold drift + parallax are slow and faint,
+    // so 30fps is visually identical to 60 — but it halves this loop's main-thread cost,
+    // which on mobile was stealing frames from the scroll (the «дерганость»). The page
+    // scroll itself is compositor-driven and unaffected by this throttle.
+    let lastDraw = 0;
+    const minFrameMs = 1000 / 30;
     const frame = (now: number) => {
+      raf = requestAnimationFrame(frame);
+      if (now - lastDraw < minFrameMs) return;
+      lastDraw = now;
       const prog = scrollY / maxScroll();
       const sy = H * (0.12 + prog * 0.66) + Math.sin(now * 0.00045) * 40;
       const sx = W * (0.6 + Math.sin(now * 0.0003) * 0.05);
       drawLight(sx, sy, false);
-      raf = requestAnimationFrame(frame);
     }
 
     const onResize = () => { clearTimeout(rt); rt = window.setTimeout(size, 160); };

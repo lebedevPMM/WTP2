@@ -30,7 +30,7 @@ export const experts: Record<ExpertId, Expert> = {
   sergey: {
     id: "sergey",
     name: "Sergey Kravtsov",
-    title: "Owner",
+    title: "Founder & Corporate Structures",
     scope: "UAE corporate structures, company formation, banking and international settlements — for clients and partners across the CIS",
     credibility: "The Owner you deal with directly — one team, one point of responsibility, and a structure that holds for the long run.",
     signature: "Sergey",

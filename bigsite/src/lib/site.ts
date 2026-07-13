@@ -1,7 +1,7 @@
 // Single source of truth for WTP contact details (real, from existing site + CEO vCard).
 export const site = {
   name: "WTP",
-  full: "WTP — Welcome To Paradise",
+  full: "WTP — Wellcome to Paradise",
   domain: "wtp.ae",
   email: "hello@wtp.ae",
   phone: "+971 600 575-294",

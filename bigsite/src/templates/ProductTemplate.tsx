@@ -69,7 +69,7 @@ export default function ProductTemplate() {
         </h1>
         <p className="lead">{p.heroSubhead}</p>
         <div style={{ display: "flex", alignItems: "center", gap: 18, marginTop: 28, flexWrap: "wrap" }}>
-          <Button to="/banking-first/pre-screen" large>Check your bankability</Button>
+          <Button to="/contact" large>Check your bankability</Button>
           {expert && (
             <div style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--ink-55)", fontSize: 14 }}>
               <Avatar expert={expert} size={32} /> Led by {expert.name}, {expert.title}

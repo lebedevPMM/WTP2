@@ -1,10 +1,13 @@
 import { useEffect, useRef } from "react";
 import { Button } from "./ui";
-import { useThemeId } from "../theme/ThemedRoute";
 
-// Port of the LOCKED scroll-scrub video hero (hero-video-scroll/index.html).
-// Route draws itself across a generated 3D relief as you scroll. Requires HTTP Range
-// (CF Pages native; local dev = vite serves Range fine).
+// Scroll-scrub route reveal. Frames are pre-decoded JPEGs drawn to <canvas> via drawImage
+// (synchronous, ~2ms each) — NOT a <video> seeked by currentTime. Seeking video on scroll
+// stutters badly on mobile (async seek + per-frame GPU re-upload); drawImage of a decoded
+// image does not. Same pixels, same scroll-linked animation, smooth on phones.
+
+const FRAME_COUNT = 61; // public/hero/frames/r_001.jpg .. r_061.jpg (every 2nd source frame)
+const frameUrl = (i: number) => `/hero/frames/r_${String(i + 1).padStart(3, "0")}.jpg`;
 
 const beats = [
   { in: 0, out: 0.3 },
@@ -14,39 +17,57 @@ const beats = [
 
 export function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
-  const vidRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
   const beatRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Daylight theme gets its own regenerated asset (same choreography, light grade)
-  const daylight = useThemeId() === "v4";
-  const vidSrc = daylight ? "/hero/route-light.mp4" : "/hero/route.mp4";
-  const vidPoster = daylight ? "/hero/poster-light.png" : "/hero/poster.png";
-
   useEffect(() => {
     const stage = stageRef.current;
-    const vid = vidRef.current;
+    const canvas = canvasRef.current;
     const fill = fillRef.current;
-    if (!stage || !vid || !fill) return;
+    if (!stage || !canvas || !fill) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    let dur = 5;
-    let primed = false;
-    let cur = 0;
-    let raf = 0;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const prime = () => {
-      if (primed) return;
-      primed = true;
-      const pr = vid.play();
-      if (pr && pr.then) pr.then(() => vid.pause()).catch(() => {});
+    // preload the frame set; a drawImage of a decoded image is cheap + synchronous
+    const images: HTMLImageElement[] = [];
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = frameUrl(i);
+      images[i] = img;
+    }
+    const ready = (i: number) => !!images[i] && images[i].complete && images[i].naturalWidth > 0;
+
+    let dpr = 1, cw = 0, ch = 0, raf = 0, lastDrawn = -1, cur = 0;
+
+    // cover-fit the 1280x720 frame into the viewport at objectPosition ~60% 50% (matches old video)
+    const drawCover = (img: HTMLImageElement) => {
+      const fw = img.naturalWidth, fh = img.naturalHeight;
+      const scale = Math.max(cw / fw, ch / fh);
+      const dw = fw * scale, dh = fh * scale;
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(img, (cw - dw) * 0.6, (ch - dh) * 0.5, dw, dh);
     };
-    const onMeta = () => {
-      dur = vid.duration || 5;
-      prime();
+    const drawIndex = (idx: number) => {
+      let di = Math.max(0, Math.min(FRAME_COUNT - 1, idx));
+      while (di > 0 && !ready(di)) di--; // fall back to nearest loaded frame while preloading
+      if (!ready(di) || di === lastDrawn) return;
+      drawCover(images[di]);
+      lastDrawn = di;
     };
-    vid.addEventListener("loadedmetadata", onMeta);
-    window.addEventListener("scroll", prime, { once: true, passive: true });
-    window.addEventListener("pointerdown", prime, { once: true });
+
+    const resize = () => {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      cw = canvas.clientWidth || window.innerWidth;
+      ch = canvas.clientHeight || window.innerHeight;
+      canvas.width = Math.round(cw * dpr);
+      canvas.height = Math.round(ch * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      lastDrawn = -1; // force a redraw at the new size
+    };
 
     const smooth = (e0: number, e1: number, x: number) => {
       const t = Math.min(Math.max((x - e0) / (e1 - e0), 0), 1);
@@ -62,51 +83,48 @@ export function Hero() {
       return Math.min(Math.max(-r.top / total, 0), 1);
     };
 
-    const loop = () => {
-      const p = progress();
-      cur += (p - cur) * 0.18;
-      if (dur && isFinite(dur)) {
-        const t = Math.min(cur * dur, dur - 0.05);
-        if (Math.abs(vid.currentTime - t) > 0.02) {
-          try {
-            vid.currentTime = t;
-          } catch {
-            /* seeking guard */
-          }
-        }
-      }
-      fill.style.height = p * 100 + "%";
-      beatRefs.current.forEach((b, i) => {
-        if (!b) return;
-        // Beat 0 (H1 + offer + CTA) is visible at rest so the page states its value on first
-        // paint, before any scroll; it only fades OUT as beat 1 takes over. Beats 1-2 cross-fade in.
-        const op = i === 0 ? 1 - smooth(beats[0].out - f, beats[0].out, p) : bump(p, beats[i].in, beats[i].out);
-        b.style.opacity = String(op);
-      });
-      raf = requestAnimationFrame(loop);
-    };
-    loop();
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+
+    if (reduced) {
+      // static hero: paint the fully-drawn route (last frame) once it has loaded
+      const paintStatic = () => {
+        if (ready(FRAME_COUNT - 1)) { drawCover(images[FRAME_COUNT - 1]); lastDrawn = FRAME_COUNT - 1; }
+        else raf = requestAnimationFrame(paintStatic);
+      };
+      paintStatic();
+    } else {
+      const loop = () => {
+        const p = progress();
+        cur += (p - cur) * 0.18;
+        drawIndex(Math.round(cur * (FRAME_COUNT - 1)));
+        fill.style.height = p * 100 + "%";
+        beatRefs.current.forEach((b, i) => {
+          if (!b) return;
+          // Beat 0 (H1 + offer + CTA) is visible at rest so the page states its value on first
+          // paint, before any scroll; it only fades OUT as beat 1 takes over. Beats 1-2 cross-fade in.
+          const op = i === 0 ? 1 - smooth(beats[0].out - f, beats[0].out, p) : bump(p, beats[i].in, beats[i].out);
+          b.style.opacity = String(op);
+        });
+        raf = requestAnimationFrame(loop);
+      };
+      loop();
+    }
 
     return () => {
       cancelAnimationFrame(raf);
-      vid.removeEventListener("loadedmetadata", onMeta);
+      window.removeEventListener("resize", resize);
     };
-  }, [vidSrc]);
+  }, []);
 
   return (
     <div ref={stageRef} className="hero-stage" style={{ position: "relative", height: "420vh" }}>
-      <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
-        <video
-          key={vidSrc}
-          ref={vidRef}
-          muted
-          playsInline
-          preload="auto"
-          poster={vidPoster}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "60% 50%", zIndex: 0 }}
-        >
-          <source src={vidSrc} type="video/mp4" />
-        </video>
+      <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", background: "#06050f" }}>
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0, display: "block" }}
+        />
 
         <div
           style={{
@@ -189,6 +207,13 @@ export function Hero() {
                           How it works
                         </Button>
                       </div>
+                      {i === 0 && (
+                        <p style={{ marginTop: 18, fontSize: 13, color: "var(--ink-70)", display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+                          <span><strong className="g" style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>100+</strong> UAE accounts opened</span>
+                          <span aria-hidden style={{ width: 1, height: 12, background: "var(--line)" }} />
+                          <span><strong className="g" style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>90%+</strong> reach a working account</span>
+                        </p>
+                      )}
                       <p style={{ marginTop: 14, fontSize: 13.5, color: "var(--ink-55)" }}>
                         No pitch. If we can't take your case, we'll tell you.
                       </p>

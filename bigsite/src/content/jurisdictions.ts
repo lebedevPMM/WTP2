@@ -51,19 +51,25 @@ export const comparatorPages: JurisdictionPage[] = [
     slug: "singapore",
     title: "UAE vs Singapore for private wealth",
     whoSuits: "Singapore suits founders prioritizing Asian market access and a mature funds ecosystem.",
-    bankingFirstTake: "Banking-first, the UAE clears the account faster for most HNWI profiles, with zero personal income tax.",
+    bankingFirstTake: "Singapore's funds ecosystem and Asian access are hard to match. Banking-first, the UAE usually clears the account faster for HNWI profiles, at zero personal income tax — the right call depends on where you operate.",
   },
   {
     slug: "portugal",
     title: "UAE vs Portugal (post-NHR)",
     whoSuits: "Portugal suits those wanting EU residency and lifestyle, post-NHR reductions accepted.",
-    bankingFirstTake: "The UAE offers stronger tax and banking certainty once the NHR window narrows.",
+    bankingFirstTake: "Portugal wins on EU access and lifestyle. On tax and banking certainty once the NHR window narrows, the UAE is the steadier base — weigh EU residency against that.",
   },
   {
     slug: "switzerland",
     title: "UAE vs Switzerland for private banking",
     whoSuits: "Switzerland suits ultra-relationship-led private banking and lump-sum taxation deals.",
-    bankingFirstTake: "The UAE offers comparable banking depth at zero personal income tax and faster setup.",
+    bankingFirstTake: "Switzerland's private-banking depth and discretion are in a class of their own. Banking-first, the UAE matches much of it at zero personal income tax and a faster setup — discretion-led vs speed-led.",
+  },
+  {
+    slug: "malta",
+    title: "UAE vs Malta for private wealth",
+    whoSuits: "Malta suits those wanting an English-speaking EU base with a contribution-plus-property residency route.",
+    bankingFirstTake: "Malta gives a genuine EU footing and English-language base. Banking-first, the UAE tends to clear HNWI accounts more reliably and at zero personal income tax — EU access vs banking certainty.",
   },
 ];
 

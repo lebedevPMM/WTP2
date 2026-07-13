@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { ArticleCard } from "../components/ArticleCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
@@ -27,6 +28,11 @@ export default function CaseTemplate() {
 
   return (
     <>
+      <Seo
+        title={`${c.title} — WTP`}
+        description={`${c.situationTag} — ${c.outcomeMetric}`}
+        canonical={`/cases/${c.slug}`}
+      />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Cases", href: "/cases" }, { label: c.situationTag }]} />
         <span className="chip" style={{ marginBottom: 16 }}>{c.situationTag}</span>

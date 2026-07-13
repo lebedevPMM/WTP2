@@ -1,5 +1,6 @@
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { StepperBankingFirst } from "../components/StepperBankingFirst";
 import { CaseCard } from "../components/CaseCard";
 import { ExpertBioCard } from "../components/ExpertBioCard";
@@ -9,11 +10,12 @@ import { latestCases } from "../content/index";
 
 // The four service tiers, derived from services data — L0 pre-screen through
 // L3 wealth structuring. Scope only; no fees rendered on-page.
+// Labels match the engagement tiers on /packages (Advisory · Entry · Setup · Control).
 const TIERS = [
-  { tier: "L0", label: "Pre-screen", includes: "Bankability assessment + a Banking Roadmap in 5–7 days." },
-  { tier: "L1", label: "Account opening", includes: "Full application, compliance prep, account opened with IBAN." },
-  { tier: "L2", label: "Company & residency", includes: "Jurisdiction selection, formation, substance and standard residency." },
-  { tier: "L3", label: "Wealth structuring", includes: "Golden Visa, real estate, investments and digital-asset structuring." },
+  { tier: "L0", label: "Advisory", includes: "Pre-screen + bankability assessment and a Banking Roadmap in 5–7 days." },
+  { tier: "L1", label: "Entry", includes: "Full application, compliance prep, account opened with IBAN." },
+  { tier: "L2", label: "Setup", includes: "Jurisdiction selection, formation, substance and standard residency." },
+  { tier: "L3", label: "Control", includes: "Golden Visa, real estate, investments and digital-asset structuring." },
 ];
 
 export default function BankingFirst() {
@@ -22,6 +24,11 @@ export default function BankingFirst() {
 
   return (
     <>
+      <Seo
+        title="Banking-First methodology — WTP"
+        description="Why the bank is the hard step. WTP clears the hardest gate — the bank and its compliance — first, then builds the company, visa and assets to pass it."
+        canonical="/banking-first"
+      />
       {/* 1. Page hero */}
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Banking-First" }]} />
@@ -35,7 +42,7 @@ export default function BankingFirst() {
         </p>
         <div style={{ marginTop: 28 }}>
           <Button to="/contact" large>
-            Book a pre-screen
+            Request a pre-screen
           </Button>
         </div>
       </Section>

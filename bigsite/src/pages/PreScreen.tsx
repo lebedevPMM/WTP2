@@ -1,5 +1,6 @@
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { getExpert } from "../content/experts";
@@ -51,6 +52,11 @@ export default function PreScreen() {
 
   return (
     <>
+      <Seo
+        title="The Pre-Screen — WTP"
+        description="What actually matters before you apply: source of funds, structure and residency. A 15-minute pre-screen and a written Banking Roadmap in 5–7 days."
+        canonical="/banking-first/pre-screen"
+      />
       {/* Hero */}
       <Section className="page-hero">
         <Breadcrumb
@@ -70,7 +76,7 @@ export default function PreScreen() {
         </p>
         <div style={{ marginTop: 28 }}>
           <Button to="/contact" large>
-            Book a 15-minute pre-screen
+            Request a 15-minute pre-screen
           </Button>
         </div>
       </Section>

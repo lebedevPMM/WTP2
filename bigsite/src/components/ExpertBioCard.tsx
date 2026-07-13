@@ -27,7 +27,7 @@ export function ExpertBioCard({ expert, variant = "full" }: { expert: Expert; va
       <p style={{ fontSize: 14, color: "var(--ink-55)", marginBottom: 8 }}>{expert.scope}</p>
       <p style={{ fontSize: 14.5, color: "var(--ink-70)", marginBottom: 20 }}>{expert.credibility}</p>
       <Button to="/contact" ghost>
-        Book a pre-screen with {expert.name}
+        Request a pre-screen with {expert.name}
       </Button>
     </div>
   );

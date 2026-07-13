@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useParams } from "react-router-dom";
 import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { NotFound } from "./NotFound";
 import { site } from "../lib/site";
 
@@ -196,7 +197,13 @@ export default function Legal() {
   const d = docs[doc || ""];
   if (!d) return <NotFound />;
   return (
-    <Section className="page-hero">
+    <>
+      <Seo
+        title={`${d.title} — WTP`}
+        description={`${d.title} for WTP — the back office for private wealth.`}
+        canonical={`/legal/${doc}`}
+      />
+      <Section className="page-hero">
       <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: d.title }]} />
       <Eyebrow>Legal</Eyebrow>
       <h1 className="h-grad" style={{ marginBottom: 22 }}>{d.title}</h1>
@@ -205,5 +212,6 @@ export default function Legal() {
         Last updated 18 June 2026 · Draft for review — not yet counsel-approved.
       </p>
     </Section>
+    </>
   );
 }

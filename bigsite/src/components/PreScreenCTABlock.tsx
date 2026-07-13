@@ -22,11 +22,11 @@ export function PreScreenCTABlock({ expert = "olya" }: { expert?: ExpertId }) {
             Not sure where you stand?
           </h2>
           <p style={{ color: "var(--ink-70)", maxWidth: 480, margin: "0 auto 28px", fontSize: 17 }}>
-            Book a 15-minute pre-screen with a named expert. You'll get a realistic Banking Roadmap — no obligation.
+            Request a 15-minute pre-screen with a named expert. You'll get a realistic Banking Roadmap — no obligation.
           </p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
             <Button to="/contact" large>
-              Book a pre-screen with {e.name}
+              Request a pre-screen with {e.name}
             </Button>
             <p style={{ color: "var(--ink-55)", fontSize: 13.5, margin: 0 }}>
               No pitch. If we can't take your case, we'll tell you.

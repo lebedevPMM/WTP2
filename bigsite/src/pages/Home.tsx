@@ -12,10 +12,11 @@ import { services } from "../content/services";
 import { expertList } from "../content/experts";
 import { latestCases, latestArticles } from "../content/index";
 
+// Live destinations until dedicated segment landing pages exist (see audit decision D).
 const segments = [
-  { label: "UK non-dom", href: "/who-we-help/uk-non-dom" },
-  { label: "DACH exit-tax", href: "/who-we-help/dach-exit-tax" },
-  { label: "NL Box 3", href: "/who-we-help/nl-box3" },
+  { label: "UK non-dom", href: "/insights/assets-tax/uk-non-dom-leaving-for-the-uae" },
+  { label: "DACH exit-tax", href: "/insights/assets-tax/german-exit-tax-before-you-move" },
+  { label: "NL Box 3", href: "/insights/assets-tax" },
   { label: "For partners", href: "/partners" },
 ];
 
@@ -29,7 +30,7 @@ export default function Home() {
         <StatBar
           stats={[
             { value: "100+", label: "UAE accounts opened", source: "WTP track record" },
-            { value: "90%+", label: "of pre-screened cases reach a working account", source: "WTP pre-screen data" },
+            { value: "90%+", label: "of the cases we take on reach a working account", source: "WTP pre-screen data" },
             { value: "7+", label: "UAE banks we work across", source: "WTP banking desk" },
             { value: "3 days–1 wk", label: "to a personal account once approved", source: "typical timeline" },
           ]}
@@ -136,7 +137,7 @@ export default function Home() {
           Meet the experts
         </h2>
         <div className="grid-3">
-          {expertList.slice(0, 3).map((e) => (
+          {expertList.map((e) => (
             <ExpertBioCard key={e.id} expert={e} />
           ))}
         </div>

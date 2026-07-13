@@ -7,10 +7,10 @@ const cols: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Services",
     links: [
-      { label: "Banking", href: "/services/banking" },
+      { label: "Banking & Capital", href: "/services/banking" },
       { label: "Business Setup", href: "/services/business-setup" },
-      { label: "Residency & Visa", href: "/services/residency-visa" },
-      { label: "Assets & Wealth", href: "/services/assets-wealth" },
+      { label: "Residency & Mobility", href: "/services/residency-visa" },
+      { label: "Wealth Structuring", href: "/services/assets-wealth" },
     ],
   },
   {
@@ -27,6 +27,7 @@ const cols: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "About", href: "/about" },
       { label: "Team & Experts", href: "/about/team" },
+      { label: "For partners", href: "/partners" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -66,7 +67,7 @@ export function Footer() {
               Get started
             </div>
             <Link to="/contact" style={{ display: "block", marginBottom: 11, fontSize: 14, color: "var(--gold)", fontWeight: 600 }}>
-              Book a pre-screen
+              Request a pre-screen
             </Link>
             <a href={`mailto:${site.email}`} style={{ display: "block", marginBottom: 11, fontSize: 14, color: "var(--ink-70)" }}>{site.email}</a>
             <a href={site.phoneHref} style={{ display: "block", marginBottom: 11, fontSize: 14, color: "var(--ink-70)" }}>{site.phone}</a>
@@ -80,12 +81,12 @@ export function Footer() {
 
         <div className="footer-cta" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 24, padding: "28px 0", borderTop: "1px solid var(--line)" }}>
           <div>
-            <img src="/logo-mark.svg" alt="WTP" style={{ height: 40, marginBottom: 12, display: "block" }} />
+            <img src="/logo-white.svg" alt="WTP" style={{ height: 40, marginBottom: 12, display: "block" }} />
             <p style={{ fontSize: 13.5, color: "var(--ink-55)", maxWidth: 380 }}>
               Banking-first back office for private wealth. We deliver bankable structures, not company setups.
             </p>
           </div>
-          <Button to="/contact">Book a pre-screen</Button>
+          <Button to="/contact">Request a pre-screen</Button>
         </div>
 
         <div style={{ padding: "22px 0 14px", borderTop: "1px solid var(--line)", display: "flex", flexWrap: "wrap", gap: "10px 22px", alignItems: "center", fontSize: 12.5, color: "var(--ink-40)" }}>

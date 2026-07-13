@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { ArticleCard } from "../components/ArticleCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
@@ -46,6 +47,11 @@ export default function InsightsCategory() {
 
   return (
     <>
+      <Seo
+        title={`${label} guides — WTP`}
+        description={leadByCategoryText[category]}
+        canonical={`/insights/${category}`}
+      />
       <Section className="page-hero">
         <Breadcrumb
           trail={[
@@ -59,14 +65,6 @@ export default function InsightsCategory() {
           {label} <span className="g">guides</span>
         </h1>
         <p className="lead">{leadByCategoryText[category]}</p>
-      </Section>
-
-      {/* Category lead expert */}
-      <Section>
-        <Eyebrow>Signed by the expert</Eyebrow>
-        <div style={{ marginTop: 24, maxWidth: 440 }}>
-          <ExpertBioCard expert={expert} variant="compact" />
-        </div>
       </Section>
 
       {/* Filtered grid */}
@@ -97,10 +95,18 @@ export default function InsightsCategory() {
               We&rsquo;re writing up {label.toLowerCase()} guides, each signed by {expert.name}. Until then, the fastest answer is a pre-screen on your specific case.
             </p>
             <Button to="/contact" ghost>
-              Book a pre-screen with {expert.name}
+              Request a pre-screen with {expert.name}
             </Button>
           </div>
         )}
+      </Section>
+
+      {/* Category lead expert — below the guides so the content leads the page */}
+      <Section>
+        <Eyebrow>Signed by the expert</Eyebrow>
+        <div style={{ marginTop: 24, maxWidth: 440 }}>
+          <ExpertBioCard expert={expert} variant="compact" />
+        </div>
       </Section>
 
       <PreScreenCTABlock expert={leadId} />

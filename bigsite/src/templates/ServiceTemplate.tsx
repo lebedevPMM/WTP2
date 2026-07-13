@@ -39,7 +39,7 @@ export default function ServiceTemplate() {
         </h1>
         <p className="lead">{s.subhead}</p>
         <div style={{ display: "flex", alignItems: "center", gap: 18, marginTop: 28, flexWrap: "wrap" }}>
-          <Button to="/contact">Book a pre-screen</Button>
+          <Button to="/contact">Request a pre-screen</Button>
           <div style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--ink-55)", fontSize: 14 }}>
             <Avatar expert={expert} size={32} /> Led by {expert.name}, {expert.title}
           </div>

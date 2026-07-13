@@ -1,5 +1,6 @@
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { StatBar } from "../components/StatBar";
 import { CaseCard } from "../components/CaseCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
@@ -25,6 +26,11 @@ export default function UAE() {
 
   return (
     <>
+      <Seo
+        title="The UAE for private wealth — WTP"
+        description="Zero personal income tax, a 9% corporate rate above AED 375,000, and Golden Visa routes from AED 2M — read the way a private bank reads it, banking-first."
+        canonical="/jurisdictions/uae"
+      />
       <Section className="page-hero">
         <Breadcrumb
           trail={[
@@ -42,7 +48,7 @@ export default function UAE() {
           private bank reads it, then build a structure that clears compliance before you commit.
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: 18, marginTop: 28, flexWrap: "wrap" }}>
-          <Button to="/contact">Book a pre-screen</Button>
+          <Button to="/contact">Request a pre-screen</Button>
         </div>
       </Section>
 

@@ -1,7 +1,7 @@
 import type { Expert } from "../content/experts";
 
-// Expert photos are a known content gap. Premium gradient-initials fallback until real
-// portraits exist. TODO(content-inventory): swap to real photos when delivered.
+// Expert portraits live in public/experts/ (wired via experts.ts). The gradient-initials
+// block below is the fallback for any expert without a photo.
 export function Avatar({ expert, size = 48 }: { expert: Expert; size?: number }) {
   if (expert.photo) {
     return (

@@ -1,5 +1,6 @@
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { StepperBankingFirst } from "../components/StepperBankingFirst";
 import { StatBar } from "../components/StatBar";
 import { ExpertBioCard } from "../components/ExpertBioCard";
@@ -9,6 +10,11 @@ import { expertList } from "../content/experts";
 export default function About() {
   return (
     <>
+      <Seo
+        title="About — WTP, the back office for private wealth"
+        description="WTP is the discreet back office for private wealth — banking, structures, residency and succession, run by named people. The UAE is our home market, not our pitch."
+        canonical="/about"
+      />
       {/* Hero */}
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "About" }]} />
