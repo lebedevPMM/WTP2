@@ -129,20 +129,36 @@ const docs: Record<string, { title: string; body: ReactNode }> = {
       <>
         <p>
           This policy explains how this WTP website uses cookies and similar
-          technologies, and the choices you have.
+          technologies, and the choices you have. We ask for your consent before setting any cookie
+          that is not strictly necessary — nothing optional loads until you agree.
         </p>
-        <h3>What we use</h3>
+        <h3>Strictly necessary — always on</h3>
         <p>
-          We keep cookies to a minimum. Strictly necessary cookies make the site work — navigation,
-          security, and remembering your progress through a form. Where we measure how the site is
-          used, we rely on privacy-respecting analytics. We do not use advertising or cross-site
-          tracking cookies, and we do not sell or share cookie data with advertisers.
+          These make the site work: navigation, security, remembering your progress through a form,
+          and remembering the cookie choice you make here. They do not track you across other sites
+          and cannot be switched off.
         </p>
-        <h3>Your choices</h3>
+        <h3>Analytics — Google Analytics 4 (only with your consent)</h3>
         <p>
-          You can refuse or delete cookies in your browser settings at any time; blocking strictly
-          necessary cookies may stop parts of the site from working. Where the law requires consent
-          for non-essential cookies, we ask for it before they are set.
+          When enabled, we use Google Analytics 4 to understand how the site is used — pages viewed,
+          document downloads, form submissions — so we can improve it. It sets cookies such as{" "}
+          <code>_ga</code>. It loads only after you choose "Accept all" in the cookie banner, never
+          before.
+        </p>
+        <h3>Marketing — Meta Pixel (only with your consent)</h3>
+        <p>
+          When enabled, we use the Meta (Facebook) Pixel to measure how well our campaigns work. It
+          sets cookies such as <code>_fbp</code>. Like analytics, it loads only after your consent.
+          While these tools are switched off on our side, no analytics or marketing cookies are set
+          at all and no consent banner is shown.
+        </p>
+        <h3>Your choices &amp; withdrawing consent</h3>
+        <p>
+          When analytics or marketing cookies are in use, a consent banner appears on your first
+          visit. You can change your mind at any time via the "Cookie settings" link in the footer —
+          it reopens the banner, and choosing "Necessary only" also removes the tracking cookies we
+          set. You can also refuse or delete cookies in your browser settings; blocking strictly
+          necessary cookies may stop parts of the site from working.
         </p>
         <h3>More</h3>
         <p>
@@ -209,7 +225,7 @@ export default function Legal() {
       <h1 className="h-grad" style={{ marginBottom: 22 }}>{d.title}</h1>
       <div className="prose">{d.body}</div>
       <p style={{ marginTop: 32, fontSize: 13, color: "var(--ink-40)" }}>
-        Last updated 18 June 2026 · Draft for review — not yet counsel-approved.
+        Last updated 14 July 2026 · Draft for review — not yet counsel-approved.
       </p>
     </Section>
     </>

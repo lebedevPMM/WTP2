@@ -166,3 +166,45 @@ main, footer { position: relative; z-index: 1; }
 .prose li { margin-bottom: 8px; }
 .prose strong { color: var(--ink); }
 .prose a { color: var(--gold); }
+
+/* ---- cookie-consent banner: non-blocking bottom bar, obsidian + thin gold hairline ---- */
+.consent-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60; /* above MegaNav (50); bottom placement never covers the nav anyway */
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 16px 22px;
+  background: rgba(13, 11, 34, 0.97); /* --deep-2, near-opaque so text stays readable */
+  border: 1px solid rgba(255, 198, 90, 0.35); /* thin gold frame */
+  border-radius: 14px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-body);
+}
+.consent-text {
+  margin: 0;
+  flex: 1 1 380px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-70);
+  max-width: 520px;
+}
+.consent-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.consent-btn { font-size: 13px; padding: 9px 18px; }
+.consent-link { font-size: 13px; color: var(--ink-55); text-decoration: underline; text-underline-offset: 3px; }
+.consent-link:hover { color: var(--gold); }
+/* reduced-motion-safe: the slide-up only runs when the user allows motion */
+@media (prefers-reduced-motion: no-preference) {
+  .consent-banner { animation: consent-rise 0.35s ease-out; }
+  @keyframes consent-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

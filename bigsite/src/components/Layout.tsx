@@ -2,13 +2,26 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { MegaNav } from "./MegaNav";
 import { Footer } from "./Footer";
+import { ConsentBanner } from "./ConsentBanner";
 import { ThemeSwitch } from "../theme/ThemeSwitch";
 import { ThemeFX } from "../theme/fx/ThemeFX";
 import ContourBackground from "./ContourBackground";
+import { initAnalytics, trackPageView } from "../lib/analytics";
 
 export function Layout() {
   const loc = useLocation();
   const isHome = loc.pathname === "/";
+
+  // Consent-gated analytics: load stored-consent trackers, subscribe to consent
+  // changes, install the .pdf/.zip download delegate. Idempotent (StrictMode-safe).
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  // SPA page views — silent no-op until a tracker is consented + loaded.
+  useEffect(() => {
+    trackPageView(loc.pathname + loc.search);
+  }, [loc.pathname, loc.search]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,6 +65,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <ConsentBanner />
     </>
   );
 }

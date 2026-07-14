@@ -1,6 +1,7 @@
 import { Button } from "./ui";
 import { Avatar } from "./Avatar";
 import { getExpert, type ExpertId } from "../content/experts";
+import { trackCtaClick } from "../lib/analytics";
 
 export function PreScreenCTABlock({ expert = "olya" }: { expert?: ExpertId }) {
   const e = getExpert(expert);
@@ -25,7 +26,7 @@ export function PreScreenCTABlock({ expert = "olya" }: { expert?: ExpertId }) {
             Request a 15-minute pre-screen with a named expert. You'll get a realistic Banking Roadmap — no obligation.
           </p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
-            <Button to="/contact" large>
+            <Button to="/contact" large onClick={() => trackCtaClick("request_pre_screen", "prescreen_cta_block")}>
               Request a pre-screen with {e.name}
             </Button>
             <p style={{ color: "var(--ink-55)", fontSize: 13.5, margin: 0 }}>

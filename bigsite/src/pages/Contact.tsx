@@ -6,6 +6,7 @@ import { Avatar } from "../components/Avatar";
 import { getExpert } from "../content/experts";
 import { site, CALCOM_LINK } from "../lib/site";
 import { submitPreScreen } from "../lib/bitrix";
+import { trackLeadSubmit } from "../lib/analytics";
 
 // Contact / Request a pre-screen — the conversion surface.
 // Booking: cal.com embed when VITE_CALCOM_LINK is set; lead form always posts to Bitrix24.
@@ -25,6 +26,7 @@ export default function Contact() {
         note: String(f.get("note") || ""),
       });
       if (r.ok) {
+        trackLeadSubmit("pre_screen"); // no-op without consent; gtag/fbq use beacon transport, survives the redirect
         window.location.href = "/thank-you";
         return;
       }

@@ -26,6 +26,17 @@ await new Promise(r => setTimeout(r, 2500));
 
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+// Seed a declined cookie consent (key mirrors src/lib/consent.ts) so snapshots never
+// bake in the consent banner or dynamically-injected tracker <script> tags. Affects
+// only the prerender browser: real visitors' React re-render uses their own choice.
+await page.addInitScript(() => {
+  try {
+    localStorage.setItem(
+      "wtp-consent-v1",
+      JSON.stringify({ analytics: false, marketing: false, decidedAt: new Date().toISOString() }),
+    );
+  } catch {}
+});
 let ok = 0, fail = 0;
 for (const p of paths) {
   try {

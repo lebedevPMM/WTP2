@@ -20,8 +20,9 @@ export function Button({
 }) {
   const cls = `btn ${ghost ? "btn-ghost" : ""} ${large ? "btn-lg" : ""} ${className}`;
   const style = large ? { fontSize: "16px", padding: "15px 32px" } : undefined;
-  if (to) return <Link to={to} className={cls} style={style}>{children}</Link>;
-  if (href) return <a href={href} className={cls} style={style}>{children}</a>;
+  // onClick on Link/anchor is additive (analytics etc.) — navigation still proceeds.
+  if (to) return <Link to={to} className={cls} style={style} onClick={onClick}>{children}</Link>;
+  if (href) return <a href={href} className={cls} style={style} onClick={onClick}>{children}</a>;
   return <button className={cls} style={style} onClick={onClick}>{children}</button>;
 }
 

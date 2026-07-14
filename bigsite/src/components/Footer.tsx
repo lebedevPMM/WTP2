@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui";
+import { openConsentSettings } from "./ConsentBanner";
 import { expertList } from "../content/experts";
 import { site } from "../lib/site";
+import { TRACKERS_CONFIGURED } from "../lib/analytics";
 
 const cols: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -94,6 +96,16 @@ export function Footer() {
           <Link to="/legal/privacy">Privacy</Link>
           <Link to="/legal/terms">Terms</Link>
           <Link to="/legal/cookies">Cookies</Link>
+          {/* Consent withdrawal (Cookie Policy promise) — hidden while no tracker IDs are configured */}
+          {TRACKERS_CONFIGURED && (
+            <button
+              type="button"
+              onClick={openConsentSettings}
+              style={{ background: "none", border: 0, padding: 0, font: "inherit", color: "inherit", cursor: "pointer" }}
+            >
+              Cookie settings
+            </button>
+          )}
           <Link to="/legal/disclaimer">Disclaimer</Link>
           <Link to="/legal/regulatory">Regulatory</Link>
           <span style={{ maxWidth: 620, lineHeight: 1.5 }}>
