@@ -1,6 +1,8 @@
-import { comparisonRows, jurisdictionName, type JurisdictionId } from "../content/jurisdictions";
+import { useContent } from "../content/i18n";
+import { type JurisdictionId } from "../content/jurisdictions";
 
 export function JurisdictionComparisonTable({ columns }: { columns: JurisdictionId[] }) {
+  const content = useContent();
   return (
     <div style={{ overflowX: "auto", borderRadius: 16, border: "1px solid var(--line)" }}>
       <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 520 }}>
@@ -24,13 +26,13 @@ export function JurisdictionComparisonTable({ columns }: { columns: Jurisdiction
                   color: "var(--ink)",
                 }}
               >
-                {jurisdictionName[c]}
+                {content.jurisdictionName[c]}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {comparisonRows.map((row, i) => (
+          {content.comparisonRows.map((row, i) => (
             <tr key={row.label} style={{ borderTop: "1px solid var(--line)", background: i % 2 ? "var(--deep-2)" : "transparent" }}>
               <th scope="row" style={{ textAlign: "left", padding: "14px 18px", fontSize: 13.5, color: "var(--ink-55)", fontWeight: 600 }}>{row.label}</th>
               {columns.map((c) => (

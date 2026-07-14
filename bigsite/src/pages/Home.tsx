@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { ArrowRight } from "lucide-react";
 import { Seo } from "../components/Seo";
 import { Hero } from "../components/Hero";
@@ -9,9 +9,7 @@ import { CaseCard } from "../components/CaseCard";
 import { ArticleCard } from "../components/ArticleCard";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { services } from "../content/services";
-import { expertList } from "../content/experts";
-import { latestCases, latestArticles } from "../content/index";
+import { useContent } from "../content/i18n";
 
 // Live destinations until dedicated segment landing pages exist (see audit decision D).
 const segments = [
@@ -22,6 +20,7 @@ const segments = [
 ];
 
 export default function Home() {
+  const c = useContent();
   return (
     <>
       <Seo
@@ -65,7 +64,7 @@ export default function Home() {
           Four lines, one accountable team
         </h2>
         <div className="grid-4">
-          {services.map((s) => (
+          {c.services.map((s) => (
             <Link key={s.slug} to={`/services/${s.slug}`} className="card" style={{ padding: 22, display: "flex", flexDirection: "column" }}>
               <span className="chip" style={{ alignSelf: "flex-start", marginBottom: 14 }}>
                 {s.tierRange}
@@ -110,7 +109,7 @@ export default function Home() {
           </Button>
         </div>
         <div className="grid-3">
-          {latestCases(3).map((c) => (
+          {c.latestCases(3).map((c) => (
             <CaseCard key={c.slug} case={c} />
           ))}
         </div>
@@ -130,7 +129,7 @@ export default function Home() {
           </Button>
         </div>
         <div className="grid-3">
-          {latestArticles(3).map((a) => (
+          {c.latestArticles(3).map((a) => (
             <ArticleCard key={a.slug} article={a} />
           ))}
         </div>
@@ -143,7 +142,7 @@ export default function Home() {
           Meet the experts
         </h2>
         <div className="grid-3">
-          {expertList.map((e) => (
+          {c.expertList.map((e) => (
             <ExpertBioCard key={e.id} expert={e} />
           ))}
         </div>

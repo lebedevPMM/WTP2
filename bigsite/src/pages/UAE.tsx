@@ -4,7 +4,7 @@ import { Seo } from "../components/Seo";
 import { StatBar } from "../components/StatBar";
 import { CaseCard } from "../components/CaseCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { relatedCases } from "../content/index";
+import { useContent } from "../content/i18n";
 
 const landscape = [
   {
@@ -22,7 +22,8 @@ const landscape = [
 ];
 
 export default function UAE() {
-  const uaeCase = relatedCases({ jurisdictions: ["uae"], limit: 1 })[0];
+  const c = useContent();
+  const uaeCase = c.relatedCases({ jurisdictions: ["uae"], limit: 1 })[0];
 
   return (
     <>

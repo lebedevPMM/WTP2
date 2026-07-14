@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { Avatar } from "./Avatar";
 import { Button } from "./ui";
 import type { Expert } from "../content/experts";

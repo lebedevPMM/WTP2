@@ -7,10 +7,18 @@ import { ThemeSwitch } from "../theme/ThemeSwitch";
 import { ThemeFX } from "../theme/fx/ThemeFX";
 import ContourBackground from "./ContourBackground";
 import { initAnalytics, trackPageView } from "../lib/analytics";
+import { useLang } from "../i18n/lang";
 
 export function Layout() {
   const loc = useLocation();
-  const isHome = loc.pathname === "/";
+  const lang = useLang();
+  const isHome = loc.pathname === "/" || loc.pathname === "/ru";
+
+  // Keep <html lang> in sync with the active subtree (Seo also sets it per-route; this
+  // covers routes that render no <Seo>, e.g. NotFound).
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   // Consent-gated analytics: load stored-consent trackers, subscribe to consent
   // changes, install the .pdf/.zip download delegate. Idempotent (StrictMode-safe).

@@ -5,8 +5,7 @@ import { StepperBankingFirst } from "../components/StepperBankingFirst";
 import { CaseCard } from "../components/CaseCard";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { getExpert } from "../content/experts";
-import { latestCases } from "../content/index";
+import { useContent } from "../content/i18n";
 
 // The four service tiers, derived from services data — L0 pre-screen through
 // L3 wealth structuring. Scope only; no fees rendered on-page.
@@ -19,8 +18,9 @@ const TIERS = [
 ];
 
 export default function BankingFirst() {
-  const ivan = getExpert("ivan");
-  const proofCases = latestCases(2);
+  const c = useContent();
+  const ivan = c.getExpert("ivan");
+  const proofCases = c.latestCases(2);
 
   return (
     <>

@@ -5,7 +5,7 @@ import { Seo } from "../components/Seo";
 import { StatBar } from "../components/StatBar";
 import { CaseCard } from "../components/CaseCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { cases } from "../content/cases";
+import { useContent } from "../content/i18n";
 
 type Filter = "all" | "banking" | "business-setup" | "residency-visa" | "assets-wealth";
 
@@ -18,10 +18,11 @@ const filters: { id: Filter; label: string }[] = [
 ];
 
 export default function CasesHub() {
+  const c = useContent();
   const [active, setActive] = useState<Filter>("all");
 
   const shown =
-    active === "all" ? cases : cases.filter((c) => c.services.includes(active));
+    active === "all" ? c.cases : c.cases.filter((c) => c.services.includes(active));
 
   return (
     <>

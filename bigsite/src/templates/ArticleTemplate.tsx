@@ -9,17 +9,16 @@ import { ArticleCard } from "../components/ArticleCard";
 import { CaseCard } from "../components/CaseCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { NotFound } from "../pages/NotFound";
-import { getArticle, categoryLabel } from "../content/articles";
-import { getExpert } from "../content/experts";
-import { relatedArticles, relatedCases } from "../content/index";
+import { useContent } from "../content/i18n";
 
 export default function ArticleTemplate() {
+  const c = useContent();
   const { slug } = useParams();
-  const a = getArticle(slug || "");
+  const a = c.getArticle(slug || "");
   if (!a) return <NotFound />;
-  const author = getExpert(a.author);
-  const moreGuides = relatedArticles({ category: a.category, limit: 3, exclude: a.slug });
-  const cases = relatedCases({ services: a.services, jurisdictions: a.jurisdictions, limit: 1 });
+  const author = c.getExpert(a.author);
+  const moreGuides = c.relatedArticles({ category: a.category, limit: 3, exclude: a.slug });
+  const cases = c.relatedCases({ services: a.services, jurisdictions: a.jurisdictions, limit: 1 });
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -43,7 +42,7 @@ export default function ArticleTemplate() {
             trail={[
               { label: "Home", href: "/" },
               { label: "Insights", href: "/insights" },
-              { label: categoryLabel[a.category], href: `/insights/${a.category}` },
+              { label: c.categoryLabel[a.category], href: `/insights/${a.category}` },
               { label: a.title },
             ]}
           />

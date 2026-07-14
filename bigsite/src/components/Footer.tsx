@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { Button } from "./ui";
 import { openConsentSettings } from "./ConsentBanner";
-import { expertList } from "../content/experts";
+import { useContent } from "../content/i18n";
 import { site } from "../lib/site";
 import { TRACKERS_CONFIGURED } from "../lib/analytics";
 
@@ -36,6 +36,7 @@ const cols: { title: string; links: { label: string; href: string }[] }[] = [
 ];
 
 export function Footer() {
+  const c = useContent();
   return (
     <footer style={{ borderTop: "1px solid var(--line)", background: "var(--deep-2)", paddingTop: 64 }}>
       <div className="wrap">
@@ -57,7 +58,7 @@ export function Footer() {
             <div style={{ fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-40)", marginBottom: 16, fontWeight: 700 }}>
               Experts
             </div>
-            {expertList.map((e) => (
+            {c.expertList.map((e) => (
               <Link key={e.id} to="/about/team" style={{ display: "block", marginBottom: 11, fontSize: 14, color: "var(--ink-70)" }}>
                 {e.name} — {e.title}
               </Link>

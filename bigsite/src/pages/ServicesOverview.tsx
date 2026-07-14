@@ -1,21 +1,18 @@
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { ArrowRight } from "lucide-react";
 import { Section, Eyebrow, Button, Chip } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { services } from "../content/services";
-import { productsByCategory } from "../content/products";
-import { getExpert } from "../content/experts";
+import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
 
-const diagnostics = productsByCategory("diagnostics");
-
-const routerChips: { label: string; href: string }[] = [
-  ...services.map((s) => ({ label: s.line, href: `/services/${s.slug}` })),
-  { label: "Not sure — talk to us", href: "/contact" },
-];
-
 export default function ServicesOverview() {
+  const c = useContent();
+  const diagnostics = c.productsByCategory("diagnostics");
+  const routerChips: { label: string; href: string }[] = [
+    ...c.services.map((s) => ({ label: s.line, href: `/services/${s.slug}` })),
+    { label: "Not sure — talk to us", href: "/contact" },
+  ];
   return (
     <>
       <Seo
@@ -73,8 +70,8 @@ export default function ServicesOverview() {
           Pick the line that matches your next move
         </h2>
         <div className="grid-2">
-          {services.map((s) => {
-            const lead = getExpert(s.leadExpert);
+          {c.services.map((s) => {
+            const lead = c.getExpert(s.leadExpert);
             return (
               <Link
                 key={s.slug}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { isConsentDecided, setConsent } from "../lib/consent";
 import { TRACKERS_CONFIGURED, removeTrackerCookies, trackersLoaded } from "../lib/analytics";
 

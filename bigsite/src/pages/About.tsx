@@ -5,9 +5,10 @@ import { StepperBankingFirst } from "../components/StepperBankingFirst";
 import { StatBar } from "../components/StatBar";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { expertList } from "../content/experts";
+import { useContent } from "../content/i18n";
 
 export default function About() {
+  const c = useContent();
   return (
     <>
       <Seo
@@ -76,7 +77,7 @@ export default function About() {
           The team you actually deal with
         </h2>
         <div className="grid-3">
-          {expertList.slice(0, 3).map((e) => (
+          {c.expertList.slice(0, 3).map((e) => (
             <ExpertBioCard key={e.id} expert={e} />
           ))}
         </div>

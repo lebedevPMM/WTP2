@@ -6,11 +6,10 @@ import { ExpertBioCard } from "../components/ExpertBioCard";
 import { ArticleCard } from "../components/ArticleCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { NotFound } from "../pages/NotFound";
-import { getCase } from "../content/cases";
-import { getExpert } from "../content/experts";
-import { relatedArticles } from "../content/index";
+import { useContent } from "../content/i18n";
+import type { CaseStudy } from "../content/cases";
 
-const blocks = (c: ReturnType<typeof getCase>) =>
+const blocks = (c: CaseStudy | undefined) =>
   c
     ? [
         { label: "Situation", text: c.situation },
@@ -20,11 +19,12 @@ const blocks = (c: ReturnType<typeof getCase>) =>
     : [];
 
 export default function CaseTemplate() {
+  const content = useContent();
   const { slug } = useParams();
-  const c = getCase(slug || "");
+  const c = content.getCase(slug || "");
   if (!c) return <NotFound />;
-  const expert = getExpert(c.leadExpert);
-  const guides = relatedArticles({ services: c.services, segments: c.segments, limit: 3 });
+  const expert = content.getExpert(c.leadExpert);
+  const guides = content.relatedArticles({ services: c.services, segments: c.segments, limit: 3 });
 
   return (
     <>

@@ -3,9 +3,10 @@ import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { expertList } from "../content/experts";
+import { useContent } from "../content/i18n";
 
 export default function Team() {
+  const c = useContent();
   return (
     <>
       <Seo
@@ -22,7 +23,7 @@ export default function Team() {
 
       <Section>
         <div className="grid-3">
-          {expertList.map((e) => (
+          {c.expertList.map((e) => (
             <ExpertBioCard key={e.id} expert={e} />
           ))}
         </div>

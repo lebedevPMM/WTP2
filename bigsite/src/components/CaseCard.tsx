@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { ArrowUpRight } from "lucide-react";
 import { Avatar } from "./Avatar";
-import { getExpert } from "../content/experts";
+import { useContent } from "../content/i18n";
 import type { CaseStudy } from "../content/cases";
 
 export function CaseCard({ case: c }: { case: CaseStudy }) {
-  const e = getExpert(c.leadExpert);
+  const content = useContent();
+  const e = content.getExpert(c.leadExpert);
   return (
     <Link to={`/cases/${c.slug}`} className="card" style={{ display: "flex", flexDirection: "column", padding: 22, height: "100%" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>

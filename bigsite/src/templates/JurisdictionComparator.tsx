@@ -4,12 +4,14 @@ import { Breadcrumb } from "../components/Breadcrumb";
 import { JurisdictionComparisonTable } from "../components/JurisdictionComparisonTable";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { NotFound } from "../pages/NotFound";
-import { getComparator, type JurisdictionId } from "../content/jurisdictions";
+import { type JurisdictionId } from "../content/jurisdictions";
+import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
 
 export default function JurisdictionComparator() {
+  const c = useContent();
   const { slug } = useParams();
-  const p = getComparator(slug || "");
+  const p = c.getComparator(slug || "");
   if (!p) return <NotFound />;
 
   return (

@@ -6,13 +6,9 @@ import { ExpertBioCard } from "../components/ExpertBioCard";
 import { ArticleCard } from "../components/ArticleCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { NotFound } from "../pages/NotFound";
-import { getExpert } from "../content/experts";
 import type { ExpertId } from "../content/experts";
-import {
-  categoryLabel,
-  articlesByCategory,
-  type Category,
-} from "../content/articles";
+import type { Category } from "../content/articles";
+import { useContent } from "../content/i18n";
 
 const leadByCategory: Record<Category, ExpertId> = {
   banking: "olya",
@@ -33,17 +29,18 @@ const leadByCategoryText: Record<Category, string> = {
 };
 
 export default function InsightsCategory() {
+  const c = useContent();
   const { category } = useParams();
 
-  const isCategory = (c: string): c is Category =>
-    Object.prototype.hasOwnProperty.call(categoryLabel, c);
+  const isCategory = (slug: string): slug is Category =>
+    Object.prototype.hasOwnProperty.call(c.categoryLabel, slug);
 
   if (!category || !isCategory(category)) return <NotFound />;
 
-  const label = categoryLabel[category];
+  const label = c.categoryLabel[category];
   const leadId = leadByCategory[category];
-  const expert = getExpert(leadId);
-  const guides = articlesByCategory(category);
+  const expert = c.getExpert(leadId);
+  const guides = c.articlesByCategory(category);
 
   return (
     <>

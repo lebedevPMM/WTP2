@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "./ui";
-import { categories, productsByCategory } from "../content/products";
+import { useContent } from "../content/i18n";
 
 interface NavItem {
   label: string;
@@ -81,7 +82,8 @@ const dropPanel: React.CSSProperties = {
 const panelId = (label: string) => `meganav-panel-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`;
 
 function ServicesMega({ id }: { id?: string }) {
-  const diags = productsByCategory("diagnostics"); // Start Here rail = diagnostics only (pre-screen, x-ray)
+  const c = useContent();
+  const diags = c.productsByCategory("diagnostics"); // Start Here rail = diagnostics only (pre-screen, x-ray)
   return (
     <div id={id} style={{ ...dropPanel, width: "min(720px, 92vw)", padding: 18 }}>
       {/* Start here rail */}
@@ -109,7 +111,7 @@ function ServicesMega({ id }: { id?: string }) {
       </div>
       {/* Category columns */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "4px 18px" }}>
-        {categories.map((cat) => (
+        {c.categories.map((cat) => (
           <div key={cat.slug} style={{ padding: "8px 8px 12px" }}>
             <Link
               to={`/services/${cat.slug}`}
@@ -117,7 +119,7 @@ function ServicesMega({ id }: { id?: string }) {
             >
               {cat.name}
             </Link>
-            {productsByCategory(cat.slug).map((p) => (
+            {c.productsByCategory(cat.slug).map((p) => (
               <Link
                 key={p.slug}
                 to={p.href}

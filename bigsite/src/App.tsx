@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import Home from "./pages/Home"; // eager: it's the LCP-critical landing route
 import { themed } from "./theme/ThemedRoute";
+import { LangProvider } from "./i18n/lang";
 
 // Every non-home route is code-split. The themed v1/v2 redesigns and the /v* design-round
 // pages are dev-gate only (unreachable under the promoted v3 theme), so lazy() removes
@@ -52,39 +53,52 @@ const ThemedServicesOverview = themed(ServicesOverview, { v1: V1ServicesOverview
 const ThemedService = themed(ServiceTemplate, { v1: V1Service, v2: V2Service });
 const ThemedContact = themed(Contact, { v1: V1Contact, v2: V2Contact });
 
+// The full localized route tree, rendered once per language. Child paths are RELATIVE:
+// React Router resolves them against the parent splat match ("/" for EN, "/ru" for RU),
+// so a single definition serves both languages — no route duplication.
+function LocalizedRoutes() {
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<ThemedHome />} />
+        <Route path="banking-first" element={<ThemedBankingFirst />} />
+        <Route path="banking-first/pre-screen" element={<PreScreen />} />
+        <Route path="services" element={<ThemedServicesOverview />} />
+        <Route path="services/:line" element={<ThemedService />} />
+        <Route path="services/:line/:product" element={<ProductTemplate />} />
+        <Route path="packages" element={<PackagesPage />} />
+        <Route path="jurisdictions" element={<JurisdictionsHub />} />
+        <Route path="jurisdictions/uae" element={<UAE />} />
+        <Route path="jurisdictions/:slug" element={<JurisdictionComparator />} />
+        <Route path="cases" element={<CasesHub />} />
+        <Route path="cases/:slug" element={<CaseTemplate />} />
+        <Route path="insights" element={<InsightsHub />} />
+        <Route path="insights/:category" element={<InsightsCategory />} />
+        <Route path="insights/:category/:slug" element={<ArticleTemplate />} />
+        <Route path="about" element={<About />} />
+        <Route path="about/team" element={<Team />} />
+        <Route path="partners" element={<Partners />} />
+        <Route path="contact" element={<ThemedContact />} />
+        <Route path="thank-you" element={<ThankYou />} />
+        <Route path="legal/:doc" element={<Legal />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
+}
+
 export default function App() {
   return (
     <Suspense fallback={null}>
       <Routes>
-        {/* Design-round variants — standalone, outside Layout (own nav/footer) */}
+        {/* Design-round variants — standalone, EN-only, outside i18n + Layout (own nav/footer) */}
         <Route path="/variants" element={<VariantsIndex />} />
         <Route path="/v1" element={<V1Page />} />
         <Route path="/v2" element={<V2Page />} />
         <Route path="/v3" element={<V3Page />} />
-        <Route element={<Layout />}>
-          <Route path="/" element={<ThemedHome />} />
-          <Route path="/banking-first" element={<ThemedBankingFirst />} />
-          <Route path="/banking-first/pre-screen" element={<PreScreen />} />
-          <Route path="/services" element={<ThemedServicesOverview />} />
-          <Route path="/services/:line" element={<ThemedService />} />
-          <Route path="/services/:line/:product" element={<ProductTemplate />} />
-          <Route path="/packages" element={<PackagesPage />} />
-          <Route path="/jurisdictions" element={<JurisdictionsHub />} />
-          <Route path="/jurisdictions/uae" element={<UAE />} />
-          <Route path="/jurisdictions/:slug" element={<JurisdictionComparator />} />
-          <Route path="/cases" element={<CasesHub />} />
-          <Route path="/cases/:slug" element={<CaseTemplate />} />
-          <Route path="/insights" element={<InsightsHub />} />
-          <Route path="/insights/:category" element={<InsightsCategory />} />
-          <Route path="/insights/:category/:slug" element={<ArticleTemplate />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/about/team" element={<Team />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/contact" element={<ThemedContact />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/legal/:doc" element={<Legal />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
+        {/* Russian subtree first (more specific), then the English default. Same tree, prefix-scoped. */}
+        <Route path="/ru/*" element={<LangProvider lang="ru"><LocalizedRoutes /></LangProvider>} />
+        <Route path="/*" element={<LangProvider lang="en"><LocalizedRoutes /></LangProvider>} />
       </Routes>
     </Suspense>
   );

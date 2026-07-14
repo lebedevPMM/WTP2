@@ -1,9 +1,10 @@
 import { Section, Eyebrow, Button } from "../components/ui";
 import { ArticleCard } from "../components/ArticleCard";
 import { Seo } from "../components/Seo";
-import { latestArticles } from "../content/index";
+import { useContent } from "../content/i18n";
 
 export default function ThankYou() {
+  const c = useContent();
   return (
     <>
       <Seo
@@ -25,7 +26,7 @@ export default function ThankYou() {
       <Section>
         <Eyebrow>While you wait</Eyebrow>
         <div className="grid-3" style={{ marginTop: 24 }}>
-          {latestArticles(3).map((a) => (
+          {c.latestArticles(3).map((a) => (
             <ArticleCard key={a.slug} article={a} />
           ))}
         </div>

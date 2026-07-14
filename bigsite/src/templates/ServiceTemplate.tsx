@@ -1,4 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { ArrowRight } from "lucide-react";
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
@@ -9,20 +10,18 @@ import { ArticleCard } from "../components/ArticleCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { Avatar } from "../components/Avatar";
 import { NotFound } from "../pages/NotFound";
-import { getService } from "../content/services";
-import { productsByCategory } from "../content/products";
-import { getExpert } from "../content/experts";
-import { relatedCases, relatedArticles } from "../content/index";
+import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
 
 export default function ServiceTemplate() {
+  const c = useContent();
   const { line } = useParams();
-  const s = getService(line || "");
+  const s = c.getService(line || "");
   if (!s) return <NotFound />;
-  const expert = getExpert(s.leadExpert);
-  const cases = relatedCases({ services: [s.slug], limit: 2 });
-  const guides = relatedArticles({ services: [s.slug], limit: 3 });
-  const lineProducts = productsByCategory(s.slug);
+  const expert = c.getExpert(s.leadExpert);
+  const cases = c.relatedCases({ services: [s.slug], limit: 2 });
+  const guides = c.relatedArticles({ services: [s.slug], limit: 3 });
+  const lineProducts = c.productsByCategory(s.slug);
 
   return (
     <>

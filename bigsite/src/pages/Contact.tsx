@@ -3,7 +3,7 @@ import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
 import { Avatar } from "../components/Avatar";
-import { getExpert } from "../content/experts";
+import { useContent } from "../content/i18n";
 import { site, CALCOM_LINK } from "../lib/site";
 import { submitPreScreen } from "../lib/bitrix";
 import { trackLeadSubmit } from "../lib/analytics";
@@ -11,7 +11,8 @@ import { trackLeadSubmit } from "../lib/analytics";
 // Contact / Request a pre-screen — the conversion surface.
 // Booking: cal.com embed when VITE_CALCOM_LINK is set; lead form always posts to Bitrix24.
 export default function Contact() {
-  const olya = getExpert("olya");
+  const c = useContent();
+  const olya = c.getExpert("olya");
   const [state, setState] = useState<"idle" | "sending" | "done" | "offline">("idle");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {

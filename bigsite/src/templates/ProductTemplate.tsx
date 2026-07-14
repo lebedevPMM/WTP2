@@ -1,4 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { Section, Eyebrow, Button, Chip } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { ExpertBioCard } from "../components/ExpertBioCard";
@@ -7,18 +8,17 @@ import { ArticleCard } from "../components/ArticleCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { Avatar } from "../components/Avatar";
 import { NotFound } from "../pages/NotFound";
-import { getProduct } from "../content/products";
-import { getExpert } from "../content/experts";
-import { relatedCases, relatedArticles } from "../content/index";
+import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
 
 export default function ProductTemplate() {
+  const c = useContent();
   const { product } = useParams();
-  const p = getProduct(product || "");
+  const p = c.getProduct(product || "");
   if (!p) return <NotFound />;
-  const expert = p.leadExpert ? getExpert(p.leadExpert) : undefined;
-  const cases = relatedCases({ services: [p.slug, p.category], limit: 2 });
-  const guides = relatedArticles({ services: [p.slug, p.category], limit: 3 });
+  const expert = p.leadExpert ? c.getExpert(p.leadExpert) : undefined;
+  const cases = c.relatedCases({ services: [p.slug, p.category], limit: 2 });
+  const guides = c.relatedArticles({ services: [p.slug, p.category], limit: 3 });
 
   const serviceLd = {
     "@context": "https://schema.org",

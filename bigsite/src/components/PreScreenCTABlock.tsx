@@ -1,10 +1,12 @@
 import { Button } from "./ui";
 import { Avatar } from "./Avatar";
-import { getExpert, type ExpertId } from "../content/experts";
+import { useContent } from "../content/i18n";
+import { type ExpertId } from "../content/experts";
 import { trackCtaClick } from "../lib/analytics";
 
 export function PreScreenCTABlock({ expert = "olya" }: { expert?: ExpertId }) {
-  const e = getExpert(expert);
+  const c = useContent();
+  const e = c.getExpert(expert);
   return (
     <section className="section" style={{ textAlign: "center" }}>
       <div className="wrap">

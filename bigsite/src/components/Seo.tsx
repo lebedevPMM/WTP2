@@ -1,17 +1,22 @@
 import { useEffect } from "react";
+import { useLang, localize, stripLang } from "../i18n/lang";
 
-// Per-route SEO: sets document.title + upserts <meta>/<link rel=canonical>/JSON-LD into <head>.
+// Per-route SEO: sets document.title + upserts <meta>/<link rel=canonical>/hreflang/JSON-LD into <head>.
 // React 19 can hoist native <title>/<meta>, but the static index.html <title> would duplicate it
 // (browsers keep the first), so per-route titles could be ignored. Setting document.title
 // imperatively is unambiguous and version-proof. This is a client-rendered SPA, so the tags serve
-// JS-executing crawlers (Googlebot renders the page); non-JS crawlers fall back to index.html.
+// JS-executing crawlers (Googlebot renders the page); non-JS crawlers fall back to prerendered HTML.
+//
+// i18n: pages pass `canonical` as the EN path ("/services"). This component derives the self-referencing
+// canonical for the active language and emits en↔ru hreflang alternates + x-default, so a page renders
+// the correct SEO signals whether it's served at "/services" or "/ru/services".
 
 const SITE = "https://wtp.ae";
 
 export interface SeoProps {
   title: string;
   description: string;
-  canonical?: string; // path ("/x") or absolute URL; defaults to the current pathname
+  canonical?: string; // EN path ("/x") or absolute URL; defaults to the current pathname (RU prefix stripped)
   ogType?: string; // "website" (default) | "article"
   image?: string; // absolute URL; omitted → twitter "summary" card, no og:image
   jsonLd?: object | object[];
@@ -37,24 +42,49 @@ function upsertLink(rel: string, href: string) {
   el.setAttribute("href", href);
 }
 
+// Alternate links share rel="alternate" but differ by hreflang, so key on hreflang.
+function upsertAlternate(hreflang: string, href: string) {
+  let el = document.head.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${hreflang}"]`);
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", "alternate");
+    el.setAttribute("hreflang", hreflang);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("href", href);
+}
+
 export function Seo({ title, description, canonical, ogType = "website", image, jsonLd }: SeoProps) {
+  const lang = useLang();
   const ld = jsonLd ? JSON.stringify(jsonLd) : "";
   useEffect(() => {
     document.title = title;
-    const url = canonical
+    document.documentElement.lang = lang;
+
+    // EN path is the shared key for both language variants of this route.
+    const enPath = canonical
       ? canonical.startsWith("http")
-        ? canonical
-        : SITE + canonical
-      : SITE + window.location.pathname;
+        ? new URL(canonical).pathname
+        : canonical
+      : stripLang(window.location.pathname);
+    const enUrl = SITE + enPath;
+    const ruUrl = SITE + localize(enPath, "ru");
+    const selfUrl = lang === "ru" ? ruUrl : enUrl;
 
     upsertMeta("name", "description", description);
-    upsertLink("canonical", url);
+    upsertLink("canonical", selfUrl);
+
+    // hreflang cluster — both variants point at each other; x-default → EN.
+    upsertAlternate("en", enUrl);
+    upsertAlternate("ru", ruUrl);
+    upsertAlternate("x-default", enUrl);
 
     upsertMeta("property", "og:title", title);
     upsertMeta("property", "og:description", description);
     upsertMeta("property", "og:type", ogType);
-    upsertMeta("property", "og:url", url);
+    upsertMeta("property", "og:url", selfUrl);
     upsertMeta("property", "og:site_name", "WTP");
+    upsertMeta("property", "og:locale", lang === "ru" ? "ru_RU" : "en_US");
 
     upsertMeta("name", "twitter:card", image ? "summary_large_image" : "summary");
     upsertMeta("name", "twitter:title", title);
@@ -78,7 +108,7 @@ export function Seo({ title, description, canonical, ogType = "website", image, 
     } else if (script) {
       script.remove();
     }
-  }, [title, description, canonical, ogType, image, ld]);
+  }, [title, description, canonical, ogType, image, ld, lang]);
 
   return null;
 }

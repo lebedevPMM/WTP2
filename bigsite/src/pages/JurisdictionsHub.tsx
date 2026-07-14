@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { ArrowRight } from "lucide-react";
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { JurisdictionComparisonTable } from "../components/JurisdictionComparisonTable";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { comparatorPages } from "../content/jurisdictions";
+import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
 
 export default function JurisdictionsHub() {
+  const c = useContent();
   return (
     <>
       <Seo
@@ -71,7 +72,7 @@ export default function JurisdictionsHub() {
           UAE versus the alternatives
         </h2>
         <div className="grid-3">
-          {comparatorPages.map((p) => (
+          {c.comparatorPages.map((p) => (
             <Link
               key={p.slug}
               to={`/jurisdictions/${p.slug}`}

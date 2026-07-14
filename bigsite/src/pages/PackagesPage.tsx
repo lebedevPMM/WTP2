@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { ArrowRight } from "lucide-react";
 import { Section, Eyebrow, Button, Chip } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { packages } from "../content/packages";
-import { getProduct } from "../content/products";
+import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
 
 export default function PackagesPage() {
+  const c = useContent();
   return (
     <>
       <Seo
@@ -38,7 +38,7 @@ export default function PackagesPage() {
           Advisory → Entry → Setup → Control
         </h2>
         <div className="grid-4">
-          {packages.map((pkg) => (
+          {c.packages.map((pkg) => (
             <div key={pkg.level} className="card" style={{ padding: 26, display: "flex", flexDirection: "column" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
                 <Chip>{pkg.level}</Chip>
@@ -57,7 +57,7 @@ export default function PackagesPage() {
                 <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: ".08em", color: "var(--ink-55)", marginBottom: 8 }}>Included products</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {pkg.includedProducts.map((slug) => {
-                    const prod = getProduct(slug);
+                    const prod = c.getProduct(slug);
                     if (!prod) return null;
                     return (
                       <Link key={slug} to={prod.href} className="chip" style={{ fontSize: 13 }}>
@@ -102,10 +102,10 @@ export default function PackagesPage() {
             banking gate, then add company, assets and governance as the structure grows — in that order.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 22, alignItems: "center" }}>
-            {packages.map((pkg, i) => (
+            {c.packages.map((pkg, i) => (
               <span key={pkg.level} style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
                 <span className="chip" style={{ padding: "8px 16px" }}>{pkg.level} · {pkg.name}</span>
-                {i < packages.length - 1 && <ArrowRight size={16} style={{ color: "var(--gold)" }} />}
+                {i < c.packages.length - 1 && <ArrowRight size={16} style={{ color: "var(--gold)" }} />}
               </span>
             ))}
           </div>

@@ -3,7 +3,7 @@ import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { getExpert } from "../content/experts";
+import { useContent } from "../content/i18n";
 
 const CHECKS: { title: string; body: string }[] = [
   {
@@ -48,7 +48,8 @@ const ROADMAP: string[] = [
 ];
 
 export default function PreScreen() {
-  const olya = getExpert("olya");
+  const c = useContent();
+  const olya = c.getExpert("olya");
 
   return (
     <>

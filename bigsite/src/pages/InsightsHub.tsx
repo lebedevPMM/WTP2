@@ -1,21 +1,21 @@
-import { Link } from "react-router-dom";
+import { L as Link } from "../i18n/lang";
 import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
 import { ArticleCard } from "../components/ArticleCard";
 import { Avatar } from "../components/Avatar";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
-import { articles, categoryLabel, type Category } from "../content/articles";
-import { expertList } from "../content/experts";
-import { latestArticles } from "../content/index";
+import type { Category } from "../content/articles";
+import { useContent } from "../content/i18n";
 
 export default function InsightsHub() {
-  const featured = articles.find((a) => a.featured) ?? latestArticles(1)[0];
-  const rest = articles.filter((a) => a.slug !== featured?.slug);
-  const categories = Object.entries(categoryLabel) as [Category, string][];
+  const c = useContent();
+  const featured = c.articles.find((a) => a.featured) ?? c.latestArticles(1)[0];
+  const rest = c.articles.filter((a) => a.slug !== featured?.slug);
+  const categories = Object.entries(c.categoryLabel) as [Category, string][];
   // The rail is "Written by our experts" — show only experts who have actually authored a guide.
-  const authorIds = new Set(articles.map((a) => a.author));
-  const authors = expertList.filter((e) => authorIds.has(e.id));
+  const authorIds = new Set(c.articles.map((a) => a.author));
+  const authors = c.expertList.filter((e) => authorIds.has(e.id));
 
   return (
     <>
