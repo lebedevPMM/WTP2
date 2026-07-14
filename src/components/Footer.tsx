@@ -44,6 +44,7 @@ const Footer: React.FC = () => {
                         {t('footer.cookieSettings')}
                     </button>
                     <a href={OTHER_DOMAIN} className="text-body" style={{ display: 'block', textDecoration: 'none', opacity: 0.7 }}>{OTHER_LANG_LABEL}</a>
+                    <a href="https://links.wtp.ae" className="text-body" style={{ display: 'block', marginTop: '8px', textDecoration: 'none', opacity: 0.7 }}>WTP Resource Hub</a>
                 </div>
                 <div>
                     <span className="label">{t('footer.office')}</span>

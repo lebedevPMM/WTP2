@@ -87,6 +87,7 @@ export function Footer() {
         cookieSettings: "Настройки cookies",
         disclaimer: "Дисклеймер",
         regulatory: "Регулирование",
+        resourceHub: "Все ресурсы WTP",
         // ВЫЧИТКА ОЛЕ: facilitation / regulatory framing — legal-sensitive, confirm wording before prod
         legalNote:
           "WTP оказывает консультационные и фасилитационные услуги; это не регулируемые инвестиционные, налоговые или юридические консультации, если прямо не указано иное.",
@@ -102,6 +103,7 @@ export function Footer() {
         cookieSettings: "Cookie settings",
         disclaimer: "Disclaimer",
         regulatory: "Regulatory",
+        resourceHub: "All WTP resources",
         legalNote:
           "WTP provides advisory and facilitation services; not regulated investment, tax, or legal advice unless explicitly stated.",
       };
@@ -178,6 +180,9 @@ export function Footer() {
           )}
           <Link to="/legal/disclaimer">{t.disclaimer}</Link>
           <Link to="/legal/regulatory">{t.regulatory}</Link>
+          <a href={ru ? "https://links.wtp.ae/ru/" : "https://links.wtp.ae"} target="_blank" rel="noopener" style={{ color: "inherit" }}>
+            {t.resourceHub}
+          </a>
           <span style={{ maxWidth: 620, lineHeight: 1.5 }}>
             {t.legalNote}
           </span>
