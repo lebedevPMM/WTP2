@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>WTP · Долгосрочная юрисдикция для семей в ОАЭ</title>
+<meta name="description" content="WTP ведёт четыре направления жизни семьи в Эмиратах — банк, компанию, визы и наследство. Одна команда вместо разрозненных подрядчиков.">
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:title" content="WTP · Долгосрочная юрисдикция для семей в ОАЭ">
+<meta property="og:description" content="Банк, компания, визы и наследство — в одной команде. Для семей с активами в нескольких странах.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="og-image.png">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+  /* === WTP design system (mirrors sync/WTP2/src/index.css) === */
+  :root{
+    --bg-body:#FAFAFA;
+    --bg-card:#FFFFFF;
+    --bg-card-hover:#F5F5F5;
+    --text-primary:#0A0A0A;
+    --text-secondary:#666666;
+    --text-tertiary:#767676;
+    --border-subtle:#E0E0E0;
+    --border-focus:#0A0A0A;
+
+    --accent-magma:linear-gradient(135deg,#e74c3c,#d35400);
+    --accent-gold:linear-gradient(135deg,#b8860b,#8B6914);
+    --accent-teal:linear-gradient(135deg,#004e92,#000428);
+    --accent-nebula:linear-gradient(135deg,#8e2de2,#4a00e0);
+
+    --font-serif:'Playfair Display',Georgia,serif;
+    --font-sans:'Inter','SF Pro Text',-apple-system,BlinkMacSystemFont,sans-serif;
+
+    --radius-lg:24px;
+    --radius-md:12px;
+    --radius-sm:4px;
+    --container-max:1200px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{overflow-x:hidden;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background-color:var(--bg-body);color:var(--text-primary);
+    font-family:var(--font-sans);font-size:15px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+  ::selection{background:#0A0A0A;color:#FAFAFA}
+  a{color:var(--text-primary)}
+  a:hover{color:var(--text-secondary)}
+
+  /* Typography */
+  h1,h2,h3,h4{font-family:var(--font-serif);font-weight:400;letter-spacing:-0.02em;color:var(--text-primary)}
+  h1{font-size:60px;line-height:1.1;margin-bottom:24px;max-width:920px}
+  h2{font-size:38px;line-height:1.18;margin-bottom:28px;max-width:820px}
+  h3{font-size:22px;line-height:1.3;margin-bottom:12px}
+  h4{font-size:18px;line-height:1.35;margin-bottom:10px}
+  .subtitle{
+    font-family:var(--font-sans);font-size:18px;color:var(--text-secondary);
+    max-width:680px;margin-bottom:48px;font-weight:300;line-height:1.6;
+  }
+  .label{
+    font-family:var(--font-sans);font-size:12px;
+    text-transform:uppercase;letter-spacing:0.1em;
+    color:var(--text-tertiary);margin-bottom:16px;display:block;font-weight:500;
+  }
+  .text-body{color:var(--text-secondary);font-size:15px;line-height:1.7}
+  .text-sm{color:var(--text-secondary);font-size:14px;line-height:1.55}
+  .pill{
+    display:inline-block;padding:5px 12px;border-radius:100px;
+    font-size:11px;text-transform:uppercase;letter-spacing:0.06em;
+    border:1px solid var(--border-subtle);margin-bottom:14px;
+    color:var(--text-secondary);font-weight:500;
+  }
+
+  /* Layout */
+  .container{max-width:var(--container-max);margin-left:auto;margin-right:auto;padding:0 40px}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  section{margin-bottom:120px}
+  .hero-section{margin-bottom:80px;position:relative;overflow:hidden}
+
+  .hero-bg{
+    position:absolute;width:1100px;height:1100px;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(212,175,55,0.10) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(0,78,146,0.08) 0%, transparent 50%);
+    top:-450px;right:-350px;z-index:-1;pointer-events:none;
+    animation:float 8s ease-in-out infinite, glow 4s ease-in-out infinite;
+  }
+
+  /* Nav */
+  .nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:32px 40px;max-width:var(--container-max);margin:0 auto 64px;
+  }
+  .brand{display:flex;align-items:center;text-decoration:none;color:inherit}
+  .brand img{display:block;height:36px;width:auto}
+  .nav-meta{font-size:12px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em}
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 32px;background:var(--text-primary);color:var(--bg-body);
+    text-decoration:none;border-radius:100px;font-weight:500;font-size:14px;
+    letter-spacing:0.01em;cursor:pointer;border:none;font-family:var(--font-sans);
+    position:relative;overflow:hidden;
+    transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
+  }
+  .btn::before{
+    content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+    transition:left 0.5s ease;
+  }
+  .btn:hover::before{left:100%}
+  .btn:hover{opacity:0.9;transform:translateY(-2px)}
+  .btn-arrow{transition:transform .2s ease;display:inline-block}
+  .btn:hover .btn-arrow{transform:translateX(3px)}
+  .btn-outline{background:transparent;border:1px solid var(--border-subtle);color:var(--text-primary)}
+  .btn-outline:hover{border-color:var(--text-primary)}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+  /* Card */
+  .card{
+    background:var(--bg-card);border-radius:var(--radius-lg);
+    padding:32px;border:1px solid var(--border-subtle);
+    display:flex;flex-direction:column;
+    position:relative;overflow:hidden;
+    transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),background 0.3s,box-shadow 0.4s,border-color 0.3s;
+  }
+  .card:hover{
+    background:var(--bg-card-hover);border-color:var(--border-focus);
+    transform:translateY(-6px);
+    box-shadow:0 20px 60px rgba(0,0,0,0.07);
+  }
+
+  /* Scope cards (новая секция — Зона ответственности) */
+  .scope-section{margin-bottom:120px;margin-top:-40px}
+  .scope-card{
+    background:var(--bg-card);border-radius:var(--radius-lg);
+    padding:28px;border:1px solid var(--border-subtle);
+    transition:transform .35s, border-color .25s;
+  }
+  .scope-card:hover{transform:translateY(-3px);border-color:var(--text-primary)}
+  .scope-card-num{
+    font-family:var(--font-serif);font-style:italic;
+    font-size:14px;color:var(--text-tertiary);
+    margin-bottom:14px;display:block;letter-spacing:0.04em;
+  }
+  .scope-card h3{font-size:20px;margin-bottom:10px;line-height:1.3}
+  .scope-bridge{
+    margin-top:32px;padding:24px 28px;
+    background:var(--bg-card);border-left:3px solid var(--text-primary);
+    border-radius:0 var(--radius-md) var(--radius-md) 0;
+    font-size:15.5px;color:var(--text-secondary);line-height:1.65;max-width:780px;
+  }
+
+  /* Reality / Who-for cards */
+  .who-card{
+    background:var(--bg-card);border-radius:var(--radius-lg);
+    padding:28px 32px;border:1px solid var(--border-subtle);
+    transition:transform .35s, border-color .25s, background .25s;
+  }
+  .who-card:hover{transform:translateY(-3px);border-color:var(--text-primary);background:var(--bg-card-hover)}
+  .who-card .label{margin-bottom:10px}
+  .who-card h3{font-size:20px;margin-bottom:10px;line-height:1.3}
+
+  /* Method (dark section) */
+  .method-section{
+    background:var(--text-primary);color:var(--bg-body);
+    margin:0 calc(-1 * (100vw - var(--container-max))/2 - 40px) 120px;
+    padding:96px 0;
+    padding-left:calc((100vw - var(--container-max))/2 + 40px);
+    padding-right:calc((100vw - var(--container-max))/2 + 40px);
+    position:relative;overflow:hidden;
+  }
+  .method-section::before{
+    content:'';position:absolute;width:800px;height:800px;
+    background:radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 60%);
+    top:-200px;right:-200px;pointer-events:none;
+  }
+  .method-section .label{color:rgba(250,250,250,0.5)}
+  .method-section h2{color:var(--bg-body);max-width:900px}
+  .method-section .subtitle{color:rgba(250,250,250,0.7);max-width:780px}
+  .method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;z-index:1}
+  .method-step{
+    border-top:1px solid rgba(250,250,250,0.15);
+    padding-top:24px;
+  }
+  .method-num{
+    font-family:var(--font-serif);font-size:14px;font-style:italic;
+    color:rgba(250,250,250,0.5);letter-spacing:0.05em;display:block;margin-bottom:14px;
+  }
+  .method-step h3{color:var(--bg-body);font-size:20px;margin-bottom:10px}
+  .method-step p{color:rgba(250,250,250,0.7);font-size:14px;line-height:1.65}
+
+  /* Cases */
+  .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .case-card{
+    background:var(--bg-card);border-radius:var(--radius-lg);
+    border:1px solid var(--border-subtle);overflow:hidden;
+    display:flex;flex-direction:column;
+    transition:transform .4s cubic-bezier(0.34,1.56,0.64,1), box-shadow .4s, border-color .3s;
+  }
+  .case-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.08);border-color:var(--text-primary)}
+  .case-card-tag{
+    background:var(--accent-gradient);height:3px;width:100%;display:block;
+  }
+  .case-card-body{padding:32px;display:flex;flex-direction:column;flex:1}
+  .case-card .label{margin-bottom:14px}
+  .case-card h3{font-size:22px;margin-bottom:14px;line-height:1.3}
+  .case-card .text-body{flex:1;margin-bottom:20px}
+  .case-meta{
+    display:flex;gap:16px;flex-wrap:wrap;
+    padding-top:18px;border-top:1px solid var(--border-subtle);
+    font-size:12px;color:var(--text-tertiary);letter-spacing:0.04em;
+  }
+  .case-meta-num{font-family:var(--font-serif);font-size:17px;color:var(--text-primary);font-style:italic;font-weight:500}
+  .case-meta-label{display:block;text-transform:uppercase;font-size:10px;letter-spacing:0.1em;margin-top:2px}
+
+  /* Team */
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .team-card{
+    background:var(--bg-card);border-radius:var(--radius-lg);
+    padding:32px;border:1px solid var(--border-subtle);
+    transition:transform .35s, border-color .25s;
+  }
+  .team-card:hover{transform:translateY(-3px);border-color:var(--text-primary)}
+  .team-avatar{
+    width:96px;height:96px;border-radius:50%;
+    background:var(--bg-card-hover);border:1px solid var(--border-subtle);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-primary);font-family:var(--font-serif);
+    font-size:40px;font-weight:500;font-style:italic;
+    margin-bottom:24px;overflow:hidden;
+  }
+  .team-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .team-name{font-family:var(--font-serif);font-size:22px;margin-bottom:4px}
+  .team-role{font-size:13px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;font-weight:500}
+  .team-bio{font-size:14.5px;color:var(--text-secondary);line-height:1.65}
+
+  /* Contact section */
+  .contact-section{
+    background:var(--bg-card-hover);
+    margin:0 calc(-1 * (100vw - var(--container-max))/2 - 40px);
+    padding:96px 0;
+    padding-left:calc((100vw - var(--container-max))/2 + 40px);
+    padding-right:calc((100vw - var(--container-max))/2 + 40px);
+  }
+  .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start}
+  .contact-side h2{margin-bottom:18px}
+  .contact-side .text-body{font-size:16.5px;line-height:1.7;margin-bottom:24px;max-width:540px}
+  .contact-direct{display:flex;flex-direction:column;gap:14px;margin-top:32px}
+  .contact-direct-item{display:flex;gap:16px;align-items:flex-start}
+  .contact-direct-icon{
+    width:36px;height:36px;border-radius:50%;
+    background:var(--bg-card);border:1px solid var(--border-subtle);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-secondary);flex-shrink:0;
+  }
+  .contact-direct-text{font-size:14px;line-height:1.5}
+  .contact-direct-text strong{display:block;color:var(--text-primary);margin-bottom:2px;font-weight:500}
+  .contact-direct-text a{color:var(--text-secondary);text-decoration:none}
+  .contact-direct-text a:hover{color:var(--text-primary)}
+
+  /* Form */
+  .form-card{
+    background:var(--bg-card);border-radius:var(--radius-lg);
+    border:1px solid var(--border-subtle);padding:36px;
+  }
+  .form-card h3{margin-bottom:8px;font-size:24px}
+  .form-card .text-sm{margin-bottom:24px}
+  .field{margin-bottom:16px}
+  .field label{
+    display:block;font-size:13px;font-weight:500;
+    color:var(--text-primary);margin-bottom:6px;font-family:var(--font-sans);
+  }
+  .field input,.field textarea{
+    width:100%;padding:12px 16px;
+    border:1px solid var(--border-subtle);border-radius:var(--radius-md);
+    font-family:var(--font-sans);font-size:15px;color:var(--text-primary);
+    background:var(--bg-card);transition:border-color .15s, box-shadow .15s;
+  }
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--text-primary);box-shadow:0 0 0 3px rgba(0,0,0,0.05)}
+  .field textarea{resize:vertical;min-height:80px}
+  .form-consent{font-size:11.5px;color:var(--text-tertiary);margin-top:14px;line-height:1.5}
+  .form-success{
+    display:none;padding:20px 24px;border-radius:var(--radius-md);
+    background:#f0fff4;border:1px solid #c6f6d5;color:#276749;
+    font-size:15px;line-height:1.55;
+  }
+  .form-success.visible{display:block}
+
+  /* Footer */
+  footer{
+    border-top:1px solid var(--border-subtle);
+    padding:64px 40px 48px;background:var(--bg-body);
+  }
+  .footer-inner{max-width:var(--container-max);margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;align-items:flex-start}
+  .footer-brand-block{max-width:340px}
+  .footer-logo{display:block;height:32px;width:auto;margin-bottom:14px}
+  .footer-tagline{font-size:13px;color:var(--text-tertiary);line-height:1.6}
+  .footer-links{display:flex;gap:48px;flex-wrap:wrap}
+  .footer-col{display:flex;flex-direction:column;gap:10px;font-size:13px}
+  .footer-col-head{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-tertiary);margin-bottom:4px;font-weight:500}
+  .footer-col a{color:var(--text-secondary);text-decoration:none;transition:color .15s}
+  .footer-col a:hover{color:var(--text-primary)}
+  .footer-bottom{
+    max-width:var(--container-max);margin:48px auto 0;
+    padding-top:24px;border-top:1px solid var(--border-subtle);
+    font-size:12px;color:var(--text-tertiary);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes float{0%,100%{transform:translateY(0px) rotate(0deg)}50%{transform:translateY(-20px) rotate(2deg)}}
+  @keyframes glow{0%,100%{opacity:0.3}50%{opacity:0.6}}
+  .hero-section .label{animation:fadeInUp .6s ease-out backwards}
+  .hero-section h1{animation:fadeInUp .8s ease-out .15s backwards}
+  .hero-section .subtitle{animation:fadeInUp .8s ease-out .3s backwards}
+  .hero-section .hero-ctas{animation:fadeInUp .8s ease-out .45s backwards}
+
+  /* Mobile */
+  @media (max-width:1000px){
+    .grid-3,.grid-4,.cases-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+    .method-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+    .contact-grid{grid-template-columns:1fr;gap:40px}
+  }
+  @media (max-width:720px){
+    .container{padding:0 24px}
+    h1{font-size:40px}
+    h2{font-size:28px}
+    section{margin-bottom:80px}
+    .hero-section{margin-bottom:60px}
+    .nav{padding:24px;margin-bottom:48px}
+    .grid-2,.grid-3,.grid-4,.cases-grid,.team-grid,.method-grid{grid-template-columns:1fr;gap:16px}
+    .method-section,.contact-section{
+      margin-left:-24px;margin-right:-24px;
+      padding-left:24px;padding-right:24px;
+      padding-top:64px;padding-bottom:64px;margin-bottom:80px;
+    }
+    .footer-inner{flex-direction:column;gap:32px}
+    footer{padding:48px 24px 32px}
+    .form-card{padding:28px}
+  }
+  @media (max-width:480px){
+    .container{padding:0 16px}
+    h1{font-size:30px}
+    h2{font-size:24px}
+    section{margin-bottom:60px}
+    .hero-section{margin-bottom:48px}
+    .nav{padding:16px}
+    .hero-ctas{flex-direction:column;align-items:stretch;width:100%}
+    .btn{justify-content:center;width:100%}
+    .card,.who-card,.team-card,.scope-card{padding:24px}
+    .method-section,.contact-section{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;padding-top:56px;padding-bottom:56px}
+    .form-card{padding:24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" aria-label="Главная навигация">
+  <a class="brand" href="https://wtp.ae" target="_blank" rel="noopener" aria-label="WTP — главная">
+    <img src="logo-black.svg" alt="WTP" width="120" height="36">
+  </a>
+  <span class="nav-meta">UAE · с 2018</span>
+</nav>
+
+<!-- ========== HERO ========== -->
+<header class="hero-section container">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <span class="label">Wealth Transfer Platform · UAE</span>
+  <h1>Семьи, для которых ОАЭ — <em style="font-style:italic">не релокация, а долгосрочная юрисдикция.</em></h1>
+  <p class="subtitle">
+    WTP ведёт четыре направления жизни семьи в Эмиратах — банк, компанию, визы и наследство.
+    Одна команда отвечает за все четыре. Вам не нужно собирать их у разных подрядчиков.
+  </p>
+  <div class="hero-ctas">
+    <a class="btn" href="#contact" data-track="cta-hero-review">
+      Запросить разбор структуры <span class="btn-arrow">→</span>
+    </a>
+    <a class="btn btn-outline" href="#method">Как мы работаем</a>
+  </div>
+</header>
+
+<!-- ========== SCOPE / Зона ответственности ========== -->
+<section id="scope" class="scope-section container">
+  <span class="label">Зона ответственности</span>
+  <h2>За что отвечает WTP</h2>
+  <div class="grid-4">
+
+    <article class="scope-card">
+      <span class="scope-card-num">01</span>
+      <h3>Банк</h3>
+      <p class="text-body">Открываем счёт в надёжном банке. Ведём отношения с банкиром. Отвечаем на запросы банка вместо вас.</p>
+    </article>
+
+    <article class="scope-card">
+      <span class="scope-card-num">02</span>
+      <h3>Компания</h3>
+      <p class="text-body">Регистрируем и перестраиваем компании. Следим за продлением лицензии. Готовим документы под Corporate Tax.</p>
+    </article>
+
+    <article class="scope-card">
+      <span class="scope-card-num">03</span>
+      <h3>Виза</h3>
+      <p class="text-body">Оформляем Golden Visa и резидентские визы для всей семьи. Продлеваем. Готовим документы для GDRFA и ICA.</p>
+    </article>
+
+    <article class="scope-card">
+      <span class="scope-card-num">04</span>
+      <h3>Наследство и документы</h3>
+      <p class="text-body">Оформляем завещание. Согласуем его с активами в других странах. Готовим доверенности под локальные сделки.</p>
+    </article>
+
+  </div>
+  <p class="scope-bridge">
+    Эти четыре направления связаны между собой. Изменение в одном — почти всегда вопрос для трёх остальных.
+    Поэтому мы ведём их в одной команде, а не как отдельные услуги.
+  </p>
+</section>
+
+<!-- ========== РЕАЛЬНОСТЬ 2025 ========== -->
+<section id="reality" class="container">
+  <span class="label">Регуляторная карта</span>
+  <h2>Что изменилось в ОАЭ за последний год</h2>
+  <p class="subtitle">
+    В Эмиратах в 2025 году поменялись правила сразу в четырёх местах.
+    Это нормальная динамика для такой страны — но семье с активами в нескольких странах за этими изменениями нужно следить.
+  </p>
+  <div class="grid-2" style="gap:24px">
+
+    <article class="who-card">
+      <span class="label" style="color:#b8860b">Банки</span>
+      <h3>Стали жёстче проверять происхождение денег</h3>
+      <p class="text-body">Банки в ОАЭ теперь чаще запрашивают подтверждение, откуда у клиента деньги — особенно по счетам компаний в свободных зонах. Раньше такая проверка была разовой при открытии. Теперь банк может вернуться через год и попросить обновлённый пакет документов.</p>
+    </article>
+
+    <article class="who-card">
+      <span class="label" style="color:#004e92">Корпоративный налог</span>
+      <h3>Появились первые отчёты по Corporate Tax</h3>
+      <p class="text-body">В ОАЭ заработал корпоративный налог 9%. В 2025 году компании сдали первые полноценные отчёты. Параллельно DIFC и ADGM обновили правила для холдингов и family-структур. Многие компании, открытые до 2023 года, нужно перенастраивать под новые правила.</p>
+    </article>
+
+    <article class="who-card">
+      <span class="label" style="color:#e74c3c">Великобритания и ЕС</span>
+      <h3>Новые правила для резидентов ОАЭ</h3>
+      <p class="text-body">Великобритания в апреле 2025 отменила режим non-dom — теперь налог в UK зависит от того, где вы живёте, а не от паспорта. ЕС параллельно расширил автоматический обмен информацией. Если у вас есть паспорт или активы в этих странах, налоговая там будет спрашивать с вас то, чего не спрашивала раньше.</p>
+    </article>
+
+    <article class="who-card">
+      <span class="label" style="color:#8e2de2">Визы и Emirates ID</span>
+      <h3>Новые процедуры и плотный документооборот</h3>
+      <p class="text-body">Сроки продления виз, требования к биометрии и проверка резидентства поменялись. Документооборот стал плотнее. Просрочка по одному документу теперь часто тянет за собой проблемы и в банке, и в компании.</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ========== КЕЙСЫ ========== -->
+<section id="cases" class="container">
+  <span class="label">Из практики</span>
+  <h2>Три истории — что мы делаем для клиентов</h2>
+
+  <div class="cases-grid">
+
+    <article class="case-card">
+      <span class="case-card-tag" style="background:var(--accent-teal)"></span>
+      <div class="case-card-body">
+        <span class="label">DIFC Holding · Открытие счёта</span>
+        <h3>Собрали структуру, которую банк принял с первой подачи</h3>
+        <p class="text-body">Клиент пришёл с тремя предложениями от других консультантов. Все три обещали зарегистрировать одну компанию в DIFC сразу под две деятельности — торговлю оборудованием и инвестиции. По правилам DIFC так нельзя. Если бы клиент подал документы — отказ регулятора и потерянные месяцы. Мы написали запрос в DIFC и получили письменный ответ: объединить эти деятельности в одной лицензии запрещено. На основе этого ответа собрали две связанные компании. Документы по происхождению денег согласовали с банком заранее. Структура зарегистрирована. Корпоративный счёт в Mashreq открыт без повторных запросов.</p>
+        <div class="case-meta">
+          <div><span class="case-meta-num">Mashreq</span><span class="case-meta-label">счёт открыт</span></div>
+          <div><span class="case-meta-num">2 компании</span><span class="case-meta-label">связанная пара</span></div>
+          <div><span class="case-meta-num">DIFC</span><span class="case-meta-label">письменный ответ</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case-card">
+      <span class="case-card-tag" style="background:var(--accent-gold)"></span>
+      <div class="case-card-body">
+        <span class="label">Ипотека · Зависшая сделка</span>
+        <h3>Получили одобрение банка за два дня</h3>
+        <p class="text-body">Партнёр привёл клиента, у которого ипотека зависла у предыдущего брокера. Документы в банк подавались хаотично. До конца срока действия одобрения оставались недели — потом банковские сборы пришлось бы платить заново. Бюджет 1.3M AED, выбранная локация — выше рынка. Мы пересобрали подачу так, как банк хочет видеть документы. Одобрение пришло за два рабочих дня. Параллельно нашли объект и сторговали с 1.35M до 1.33M AED. Объект приобретён в нужной локации, в рамках бюджета. Сделка закрыта за 1.5 месяца.</p>
+        <div class="case-meta">
+          <div><span class="case-meta-num">2 дня</span><span class="case-meta-label">одобрение</span></div>
+          <div><span class="case-meta-num">1.33M</span><span class="case-meta-label">AED · в бюджете</span></div>
+          <div><span class="case-meta-num">1.5 мес</span><span class="case-meta-label">до закрытия</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case-card">
+      <span class="case-card-tag" style="background:var(--accent-magma)"></span>
+      <div class="case-card-body">
+        <span class="label">Недвижимость · Полный цикл</span>
+        <h3>Продали объект, купили новый, оформили визу и завещание — за один заход</h3>
+        <p class="text-body">Клиент уже владел квартирой в Дубае за 1.5M AED. Хотел понять, что делать дальше: когда выходить из этого актива и куда вкладывать. Запрос — не одна сделка, а правильная последовательность. Мы дождались сдачи объекта и продали квартиру за 1.95M AED. Прибыль — 390 000 AED. Параллельно подобрали следующий актив на Dubai Islands за 2.3M AED, в минуте от пляжа. На том же горизонте оформили Golden Visa на 10 лет, проверили структуру владения и подготовили завещание. Деньги клиента не лежали без работы между сделками.</p>
+        <div class="case-meta">
+          <div><span class="case-meta-num">390K</span><span class="case-meta-label">AED прибыли</span></div>
+          <div><span class="case-meta-num">10 лет</span><span class="case-meta-label">Golden Visa</span></div>
+          <div><span class="case-meta-num">Will</span><span class="case-meta-label">оформлено</span></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ========== МЕТОД (DARK) ========== -->
+<section id="method" class="method-section">
+  <div class="container">
+    <span class="label">Метод</span>
+    <h2>Сначала банк — потом всё остальное</h2>
+    <p class="subtitle">
+      Обычно в Дубае делают так: сначала открывают компанию, платят за лицензию и визу, потом идут в банк.
+      И часто получают отказ. Деньги уже потрачены, лицензия есть, счёта нет — а без счёта компания не работает.
+      Мы делаем наоборот. Сначала договариваемся с конкретным банком — посмотрим вашу историю, доход, страну.
+      Скажем, готов ли он вас принять. Только после согласия банка регистрируем компанию.
+    </p>
+    <div class="method-grid">
+      <div class="method-step">
+        <span class="method-num">01</span>
+        <h3>Проверка</h3>
+        <p>Смотрим вашу ситуацию глазами банка: откуда деньги, в каких странах жили, чем занимаетесь. Говорим прямо — какой банк откроет счёт, а какой откажет. До того, как вы что-либо оплатили.</p>
+      </div>
+      <div class="method-step">
+        <span class="method-num">02</span>
+        <h3>Подбор</h3>
+        <p>Собираем компанию под банк, который уже согласился. Какая зона, какая лицензия, какой офис — всё под требования этого банка. Без переделок после первого отказа.</p>
+      </div>
+      <div class="method-step">
+        <span class="method-num">03</span>
+        <h3>Открытие</h3>
+        <p>Подаём документы в банк, с которым уже всё согласовано. Банкир знает, кто вы и откуда деньги — это не первая встреча. Открытие счёта — формальность.</p>
+      </div>
+      <div class="method-step">
+        <span class="method-num">04</span>
+        <h3>Ведение</h3>
+        <p>Правила в ОАЭ и в стране вашего паспорта меняются каждый год. Мы следим за этими изменениями и заранее говорим, что в вашей структуре нужно поправить.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== КОМАНДА ========== -->
+<section id="team" class="container">
+  <span class="label">Команда</span>
+  <h2>Кто ведёт ваш мандат</h2>
+
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-avatar"><img src="assets/team/ivan.jpg" alt="Иван Оленичев" loading="lazy" width="96" height="96"></div>
+      <div class="team-name">Иван Оленичев</div>
+      <div class="team-role">Основатель и управляющий партнёр</div>
+      <p class="team-bio">Иван отвечает за стратегическую часть каждого мандата: какой банк подходит под профиль клиента, какая структура нужна для одобрения, как ОАЭ совмещается с другими юрисдикциями семьи. Подключается на ключевых решениях — от первого разбора до закрытия сделки.</p>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar"><img src="assets/team/oleg.jpg" alt="Олег Карасев" loading="lazy" width="96" height="96"></div>
+      <div class="team-name">Олег Карасев</div>
+      <div class="team-role">Руководитель инвестиционного направления</div>
+      <p class="team-bio">Работает с инвестициями и структурированием капитала. Необходим там, где важно не просто разместить деньги, а выстроить понятную и управляемую модель — фондовый рынок, недвижимость, распределение активов и защита капитала.</p>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar"><img src="assets/team/olga.jpg" alt="Ольга Зуева" loading="lazy" width="96" height="96"></div>
+      <div class="team-name">Ольга Зуева</div>
+      <div class="team-role">Руководитель клиентского сервиса</div>
+      <p class="team-bio">Ведёт сложные банковские кейсы, регистрацию компаний, сделки с недвижимостью. Подключается там, где нужна предметная экспертиза — отказ банка, нестандартная структура, сделка с координацией двух банков. Один контакт на стороне клиента — она.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== КОНТАКТ ========== -->
+<section class="contact-section" id="contact">
+  <div class="container contact-grid">
+
+    <div class="contact-side">
+      <span class="label">Private inquiry</span>
+      <h2>Запросите разбор вашей ситуации</h2>
+      <p class="text-body">
+        Первый шаг — закрытый разговор о вашей текущей структуре: банк, резидентство, активы, налоги.
+        По итогам разговора мы пришлём короткое письменное резюме с приоритетами и рекомендованной последовательностью шагов.
+        Вход в работу — отдельный шаг, по согласованной дорожной карте. Все коммуникации идут через одного руководителя клиентского сервиса.
+      </p>
+
+      <div class="contact-direct">
+        <div class="contact-direct-item">
+          <div class="contact-direct-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21.5 15a2.5 2.5 0 01-2.5 2.5h-15a2.5 2.5 0 01-2.5-2.5v-5.5a2.5 2.5 0 012.5-2.5h15a2.5 2.5 0 012.5 2.5z"/><polyline points="2 9 12 15 22 9"/></svg>
+          </div>
+          <div class="contact-direct-text">
+            <strong>Прямая связь с Ольгой</strong>
+            <a href="mailto:zueva@wtpbrokers.com">zueva@wtpbrokers.com</a>
+          </div>
+        </div>
+        <div class="contact-direct-item">
+          <div class="contact-direct-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.52 3.48A11.94 11.94 0 0012.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.32-1.65a11.92 11.92 0 005.72 1.46h.01c6.58 0 11.92-5.34 11.92-11.92 0-3.18-1.24-6.17-3.45-8.41zM12.05 21.8h-.01a9.86 9.86 0 01-5.03-1.38l-.36-.21-3.75.98 1-3.65-.23-.37a9.86 9.86 0 01-1.51-5.25c0-5.46 4.45-9.91 9.91-9.91 2.65 0 5.13 1.03 7.0 2.9a9.84 9.84 0 012.9 7.01c0 5.46-4.45 9.91-9.92 9.91zm5.43-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.93 1.16-.17.2-.34.22-.64.07-.3-.15-1.26-.46-2.4-1.48a9 9 0 01-1.66-2.07c-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.18-.24-.57-.48-.49-.66-.5l-.56-.01c-.2 0-.51.07-.78.37-.27.3-1.03 1.0-1.03 2.45 0 1.45 1.06 2.85 1.21 3.05.15.2 2.09 3.2 5.06 4.49.7.3 1.26.48 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.0-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.34z"/></svg>
+          </div>
+          <div class="contact-direct-text">
+            <strong>WhatsApp</strong>
+            <a href="https://wa.me/971502406916" target="_blank" rel="noopener">+971 50 240 6916</a>
+          </div>
+        </div>
+        <div class="contact-direct-item">
+          <div class="contact-direct-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="contact-direct-text">
+            <strong>Закрытый запрос на сайте</strong>
+            <a href="https://wtp.ae/submit-case" target="_blank" rel="noopener">wtp.ae/submit-case</a>
+          </div>
+        </div>
+        <div class="contact-direct-item">
+          <div class="contact-direct-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.35-7-10a7 7 0 0114 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+          </div>
+          <div class="contact-direct-text">
+            <strong>Личная встреча</strong>
+            <span style="color:var(--text-secondary)">Bluewaters или Media City офис, по согласованию.<br>Dubai Media City · Arenco Tower · office 1207</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Запрос на разбор структуры</h3>
+      <p class="text-sm">Ольга подтвердит получение и согласует время разговора в течение 24 часов. Все данные обрабатываются конфиденциально.</p>
+      <form id="contact-form" onsubmit="return submitForm(event)">
+        <div class="field">
+          <label for="name">Контактное лицо</label>
+          <input id="name" name="name" type="text" required placeholder="Имя, фамилия" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="contact">Канал связи</label>
+          <input id="contact" name="contact" type="text" required placeholder="Email или мессенджер с номером (Signal, WhatsApp, Telegram)" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="topic">Что нужно разобрать</label>
+          <input id="topic" name="topic" type="text" placeholder="Резидентство, банк, компания, налоги, наследство — что приоритетно">
+        </div>
+        <button type="submit" class="btn">Запросить разбор <span class="btn-arrow">→</span></button>
+        <div class="form-consent">
+          Отправляя запрос, вы соглашаетесь на обработку персональных данных в рамках первичного разбора. Мы не передаём данные третьим лицам и не добавляем в рассылки.
+        </div>
+      </form>
+      <div id="form-success" class="form-success">
+        Запрос принят. Ольга свяжется в течение 24 часов по указанному каналу.
+        Если ответа нет — продублируйте на <a href="mailto:zueva@wtpbrokers.com">zueva@wtpbrokers.com</a>.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand-block">
+      <img src="logo-black.svg" alt="WTP" class="footer-logo">
+      <div class="footer-tagline">Wealth Transfer Platform. Долгосрочная юрисдикция для семей с активами в нескольких странах. Dubai · с 2018.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <span class="footer-col-head">Контакт</span>
+        <a href="https://wtp.ae/submit-case" target="_blank" rel="noopener">Pre-screen · submit-case</a>
+        <a href="mailto:zueva@wtpbrokers.com">zueva@wtpbrokers.com</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-head">Сайт</span>
+        <a href="https://wtp.ae" target="_blank" rel="noopener">wtp.ae</a>
+        <a href="https://banking.wtp.ae" target="_blank" rel="noopener">banking.wtp.ae</a>
+        <a href="https://client.wtp.ae" target="_blank" rel="noopener">client.wtp.ae</a>
+        <a href="https://links.wtp.ae/ru/" target="_blank" rel="noopener">Все ресурсы WTP &rarr; links.wtp.ae</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-head">Юр.</span>
+        <a href="https://wtp.ae/privacy">Privacy</a>
+        <a href="https://wtp.ae/terms">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 WTP · Wealth Transfer Platform</span>
+    <span>Dubai · UAE · с 2018</span>
+  </div>
+</footer>
+
+<script>
+  const BITRIX_WEBHOOK = 'https://wtp.bitrix24.ru/rest/6729/f2xixkhx9cl9v35c';
+
+  async function submitForm(e){
+    e.preventDefault();
+    const form = document.getElementById('contact-form');
+    const btn = form.querySelector('button[type=submit]');
+    const name = form.elements.name.value.trim();
+    const contact = form.elements.contact.value.trim();
+    const topic = form.elements.topic.value.trim();
+
+    const utm = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']
+      .map(k => sessionStorage.getItem(k) ? `${k}=${sessionStorage.getItem(k)}` : null)
+      .filter(Boolean).join(', ');
+
+    const commentsLines = [
+      `Контактное лицо: ${name}`,
+      `Канал связи: ${contact}`,
+    ];
+    if(topic){ commentsLines.push(`Что нужно разобрать: ${topic}`); }
+    commentsLines.push('', 'Источник: local.wtp.ae');
+    if(utm){ commentsLines.push(`UTM: ${utm}`); }
+
+    const fields = {
+      TITLE: `WTP Resident: ${name.slice(0, 60)}`,
+      NAME: name,
+      COMMENTS: commentsLines.join('\n'),
+      SOURCE_ID: 'WEB',
+    };
+    const emailMatch = contact.match(/[\w.+-]+@[\w-]+\.[\w.-]+/);
+    if(emailMatch){ fields.EMAIL = [{ VALUE: emailMatch[0], VALUE_TYPE: 'WORK' }]; }
+    const phoneMatch = contact.match(/\+?\d[\d\s\-()]{6,}/);
+    if(phoneMatch){ fields.PHONE = [{ VALUE: phoneMatch[0].trim(), VALUE_TYPE: 'WORK' }]; }
+
+    if(btn){ btn.disabled = true; btn.textContent = 'Отправляем…'; }
+
+    let ok = false;
+    try{
+      const resp = await fetch(`${BITRIX_WEBHOOK}/crm.lead.add.json`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fields }),
+      });
+      if(resp.ok){
+        const data = await resp.json();
+        ok = !!data.result;
+      }
+    }catch(err){ /* network error → fallback below */ }
+
+    if(ok){
+      form.style.display = 'none';
+      document.getElementById('form-success').classList.add('visible');
+      if(window.gtag){
+        gtag('event','form_submit',{ campaign:'wtp_resident', topic: topic || 'unspecified', method: 'bitrix' });
+      }
+    } else {
+      // Fallback: mailto if Bitrix unreachable (offline / blocked)
+      const subject = `Запрос на разбор структуры — ${name}`;
+      const mailtoBody = commentsLines.join('\n');
+      window.location.href = `mailto:zueva@wtpbrokers.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailtoBody)}`;
+      form.style.display = 'none';
+      document.getElementById('form-success').classList.add('visible');
+      if(window.gtag){
+        gtag('event','form_submit',{ campaign:'wtp_resident', topic: topic || 'unspecified', method: 'mailto_fallback' });
+      }
+    }
+    return false;
+  }
+
+  document.querySelectorAll('[data-track]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      if(window.gtag){
+        gtag('event','cta_click',{ cta: el.dataset.track });
+      }
+    });
+  });
+
+  // UTM capture
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>{
+      if(params.has(k)){ sessionStorage.setItem(k, params.get(k)); }
+    });
+  })();
+</script>
+
+</body>
+</html>
