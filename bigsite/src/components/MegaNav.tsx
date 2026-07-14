@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { L as Link } from "../i18n/lang";
+import { L as Link, useLang } from "../i18n/lang";
+import { LangSwitch } from "../i18n/LangSwitch";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "./ui";
 import { useContent } from "../content/i18n";
@@ -12,7 +13,7 @@ interface NavItem {
   children?: { label: string; href: string }[];
 }
 
-const NAV: NavItem[] = [
+const NAV_EN: NavItem[] = [
   {
     label: "Services",
     href: "/services",
@@ -67,6 +68,62 @@ const NAV: NavItem[] = [
   },
 ];
 
+// RU nav — same hrefs, translated labels (voice per src/i18n/GLOSSARY.md).
+const NAV_RU: NavItem[] = [
+  {
+    label: "Услуги",
+    href: "/services",
+    mega: true,
+    children: [
+      { label: "Pre-Screen — с этого начать", href: "/banking-first/pre-screen" },
+      { label: "X-Ray — полный аудит", href: "/services/diagnostics/xray" },
+      { label: "Банкинг и капитал", href: "/services/banking" },
+      { label: "Компания и бизнес", href: "/services/business-setup" },
+      { label: "Резидентство и мобильность", href: "/services/residency-visa" },
+      { label: "Структурирование капитала", href: "/services/assets-wealth" },
+      { label: "Пакеты (L0–L3)", href: "/packages" },
+      { label: "Все услуги", href: "/services" },
+    ],
+  },
+  {
+    label: "Banking-First",
+    href: "/banking-first",
+    children: [
+      { label: "Методология", href: "/banking-first" },
+      { label: "Пре-скрининг", href: "/banking-first/pre-screen" },
+    ],
+  },
+  {
+    label: "Юрисдикции",
+    href: "/jurisdictions",
+    children: [
+      { label: "Обзор и сравнение", href: "/jurisdictions" },
+      { label: "ОАЭ", href: "/jurisdictions/uae" },
+    ],
+  },
+  {
+    label: "Аналитика",
+    href: "/insights",
+    children: [
+      { label: "Все гайды", href: "/insights" },
+      { label: "Банкинг", href: "/insights/banking" },
+      { label: "Резидентство и визы", href: "/insights/residency-visa" },
+      { label: "Компания и бизнес", href: "/insights/business-setup" },
+      { label: "Активы и налоги", href: "/insights/assets-tax" },
+      { label: "Кейсы и результаты", href: "/cases" },
+    ],
+  },
+  {
+    label: "О нас",
+    href: "/about",
+    children: [
+      { label: "Наша история", href: "/about" },
+      { label: "Команда и эксперты", href: "/about/team" },
+      { label: "Контакты", href: "/contact" },
+    ],
+  },
+];
+
 const dropPanel: React.CSSProperties = {
   position: "absolute",
   top: "100%",
@@ -83,6 +140,7 @@ const panelId = (label: string) => `meganav-panel-${label.toLowerCase().replace(
 
 function ServicesMega({ id }: { id?: string }) {
   const c = useContent();
+  const lang = useLang();
   const diags = c.productsByCategory("diagnostics"); // Start Here rail = diagnostics only (pre-screen, x-ray)
   return (
     <div id={id} style={{ ...dropPanel, width: "min(720px, 92vw)", padding: 18 }}>
@@ -103,7 +161,7 @@ function ServicesMega({ id }: { id?: string }) {
             onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--line)")}
           >
             <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: ".08em", color: "var(--gold)", marginBottom: 3 }}>
-              Start here
+              {lang === "ru" ? "С этого начать" : "Start here"}
             </div>
             <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>{p.displayName}</div>
           </Link>
@@ -136,10 +194,10 @@ function ServicesMega({ id }: { id?: string }) {
       {/* Footer */}
       <div style={{ display: "flex", gap: 16, marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
         <Link to="/packages" style={{ fontSize: 13.5, fontWeight: 600, color: "var(--gold)" }}>
-          Compare packages (L0–L3) →
+          {lang === "ru" ? "Сравнить пакеты (L0–L3) →" : "Compare packages (L0–L3) →"}
         </Link>
         <Link to="/services" style={{ fontSize: 13.5, color: "var(--ink-55)" }}>
-          See all services
+          {lang === "ru" ? "Все услуги" : "See all services"}
         </Link>
       </div>
     </div>
@@ -151,6 +209,9 @@ export function MegaNav({ transparent = false }: { transparent?: boolean }) {
   const [open, setOpen] = useState(false);
   const [openItem, setOpenItem] = useState<string | null>(null);
   const loc = useLocation();
+  const lang = useLang();
+  const nav = lang === "ru" ? NAV_RU : NAV_EN;
+  const ctaLabel = lang === "ru" ? "Записаться на пре-скрининг" : "Request a pre-screen";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -190,7 +251,7 @@ export function MegaNav({ transparent = false }: { transparent?: boolean }) {
         </Link>
 
         <nav className="meganav-desktop" style={{ display: "flex", gap: 4, alignItems: "center" }}>
-          {NAV.map((item) => (
+          {nav.map((item) => (
             <div
               key={item.label}
               className="meganav-item"
@@ -256,13 +317,13 @@ export function MegaNav({ transparent = false }: { transparent?: boolean }) {
         </nav>
 
         <div className="meganav-right" style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <span style={{ fontSize: 13, fontWeight: 600, color: "var(--ink-55)" }}>EN</span>
-          <Button to="/contact">Request a pre-screen</Button>
+          <LangSwitch />
+          <Button to="/contact">{ctaLabel}</Button>
         </div>
 
         <button
           className="meganav-burger"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? (lang === "ru" ? "Закрыть меню" : "Close menu") : (lang === "ru" ? "Открыть меню" : "Open menu")}
           aria-expanded={open}
           aria-controls="meganav-mobile-panel"
           onClick={() => setOpen((o) => !o)}
@@ -285,7 +346,7 @@ export function MegaNav({ transparent = false }: { transparent?: boolean }) {
             overflowY: "auto",
           }}
         >
-          {NAV.map((item) => (
+          {nav.map((item) => (
             <div key={item.label} style={{ borderBottom: "1px solid var(--line)", padding: "6px 0" }}>
               <Link to={item.href} style={{ display: "block", padding: "10px 0", fontWeight: 600, fontSize: 16 }}>
                 {item.label}
@@ -298,7 +359,10 @@ export function MegaNav({ transparent = false }: { transparent?: boolean }) {
             </div>
           ))}
           <div style={{ marginTop: 18 }}>
-            <Button to="/contact" large>Request a pre-screen</Button>
+            <Button to="/contact" large>{ctaLabel}</Button>
+          </div>
+          <div style={{ marginTop: 18, display: "flex", justifyContent: "center" }}>
+            <LangSwitch />
           </div>
         </div>
       )}
