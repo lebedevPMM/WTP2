@@ -1,4 +1,4 @@
-import { L as Link } from "../i18n/lang";
+import { L as Link, useLang } from "../i18n/lang";
 import { ArrowRight } from "lucide-react";
 import { Section, Eyebrow, Button, Chip } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
@@ -8,34 +8,76 @@ import { Seo } from "../components/Seo";
 
 export default function PackagesPage() {
   const c = useContent();
+  const lang = useLang();
+  const t =
+    lang === "ru"
+      ? {
+          seoTitle: "Пакеты — WTP",
+          seoDescription:
+            "Четыре уровня работы — от диагностики вашей ситуации до долгосрочного управления всей структурой. Каждый уровень готовит следующий.",
+          breadcrumbHome: "Главная",
+          breadcrumbPackages: "Пакеты",
+          eyebrowPackages: "Пакеты",
+          h1a: "Четыре уровня, ",
+          h1b: "один бэк-офис",
+          lead:
+            "Отдельные продукты складываются в четыре уровня работы — от диагностики вашей ситуации до долгосрочного управления всей структурой. Каждый уровень готовит следующий.",
+          ctaPrimary: "Начните с пре-скрининга",
+          eyebrowJourney: "Путь",
+          h2Ladder: "Консультация → Вход → Настройка → Контроль",
+          forWhom: "Для кого",
+          includedProducts: "Что входит",
+          youWalkAwayWith: "Что вы получаете",
+          eyebrowConnect: "Как связаны уровни",
+          connectBody:
+            "Уровни — это последовательность, а не меню. Большинство клиентов начинают с диагностики, проходят банковский этап, а потом добавляют компанию, активы и управление по мере роста структуры — именно в таком порядке.",
+        }
+      : {
+          seoTitle: "Packages — WTP",
+          seoDescription:
+            "Four engagement levels — from a diagnostic read of your situation to long-term governance of the whole structure. Each level sets up the next.",
+          breadcrumbHome: "Home",
+          breadcrumbPackages: "Packages",
+          eyebrowPackages: "Packages",
+          h1a: "Four levels, ",
+          h1b: "one back office",
+          lead:
+            "Individual products combine into four engagement levels — from a diagnostic read of your situation to long-term governance of the whole structure. Each level sets up the next.",
+          ctaPrimary: "Start with a pre-screen",
+          eyebrowJourney: "The journey",
+          h2Ladder: "Advisory → Entry → Setup → Control",
+          forWhom: "For whom",
+          includedProducts: "Included products",
+          youWalkAwayWith: "You walk away with",
+          eyebrowConnect: "How the levels connect",
+          connectBody:
+            "The levels are a sequence, not a menu. Most clients start with a diagnostic, clear the banking gate, then add company, assets and governance as the structure grows — in that order.",
+        };
   return (
     <>
       <Seo
-        title="Packages — WTP"
-        description="Four engagement levels — from a diagnostic read of your situation to long-term governance of the whole structure. Each level sets up the next."
+        title={t.seoTitle}
+        description={t.seoDescription}
         canonical="/packages"
       />
       {/* Hero */}
       <Section className="page-hero">
-        <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Packages" }]} />
-        <Eyebrow>Packages</Eyebrow>
+        <Breadcrumb trail={[{ label: t.breadcrumbHome, href: "/" }, { label: t.breadcrumbPackages }]} />
+        <Eyebrow>{t.eyebrowPackages}</Eyebrow>
         <h1 className="h-grad" style={{ fontSize: "clamp(32px,5vw,56px)", margin: "18px 0" }}>
-          Four levels, <span className="g">one back office</span>
+          {t.h1a}<span className="g">{t.h1b}</span>
         </h1>
-        <p className="lead">
-          Individual products combine into four engagement levels — from a diagnostic read of your
-          situation to long-term governance of the whole structure. Each level sets up the next.
-        </p>
+        <p className="lead">{t.lead}</p>
         <div style={{ marginTop: 28 }}>
-          <Button to="/banking-first/pre-screen" large>Start with a pre-screen</Button>
+          <Button to="/banking-first/pre-screen" large>{t.ctaPrimary}</Button>
         </div>
       </Section>
 
       {/* The ladder */}
       <Section>
-        <Eyebrow>The journey</Eyebrow>
+        <Eyebrow>{t.eyebrowJourney}</Eyebrow>
         <h2 style={{ fontSize: "clamp(24px,3.2vw,36px)", margin: "16px 0 28px" }} className="h-grad">
-          Advisory → Entry → Setup → Control
+          {t.h2Ladder}
         </h2>
         <div className="grid-4">
           {c.packages.map((pkg) => (
@@ -49,12 +91,12 @@ export default function PackagesPage() {
               </p>
 
               <div style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: ".08em", color: "var(--ink-55)", marginBottom: 6 }}>For whom</div>
+                <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: ".08em", color: "var(--ink-55)", marginBottom: 6 }}>{t.forWhom}</div>
                 <p style={{ fontSize: 14, color: "var(--ink-70)", lineHeight: 1.55 }}>{pkg.forWhom}</p>
               </div>
 
               <div style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: ".08em", color: "var(--ink-55)", marginBottom: 8 }}>Included products</div>
+                <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: ".08em", color: "var(--ink-55)", marginBottom: 8 }}>{t.includedProducts}</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {pkg.includedProducts.map((slug) => {
                     const prod = c.getProduct(slug);
@@ -79,7 +121,7 @@ export default function PackagesPage() {
               )}
 
               <div style={{ marginTop: "auto", paddingTop: 14, borderTop: "1px solid var(--line)" }}>
-                <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: ".08em", color: "var(--ink-55)", marginBottom: 8 }}>You walk away with</div>
+                <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: ".08em", color: "var(--ink-55)", marginBottom: 8 }}>{t.youWalkAwayWith}</div>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {pkg.results.map((r, i) => (
                     <li key={i} style={{ fontSize: 13.5, color: "var(--ink-70)", padding: "5px 0", display: "flex", gap: 8 }}>
@@ -96,11 +138,8 @@ export default function PackagesPage() {
       {/* How they connect */}
       <Section>
         <div style={{ padding: "40px", borderRadius: 20, background: "var(--deep-2)", border: "1px solid var(--line)" }}>
-          <Eyebrow>How the levels connect</Eyebrow>
-          <p className="muted" style={{ fontSize: 17, maxWidth: 640, marginTop: 14 }}>
-            The levels are a sequence, not a menu. Most clients start with a diagnostic, clear the
-            banking gate, then add company, assets and governance as the structure grows — in that order.
-          </p>
+          <Eyebrow>{t.eyebrowConnect}</Eyebrow>
+          <p className="muted" style={{ fontSize: 17, maxWidth: 640, marginTop: 14 }}>{t.connectBody}</p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 22, alignItems: "center" }}>
             {c.packages.map((pkg, i) => (
               <span key={pkg.level} style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>

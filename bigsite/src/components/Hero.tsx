@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Button } from "./ui";
+import { useLang } from "../i18n/lang";
 
 // Scroll-scrub route reveal. Frames are pre-decoded JPEGs drawn to <canvas> via drawImage
 // (synchronous, ~2ms each) — NOT a <video> seeked by currentTime. Seeking video on scroll
@@ -20,6 +21,7 @@ export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
   const beatRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const lang = useLang();
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -134,6 +136,53 @@ export function Hero() {
     };
   }, []);
 
+  const t = lang === "ru"
+    ? {
+        b0eyebrow: "Бэк-офис для частного капитала",
+        b0hA: "Бэк-офис для ",
+        b0hB: "частного капитала.",
+        b0p: "Сдержанная команда, которая ведёт банкинг, структуры, резидентство и наследование капитала — чтобы он продолжал работать, тихо.",
+        b0quiet: "Мы создаём банкабельные структуры, а не открываем компании.",
+        b1eyebrow: "Почему мы",
+        b1hA: "Проходим комплаенс, который ",
+        b1hB: "не пройдут другие.",
+        // ВЫЧИТКА ОЛЕ: banking-decline + source-of-funds claim
+        b1p: "Происхождение средств, структура, резидентство — вопросы, из-за которых честным деньгам отказывают. Закрыть их — в этом всё ремесло.",
+        b2eyebrow: "Одна ответственная команда",
+        b2hA: "Ваша структура — ",
+        b2hB: "от и до.",
+        b2p: "Банкинг, компания, резидентство и активы — в руках одной ответственной команды.",
+        ctaPrimary: "Записаться на пре-скрининг",
+        ctaSecondary: "Как это работает",
+        // ВЫЧИТКА ОЛЕ: banking substantiation stat (accounts opened)
+        stat1: "открытых счетов в ОАЭ",
+        // ВЫЧИТКА ОЛЕ: banking substantiation stat (working-account rate)
+        stat2: "доходят до работающего счёта",
+        noPitch: "Без продаж. Если мы не сможем взяться за ваш случай — скажем прямо.",
+        route: "Маршрут",
+      }
+    : {
+        b0eyebrow: "The back office for private wealth",
+        b0hA: "The back office for ",
+        b0hB: "private wealth.",
+        b0p: "The discreet team that runs a fortune's banking, structures, residency and succession — so it keeps working, quietly.",
+        b0quiet: "We deliver bankable structures, not company setups.",
+        b1eyebrow: "Why us",
+        b1hA: "We clear the compliance ",
+        b1hB: "others can't.",
+        b1p: "Source of funds, structure, residency — the questions that get honest money declined. Closing them is the whole craft.",
+        b2eyebrow: "One accountable team",
+        b2hA: "Your structure, ",
+        b2hB: "end to end.",
+        b2p: "Banking, company, residency and assets — under one accountable team.",
+        ctaPrimary: "Request a Pre-Screen",
+        ctaSecondary: "How it works",
+        stat1: "UAE accounts opened",
+        stat2: "reach a working account",
+        noPitch: "No pitch. If we can't take your case, we'll tell you.",
+        route: "Route",
+      };
+
   return (
     <div ref={stageRef} className="hero-stage" style={{ position: "relative", height: "420vh" }}>
       <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", background: "#06050f" }}>
@@ -166,34 +215,34 @@ export function Hero() {
         <div style={{ position: "absolute", inset: 0, zIndex: 3, pointerEvents: "none" }}>
           {[
             {
-              eyebrow: "The back office for private wealth",
+              eyebrow: t.b0eyebrow,
               h: (
                 <>
-                  The back office for <span className="g">private wealth.</span>
+                  {t.b0hA}<span className="g">{t.b0hB}</span>
                 </>
               ),
-              p: "The discreet team that runs a fortune's banking, structures, residency and succession — so it keeps working, quietly.",
-              quiet: "We deliver bankable structures, not company setups.",
+              p: t.b0p,
+              quiet: t.b0quiet,
               cta: true,
             },
             {
-              eyebrow: "Why us",
+              eyebrow: t.b1eyebrow,
               h: (
                 <>
-                  We clear the compliance <span className="g">others can't.</span>
+                  {t.b1hA}<span className="g">{t.b1hB}</span>
                 </>
               ),
-              p: "Source of funds, structure, residency — the questions that get honest money declined. Closing them is the whole craft.",
+              p: t.b1p,
               cta: false,
             },
             {
-              eyebrow: "One accountable team",
+              eyebrow: t.b2eyebrow,
               h: (
                 <>
-                  Your structure, <span className="g">end to end.</span>
+                  {t.b2hA}<span className="g">{t.b2hB}</span>
                 </>
               ),
-              p: "Banking, company, residency and assets — under one accountable team.",
+              p: t.b2p,
               cta: true,
             },
           ].map((b, i) => (
@@ -228,20 +277,20 @@ export function Hero() {
                   {b.cta && (
                     <>
                       <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                        <Button to="/contact">Request a Pre-Screen</Button>
+                        <Button to="/contact">{t.ctaPrimary}</Button>
                         <Button to="/banking-first" ghost>
-                          How it works
+                          {t.ctaSecondary}
                         </Button>
                       </div>
                       {i === 0 && (
                         <p style={{ marginTop: 18, fontSize: 13, color: "var(--ink-70)", display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
-                          <span><strong className="g" style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>100+</strong> UAE accounts opened</span>
+                          <span><strong className="g" style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>100+</strong> {t.stat1}</span>
                           <span aria-hidden style={{ width: 1, height: 12, background: "var(--line)" }} />
-                          <span><strong className="g" style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>90%+</strong> reach a working account</span>
+                          <span><strong className="g" style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>90%+</strong> {t.stat2}</span>
                         </p>
                       )}
                       <p style={{ marginTop: 14, fontSize: 13.5, color: "var(--ink-55)" }}>
-                        No pitch. If we can't take your case, we'll tell you.
+                        {t.noPitch}
                       </p>
                     </>
                   )}
@@ -256,7 +305,7 @@ export function Hero() {
           <div style={{ width: 2, height: 150, background: "rgba(237,235,246,.16)", borderRadius: 2, overflow: "hidden", position: "relative" }}>
             <div ref={fillRef} style={{ position: "absolute", top: 0, left: 0, right: 0, height: "0%", background: "var(--gold-grad)" }} />
           </div>
-          <div style={{ writingMode: "vertical-rl", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase", color: "var(--ink-40)" }}>Route</div>
+          <div style={{ writingMode: "vertical-rl", fontSize: 10, letterSpacing: ".25em", textTransform: "uppercase", color: "var(--ink-40)" }}>{t.route}</div>
         </div>
       </div>
     </div>

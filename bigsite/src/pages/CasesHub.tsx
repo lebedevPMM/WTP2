@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLang } from "../i18n/lang";
 import { Section, Eyebrow } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
@@ -9,17 +10,68 @@ import { useContent } from "../content/i18n";
 
 type Filter = "all" | "banking" | "business-setup" | "residency-visa" | "assets-wealth";
 
-const filters: { id: Filter; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "banking", label: "Banking & Capital" },
-  { id: "business-setup", label: "Business Setup" },
-  { id: "residency-visa", label: "Residency & Mobility" },
-  { id: "assets-wealth", label: "Wealth Structuring" },
-];
-
 export default function CasesHub() {
   const c = useContent();
+  const lang = useLang();
   const [active, setActive] = useState<Filter>("all");
+
+  const t = lang === "ru"
+    ? {
+        seoTitle: "Кейсы и результаты — WTP",
+        seoDescription:
+          "Реальные анонимизированные мандаты WTP — ситуация, ограничение, действие, результат. За каждым стоит конкретный эксперт, который отвечает за результат.",
+        crumbHome: "Главная",
+        crumbCases: "Кейсы и результаты",
+        eyebrowProof: "Доказательства",
+        h1a: "Закрытые ",
+        h1b: "мандаты",
+        lead:
+          "Реальные проекты — по схеме ситуация → ограничение → действие → результат. За каждым стоит конкретный эксперт, который отвечает за результат, — а не безликий отдел.",
+        muted:
+          "Реальные мандаты WTP, анонимизированы — без имён клиентов. Цифры (сроки, банки) взяты из самих проектов.",
+        filterAll: "Все",
+        filterBanking: "Банкинг и капитал",
+        filterBusiness: "Регистрация бизнеса",
+        filterResidency: "Резидентство и мобильность",
+        filterAssets: "Структурирование капитала",
+        emptyState:
+          "В этом направлении мандатов пока нет — запишитесь на пре-скрининг, и ваш может стать первым.",
+        // ВЫЧИТКА ОЛЕ: банковская статистика успеха — доля взятых в работу дел, доходящих до рабочего счёта
+        stat1Label: "проектов, которые мы берём в работу, доходят до рабочего счёта",
+        // ВЫЧИТКА ОЛЕ: количественный track-record — «100+ HNWI выполненных мандатов»
+        stat2Label: "выполненных мандатов",
+      }
+    : {
+        seoTitle: "Cases & results — WTP",
+        seoDescription:
+          "Real, anonymized WTP mandates — situation, constraint, action, outcome. Each one led by a named expert who owns the result.",
+        crumbHome: "Home",
+        crumbCases: "Cases & Results",
+        eyebrowProof: "Proof",
+        h1a: "Closed ",
+        h1b: "mandates",
+        lead:
+          "Real engagements, told as situation → constraint → action → outcome. Each one is led by a named expert who owns the result — not a faceless desk.",
+        muted:
+          "Real WTP mandates, anonymized — no client names. Figures (timelines, banks) are from the engagements themselves.",
+        filterAll: "All",
+        filterBanking: "Banking & Capital",
+        filterBusiness: "Business Setup",
+        filterResidency: "Residency & Mobility",
+        filterAssets: "Wealth Structuring",
+        emptyState:
+          "No mandates in this line yet — request a pre-screen and yours could be the first.",
+        stat1Label: "of the cases we take on reach a working account",
+        stat2Label: "mandates delivered",
+      };
+
+  const filters: { id: Filter; label: string }[] = [
+    { id: "all", label: t.filterAll },
+    { id: "banking", label: t.filterBanking },
+    { id: "business-setup", label: t.filterBusiness },
+    { id: "residency-visa", label: t.filterResidency },
+    { id: "assets-wealth", label: t.filterAssets },
+  ];
 
   const shown =
     active === "all" ? c.cases : c.cases.filter((c) => c.services.includes(active));
@@ -27,23 +79,21 @@ export default function CasesHub() {
   return (
     <>
       <Seo
-        title="Cases & results — WTP"
-        description="Real, anonymized WTP mandates — situation, constraint, action, outcome. Each one led by a named expert who owns the result."
+        title={t.seoTitle}
+        description={t.seoDescription}
         canonical="/cases"
       />
       <Section className="page-hero">
-        <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Cases & Results" }]} />
-        <Eyebrow>Proof</Eyebrow>
+        <Breadcrumb trail={[{ label: t.crumbHome, href: "/" }, { label: t.crumbCases }]} />
+        <Eyebrow>{t.eyebrowProof}</Eyebrow>
         <h1 className="h-grad" style={{ fontSize: "clamp(32px,5vw,56px)", margin: "18px 0" }}>
-          Closed <span className="g">mandates</span>
+          {t.h1a}<span className="g">{t.h1b}</span>
         </h1>
         <p className="lead">
-          Real engagements, told as situation → constraint → action → outcome. Each one is led by a
-          named expert who owns the result — not a faceless desk.
+          {t.lead}
         </p>
         <p className="muted" style={{ fontSize: 14, marginTop: 16, maxWidth: 720 }}>
-          Real WTP mandates, anonymized — no client names. Figures (timelines, banks) are from the
-          engagements themselves.
+          {t.muted}
         </p>
       </Section>
 
@@ -85,7 +135,7 @@ export default function CasesHub() {
           </div>
         ) : (
           <p className="muted" style={{ fontSize: 16 }}>
-            No mandates in this line yet — request a pre-screen and yours could be the first.
+            {t.emptyState}
           </p>
         )}
       </Section>
@@ -96,10 +146,10 @@ export default function CasesHub() {
           stats={[
             {
               value: "90%+",
-              label: "of the cases we take on reach a working account",
+              label: t.stat1Label,
               source: "WTP pre-screen data",
             },
-            { value: "100+ HNWI", label: "mandates delivered", source: "WTP client base" },
+            { value: "100+ HNWI", label: t.stat2Label, source: "WTP client base" },
           ]}
         />
       </Section>

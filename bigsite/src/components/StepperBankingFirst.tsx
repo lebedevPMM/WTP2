@@ -1,14 +1,28 @@
-const STEPS = [
-  { n: 1, label: "Bank", note: "Clear the hard step first" },
-  { n: 2, label: "Company", note: "Built to be bankable" },
-  { n: 3, label: "Visa", note: "Structured around assets" },
-  { n: 4, label: "Assets", note: "Protected & efficient" },
-];
+import { useLang } from "../i18n/lang";
 
 export function StepperBankingFirst({ current }: { current?: 1 | 2 | 3 | 4 }) {
+  const lang = useLang();
+  const t =
+    lang === "ru"
+      ? {
+          steps: [
+            { n: 1, label: "Банк", note: "Сначала — самый трудный шаг" },
+            { n: 2, label: "Компания", note: "Построена под банкабельность" },
+            { n: 3, label: "Виза", note: "Выстроена вокруг активов" },
+            { n: 4, label: "Активы", note: "Защищены и эффективны" },
+          ],
+        }
+      : {
+          steps: [
+            { n: 1, label: "Bank", note: "Clear the hard step first" },
+            { n: 2, label: "Company", note: "Built to be bankable" },
+            { n: 3, label: "Visa", note: "Structured around assets" },
+            { n: 4, label: "Assets", note: "Protected & efficient" },
+          ],
+        };
   return (
     <div className="stepper" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
-      {STEPS.map((s) => {
+      {t.steps.map((s) => {
         const active = current === s.n;
         return (
           <div

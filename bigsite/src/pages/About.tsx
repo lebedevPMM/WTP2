@@ -6,54 +6,139 @@ import { StatBar } from "../components/StatBar";
 import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { useContent } from "../content/i18n";
+import { useLang } from "../i18n/lang";
 
 export default function About() {
   const c = useContent();
+  const lang = useLang();
+  const t =
+    lang === "ru"
+      ? {
+          seoTitle: "О WTP — бэк-офис для частного капитала",
+          // ВЫЧИТКА ОЛЕ: наследование + ответственность конкретных людей ("run by named people")
+          seoDescription:
+            "WTP — непубличный бэк-офис для частного капитала: банкинг, структуры, резидентство и наследование, за которые отвечают конкретные люди. ОАЭ — наш домашний рынок, а не то, что мы продаём.",
+          bcHome: "Главная",
+          bcAbout: "О нас",
+          eyebrowAbout: "О нас",
+          h1a: "Бэк-офис",
+          h1b: "за большим состоянием",
+          // ВЫЧИТКА ОЛЕ: наследование + «отвечающих за результат» (accountability claim)
+          lead:
+            "Незаметная команда, которую крупный капитал держит на негласном ретейнере, — банкинг, структуры, резидентство, наследование — в руках людей, которые занимаются только этим: конкретных и отвечающих за результат. ОАЭ — инструмент, который мы задействуем, когда он работает на результат, а не то, что мы продаём.",
+          eyebrowWhy: "Почему появился Banking-First",
+          h2a: "Все оптимизируют под лицензию.",
+          h2b: "Всё ломается на счёте.",
+          // ВЫЧИТКА ОЛЕ: banking-claim «именно здесь застревает большинство заявок»
+          originP1:
+            "Стандартный сценарий: зарегистрировать компанию, получить гонорар и вручить вам папку. Потом вы приходите в банк и обнаруживаете, что структура изначально не была рассчитана на банкабельность, — и именно здесь застревает большинство заявок.",
+          originP2:
+            "Мы перевернули порядок. Начинаем с самого трудного, относимся к счёту как к настоящему фильтру, которым он и является, и проектируем компанию, резидентство и активы так, чтобы пройти его с первого дня. Banking-First — не слоган, а последовательность, которая не даёт рухнуть остальному плану.",
+          eyebrowHow: "Как мы работаем",
+          h2Flow: "Банк → Компания → Виза → Активы",
+          // ВЫЧИТКА ОЛЕ: track-record цифры — проверить провенанс каждой перед публикацией
+          stat1Value: "~5 000",
+          stat1Label: "сделок закрыто по группе",
+          stat1Source: "трек-рекорд группы",
+          stat2Value: "100+",
+          stat2Label: "мандатов состоятельных клиентов",
+          stat2Source: "клиентская база WTP",
+          stat3Value: "50",
+          stat3Label: "партнёров в 15 странах",
+          stat3Source: "сеть WTP",
+          stat4Value: "7+",
+          stat4Label: "банков ОАЭ",
+          stat4Source: "банковский деск WTP",
+          eyebrowReal: "Реальные люди — конкретные и ответственные",
+          h2Team: "Команда, с которой вы работаете напрямую",
+          allExperts: "Все эксперты",
+          eyebrowPartners: "Партнёрам",
+          h2Partners: "Family offices и B2B-консультанты",
+          partnersP:
+            "Если вы консультируете международно мобильных клиентов и раз за разом упираетесь в банковскую стену, мы берём на себя ту часть, которую большинство фирм не потянет. Работаем white-label вместе с family offices, юридическими практиками и управляющими капиталом.",
+          talkPartner: "Обсудить партнёрство",
+        }
+      : {
+          seoTitle: "About — WTP, the back office for private wealth",
+          seoDescription:
+            "WTP is the discreet back office for private wealth — banking, structures, residency and succession, run by named people. The UAE is our home market, not our pitch.",
+          bcHome: "Home",
+          bcAbout: "About",
+          eyebrowAbout: "About",
+          h1a: "The back office",
+          h1b: "behind the fortune",
+          lead:
+            "The discreet team a fortune keeps on quiet retainer — banking, structures, residency, succession — handled by people who do only this, named and accountable for the outcome. The UAE is a tool we deploy when it fits the outcome, never the pitch.",
+          eyebrowWhy: "Why banking-first exists",
+          h2a: "Everyone optimises for the licence.",
+          h2b: "The account is where it breaks.",
+          originP1:
+            "The standard playbook is to set up the company, collect the fee, and hand you a folder. Then you walk into a bank and discover the structure was never built to be bankable — and that is where most applications stall.",
+          originP2:
+            "We flipped the order. We start where it is hardest, treat the account as the gate it actually is, and design the company, residency and assets to clear that gate from day one. Banking-first is not a slogan — it is the sequence that keeps the rest of the plan from collapsing.",
+          eyebrowHow: "How we work",
+          h2Flow: "Bank → Company → Visa → Assets",
+          stat1Value: "~5,000",
+          stat1Label: "deals closed across the group",
+          stat1Source: "group track record",
+          stat2Value: "100+ HNWI",
+          stat2Label: "mandates delivered",
+          stat2Source: "WTP client base",
+          stat3Value: "50",
+          stat3Label: "partners in 15 countries",
+          stat3Source: "WTP network",
+          stat4Value: "7+",
+          stat4Label: "UAE banks",
+          stat4Source: "WTP banking desk",
+          eyebrowReal: "Real people, named, accountable",
+          h2Team: "The team you actually deal with",
+          allExperts: "All experts",
+          eyebrowPartners: "For partners",
+          h2Partners: "Family offices and B2B advisors",
+          partnersP:
+            "If you advise internationally mobile clients and keep hitting the banking wall, we run the part most firms can't. We work white-label alongside family offices, legal practices and wealth managers.",
+          talkPartner: "Talk to us about partnering",
+        };
   return (
     <>
       <Seo
-        title="About — WTP, the back office for private wealth"
-        description="WTP is the discreet back office for private wealth — banking, structures, residency and succession, run by named people. The UAE is our home market, not our pitch."
+        title={t.seoTitle}
+        description={t.seoDescription}
         canonical="/about"
       />
       {/* Hero */}
       <Section className="page-hero">
-        <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "About" }]} />
-        <Eyebrow>About</Eyebrow>
+        <Breadcrumb trail={[{ label: t.bcHome, href: "/" }, { label: t.bcAbout }]} />
+        <Eyebrow>{t.eyebrowAbout}</Eyebrow>
         <h1 className="h-grad" style={{ fontSize: "clamp(32px,5vw,56px)", margin: "18px 0" }}>
-          The back office <span className="g">behind the fortune</span>
+          {t.h1a} <span className="g">{t.h1b}</span>
         </h1>
         <p className="lead">
-          The discreet team a fortune keeps on quiet retainer — banking, structures, residency, succession — handled by
-          people who do only this, named and accountable for the outcome. The UAE is a tool we deploy when it fits the
-          outcome, never the pitch.
+          {t.lead}
         </p>
       </Section>
 
       {/* Origin */}
       <Section>
         <div style={{ maxWidth: 760 }}>
-          <Eyebrow>Why banking-first exists</Eyebrow>
+          <Eyebrow>{t.eyebrowWhy}</Eyebrow>
           <h2 style={{ fontSize: "clamp(28px,4vw,46px)", margin: "20px 0 16px" }} className="h-grad">
-            Everyone optimises for the licence. <span className="g">The account is where it breaks.</span>
+            {t.h2a} <span className="g">{t.h2b}</span>
           </h2>
           <p className="muted" style={{ fontSize: 18 }}>
-            The standard playbook is to set up the company, collect the fee, and hand you a folder. Then you walk into a
-            bank and discover the structure was never built to be bankable — and that is where most applications stall.
+            {t.originP1}
           </p>
           <p className="muted" style={{ fontSize: 18, marginTop: 16 }}>
-            We flipped the order. We start where it is hardest, treat the account as the gate it actually is, and design
-            the company, residency and assets to clear that gate from day one. Banking-first is not a slogan — it is the
-            sequence that keeps the rest of the plan from collapsing.
+            {t.originP2}
           </p>
         </div>
       </Section>
 
       {/* How we work — operating contour */}
       <Section>
-        <Eyebrow>How we work</Eyebrow>
+        <Eyebrow>{t.eyebrowHow}</Eyebrow>
         <h2 style={{ fontSize: "clamp(26px,3.4vw,40px)", margin: "16px 0 32px" }} className="h-grad">
-          Bank → Company → Visa → Assets
+          {t.h2Flow}
         </h2>
         <StepperBankingFirst />
       </Section>
@@ -62,19 +147,19 @@ export default function About() {
       <Section>
         <StatBar
           stats={[
-            { value: "~5,000", label: "deals closed across the group", source: "group track record" },
-            { value: "100+ HNWI", label: "mandates delivered", source: "WTP client base" },
-            { value: "50", label: "partners in 15 countries", source: "WTP network" },
-            { value: "7+", label: "UAE banks", source: "WTP banking desk" },
+            { value: t.stat1Value, label: t.stat1Label, source: t.stat1Source },
+            { value: t.stat2Value, label: t.stat2Label, source: t.stat2Source },
+            { value: t.stat3Value, label: t.stat3Label, source: t.stat3Source },
+            { value: t.stat4Value, label: t.stat4Label, source: t.stat4Source },
           ]}
         />
       </Section>
 
       {/* Experts teaser */}
       <Section>
-        <Eyebrow>Real people, named, accountable</Eyebrow>
+        <Eyebrow>{t.eyebrowReal}</Eyebrow>
         <h2 style={{ fontSize: "clamp(26px,3.4vw,40px)", margin: "16px 0 32px" }} className="h-grad">
-          The team you actually deal with
+          {t.h2Team}
         </h2>
         <div className="grid-3">
           {c.expertList.slice(0, 3).map((e) => (
@@ -83,7 +168,7 @@ export default function About() {
         </div>
         <div style={{ marginTop: 24 }}>
           <Button to="/about/team" ghost>
-            All experts
+            {t.allExperts}
           </Button>
         </div>
       </Section>
@@ -91,15 +176,14 @@ export default function About() {
       {/* Partners teaser */}
       <Section>
         <div style={{ padding: "40px", borderRadius: 20, background: "var(--deep-2)", border: "1px solid var(--line)", maxWidth: 760 }}>
-          <Eyebrow>For partners</Eyebrow>
+          <Eyebrow>{t.eyebrowPartners}</Eyebrow>
           <h2 style={{ fontSize: "clamp(22px,3vw,32px)", margin: "16px 0 14px" }} className="h-grad">
-            Family offices and B2B advisors
+            {t.h2Partners}
           </h2>
           <p className="muted" style={{ fontSize: 17, marginBottom: 24 }}>
-            If you advise internationally mobile clients and keep hitting the banking wall, we run the part most firms can't. We work
-            white-label alongside family offices, legal practices and wealth managers.
+            {t.partnersP}
           </p>
-          <Button to="/contact">Talk to us about partnering</Button>
+          <Button to="/contact">{t.talkPartner}</Button>
         </div>
       </Section>
 

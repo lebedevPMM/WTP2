@@ -1,4 +1,4 @@
-import { L as Link } from "../i18n/lang";
+import { L as Link, useLang } from "../i18n/lang";
 import { ArrowRight } from "lucide-react";
 import { Section, Eyebrow, Button } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
@@ -9,37 +9,86 @@ import { Seo } from "../components/Seo";
 
 export default function JurisdictionsHub() {
   const c = useContent();
+  const lang = useLang();
+  const t = lang === "ru"
+    ? {
+        seoTitle: "Юрисдикции — WTP",
+        seoDescription:
+          "Пять юрисдикций и одно решение, определяющее всё остальное: сможете ли вы реально открыть счёт? Сравнение по принципу Banking-First — по налогам, доступу и скорости.",
+        breadcrumbHome: "Главная",
+        jurisdictions: "Юрисдикции",
+        h1a: "Пять юрисдикций — судим прежде всего по ",
+        h1b: "доступу к банкингу",
+        lead:
+          "Пять юрисдикций и одно решение, определяющее всё остальное: сможете ли вы реально открыть счёт? Мы сравниваем их по принципу Banking-First — по налогам, по доступу и по тому, как быстро вы начнёте работать.",
+        ctaPrescreen: "Записаться на пре-скрининг",
+        comparison: "Сравнение",
+        sideBySide: "Пять юрисдикций бок о бок",
+        // ВЫЧИТКА ОЛЕ:
+        exitTaxNote:
+          "Налоговые последствия при выходе (exit tax) целиком зависят от страны вашего происхождения — вашу ситуацию мы разбираем на пре-скрининге.",
+        homeMarket: "Наш домашний рынок",
+        uaeInDepth: "ОАЭ в деталях",
+        // ВЫЧИТКА ОЛЕ:
+        uaeBlurb:
+          "Нулевой подоходный налог, корпоративная ставка 9% на прибыль свыше AED 375 000 и варианты получения Golden Visa от AED 2 млн. Самое сложное — банк, и именно с него мы начинаем. Смотрите полный разбор: налоги, резидентство, банкинг и сроки.",
+        headToHead: "Один на один",
+        versusAlternatives: "ОАЭ против альтернатив",
+        compare: "Сравнить",
+      }
+    : {
+        seoTitle: "Jurisdictions — WTP",
+        seoDescription:
+          "Five jurisdictions, one decision that decides the rest: can you actually open the account? Compared banking-first — on tax, access and speed.",
+        breadcrumbHome: "Home",
+        jurisdictions: "Jurisdictions",
+        h1a: "Five jurisdictions — judged on ",
+        h1b: "banking access first",
+        lead:
+          "Five jurisdictions, one decision that decides the rest: can you actually open the account? We compare them banking-first — on tax, on access, and on how fast you're operational.",
+        ctaPrescreen: "Request a pre-screen",
+        comparison: "The comparison",
+        sideBySide: "Five jurisdictions, side by side",
+        exitTaxNote:
+          "Exit-tax exposure depends entirely on your country of origin — we map yours on the pre-screen.",
+        homeMarket: "Our home market",
+        uaeInDepth: "The UAE in depth",
+        uaeBlurb:
+          "Zero personal income tax, a 9% corporate rate above AED 375K, and Golden Visa routes from AED 2M. The hard part is the bank — and that's exactly where we start. See the full breakdown: tax, residency, banking and timeline.",
+        headToHead: "Head-to-head",
+        versusAlternatives: "UAE versus the alternatives",
+        compare: "Compare",
+      };
   return (
     <>
       <Seo
-        title="Jurisdictions — WTP"
-        description="Five jurisdictions, one decision that decides the rest: can you actually open the account? Compared banking-first — on tax, access and speed."
+        title={t.seoTitle}
+        description={t.seoDescription}
         canonical="/jurisdictions"
       />
       <Section className="page-hero">
-        <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Jurisdictions" }]} />
-        <Eyebrow>Jurisdictions</Eyebrow>
+        <Breadcrumb trail={[{ label: t.breadcrumbHome, href: "/" }, { label: t.jurisdictions }]} />
+        <Eyebrow>{t.jurisdictions}</Eyebrow>
         <h1 className="h-grad" style={{ fontSize: "clamp(32px,5vw,56px)", margin: "18px 0" }}>
-          Five jurisdictions — judged on <span className="g">banking access first</span>
+          {t.h1a}<span className="g">{t.h1b}</span>
         </h1>
         <p className="lead">
-          Five jurisdictions, one decision that decides the rest: can you actually open the account?
-          We compare them banking-first — on tax, on access, and on how fast you're operational.
+          {t.lead}
         </p>
         <div style={{ marginTop: 28 }}>
-          <Button to="/contact">Request a pre-screen</Button>
+          <Button to="/contact">{t.ctaPrescreen}</Button>
         </div>
       </Section>
 
       {/* The comparison */}
       <Section>
-        <Eyebrow>The comparison</Eyebrow>
+        <Eyebrow>{t.comparison}</Eyebrow>
         <h2 style={{ fontSize: "clamp(26px,3.4vw,40px)", margin: "16px 0 28px" }} className="h-grad">
-          Five jurisdictions, side by side
+          {t.sideBySide}
         </h2>
         <JurisdictionComparisonTable columns={["uae", "singapore", "portugal", "switzerland", "malta"]} />
         <p className="muted" style={{ fontSize: 14, marginTop: 16 }}>
-          Exit-tax exposure depends entirely on your country of origin — we map yours on the pre-screen.
+          {t.exitTaxNote}
         </p>
       </Section>
 
@@ -52,24 +101,22 @@ export default function JurisdictionsHub() {
             background: "linear-gradient(180deg, rgba(227,181,100,.06), var(--deep-2))",
           }}
         >
-          <Eyebrow>Our home market</Eyebrow>
+          <Eyebrow>{t.homeMarket}</Eyebrow>
           <h2 style={{ fontSize: "clamp(24px,3vw,36px)", margin: "16px 0 14px" }} className="h-grad">
-            The UAE in depth
+            {t.uaeInDepth}
           </h2>
           <p className="muted" style={{ fontSize: 18, maxWidth: 640, marginBottom: 24 }}>
-            Zero personal income tax, a 9% corporate rate above AED 375K, and Golden Visa routes from
-            AED 2M. The hard part is the bank — and that's exactly where we start. See the full breakdown:
-            tax, residency, banking and timeline.
+            {t.uaeBlurb}
           </p>
-          <Button to="/jurisdictions/uae">The UAE in depth</Button>
+          <Button to="/jurisdictions/uae">{t.uaeInDepth}</Button>
         </div>
       </Section>
 
       {/* Comparator teasers */}
       <Section>
-        <Eyebrow>Head-to-head</Eyebrow>
+        <Eyebrow>{t.headToHead}</Eyebrow>
         <h2 style={{ fontSize: "clamp(26px,3.4vw,40px)", margin: "16px 0 28px" }} className="h-grad">
-          UAE versus the alternatives
+          {t.versusAlternatives}
         </h2>
         <div className="grid-3">
           {c.comparatorPages.map((p) => (
@@ -94,7 +141,7 @@ export default function JurisdictionsHub() {
                   fontWeight: 600,
                 }}
               >
-                Compare <ArrowRight size={15} />
+                {t.compare} <ArrowRight size={15} />
               </span>
             </Link>
           ))}

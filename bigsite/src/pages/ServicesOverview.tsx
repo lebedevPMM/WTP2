@@ -1,4 +1,4 @@
-import { L as Link } from "../i18n/lang";
+import { L as Link, useLang } from "../i18n/lang";
 import { ArrowRight } from "lucide-react";
 import { Section, Eyebrow, Button, Chip } from "../components/ui";
 import { Breadcrumb } from "../components/Breadcrumb";
@@ -8,30 +8,93 @@ import { Seo } from "../components/Seo";
 
 export default function ServicesOverview() {
   const c = useContent();
+  const lang = useLang();
+  const t =
+    lang === "ru"
+      ? {
+          seoTitle: "Услуги — WTP",
+          seoDesc:
+            "Сильные стороны, которые мы задействуем для частных клиентов — банкинг, регистрация компании, резидентство и капитал — выстроены так, чтобы структура была банкабельной с первого дня.",
+          bcHome: "Главная",
+          bcServices: "Услуги",
+          eyebrowServices: "Услуги",
+          h1a: "Четыре направления,",
+          h1b: "одна ответственная команда",
+          lead:
+            "Сильные стороны, которые мы задействуем для частных клиентов — банкинг, регистрация компании, резидентство и капитал — выстроены так, чтобы структура была банкабельной с первого дня, и применяются только там, где они действительно уместны. Каждое направление ведёт конкретный эксперт, а не очередь передач из рук в руки.",
+          chipStartHere: "Начните здесь",
+          eyebrowDiagnostic: "Начните с диагностики",
+          diagnosticIntro:
+            "Перед любой услугой мы разбираем вашу реальную ситуацию — чтобы вы понимали, где стоите, ещё до того, как потратите хоть один дирхам. Два способа начать.",
+          startLink: "Начать",
+          eyebrowWhatWeDo: "Что мы делаем",
+          h2Pick: "Выберите направление под ваш следующий шаг",
+          ledBy: "Ведёт",
+          exploreLink: "Подробнее",
+          eyebrowWhereFit: "Куда относится моя ситуация?",
+          routerIntro:
+            "Большинство мандатов начинаются с одного направления и подтягивают остальные. Перейдите к тому, что ближе всего к вашей задаче, — или расскажите, где вы стоите, и мы направим вас.",
+          routerNotSure: "Не уверены — поговорите с нами",
+          eyebrowMethodology: "Методология",
+          h2BankA: "Сначала банк.",
+          h2BankB: "Потом всё остальное.",
+          methodologyIntro:
+            "Эти четыре направления — не меню: они идут последовательно. Банк — самый сложный барьер, поэтому мы проходим его раньше компании, визы и активов.",
+          btnHow: "Как работает методология",
+          btnPackages: "Посмотреть четыре пакета",
+        }
+      : {
+          seoTitle: "Services — WTP",
+          seoDesc:
+            "The strengths we deploy for private clients — banking, business setup, residency and wealth — sequenced so the structure is bankable from day one.",
+          bcHome: "Home",
+          bcServices: "Services",
+          eyebrowServices: "Services",
+          h1a: "Four lines,",
+          h1b: "one accountable team",
+          lead:
+            "The strengths we deploy for private clients — banking, business setup, residency and wealth — sequenced so the structure is bankable from day one, and used only where they fit. Each is led by a named expert, not a handoff queue.",
+          chipStartHere: "Start here",
+          eyebrowDiagnostic: "Begin with a diagnostic",
+          diagnosticIntro:
+            "Before any service, we read your real situation — so you know where you stand before you spend a dirham. Two ways to start.",
+          startLink: "Start",
+          eyebrowWhatWeDo: "What we do",
+          h2Pick: "Pick the line that matches your next move",
+          ledBy: "Led by",
+          exploreLink: "Explore",
+          eyebrowWhereFit: "Where does my situation fit?",
+          routerIntro:
+            "Most mandates start in one line and pull in the others. Jump to the one closest to your problem — or tell us where you stand and we'll route it.",
+          routerNotSure: "Not sure — talk to us",
+          eyebrowMethodology: "The methodology",
+          h2BankA: "Bank first.",
+          h2BankB: "Then everything else.",
+          methodologyIntro:
+            "These four lines aren't a menu — they run in sequence. The bank is the hardest gate, so we clear it before the company, the visa or the assets.",
+          btnHow: "How the methodology works",
+          btnPackages: "See the four packages",
+        };
   const diagnostics = c.productsByCategory("diagnostics");
   const routerChips: { label: string; href: string }[] = [
     ...c.services.map((s) => ({ label: s.line, href: `/services/${s.slug}` })),
-    { label: "Not sure — talk to us", href: "/contact" },
+    { label: t.routerNotSure, href: "/contact" },
   ];
   return (
     <>
       <Seo
-        title="Services — WTP"
-        description="The strengths we deploy for private clients — banking, business setup, residency and wealth — sequenced so the structure is bankable from day one."
+        title={t.seoTitle}
+        description={t.seoDesc}
         canonical="/services"
       />
       {/* Hero */}
       <Section className="page-hero">
-        <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Services" }]} />
-        <Eyebrow>Services</Eyebrow>
+        <Breadcrumb trail={[{ label: t.bcHome, href: "/" }, { label: t.bcServices }]} />
+        <Eyebrow>{t.eyebrowServices}</Eyebrow>
         <h1 className="h-grad" style={{ fontSize: "clamp(32px,5vw,56px)", margin: "18px 0" }}>
-          Four lines, <span className="g">one accountable team</span>
+          {t.h1a} <span className="g">{t.h1b}</span>
         </h1>
-        <p className="lead">
-          The strengths we deploy for private clients — banking, business setup, residency and wealth —
-          sequenced so the structure is bankable from day one, and used only where they fit. Each is led
-          by a named expert, not a handoff queue.
-        </p>
+        <p className="lead">{t.lead}</p>
       </Section>
 
       {/* Start here — diagnostics axis */}
@@ -39,12 +102,11 @@ export default function ServicesOverview() {
         <Section>
           <div style={{ padding: "36px 40px", borderRadius: 20, background: "var(--deep-2)", border: "1px solid var(--gold-30, var(--line))" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-              <Chip>Start here</Chip>
-              <Eyebrow>Begin with a diagnostic</Eyebrow>
+              <Chip>{t.chipStartHere}</Chip>
+              <Eyebrow>{t.eyebrowDiagnostic}</Eyebrow>
             </div>
             <p className="muted" style={{ fontSize: 17, maxWidth: 600, marginBottom: 24 }}>
-              Before any service, we read your real situation — so you know where you stand before you
-              spend a dirham. Two ways to start.
+              {t.diagnosticIntro}
             </p>
             <div className="grid-2">
               {diagnostics.map((p) => (
@@ -54,7 +116,7 @@ export default function ServicesOverview() {
                   </div>
                   <p style={{ fontSize: 14.5, color: "var(--ink-55)", marginBottom: 18, lineHeight: 1.55 }}>{p.oneLiner}</p>
                   <span style={{ marginTop: "auto", color: "var(--gold)", display: "inline-flex", alignItems: "center", gap: 6, fontSize: 14, fontWeight: 600 }}>
-                    Start <ArrowRight size={15} />
+                    {t.startLink} <ArrowRight size={15} />
                   </span>
                 </Link>
               ))}
@@ -65,9 +127,9 @@ export default function ServicesOverview() {
 
       {/* The 4 services */}
       <Section>
-        <Eyebrow>What we do</Eyebrow>
+        <Eyebrow>{t.eyebrowWhatWeDo}</Eyebrow>
         <h2 style={{ fontSize: "clamp(26px,3.4vw,40px)", margin: "16px 0 32px" }} className="h-grad">
-          Pick the line that matches your next move
+          {t.h2Pick}
         </h2>
         <div className="grid-2">
           {c.services.map((s) => {
@@ -117,7 +179,7 @@ export default function ServicesOverview() {
                     flexWrap: "wrap",
                   }}
                 >
-                  <span style={{ fontSize: 13.5, color: "var(--ink-55)" }}>Led by {lead.name}</span>
+                  <span style={{ fontSize: 13.5, color: "var(--ink-55)" }}>{t.ledBy} {lead.name}</span>
                   <span
                     style={{
                       color: "var(--gold)",
@@ -128,7 +190,7 @@ export default function ServicesOverview() {
                       fontWeight: 600,
                     }}
                   >
-                    Explore <ArrowRight size={15} />
+                    {t.exploreLink} <ArrowRight size={15} />
                   </span>
                 </div>
               </Link>
@@ -147,10 +209,9 @@ export default function ServicesOverview() {
             border: "1px solid var(--line)",
           }}
         >
-          <Eyebrow>Where does my situation fit?</Eyebrow>
+          <Eyebrow>{t.eyebrowWhereFit}</Eyebrow>
           <p className="muted" style={{ fontSize: 17, maxWidth: 560, marginTop: 14 }}>
-            Most mandates start in one line and pull in the others. Jump to the one closest to your
-            problem — or tell us where you stand and we'll route it.
+            {t.routerIntro}
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 22 }}>
             {routerChips.map((c) => (
@@ -179,20 +240,19 @@ export default function ServicesOverview() {
           }}
         >
           <div style={{ maxWidth: 620 }}>
-            <Eyebrow>The methodology</Eyebrow>
+            <Eyebrow>{t.eyebrowMethodology}</Eyebrow>
             <h2 style={{ fontSize: "clamp(22px,3vw,32px)", margin: "16px 0 12px" }} className="h-grad">
-              Bank first. <span className="g">Then everything else.</span>
+              {t.h2BankA} <span className="g">{t.h2BankB}</span>
             </h2>
             <p className="muted" style={{ fontSize: 17 }}>
-              These four lines aren't a menu — they run in sequence. The bank is the hardest gate, so we
-              clear it before the company, the visa or the assets.
+              {t.methodologyIntro}
             </p>
           </div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <Button to="/banking-first" ghost>
-              How the methodology works
+              {t.btnHow}
             </Button>
-            <Button to="/packages">See the four packages</Button>
+            <Button to="/packages">{t.btnPackages}</Button>
           </div>
         </div>
       </Section>

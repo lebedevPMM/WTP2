@@ -10,8 +10,10 @@ import { CaseCard } from "../components/CaseCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { NotFound } from "../pages/NotFound";
 import { useContent } from "../content/i18n";
+import { useLang } from "../i18n/lang";
 
 export default function ArticleTemplate() {
+  const lang = useLang();
   const c = useContent();
   const { slug } = useParams();
   const a = c.getArticle(slug || "");
@@ -28,6 +30,18 @@ export default function ArticleTemplate() {
     datePublished: a.date,
   };
 
+  const t = lang === "ru"
+    ? {
+        crumbHome: "Главная",
+        crumbInsights: "Аналитика",
+        keepReading: "Читайте также",
+      }
+    : {
+        crumbHome: "Home",
+        crumbInsights: "Insights",
+        keepReading: "Keep reading",
+      };
+
   return (
     <>
       <Seo
@@ -40,8 +54,8 @@ export default function ArticleTemplate() {
         <div style={{ maxWidth: 740, margin: "0 auto" }}>
           <Breadcrumb
             trail={[
-              { label: "Home", href: "/" },
-              { label: "Insights", href: "/insights" },
+              { label: t.crumbHome, href: "/" },
+              { label: t.crumbInsights, href: "/insights" },
               { label: c.categoryLabel[a.category], href: `/insights/${a.category}` },
               { label: a.title },
             ]}
@@ -58,7 +72,7 @@ export default function ArticleTemplate() {
 
       {(moreGuides.length > 0 || cases.length > 0) && (
         <Section>
-          <Eyebrow>Keep reading</Eyebrow>
+          <Eyebrow>{t.keepReading}</Eyebrow>
           <div className="grid-3" style={{ marginTop: 24 }}>
             {moreGuides.map((g) => (
               <ArticleCard key={g.slug} article={g} />
