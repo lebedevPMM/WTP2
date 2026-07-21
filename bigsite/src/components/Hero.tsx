@@ -269,7 +269,7 @@ export function Hero() {
                   )}
                   <p style={{ fontSize: "clamp(16px,1.5vw,19px)", color: "var(--ink-70)", maxWidth: 460, marginBottom: 26 }}>{b.p}</p>
                   {b.quiet && (
-                    <p style={{ marginTop: 6, fontSize: 13.5, color: "var(--ink-55)", display: "flex", alignItems: "center", gap: 9 }}>
+                    <p style={{ marginTop: 10, marginBottom: 30, fontSize: 13.5, color: "var(--ink-55)", display: "flex", alignItems: "center", gap: 9 }}>
                       <span style={{ width: 22, height: 1, background: "var(--gold)" }} />
                       {b.quiet}
                     </p>
@@ -283,13 +283,13 @@ export function Hero() {
                         </Button>
                       </div>
                       {i === 0 && (
-                        <p style={{ marginTop: 18, fontSize: 13, color: "var(--ink-70)", display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+                        <p style={{ marginTop: 28, fontSize: 13, color: "var(--ink-70)", display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
                           <span><strong className="g" style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>100+</strong> {t.stat1}</span>
                           <span aria-hidden style={{ width: 1, height: 12, background: "var(--line)" }} />
                           <span><strong className="g" style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>90%+</strong> {t.stat2}</span>
                         </p>
                       )}
-                      <p style={{ marginTop: 14, fontSize: 13.5, color: "var(--ink-55)" }}>
+                      <p style={{ marginTop: 20, fontSize: 13.5, color: "var(--ink-55)" }}>
                         {t.noPitch}
                       </p>
                     </>
