@@ -42,6 +42,13 @@ for (const p of paths) {
   try {
     await page.goto(`http://localhost:${PORT}${p}`, { waitUntil: "networkidle", timeout: 30000 });
     await page.waitForTimeout(300); // let Seo.tsx upsert head tags
+    // FX portals (theme spine) are client-only decoration: a serialized copy is
+    // never adopted by React on hydration, so it survives SPA navigation as an
+    // orphan div with a stale inline height and stretches shorter pages with
+    // scrollable dead space below the footer. Strip them from the snapshot.
+    await page.evaluate(() => {
+      document.querySelectorAll(".v3fx-spine-host").forEach((n) => n.remove());
+    });
     let html = "<!doctype html>\n" + (await page.evaluate(() => document.documentElement.outerHTML));
     // The async-fonts link's onload flips media to "all" before capture; restore "print"
     // so the snapshot keeps the non-blocking pattern (noscript fallback covers no-JS).

@@ -68,6 +68,13 @@ export default function V3FX() {
     const nodesG = nodesRef.current;
     if (!host || !svg || !glow || !path || !nodesG) return;
 
+    // Prerendered HTML can carry a serialized copy of this portal; React never
+    // adopts it on hydration, so it lingers with a stale inline height across
+    // SPA navigations. Drop any host we don't own.
+    document.querySelectorAll(".v3fx-spine-host").forEach((n) => {
+      if (n !== host) n.remove();
+    });
+
     let disposed = false;
     let raf = 0; // draw-loop handle
     let mRaf = 0; // queued re-measure handle
@@ -150,10 +157,23 @@ export default function V3FX() {
       let top0 = firstTop;
       if (isFinite(heroBottom)) top0 = Math.max(top0, heroBottom + 24);
       top0 = Math.min(top0, ys[0] - 40); // always a lead-in before station 1
-      const H = ys[ys.length - 1] - top0 + PAD_BOTTOM;
+      let H = ys[ys.length - 1] - top0 + PAD_BOTTOM;
       if (!isFinite(H) || H <= 0) {
         hide();
         return;
+      }
+      // Route transitions can leave a stale measure (the router flips the
+      // pathname while the previous page is still painted) — never let the
+      // spine stretch the document past the footer, or short pages gain
+      // scrollable dead space below it.
+      const foot = document.querySelector<HTMLElement>("footer");
+      if (foot) {
+        const footBottom = foot.getBoundingClientRect().bottom + sy;
+        if (top0 >= footBottom) {
+          hide();
+          return;
+        }
+        H = Math.min(H, footBottom - top0);
       }
 
       // spine X — measured off the content column so the line lives in the
@@ -280,6 +300,10 @@ export default function V3FX() {
     });
     const ro = new ResizeObserver(queueMeasure);
     ro.observe(document.body);
+    // main swaps its contents on route change; observing it directly
+    // guarantees a re-measure once the new page's DOM actually lands
+    const mainEl = document.querySelector("main");
+    if (mainEl) ro.observe(mainEl);
     window.addEventListener("load", queueMeasure);
     if (document.fonts) {
       document.fonts.ready.then(() => queueMeasure()).catch(() => {});
