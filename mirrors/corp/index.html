@@ -9,9 +9,21 @@
 <meta property="og:description" content="Регистрация компаний, лицензии, банковское сопровождение и международные расчёты в ОАЭ. Команда в Дубае с 2019 года.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
+<link rel="canonical" href="https://corp.wtp.ae/">
+<link rel="alternate" hreflang="ru" href="https://corp.wtp.ae/">
+<link rel="alternate" hreflang="en" href="https://corp.wtp.ae/en/">
+<link rel="alternate" hreflang="x-default" href="https://corp.wtp.ae/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
+<style>
+/* Language switcher (pattern: re/ mirror pair) */
+.lang-switch{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.lang-switch a{color:var(--text-muted);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent;transition:color .2s ease,border-color .2s ease}
+.lang-switch a:hover{color:var(--text-primary);border-bottom-color:transparent}
+.lang-switch a[aria-current="page"]{color:var(--accent-gold-dark);border-bottom-color:var(--accent-gold);pointer-events:none}
+.lang-switch .lang-sep{width:3px;height:3px;border-radius:50%;background:var(--accent-gold);opacity:.6}
+</style>
 </head>
 <body>
 
@@ -26,6 +38,11 @@
       <li><a href="#team">Команда</a></li>
       <li><a href="#contacts">Контакты</a></li>
     </ul>
+    <nav class="lang-switch" aria-label="Язык">
+      <a href="./" aria-current="page">RU</a>
+      <span class="lang-sep" aria-hidden="true"></span>
+      <a href="en/" lang="en" hreflang="en">EN</a>
+    </nav>
     <a href="#contacts" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Связаться</a>
   </div>
 </nav>

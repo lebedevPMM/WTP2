@@ -684,7 +684,7 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.title': 'Privacy Policy',
         'privacy.lastUpdated': 'Last updated: February 17, 2026',
         'privacy.controller.title': '1. Data Controller',
-        'privacy.controller.text': 'The data controller is WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, Office 1207, Arenco Tower, Media City, Dubai, UAE. For any questions regarding your personal data, please contact us at hello@wtpbrokers.com or call +971 600 575-294.',
+        'privacy.controller.text': 'The data controller is WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, Office 1207, Arenco Tower, Media City, Dubai, UAE. For any questions regarding your personal data, please contact us at hello@wtp.ae or call +971 600 575-294.',
         'privacy.dataCollected.title': '2. Data We Collect',
         'privacy.dataCollected.formsIntro': 'Through our forms we may collect the following personal data:',
         'privacy.dataCollected.name': 'Full name',
@@ -724,7 +724,7 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.rights.portability': 'Right to data portability — receive your data in a structured format',
         'privacy.rights.objection': 'Right to object — object to processing based on legitimate interest',
         'privacy.rights.withdraw': 'Right to withdraw consent — withdraw consent at any time without affecting prior processing',
-        'privacy.rights.contact': 'To exercise any of these rights, please contact us at hello@wtpbrokers.com or call +971 600 575-294. We will respond within 30 days.',
+        'privacy.rights.contact': 'To exercise any of these rights, please contact us at hello@wtp.ae or call +971 600 575-294. We will respond within 30 days.',
         'privacy.cookies.title': '8. Cookies',
         'privacy.cookies.text': 'We use cookies only with your explicit consent. The following cookies may be set:',
         'privacy.cookies.ga': '_ga, _ga_* — Google Analytics cookies for understanding website usage (analytics category)',
@@ -737,7 +737,7 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.changes.title': '11. Changes to This Policy',
         'privacy.changes.text': 'We may update this Privacy Policy from time to time. The "last updated" date at the top reflects the most recent revision. We encourage you to review this page periodically.',
         'privacy.contact.title': '12. Contact Us',
-        'privacy.contact.text': 'If you have questions about this Privacy Policy or wish to exercise your data rights, please contact us at hello@wtpbrokers.com, call +971 600 575-294, or visit wtpbrokers.com.',
+        'privacy.contact.text': 'If you have questions about this Privacy Policy or wish to exercise your data rights, please contact us at hello@wtp.ae, call +971 600 575-294.',
 
         // Terms of Service Page
         'tos.back': '\u2190 Back to Home',
@@ -801,7 +801,7 @@ const translations: Record<string, Record<string, string>> = {
         'tos.severability.title': '12. Severability',
         'tos.severability.text': 'If any provision of these Terms is found to be invalid, illegal, or unenforceable by a court of competent jurisdiction, such invalidity, illegality, or unenforceability shall not affect any other provision of these Terms. The remaining provisions shall continue in full force and effect, and the invalid provision shall be modified to the minimum extent necessary to make it valid and enforceable while preserving its original intent.',
         'tos.contact.title': '13. Contact Information',
-        'tos.contact.text': 'For any questions regarding these Terms of Service, please contact us at hello@wtpbrokers.com, call +971 600 575-294, or write to us at: WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, Office 1207, Arenco Tower, Media City, Dubai, UAE.',
+        'tos.contact.text': 'For any questions regarding these Terms of Service, please contact us at hello@wtp.ae, call +971 600 575-294, or write to us at: WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, Office 1207, Arenco Tower, Media City, Dubai, UAE.',
 
         // Monetization Landing Page (L2)
         'ml.back': '← Back to overview',
@@ -1941,7 +1941,7 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.title': 'Политика конфиденциальности',
         'privacy.lastUpdated': 'Последнее обновление: 17 февраля 2026',
         'privacy.controller.title': '1. Контроллер данных',
-        'privacy.controller.text': 'Контроллером данных является WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, Office 1207, Arenco Tower, Media City, Dubai, UAE. По любым вопросам, касающимся ваших персональных данных, свяжитесь с нами: hello@wtpbrokers.com или +971 600 575-294.',
+        'privacy.controller.text': 'Контроллером данных является WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, Office 1207, Arenco Tower, Media City, Dubai, UAE. По любым вопросам, касающимся ваших персональных данных, свяжитесь с нами: hello@wtp.ae или +971 600 575-294.',
         'privacy.dataCollected.title': '2. Какие данные мы собираем',
         'privacy.dataCollected.formsIntro': 'Через наши формы мы можем собирать следующие персональные данные:',
         'privacy.dataCollected.name': 'Полное имя',
@@ -1981,7 +1981,7 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.rights.portability': 'Право на переносимость данных — получить данные в структурированном формате',
         'privacy.rights.objection': 'Право на возражение — возразить против обработки на основании законного интереса',
         'privacy.rights.withdraw': 'Право на отзыв согласия — отозвать согласие в любое время без влияния на предшествующую обработку',
-        'privacy.rights.contact': 'Для реализации любого из этих прав свяжитесь с нами: hello@wtpbrokers.com или +971 600 575-294. Мы ответим в течение 30 дней.',
+        'privacy.rights.contact': 'Для реализации любого из этих прав свяжитесь с нами: hello@wtp.ae или +971 600 575-294. Мы ответим в течение 30 дней.',
         'privacy.cookies.title': '8. Cookies',
         'privacy.cookies.text': 'Мы используем cookies только с вашего явного согласия. Могут быть установлены следующие cookies:',
         'privacy.cookies.ga': '_ga, _ga_* — cookies Google Analytics для анализа использования сайта (категория: аналитика)',
@@ -1994,7 +1994,7 @@ const translations: Record<string, Record<string, string>> = {
         'privacy.changes.title': '11. Изменения в политике',
         'privacy.changes.text': 'Мы можем обновлять эту Политику конфиденциальности время от времени. Дата «последнего обновления» вверху отражает последнюю ревизию. Рекомендуем периодически просматривать эту страницу.',
         'privacy.contact.title': '12. Связаться с нами',
-        'privacy.contact.text': 'Если у вас есть вопросы по этой Политике конфиденциальности или вы хотите реализовать свои права, свяжитесь с нами: hello@wtpbrokers.com, +971 600 575-294 или посетите wtpbrokers.com.',
+        'privacy.contact.text': 'Если у вас есть вопросы по этой Политике конфиденциальности или вы хотите реализовать свои права, свяжитесь с нами: hello@wtp.ae, +971 600 575-294.',
 
         // Terms of Service Page
         'tos.back': '\u2190 На главную',
@@ -2058,7 +2058,7 @@ const translations: Record<string, Record<string, string>> = {
         'tos.severability.title': '12. Делимость условий',
         'tos.severability.text': 'Если какое-либо положение настоящих Условий будет признано недействительным, незаконным или неисполнимым судом компетентной юрисдикции, такая недействительность, незаконность или неисполнимость не затрагивает остальные положения настоящих Условий. Остальные положения продолжают действовать в полном объёме, а недействительное положение подлежит изменению в минимальной степени, необходимой для обеспечения его действительности и исполнимости при сохранении первоначального замысла.',
         'tos.contact.title': '13. Контактная информация',
-        'tos.contact.text': 'По любым вопросам, касающимся настоящих Условий использования, свяжитесь с нами: hello@wtpbrokers.com, +971 600 575-294, или напишите нам по адресу: WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, Office 1207, Arenco Tower, Media City, Dubai, UAE.',
+        'tos.contact.text': 'По любым вопросам, касающимся настоящих Условий использования, свяжитесь с нами: hello@wtp.ae, +971 600 575-294, или напишите нам по адресу: WELLCOME TO PARADISE REAL ESTATE BROKERS LLC, Office 1207, Arenco Tower, Media City, Dubai, UAE.',
 
         // Monetization Landing Page (L2)
         'ml.back': '← К обзору',

@@ -334,7 +334,15 @@ const FilterButton: React.FC<{ active: boolean; onClick: () => void; children: R
 const DocumentLibraryPage: React.FC = () => {
     const { lang } = useLanguage()
     const base = import.meta.env.BASE_URL
-    const L = labels[lang as 'en' | 'ru']
+    // Doc language is switchable at runtime (unlike the build-time site language):
+    // the RU hub deep-links here with ?lang=ru, and the on-page toggle serves
+    // the RU/EN PDF set without needing a separate RU deployment.
+    const [docLang, setDocLang] = useState<'en' | 'ru'>(() => {
+        const q = new URLSearchParams(window.location.search).get('lang')
+        if (q === 'ru' || q === 'en') return q
+        return lang === 'ru' ? 'ru' : 'en'
+    })
+    const L = labels[docLang]
     const [audience, setAudience] = useState<Audience>('all')
 
     // HIDDEN PAGE — accessible by direct URL only, not indexed by search engines.
@@ -369,15 +377,15 @@ const DocumentLibraryPage: React.FC = () => {
     }, [filtered])
 
     const renderCard = (doc: DocEntry) => {
-        const href = base + (lang === 'ru' ? doc.pdfRU : doc.pdfEN)
+        const href = base + (docLang === 'ru' ? doc.pdfRU : doc.pdfEN)
         return (
             <DocCard
                 key={doc.id}
-                title={productLabel(doc.product, lang as 'en' | 'ru')}
-                audienceText={audienceLabel(doc.audience, lang as 'en' | 'ru')}
+                title={productLabel(doc.product, docLang)}
+                audienceText={audienceLabel(doc.audience, docLang)}
                 href={href}
                 downloadLabel={L.download}
-                onDownload={() => trackPdfDownload(doc.id, lang)}
+                onDownload={() => trackPdfDownload(doc.id, docLang)}
             />
         )
     }
@@ -403,6 +411,13 @@ const DocumentLibraryPage: React.FC = () => {
                     <FilterButton active={audience === 'all'} onClick={() => setAudience('all')}>{L.filterAll}</FilterButton>
                     <FilterButton active={audience === 'b2c'} onClick={() => setAudience('b2c')}>{L.filterB2C}</FilterButton>
                     <FilterButton active={audience === 'partner'} onClick={() => setAudience('partner')}>{L.filterPartner}</FilterButton>
+                </div>
+                <span style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-tertiary)', marginLeft: '16px' }}>
+                    {docLang === 'ru' ? 'Язык' : 'Language'}:
+                </span>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                    <FilterButton active={docLang === 'en'} onClick={() => setDocLang('en')}>EN</FilterButton>
+                    <FilterButton active={docLang === 'ru'} onClick={() => setDocLang('ru')}>RU</FilterButton>
                 </div>
             </section>
 
