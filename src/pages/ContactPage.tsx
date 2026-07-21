@@ -143,7 +143,7 @@ const ContactPage: React.FC = () => {
 
                         <div className="contact-info-block">
                             <h4>{t('contact.emailLabel')}</h4>
-                            <a href="mailto:hello@wtpbrokers.com">hello@wtpbrokers.com</a>
+                            <a href="mailto:hello@wtp.ae">hello@wtp.ae</a>
                         </div>
 
                         <div className="contact-info-block">

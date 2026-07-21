@@ -9,7 +9,7 @@ export const site = {
   telegram: "https://t.me/wtpbrokers",
   whatsapp: "https://wa.me/971600575294",
   office: "Dubai Media City, Arenco Tower, Office 1207",
-  linkedin: "https://www.linkedin.com/company/wtpbrokers",
+  linkedin: "https://www.linkedin.com/company/welcome-to-paradise-professional-services",
 } as const;
 
 // cal.com booking link, e.g. "wtp/pre-screen". Empty = embed hidden, lead form is primary.
