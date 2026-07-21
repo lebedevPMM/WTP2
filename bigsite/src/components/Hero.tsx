@@ -300,8 +300,10 @@ export function Hero() {
           ))}
         </div>
 
-        {/* route progress rail */}
-        <div style={{ position: "fixed", right: 26, top: "50%", transform: "translateY(-50%)", zIndex: 7, display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+        {/* route progress rail — hidden on narrow viewports (see .hero-route-rail
+            in index.css); below ~1080px the hero copy column reaches right:26 and
+            the rail would slice through the headline, stats and taglines. */}
+        <div className="hero-route-rail" style={{ position: "fixed", right: 26, top: "50%", transform: "translateY(-50%)", zIndex: 7, display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
           <div style={{ width: 2, height: 150, background: "rgba(237,235,246,.16)", borderRadius: 2, overflow: "hidden", position: "relative" }}>
             <div ref={fillRef} style={{ position: "absolute", top: 0, left: 0, right: 0, height: "0%", background: "var(--gold-grad)" }} />
           </div>

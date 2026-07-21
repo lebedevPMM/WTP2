@@ -480,7 +480,9 @@ html[data-theme="v3"] .hero-stage h1,
 html[data-theme="v3"] .hero-stage h2 {
   letter-spacing: -0.012em !important;
   font-weight: 440;
-  line-height: 1.03;
+  /* 1.03 crowded the Fraunces italic gold line ("private wealth.") against the
+     line above and the subtitle below, worst on 3+ line wraps (narrow / RU). */
+  line-height: 1.08;
 }
 html[data-theme="v3"] .hero-stage .eyebrow {
   letter-spacing: 0.3em;

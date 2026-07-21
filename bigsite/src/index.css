@@ -84,6 +84,16 @@ main, footer { position: relative; z-index: 1; }
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 
+/* Hero headline: give the display serif a touch more line-height and bottom room
+   so the gold italic ("private wealth.") swashes/descenders don't crowd the line
+   above or the subtitle below — matters most when the headline wraps 3+ lines
+   (narrow viewports, longer RU copy). */
+.hero-stage .h-grad { line-height: 1.07; padding-bottom: 0.06em; }
+
+/* The fixed scroll-progress rail (right:26) is desktop decoration; below ~1080px
+   the hero copy column reaches it and it slices through the text. Hide it there. */
+@media (max-width: 1080px) { .hero-route-rail { display: none !important; } }
+
 .btn {
   display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--font-display); font-weight: 600; cursor: pointer;
