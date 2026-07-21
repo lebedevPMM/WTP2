@@ -68,11 +68,14 @@ export function Layout() {
           links and pinned localStorage stay inert and base is the sole public face. */}
       {import.meta.env.DEV && <ThemeSwitch />}
       <ThemeFX />
-      <MegaNav transparent={isHome} />
-      <main id="main-content" tabIndex={-1} style={{ minHeight: "60vh", paddingTop: isHome ? 0 : 66, outline: "none" }}>
-        <Outlet />
-      </main>
-      <Footer />
+      {/* Flex column pins the footer to the viewport bottom on short pages */}
+      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <MegaNav transparent={isHome} />
+        <main id="main-content" tabIndex={-1} style={{ flex: "1 0 auto", minHeight: "60vh", paddingTop: isHome ? 0 : 66, outline: "none" }}>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
       <ConsentBanner />
     </>
   );
