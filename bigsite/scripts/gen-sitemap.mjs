@@ -13,20 +13,28 @@ const file = join(root, "public/sitemap.xml");
 const SITE = "https://wtp.ae";
 
 const src = readFileSync(file, "utf8");
+
+// CF Pages serves prerendered routes from <path>/index.html, so /services 308s to
+// /services/. Emitting the slash-less form put 77 of 114 sitemap URLs into Search
+// Console's "Page with redirect" bucket (observed 2026-07-28). Parse without the slash so
+// re-runs stay idempotent, emit with it so every <loc> answers 200.
+const bare = (p) => (p !== "/" && p.endsWith("/") ? p.slice(0, -1) : p);
+const slash = (p) => (p === "/" || p.endsWith("/") ? p : p + "/");
+
 // EN paths = every <loc> that isn't already a /ru mirror.
 const enPaths = [...src.matchAll(/<loc>https:\/\/wtp\.ae([^<]*)<\/loc>/g)]
-  .map((m) => m[1] || "/")
+  .map((m) => bare(m[1] || "/"))
   .filter((p) => p !== "/ru" && !p.startsWith("/ru/"));
 
 const ru = (p) => (p === "/" ? "/ru" : "/ru" + p);
 
 // One <url> block with the full en/ru/x-default alternate cluster (same cluster on both variants).
 function urlBlock(selfPath, enPath) {
-  const enUrl = SITE + enPath;
-  const ruUrl = SITE + ru(enPath);
+  const enUrl = SITE + slash(enPath);
+  const ruUrl = SITE + slash(ru(enPath));
   return [
     `  <url>`,
-    `    <loc>${SITE + selfPath}</loc>`,
+    `    <loc>${SITE + slash(selfPath)}</loc>`,
     `    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}"/>`,
     `    <xhtml:link rel="alternate" hreflang="ru" href="${ruUrl}"/>`,
     `    <xhtml:link rel="alternate" hreflang="x-default" href="${enUrl}"/>`,

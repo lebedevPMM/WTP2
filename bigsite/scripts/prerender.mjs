@@ -56,7 +56,7 @@ for (const p of paths) {
     // The hero-frame preload only helps the home route; drop it elsewhere (wasted 47KB otherwise).
     // Both language homes ("/" EN and "/ru" RU) render the Hero, so keep the preload on both —
     // otherwise the RU home loses its LCP image preload and FCP/LCP regress badly.
-    const isHome = p === "/" || p === "/ru";
+    const isHome = p === "/" || p === "/ru" || p === "/ru/";
     if (!isHome) html = html.replace(/\s*<link rel="preload" as="image" href="\/hero\/frames\/[^"]*"[^>]*>/, "");
     const out = p === "/" ? join(root, "dist/index.html") : join(root, "dist", p.slice(1), "index.html");
     mkdirSync(dirname(out), { recursive: true });

@@ -24,9 +24,19 @@ const inLang = (lang: Lang) => (lang === "ru" ? "ru-RU" : "en-AE");
 /** Reference to the single Organization node. Use instead of inlining an Organization. */
 export const orgRef = () => ({ "@id": ORG_ID });
 
-/** Absolute URL for a path, language-aware. */
+/**
+ * Cloudflare Pages serves every prerendered route from `<path>/index.html`, so `/services`
+ * 308-redirects to `/services/`. Until 2026-07-28 the sitemap, canonical and hreflang all
+ * used the slash-less form: 77 of 114 sitemap URLs answered 308, which Search Console
+ * reports as "Page with redirect". The trailing-slash form is the one that answers 200,
+ * so it is the canonical form everywhere.
+ */
+export const withSlash = (path: string) =>
+  path === "/" || path.endsWith("/") || /\.[a-z0-9]+$/i.test(path) ? path : `${path}/`;
+
+/** Absolute URL for a path, language-aware. Always the 200-answering (trailing-slash) form. */
 export const abs = (path: string, lang: Lang = "en") =>
-  `${SITE_URL}${lang === "ru" ? (path === "/" ? "/ru" : `/ru${path}`) : path}`;
+  `${SITE_URL}${withSlash(lang === "ru" ? (path === "/" ? "/ru" : `/ru${path}`) : path)}`;
 
 /**
  * The root entity. ProfessionalService (a LocalBusiness subtype) rather than plain

@@ -5,6 +5,55 @@
 
 ---
 
+## 2026-07-28 (заход 2) · Причина писем Search Console: слэши в URL
+
+Триггер — два письма GSC: «Page with redirect», «Alternate page with proper canonical tag», «Excluded by noindex», «Not found (404)».
+
+### Что нашли (замер по всем 114 URL sitemap на боевом wtp.ae)
+
+Cloudflare Pages отдаёт каждый пререндеренный роут из `<путь>/index.html`, то есть **`/services` → 308 на `/services/`**. А sitemap, canonical и hreflang были написаны **без** слэша.
+
+| Симптом | Замер |
+|---|---|
+| **77 из 114 URL в sitemap отвечали 308-редиректом** | → GSC: «Page with redirect» |
+| **37 из 114 отвечали 200, но контентом ГЛАВНОЙ страницы** (SPA-фолбэк `/* /index.html 200`; проверено: `/pricing`, `/legal/terms`, `/cases/*`, часть статей отдавали `<title>WTP — The back office…` и H1 главной) | → GSC: «Alternate page with proper canonical tag» — 37 URL заявляли каноникал главной |
+| 404 в sitemap | **0** — ни одного |
+
+То есть **проблемным для Google был весь sitemap целиком**: либо редирект, либо дубль главной.
+
+### Что исправлено
+
+| Файл | Правка |
+|---|---|
+| `bigsite/src/lib/schema.ts` | Новый `withSlash()`; `abs()` теперь всегда строит форму, отвечающую 200 |
+| `bigsite/src/components/Seo.tsx` | canonical и все три hreflang — со слэшем |
+| `bigsite/scripts/gen-sitemap.mjs` | `<loc>` и hreflang со слэшем. Парсит без слэша, пишет со слэшем → повторный запуск идемпотентен (проверено двойным прогоном) |
+| `bigsite/scripts/prerender.mjs` | `isHome` учитывает `/ru/` — иначе RU-главная теряла preload LCP-картинки |
+
+Свежий билд заодно закрывает и SPA-фолбэк: те 37 URL теперь пререндерены и отдают собственный контент (`/pricing` → «Service pricing — WTP», `/legal/terms` → «Terms of Service — WTP»).
+
+### Замер после (на test.wtp.ae, весь sitemap)
+
+| | Было (боевой) | Стало (test) |
+|---|---|---|
+| Отвечают 200 напрямую | 37 / 114 | **114 / 114** |
+| canonical указывает ровно на себя | — | **114 / 114** |
+| 404 | 0 | 0 |
+
+> Первый прогон canonical дал 102/114 — 12 страниц ещё отдавались с края CF старой версией. Через 20 секунд 114/114. Локальные файлы всё это время были корректны.
+
+### Про остальные два пункта письма
+
+- **«Excluded by ‘noindex’ tag»** — намеренно и правильно: `test.wtp.ae` отдаёт `x-robots-tag: noindex`, `local.wtp.ae` — `<meta name="robots" content="noindex, nofollow">`. Если свойство в GSC заведено как **Domain property** (`wtp.ae`), оно покрывает все поддомены, и эти страницы попадают в отчёт. Трогать не нужно.
+- **«Not found (404)»** — в sitemap ни одного 404. Источник вне sitemap (старые внешние ссылки, прошлые URL). **Точный список видно только в самом отчёте GSC** — нужен доступ к консоли, из письма он не выводится.
+
+### Догнали пропущенное
+
+- **`links.wtp.ae/ru/`** — я проверил только главную хаба. У страницы был canonical, но не было схемы. Добавлено `Organization` + `CollectionPage`. Все 27 исходящих ссылок хаба проверены — живые (LinkedIn отдаёт 999, это их антибот, не ошибка).
+- **`io.wtp.ae`** — источник найден: `~/Desktop/WTP/wtp-io-landing` (отдельный git-репозиторий, CF-проект `wtp-io`, последний деплой 2 месяца назад). У него **не было canonical вообще**. Добавлены canonical + `Person(#ilya)` / `ProfilePage` / `Organization`. `@id` совпадает с узлом Ильи на `wtp.ae/about/team`.
+
+---
+
 ## 2026-07-28 · Schema-паспорт эстейта + пререндер SPA-доменов
 
 **Канал:** cc · **Ветка на момент старта:** `cloud-recovery-2026-07-20` · **HEAD до работ:** `cb707b0`

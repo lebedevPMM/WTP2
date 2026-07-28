@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLang, localize, stripLang } from "../i18n/lang";
-import { organizationLd, webSiteLd } from "../lib/schema";
+import { organizationLd, webSiteLd, withSlash } from "../lib/schema";
 
 // Per-route SEO: sets document.title + upserts <meta>/<link rel=canonical>/hreflang/JSON-LD into <head>.
 // React 19 can hoist native <title>/<meta>, but the static index.html <title> would duplicate it
@@ -73,8 +73,11 @@ export function Seo({ title, description, canonical, ogType = "website", image, 
         ? new URL(canonical).pathname
         : canonical
       : stripLang(window.location.pathname);
-    const enUrl = SITE + enPath;
-    const ruUrl = SITE + localize(enPath, "ru");
+    // withSlash: CF Pages 308s /x → /x/, so the slash-less form is never the URL that
+    // answers 200. Pointing canonical/hreflang at it made Search Console file the pages
+    // under "Page with redirect" instead of indexing them.
+    const enUrl = SITE + withSlash(enPath);
+    const ruUrl = SITE + withSlash(localize(enPath, "ru"));
     const selfUrl = lang === "ru" ? ruUrl : enUrl;
 
     upsertMeta("name", "description", description);
