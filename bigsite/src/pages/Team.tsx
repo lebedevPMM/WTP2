@@ -5,6 +5,7 @@ import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { useContent } from "../content/i18n";
 import { useLang } from "../i18n/lang";
+import { teamPageLd } from "../lib/schema";
 
 export default function Team() {
   const c = useContent();
@@ -41,6 +42,7 @@ export default function Team() {
         title={t.seoTitle}
         description={t.seoDesc}
         canonical="/about/team"
+        jsonLd={teamPageLd(c.expertList, lang)}
       />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: t.bcHome, href: "/" }, { label: t.bcAbout, href: "/about" }, { label: t.bcTeam }]} />

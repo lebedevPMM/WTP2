@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLang, localize, stripLang } from "../i18n/lang";
+import { organizationLd, webSiteLd } from "../lib/schema";
 
 // Per-route SEO: sets document.title + upserts <meta>/<link rel=canonical>/hreflang/JSON-LD into <head>.
 // React 19 can hoist native <title>/<meta>, but the static index.html <title> would duplicate it
@@ -56,7 +57,12 @@ function upsertAlternate(hreflang: string, href: string) {
 
 export function Seo({ title, description, canonical, ogType = "website", image, jsonLd }: SeoProps) {
   const lang = useLang();
-  const ld = jsonLd ? JSON.stringify(jsonLd) : "";
+  // One @graph per page, always carrying the Organization and WebSite nodes. Page-level
+  // nodes reference them by @id (worksFor / publisher / provider / isPartOf); a reference
+  // whose target isn't declared on the same page is a dangling pointer, so the two root
+  // nodes ship everywhere rather than living only on the homepage.
+  const graph = [organizationLd(lang), webSiteLd(lang), ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+  const ld = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
   useEffect(() => {
     document.title = title;
     document.documentElement.lang = lang;

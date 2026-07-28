@@ -7,6 +7,7 @@ import { Avatar } from "../components/Avatar";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import type { Category } from "../content/articles";
 import { useContent } from "../content/i18n";
+import { collectionLd } from "../lib/schema";
 
 export default function InsightsHub() {
   const c = useContent();
@@ -58,6 +59,7 @@ export default function InsightsHub() {
         title={t.seoTitle}
         description={t.seoDescription}
         canonical="/insights"
+        jsonLd={collectionLd({ name: t.seoTitle, description: t.seoDescription, path: "/insights", lang })}
       />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: t.crumbHome, href: "/" }, { label: t.crumbInsights }]} />

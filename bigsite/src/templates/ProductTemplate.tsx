@@ -10,6 +10,7 @@ import { Avatar } from "../components/Avatar";
 import { NotFound } from "../pages/NotFound";
 import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
+import { serviceLd as buildServiceLd } from "../lib/schema";
 
 export default function ProductTemplate() {
   const c = useContent();
@@ -78,19 +79,19 @@ export default function ProductTemplate() {
   const cases = c.relatedCases({ services: [p.slug, p.category], limit: 2 });
   const guides = c.relatedArticles({ services: [p.slug, p.category], limit: 3 });
 
-  const serviceLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
+  // Was an inline bare Organization — that minted a second, unanchored "WTP" entity on
+  // every product page. Now references the single ORG node from lib/schema.
+  const serviceLd = buildServiceLd({
     name: p.displayName,
     serviceType: p.categoryName,
     description: p.oneLiner,
-    provider: { "@type": "Organization", name: "WTP", url: "https://wtp.ae" },
-    areaServed: "AE",
-    url: `https://wtp.ae${p.href}`,
-  };
+    path: p.href,
+    lang,
+  });
+  // Kept as-is (not removed): Google retired the FAQ rich result 2026-05-07, but removal
+  // isn't recommended either. No @context — it's a node inside the page @graph now.
   const faqLd = p.faqs.length
     ? {
-        "@context": "https://schema.org",
         "@type": "FAQPage",
         mainEntity: p.faqs.map((f) => ({
           "@type": "Question",

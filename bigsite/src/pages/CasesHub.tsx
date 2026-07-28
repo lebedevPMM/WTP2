@@ -7,6 +7,7 @@ import { StatBar } from "../components/StatBar";
 import { CaseCard } from "../components/CaseCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { useContent } from "../content/i18n";
+import { collectionLd } from "../lib/schema";
 
 type Filter = "all" | "banking" | "business-setup" | "residency-visa" | "assets-wealth";
 
@@ -82,6 +83,7 @@ export default function CasesHub() {
         title={t.seoTitle}
         description={t.seoDescription}
         canonical="/cases"
+        jsonLd={collectionLd({ name: t.seoTitle, description: t.seoDescription, path: "/cases", lang })}
       />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: t.crumbHome, href: "/" }, { label: t.crumbCases }]} />

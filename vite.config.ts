@@ -73,6 +73,75 @@ const meta: Record<string, Record<string, { title: string; description: string; 
 
 const currentMeta = meta[landing]?.[lang] || meta.main.en
 
+// Per-landing service description for JSON-LD. The Organization @id is deliberately
+// `https://wtp.ae/#organization` on EVERY landing — banking.wtp.ae, partners.wtp.ae etc.
+// are surfaces of ONE company, so they must resolve to one entity rather than minting a
+// separate "WTP" per subdomain.
+const ORG_ID = 'https://wtp.ae/#organization'
+
+const serviceMeta: Record<string, { name: string; type: string }> = {
+    main: { name: 'UAE execution partner — company formation, banking, compliance', type: 'Business Formation Service' },
+    banking: { name: 'UAE corporate bank account opening and compliance', type: 'Corporate Banking Service' },
+    realestate: { name: 'UAE real estate transaction structuring and compliance', type: 'Real Estate Service' },
+    partners: { name: 'WTP partner and referral programme', type: 'Referral Programme' },
+    client: { name: 'UAE relocation, exit coordination and banking-first setup', type: 'Relocation Service' },
+}
+
+function jsonLdFor(): string {
+    const svc = serviceMeta[landing] || serviceMeta.main
+    const graph = [
+        {
+            '@type': 'ProfessionalService',
+            '@id': ORG_ID,
+            name: 'WTP',
+            legalName: 'WTP — Wellcome to Paradise',
+            url: 'https://wtp.ae',
+            email: 'hello@wtp.ae',
+            telephone: '+971 600 575-294',
+            address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Dubai Media City, Arenco Tower, Office 1207',
+                addressLocality: 'Dubai',
+                addressCountry: 'AE',
+            },
+            areaServed: { '@type': 'Country', name: 'United Arab Emirates' },
+            sameAs: [
+                'https://www.linkedin.com/company/welcome-to-paradise-professional-services',
+                'https://t.me/wtpbrokers',
+            ],
+        },
+        {
+            '@type': 'WebSite',
+            '@id': `${siteUrl}/#website`,
+            url: `${siteUrl}/`,
+            name: currentMeta.title,
+            publisher: { '@id': ORG_ID },
+            inLanguage: lang === 'ru' ? 'ru-RU' : 'en-AE',
+        },
+        {
+            '@type': 'WebPage',
+            '@id': `${siteUrl}/#webpage`,
+            url: `${siteUrl}/`,
+            name: currentMeta.title,
+            description: currentMeta.description,
+            isPartOf: { '@id': `${siteUrl}/#website` },
+            about: { '@id': ORG_ID },
+            inLanguage: lang === 'ru' ? 'ru-RU' : 'en-AE',
+        },
+        {
+            '@type': 'Service',
+            '@id': `${siteUrl}/#service`,
+            name: svc.name,
+            serviceType: svc.type,
+            description: currentMeta.description,
+            provider: { '@id': ORG_ID },
+            areaServed: { '@type': 'Country', name: 'United Arab Emirates' },
+            url: `${siteUrl}/`,
+        },
+    ]
+    return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })
+}
+
 function htmlMetaPlugin(): Plugin {
     return {
         name: 'html-meta-transform',
@@ -118,6 +187,15 @@ function htmlMetaPlugin(): Plugin {
                 .replace(
                     /<meta name="twitter:image" content=".*?" \/>/,
                     `<meta name="twitter:image" content="${siteUrl}/og-image.png" />`,
+                )
+                // Self-referencing canonical + JSON-LD. Neither existed before: every
+                // landing was served with no canonical at all, so banking.wtp.ae,
+                // partners.wtp.ae etc. had nothing telling Google which URL is the real one.
+                .replace(
+                    '</head>',
+                    `    <link rel="canonical" href="${siteUrl}/" />\n` +
+                    `    <script type="application/ld+json">${jsonLdFor()}</script>\n` +
+                    `  </head>`,
                 )
         },
     }

@@ -1,4 +1,4 @@
-import { L as Link } from "../i18n/lang";
+import { L as Link, useLang, localize } from "../i18n/lang";
 
 export interface Crumb {
   label: string;
@@ -6,6 +6,10 @@ export interface Crumb {
 }
 
 export function Breadcrumb({ trail }: { trail: Crumb[] }) {
+  const lang = useLang();
+  // Pages pass EN paths; on /ru the visible links are localized by <L>, so the JSON-LD
+  // has to be localized too — otherwise the RU breadcrumb trail points at EN URLs and
+  // Google reads a cross-language hierarchy that doesn't match the page it's on.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -13,7 +17,7 @@ export function Breadcrumb({ trail }: { trail: Crumb[] }) {
       "@type": "ListItem",
       position: i + 1,
       name: c.label,
-      ...(c.href ? { item: `https://wtp.ae${c.href}` } : {}),
+      ...(c.href ? { item: `https://wtp.ae${localize(c.href, lang)}` } : {}),
     })),
   };
   return (

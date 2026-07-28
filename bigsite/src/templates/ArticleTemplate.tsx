@@ -11,6 +11,7 @@ import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { NotFound } from "../pages/NotFound";
 import { useContent } from "../content/i18n";
 import { useLang } from "../i18n/lang";
+import { articleLd, personLd } from "../lib/schema";
 
 export default function ArticleTemplate() {
   const lang = useLang();
@@ -22,13 +23,20 @@ export default function ArticleTemplate() {
   const moreGuides = c.relatedArticles({ category: a.category, limit: 3, exclude: a.slug });
   const cases = c.relatedCases({ services: a.services, jurisdictions: a.jurisdictions, limit: 1 });
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: a.title,
-    author: { "@type": "Person", name: author.name, jobTitle: author.title },
-    datePublished: a.date,
-  };
+  // Author is emitted as a reference to the canonical Person node (/about/team#<id>) plus
+  // the node itself, so the article's authority attaches to one expert entity site-wide
+  // instead of minting a fresh anonymous Person per article.
+  const jsonLd = [
+    articleLd({
+      headline: a.title,
+      description: a.excerpt,
+      datePublished: a.date,
+      author,
+      path: `/insights/${a.category}/${a.slug}`,
+      lang,
+    }),
+    personLd(author, lang),
+  ];
 
   const t = lang === "ru"
     ? {
@@ -49,6 +57,7 @@ export default function ArticleTemplate() {
         description={a.excerpt}
         canonical={`/insights/${a.category}/${a.slug}`}
         ogType="article"
+        jsonLd={jsonLd}
       />
       <Section style={{}} className="page-hero">
         <div style={{ maxWidth: 740, margin: "0 auto" }}>
@@ -60,7 +69,6 @@ export default function ArticleTemplate() {
               { label: a.title },
             ]}
           />
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
           <h1 className="h-grad" style={{ fontSize: "clamp(28px,4.2vw,46px)", margin: "8px 0 22px" }}>{a.title}</h1>
           <Byline author={author} date={a.date} readMin={a.readMin} />
           <div className="prose" style={{ margin: "32px 0", maxWidth: "100%" }} dangerouslySetInnerHTML={{ __html: marked.parse(a.body) as string }} />

@@ -8,6 +8,7 @@ import { useLang } from "../i18n/lang";
 import { site, CALCOM_LINK } from "../lib/site";
 import { submitPreScreen } from "../lib/bitrix";
 import { trackLeadSubmit } from "../lib/analytics";
+import { contactPageLd } from "../lib/schema";
 
 // Contact / Request a pre-screen — the conversion surface.
 // Booking: cal.com embed when VITE_CALCOM_LINK is set; lead form always posts to Bitrix24.
@@ -98,6 +99,7 @@ export default function Contact() {
         title={t.seoTitle}
         description={t.seoDesc}
         canonical="/contact"
+        jsonLd={contactPageLd(lang)}
       />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: t.bcHome, href: "/" }, { label: t.bcContact }]} />

@@ -6,6 +6,7 @@ import { JurisdictionComparisonTable } from "../components/JurisdictionCompariso
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
+import { collectionLd } from "../lib/schema";
 
 export default function JurisdictionsHub() {
   const c = useContent();
@@ -65,6 +66,7 @@ export default function JurisdictionsHub() {
         title={t.seoTitle}
         description={t.seoDescription}
         canonical="/jurisdictions"
+        jsonLd={collectionLd({ name: t.seoTitle, description: t.seoDescription, path: "/jurisdictions", lang })}
       />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: t.breadcrumbHome, href: "/" }, { label: t.jurisdictions }]} />

@@ -7,6 +7,7 @@ import { ExpertBioCard } from "../components/ExpertBioCard";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { useContent } from "../content/i18n";
 import { useLang } from "../i18n/lang";
+import { aboutPageLd } from "../lib/schema";
 
 export default function About() {
   const c = useContent();
@@ -105,6 +106,7 @@ export default function About() {
         title={t.seoTitle}
         description={t.seoDescription}
         canonical="/about"
+        jsonLd={aboutPageLd(lang)}
       />
       {/* Hero */}
       <Section className="page-hero">

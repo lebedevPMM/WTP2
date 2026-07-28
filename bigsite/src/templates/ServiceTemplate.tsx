@@ -12,6 +12,7 @@ import { Avatar } from "../components/Avatar";
 import { NotFound } from "../pages/NotFound";
 import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
+import { serviceLd, personLd } from "../lib/schema";
 
 export default function ServiceTemplate() {
   const c = useContent();
@@ -72,6 +73,19 @@ export default function ServiceTemplate() {
         title={`${s.line} — WTP`}
         description={s.subhead}
         canonical={`/services/${s.slug}`}
+        jsonLd={[
+          serviceLd({
+            name: s.outcomeHeadline,
+            serviceType: s.line,
+            description: s.subhead,
+            path: `/services/${s.slug}`,
+            lang,
+            expert: c.getExpert(s.leadExpert),
+          }),
+          // The Service references the lead expert by @id — the node itself must ship on
+          // the same page, or the reference dangles.
+          personLd(c.getExpert(s.leadExpert), lang),
+        ]}
       />
       <Section className="page-hero">
         <Breadcrumb trail={[{ label: t.bcHome, href: "/" }, { label: t.bcServices, href: "/services" }, { label: s.line }]} />

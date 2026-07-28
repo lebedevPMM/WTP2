@@ -5,6 +5,7 @@ import { Breadcrumb } from "../components/Breadcrumb";
 import { PreScreenCTABlock } from "../components/PreScreenCTABlock";
 import { useContent } from "../content/i18n";
 import { Seo } from "../components/Seo";
+import { collectionLd } from "../lib/schema";
 
 export default function ServicesOverview() {
   const c = useContent();
@@ -86,6 +87,7 @@ export default function ServicesOverview() {
         title={t.seoTitle}
         description={t.seoDesc}
         canonical="/services"
+        jsonLd={collectionLd({ name: t.seoTitle, description: t.seoDesc, path: "/services", lang })}
       />
       {/* Hero */}
       <Section className="page-hero">

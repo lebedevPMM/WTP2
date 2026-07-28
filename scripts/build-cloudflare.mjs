@@ -171,6 +171,16 @@ export default {
 
 writeFileSync(`${OUT_DIR}/_worker.js`, worker + '\n')
 
+// 5. Prerender — without this every landing ships an empty <div id="root"> and crawlers
+// that don't run JS see ~10 words. Non-fatal: a prerender failure leaves the (working)
+// client-rendered bundle in place rather than blocking the deploy.
+console.log('\n=== Prerendering landings ===')
+try {
+    execSync('node scripts/prerender-cf.mjs', { stdio: 'inherit' })
+} catch {
+    console.warn('!! prerender-cf failed — bundle still deployable, but landings stay client-only')
+}
+
 console.log(`\n=== Done! Output: ${OUT_DIR}/ ===`)
 console.log('Routing:')
 console.log('  Path-based (pages.dev):')
