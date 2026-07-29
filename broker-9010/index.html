@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <!-- ============================================================
-     КАРКАС — НЕ ПУБЛИКОВАТЬ БЕЗ СНЯТИЯ ГЕЙТОВ (см. OWNER-GATES.md).
-     Сплит 90/10 ПОДТВЕРЖДЁН Костей 13.07.2026: агент получает 90%
-     СВОЕЙ КОМИССИИ, 10% комиссии = fee WTP (база = комиссия агента,
-     не сумма сделки). Точные СРОКИ (решение/выплата) всё ещё за
-     Иваном — в копи только claim-safe «days, not months».
-     Открытые токены: {{IG_HANDLE}} (аккаунт не финализирован).
-     Опубликовано 13.07.2026 (noindex снят). IG CTA запаркован до аккаунта+ManyChat.
-     Стиль = сателлитная линейка WTP (канон re.wtp.ae).
+     СОТРУДНИЧЕСТВО С БРОКЕРАМИ 90/10 — отдельный продукт.
+     Разведено с факторингом по решению Кости 29.07.2026: оба продукта
+     могут звучать как «90/10», и на одной странице они путались.
+     Здесь: брокер продаёт, WTP берёт операционку, брокер получает 90%
+     своей комиссии, 10% — комиссия WTP. Факторинг (аванс комиссии) —
+     на broker.wtp.ae, кросс-линк ниже.
+     Сроки и точные условия НЕ публикуем — они в индивидуальном договоре.
+     Стиль = сателлитная линейка WTP.
      ============================================================ -->
 <html lang="en">
 <head>
@@ -15,9 +15,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#F5F3EE" />
 
-
-  <title>Commission factoring: your commission in days, not months | WTP for Dubai brokers</title>
-  <meta name="description" content="For Dubai real-estate agents: WTP pays your off-plan commission itself — 90% of your commission lands in days, not months. Our fee is 10%. Collecting from the developer becomes our job. Confirmed deals only." />
+  <title>You sell. We run everything else. | WTP 90/10 for Dubai brokers</title>
+  <meta name="description" content="A 90/10 partnership for Dubai real-estate agents: you keep selling, WTP takes the operations — developer relationships, deal handling, accounting and compliance. You keep 90% of your commission, WTP takes 10%." />
 
   <link rel="canonical" href="https://broker.wtp.ae/" />
   <link rel="alternate" hreflang="en" href="https://broker.wtp.ae/" />
@@ -25,10 +24,9 @@
   <link rel="alternate" hreflang="x-default" href="https://broker.wtp.ae/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="90% of your commission, in days — for Dubai brokers" />
-  <meta property="og:description" content="WTP pays your off-plan commission itself: 90% to you in days, not months; our fee is 10%. Collecting from the developer becomes our job. Confirmed deals only." />
+  <meta property="og:title" content="You sell. We run everything else." />
+  <meta property="og:description" content="The 90/10 partnership for Dubai brokers: you keep the selling, we take the operations. 90% of the commission stays with you." />
   <meta property="og:url" content="https://broker.wtp.ae/" />
-  <!-- STUB og:image: общий WTP-имидж; сделать посвящённый broker-OG перед публикацией -->
   <meta property="og:image" content="https://wtp.ae/og-image.png" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="ru_RU" />
@@ -36,13 +34,11 @@
 
   <link rel="icon" type="image/svg+xml" href="https://wtp.ae/favicon.svg" />
 
-  <!-- Google Fonts: как у сателлитов WTP (re.wtp.ae) — Playfair Display + Inter + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "ProfessionalService", "@id": "https://wtp.ae/#organization", "name": "WTP", "legalName": "WTP — Wellcome to Paradise", "url": "https://wtp.ae", "email": "hello@wtp.ae", "telephone": "+971 600 575-294", "address": {"@type": "PostalAddress", "streetAddress": "Dubai Media City, Arenco Tower, Office 1207", "addressLocality": "Dubai", "addressCountry": "AE"}, "sameAs": ["https://www.linkedin.com/company/welcome-to-paradise-professional-services", "https://t.me/wtpbrokers"]}, {"@type": "WebPage", "@id": "https://broker.wtp.ae/#webpage", "url": "https://broker.wtp.ae/", "name": "90% of your commission, in days — off-plan payout for Dubai brokers | WTP", "description": "For Dubai real-estate agents: WTP pays your off-plan commission itself — 90% of your commission lands in days, not months. Our fee is 10%. Collecting from the developer becomes our job. Confirmed deals only.", "about": {"@id": "https://wtp.ae/#organization"}, "isPartOf": {"@id": "https://wtp.ae/#organization"}, "inLanguage": "en-AE"}, {"@type": "Service", "@id": "https://broker.wtp.ae/#service", "name": "Off-plan broker payout — 90% of commission, paid in days", "serviceType": "Broker Commission Programme", "description": "For Dubai real-estate agents: WTP pays your off-plan commission itself — 90% of your commission lands in days, not months. Our fee is 10%. Collecting from the developer becomes our job. Confirmed deals only.", "provider": {"@id": "https://wtp.ae/#organization"}, "areaServed": {"@type": "Country", "name": "United Arab Emirates"}, "url": "https://broker.wtp.ae/", "inLanguage": "en-AE"}]}</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -59,237 +55,149 @@
 
   <main id="main">
 
-    <!-- ============ 1 · HERO ============
-         Копи-канон: ORGANIC-drafts S1–S3 + SCRIPTS-v1 B1 caption (клеймы SOURCED).
-         Семантика 90/10 подтверждена Костей 13.07: 90% ОТ КОМИССИИ АГЕНТА, 10% = fee.
-         Compliance: боль — 3-м лицом/рынком; occupation во 2-м лице легален;
-         «in days, not months» — НЕ «instant/same-day» (точные сроки = Иван, OB-1). -->
+    <!-- ============ 1 · HERO ============ -->
     <section class="hero">
       <div class="wrap">
-        <span class="eyebrow">WTP · For Dubai real-estate agents</span>
+        <span class="eyebrow">WTP · Partnership for Dubai agents</span>
         <h1>
-          Closed the deal? The commission can still be months away.
-          <span class="accent">There&rsquo;s commission factoring.</span>
+          You sell.
+          <span class="accent">Everything else is on us.</span>
         </h1>
         <p class="lead">
-          Off-plan commissions typically settle in 30&ndash;90 days &mdash; sometimes longer.
-          That&rsquo;s market structure, not bad business.
-          <!-- "30–90 days" = SOURCED (факторинг-бриф, claim-ledger B1) -->
-          For agents who&rsquo;d rather not wait: we pay the commission ourselves.
-          <strong>Up to 90% of your commission</strong> lands in days, not months &mdash; our fee starts at the
-          10% &mdash; and collecting from the developer becomes our job, not yours.
+          Running your own agency to keep the full commission means an office, a licence,
+          accounting, developer relationships and every deal handled end to end. We take that
+          side on, and leave you the part you are actually good at &mdash; selling.
+          <strong>You keep 90% of your commission. Our fee is 10%</strong> for carrying the
+          operations.
         </p>
         <div class="cta-row">
-          <!-- IG CTA запаркован до финализации аккаунта + ManyChat PAYOUT-флоу (OWNER-GATES.md):
-          <a class="btn" href="https://ig.me/m/{{IG_HANDLE}}" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor" stroke="none"/></svg>
-            DM &ldquo;PAYOUT&rdquo; on Instagram
-          </a>
-          -->
-          <a class="btn" href="mailto:hello@wtp.ae?subject=PAYOUT%20%E2%80%94%20commission%20payout%20terms">
-            Request terms by email
+          <a class="btn" href="mailto:hello@wtp.ae?subject=90%2F10%20partnership%20%E2%80%94%20terms">
+            Ask for the terms
           </a>
         </div>
-        <p class="microline">One email for the terms. No forms, no documents at this step.</p>
-
-        <!-- декоративный «маршрут» сделка → выплата -->
-        <svg class="route" viewBox="0 0 1000 130" aria-hidden="true" focusable="false">
-          <polyline points="10,110 210,60 400,86 610,26 800,54 990,10" />
-          <circle cx="10" cy="110" r="4" /><circle cx="210" cy="60" r="4" /><circle cx="400" cy="86" r="4" /><circle cx="610" cy="26" r="4" /><circle cx="800" cy="54" r="4" /><circle cx="990" cy="10" r="4" />
-          <text x="10" y="128">Deal closed</text>
-          <text x="880" y="30">Commission paid</text>
-        </svg>
+        <p class="microline">One message and we send the terms. No forms or documents at this step.</p>
       </div>
     </section>
 
-    <!-- ============ 2 · HOW IT WORKS ============
-         Копи-канон: ORGANIC-drafts S4–S5 («How it runs», SOURCED из факторинг-дека).
-         Точные сроки шагов НЕ публикуем до подтверждения Ивана (OB-1) — только «days». -->
-    <section class="section section-white" id="how">
+    <!-- ============ 2 · ЧТО БЕРЁМ НА СЕБЯ ============ -->
+    <section class="section section-white" id="what">
       <div class="wrap">
-        <span class="eyebrow">How it works</span>
-        <h2>Three steps between a closed deal and money in the account</h2>
-        <p class="sub">Confirmed deals only &mdash; we assess the developer as well as the deal.</p>
+        <span class="eyebrow">What we take on</span>
+        <h2>The part that isn't selling</h2>
+        <p class="sub">Everything below sits with us, under one contract with you.</p>
 
-        <div class="steps">
-          <div class="step">
-            <span class="num">01</span>
-            <h3>Deal confirmation</h3>
-            <p>You send the confirmed deal and the commission agreement. That&rsquo;s the whole entry ticket.</p>
-            <span class="deliver">You send &middot; deal + commission agreement</span>
-          </div>
-          <div class="step">
-            <span class="num">02</span>
-            <h3>Assessment</h3>
-            <p>We verify the deal &mdash; and the developer. A matter of days, not committee weeks.</p>
-            <!-- OB-1 (Иван): точный срок решения («1–2 дня» в старых PDF) НЕ публикуем до подтверждения -->
-            <span class="deliver">We verify &middot; the deal and the developer</span>
-          </div>
-          <div class="step">
-            <span class="num">03</span>
-            <h3>Payout</h3>
-            <p>Up to 90% of your commission lands in your account &mdash; in days, not months. Our fee starts at 10%.</p>
-            <!-- OB-1 (Иван): точный срок выплаты («3–5 раб. дней» в старых PDF) НЕ публикуем до подтверждения -->
-            <span class="deliver">You receive &middot; up to 90% of the commission</span>
-          </div>
-        </div>
+        <ul class="checklist">
+          <li><strong>Developer relationships and contracts.</strong> Terms, paperwork and the desk on the developer's side.</li>
+          <li><strong>The deal from booking to settlement.</strong> Documents, follow-ups and the chasing that eats your week.</li>
+          <li><strong>Accounting and compliance.</strong> Bookkeeping, filings and the KYC/AML side of every transaction.</li>
+          <li><strong>What the client needs after the deal.</strong> Company, bank account, Golden Visa, will &mdash; handled by our team, and you earn on those too.</li>
+        </ul>
 
         <p class="handoff-note">
-          <strong>What happens next:</strong> the claim on the developer transfers to us.
-          Collecting becomes our job, not yours.
-          <!-- OB-4 (Оля/Иван): точная юр-формулировка «выкупаем право требования, не кредит»
-               для паблика ещё не согласована — здесь только safe-механика из клейм-леджера -->
+          <strong>What stays with you:</strong> the client and the sale. The economics of your own
+          agency, without the overhead of running one.
         </p>
       </div>
     </section>
 
-    <!-- ============ 3 · EXAMPLE CALC ============
-         Суммы примера — конкретные по решению Кости 13.07 (простая арифметика 90/10
-         от комиссии агента). Пример иллюстративный, оговорка стоит. -->
-    <section class="section" id="example">
+    <!-- ============ 3 · КАК ДЕЛИТСЯ КОМИССИЯ ============ -->
+    <section class="section" id="split">
       <div class="wrap">
-        <span class="eyebrow">The split on one deal</span>
-        <h2>What the numbers look like</h2>
-        <p class="sub">An illustrative term sheet &mdash; your actual deal is assessed individually.</p>
+        <span class="eyebrow">How the commission splits</span>
+        <h2>Ninety to you, ten to us</h2>
+        <p class="sub">Illustrative &mdash; your actual deal is priced in the agreement.</p>
 
         <div class="sheet">
-          <p class="sheet-cap">Example &middot; illustrative only</p>
+          <p class="sheet-cap">Example &middot; illustration only</p>
           <div class="sheet-row">
-            <span class="lbl">Your commission under the deal</span>
-            <span class="val">AED 100,000</span>
+            <span class="lbl">Your commission on the deal</span>
+            <span class="val">AED 100&nbsp;000</span>
           </div>
           <div class="sheet-row hero-row">
-            <span class="lbl">Paid to you, in days &mdash; up to 90% of the commission</span>
-            <span class="val">AED 90,000</span>
+            <span class="lbl">Yours &mdash; 90% of the commission</span>
+            <span class="val">AED 90&nbsp;000</span>
           </div>
           <div class="sheet-row fee-row">
             <span class="lbl">WTP fee &mdash; 10% of the commission</span>
-            <span class="val">AED 10,000</span>
+            <span class="val">AED 10&nbsp;000</span>
           </div>
           <p class="sheet-note">
-            Illustrative example: the split applies to the agent&rsquo;s commission, not to the
-            property price. Final figures and timing are set in the individual agreement after
-            deal and developer assessment.
+            The split applies to the agent's commission, not to the price of the property.
+            Final terms are fixed in the individual agreement.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ============ 4 · ELIGIBILITY ============
-         Safe-клеймы из леджера: confirmed deals only · оценка застройщика · no collateral (дек-sourced). -->
-    <section class="section section-white" id="eligibility">
-      <div class="wrap">
-        <span class="eyebrow">What qualifies</span>
-        <h2>Built for confirmed off-plan deals</h2>
-
-        <ul class="checklist">
-          <li><strong>Confirmed deals only.</strong> Booking done, commission agreement in place &mdash; we don&rsquo;t work with &ldquo;almost closed&rdquo;.</li>
-          <li><strong>Off-plan commission owed by a UAE developer.</strong> We assess the developer as part of every deal.</li>
-          <li><strong>Dubai-based agents and agencies.</strong> The offer is for professionals doing off-plan business on the ground.
-            <!-- Verify (Иван): точные критерии eligibility (лицензия/ORN? стаж? мин. сумма комиссии?) — фактуры нет, добавить после ответа --></li>
-          <li><strong>No collateral.</strong> Decisions are based on the deal and the developer.
-            <!-- SOURCED: факторинг-дек «без залогов» (карусель S6) --></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ 4.5 · CROSS-LINK TO THE PARTNERSHIP (products separated 29.07) ============ -->
-    <section class="section" id="partnership">
+    <!-- ============ 4 · КРОСС-ЛИНК НА ФАКТОРИНГ ============ -->
+    <section class="section section-white" id="factoring">
       <div class="wrap">
         <span class="eyebrow">A separate product</span>
-        <h2>Selling with us already?</h2>
+        <h2>Need the commission sooner?</h2>
         <p class="sub">
-          This page is about <em>when the money arrives</em>. If the question is
-          <em>who does the work</em>, that is the 90/10 partnership: you sell, and we take on the
-          developers, the deal handling, the accounting and the compliance.
+          This page is about who does the work. If the question is <em>when the money arrives</em>,
+          that is our commission factoring: we pay your commission out on a confirmed deal and wait
+          for the developer ourselves.
         </p>
         <div class="cta-row">
-          <a class="btn" href="partnership/">The 90/10 partnership &rarr;</a>
+          <a class="btn" href="https://payout.wtp.ae/">Commission factoring &rarr;</a>
         </div>
       </div>
     </section>
 
-    <!-- ============ 5 · FAQ ============
-         Ответы собраны из claim-ledger (SCRIPTS-v1 + ORGANIC-drafts); ничего сверх источников. -->
+    <!-- ============ 5 · FAQ ============ -->
     <section class="section" id="faq">
       <div class="wrap">
-        <span class="eyebrow">FAQ</span>
-        <h2>Fair questions, straight answers</h2>
+        <span class="eyebrow">Questions</span>
+        <h2>Straight questions, straight answers</h2>
 
         <div class="faq">
           <details>
-            <summary>How fast is the payout, really?</summary>
+            <summary>Is this the same thing as the 90/10 payout?</summary>
             <div class="a">
-              <p>The assessment starts as soon as you send the confirmed deal, and the payout lands
-              in days &mdash; not the months a developer settlement can take. The exact timeline is
-              confirmed on your deal before you sign anything.</p>
-              <!-- Compliance: НЕ «instant»/«same-day»; точные сроки (решение/деньги) = Иван, OB-1 -->
+              <p>No, and the names do overlap. This page is the partnership: we carry the
+              operations and you keep 90% of your commission. The payout product is factoring &mdash;
+              we advance the commission on a confirmed deal so you are not waiting on the developer.
+              Both can be worded as &laquo;90/10&raquo;, which is exactly why they now live on
+              separate pages.</p>
             </div>
           </details>
           <details>
-            <summary>Is this a loan?</summary>
+            <summary>Do I have to give up my clients?</summary>
             <div class="a">
-              <p>No. We pay the commission, and the claim on the developer transfers to us.
-              There is nothing for you to repay &mdash; the developer settles with us, and chasing
-              that settlement is our work.</p>
-              <!-- OB-4 (Оля/Иван): юр-чистая формулировка «выкуп права требования» для паблика —
-                   подтвердить/заменить. Запрещено: слово «loan» как описание продукта,
-                   сравнения «better than a loan», клейм про credit score. -->
+              <p>No. The client relationship is yours and stays yours &mdash; we work behind it.
+              That is written into the agreement.</p>
             </div>
           </details>
           <details>
-            <summary>Which deals qualify?</summary>
+            <summary>Who am I contracted with?</summary>
             <div class="a">
-              <p>Confirmed off-plan deals with a commission agreement in place. We assess both
-              the deal and the developer before making an offer &mdash; so the answer is per deal,
-              not a blanket yes.</p>
+              <p>With WTP directly, under an individual agreement that sets out the split, the scope
+              of what we run and how the deal is reported back to you.</p>
             </div>
           </details>
           <details>
-            <summary>What does it cost?</summary>
+            <summary>Can I use both the partnership and the factoring?</summary>
             <div class="a">
-              <p>Our fee starts at 10% of your commission and the advance runs up to 90%; the exact share depends on the deal and the developer.
-              The base of the split is the agent&rsquo;s commission, not the property price.
-              Exact terms are fixed in the agreement before any payout happens.</p>
-            </div>
-          </details>
-          <details>
-            <summary>Do I need collateral?</summary>
-            <div class="a">
-              <p>No collateral. The assessment is about the deal and the developer &mdash;
-              confirmed transaction, known settlement practice &mdash; not about pledging anything.</p>
-            </div>
-          </details>
-          <details>
-            <summary>Who deals with the developer after the payout?</summary>
-            <div class="a">
-              <p>We do. Once the claim transfers, following up on the developer&rsquo;s settlement is our
-              job. We&rsquo;ve run commission payouts since 2019 and know the settlement timelines of the
-              major UAE developers &mdash; from Emaar to Nakheel.</p>
-              <!-- SOURCED: «с 2019» + «знаем сроки расчётов Emaar/DAMAC/Sobha/Nakheel» из факторинг-дека -->
+              <p>Yes &mdash; they answer different problems and are priced separately. Ask us for
+              both sets of terms and we will show how they combine on your case.</p>
             </div>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- ============ 6 · CTA (тёмная секция, паттерн .midcta с re.wtp.ae) ============ -->
+    <!-- ============ 6 · CTA ============ -->
     <section class="section midcta" id="cta">
       <div class="wrap">
         <span class="eyebrow">Next step</span>
         <h2>Want the terms?</h2>
         <p class="sub">
-          Email us <span class="kw">PAYOUT</span> &mdash; we&rsquo;ll walk you through the 90/10
-          payout on your actual deal. Online, or at the office in Arenco Tower.
+          Email us <span class="kw">PARTNERSHIP</span> and we will walk the 90/10 through on a real
+          deal of yours. Online or at the office in Arenco Tower.
         </p>
         <div class="cta-row">
-          <!-- IG CTA запаркован до финализации аккаунта + ManyChat PAYOUT-флоу (OWNER-GATES.md):
-          <a class="btn" href="https://ig.me/m/{{IG_HANDLE}}" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor" stroke="none"/></svg>
-            DM &ldquo;PAYOUT&rdquo; on Instagram
-          </a>
-          -->
-          <a class="btn" href="mailto:hello@wtp.ae?subject=PAYOUT%20%E2%80%94%20commission%20payout%20terms">
+          <a class="btn" href="mailto:hello@wtp.ae?subject=PARTNERSHIP%20%E2%80%94%2090%2F10%20terms">
             hello@wtp.ae
           </a>
         </div>
@@ -298,18 +206,14 @@
 
   </main>
 
-  <!-- ============ FOOTER / DISCLAIMER ============
-       Юр-строки из claim-ledger (брокеридж-строка) + «terms subject to agreement». -->
   <footer>
     <div class="wrap">
       <p class="legal-line">Wellcome to Paradise Real Estate Brokers L.L.C &middot; ORN 35551 &middot; Dubai, UAE</p>
       <p class="disclaimer">
-        This page describes a service for real-estate professionals in respect of confirmed
-        transactions. It is not an offer of credit or a consumer financial product, and nothing on
-        this page is a guarantee of payout, timing or approval. The 90/10 split applies to the
-        agent&rsquo;s commission. Every case is subject to deal and developer assessment; all
-        terms &mdash; including timelines &mdash; are subject to the individual agreement.
-        <!-- OB-4: финальную юр-редакцию дисклеймера согласовать с Олей/Иваном -->
+        This page describes a professional partnership for real-estate agents working in the UAE.
+        Nothing on it is a guarantee of volume, earnings or timelines. The 90/10 split applies to
+        the agent's commission. Every arrangement is assessed case by case, and all terms are set
+        by the individual agreement.
       </p>
       <div class="foot-meta">
         <span>&copy; 2026 WTP</span>
@@ -319,7 +223,6 @@
     </div>
   </footer>
 
-  <!-- единственный скрипт: FAQ-аккордеон, single-open -->
   <script>
     document.querySelectorAll('.faq details').forEach(function (d) {
       d.addEventListener('toggle', function () {
