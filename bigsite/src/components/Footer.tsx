@@ -18,6 +18,7 @@ const COLS_EN: Col[] = [
       { label: "Business Setup", href: "/services/business-setup" },
       { label: "Residency & Mobility", href: "/services/residency-visa" },
       { label: "Wealth Structuring", href: "/services/assets-wealth" },
+      { label: "Pricing", href: "/pricing" },
     ],
   },
   {
@@ -48,6 +49,7 @@ const COLS_RU: Col[] = [
       { label: "Компания и бизнес", href: "/services/business-setup" },
       { label: "Резидентство и мобильность", href: "/services/residency-visa" },
       { label: "Структурирование капитала", href: "/services/assets-wealth" },
+      { label: "Стоимость услуг", href: "/pricing" },
     ],
   },
   {
@@ -83,6 +85,7 @@ export function Footer() {
         tagline: "Banking-first бэк-офис для частного капитала. Мы даём банкабельные структуры, а не регистрацию компаний.",
         privacy: "Конфиденциальность",
         terms: "Условия",
+        refund: "Возврат",
         cookies: "Cookies",
         cookieSettings: "Настройки cookies",
         disclaimer: "Дисклеймер",
@@ -99,6 +102,7 @@ export function Footer() {
         tagline: "Banking-first back office for private wealth. We deliver bankable structures, not company setups.",
         privacy: "Privacy",
         terms: "Terms",
+        refund: "Refund",
         cookies: "Cookies",
         cookieSettings: "Cookie settings",
         disclaimer: "Disclaimer",
@@ -167,6 +171,7 @@ export function Footer() {
           <span>© {new Date().getFullYear()} WTP</span>
           <Link to="/legal/privacy">{t.privacy}</Link>
           <Link to="/legal/terms">{t.terms}</Link>
+          <Link to="/legal/refund-policy">{t.refund}</Link>
           <Link to="/legal/cookies">{t.cookies}</Link>
           {/* Consent withdrawal (Cookie Policy promise) — hidden while no tracker IDs are configured */}
           {TRACKERS_CONFIGURED && (

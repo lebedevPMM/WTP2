@@ -89,7 +89,7 @@ const ClientLandingPage: React.FC = () => {
                     <tbody>
                         {JURISDICTIONS.map((jur) => (
                             <tr key={jur} className={jur === 'uae' ? 'cl-compare-highlight' : ''}>
-                                <td>{jur.toUpperCase()}</td>
+                                <td>{t(`cl.compare.${jur}.name`)}</td>
                                 <td>{t(`cl.compare.${jur}.tax`)}</td>
                                 <td>{t(`cl.compare.${jur}.setup`)}</td>
                                 <td>{t(`cl.compare.${jur}.banking`)}</td>

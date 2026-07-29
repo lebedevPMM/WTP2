@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- Partner zone landing. Everything under /partner-zone/ sits behind the shared password
+     (see functions/partner-zone/_middleware.ts), so this page is only ever seen by someone
+     who already has the credential. Deliberately plain HTML: no build step, no tracking. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Partner Zone — WTP</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink: #16181d; --ink-70: rgba(22,24,29,.7); --ink-45: rgba(22,24,29,.45); --gold: #A8843F; --line: rgba(22,24,29,.12); --bg: #F5F3EE; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, -apple-system, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; padding: 48px 20px 80px; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+    h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(28px, 5vw, 40px); font-weight: 600; margin: 14px 0 12px; }
+    .lead { color: var(--ink-70); font-size: 17px; max-width: 620px; }
+    h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 21px; font-weight: 600; margin: 44px 0 4px; }
+    .sub { color: var(--ink-45); font-size: 14px; margin-bottom: 16px; }
+    .item { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .item-name { font-weight: 500; }
+    .item-desc { color: var(--ink-70); font-size: 14px; margin-top: 3px; }
+    a.dl { flex: none; text-decoration: none; border: 1px solid var(--gold); color: var(--gold); border-radius: 999px; padding: 9px 20px; font-size: 14px; font-weight: 500; white-space: nowrap; }
+    a.dl:hover { background: var(--gold); color: #fff; }
+    .note { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--ink-45); font-size: 13.5px; }
+    .note a { color: var(--gold); }
+    .ru { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="eyebrow">WTP · Partner Zone</span>
+    <h1>Partner materials</h1>
+    <p class="lead">
+      Everything here is for WTP partners and the advisers we work with. Please keep the access
+      password inside your firm and don't republish these files.
+    </p>
+    <p class="lead ru">
+      Материалы для партнёров WTP и консультантов, с которыми мы работаем. Пароль доступа
+      просим не передавать за пределы вашей компании, а файлы — не публиковать.
+    </p>
+
+    <h2>Partner Kit</h2>
+    <p class="sub">Программа, модель работы и материалы для разговора с клиентом · The programme, the engagement model and client-facing material</p>
+
+    <div class="item">
+      <div>
+        <div class="item-name">WTP Partner Kit (EN)</div>
+        <div class="item-desc">Partner programme, engagement models, white-label option and case reporting. ZIP, ~1 MB.</div>
+      </div>
+      <a class="dl" href="/partner-zone/WTP_Partner_Kit_EN.zip">Download</a>
+    </div>
+
+    <h2>Public pages worth having open</h2>
+    <p class="sub">Открытые страницы, на которые можно ссылаться в переписке с клиентом</p>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Service pricing · Стоимость услуг</div>
+        <div class="item-desc">Published fees for the productized services — will, Golden Visa, company, bank account.</div>
+      </div>
+      <a class="dl" href="/pricing/">Open</a>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">For partners · Партнёрам</div>
+        <div class="item-desc">How the partnership works and how you earn on a referral.</div>
+      </div>
+      <a class="dl" href="/partners/">Open</a>
+    </div>
+
+    <p class="note">
+      Нужны материалы, которых здесь нет, или доступ для коллеги — напишите
+      <a href="mailto:hello@wtp.ae?subject=Partner%20Zone">hello@wtp.ae</a>.
+      <br />
+      Need something that isn't here, or access for a colleague — email us.
+    </p>
+  </div>
+</body>
+</html>

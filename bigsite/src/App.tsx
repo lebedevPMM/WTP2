@@ -23,6 +23,7 @@ const BankingFirst = lazy(() => import("./pages/BankingFirst"));
 const PreScreen = lazy(() => import("./pages/PreScreen"));
 const ServicesOverview = lazy(() => import("./pages/ServicesOverview"));
 const PackagesPage = lazy(() => import("./pages/PackagesPage"));
+const Pricing = lazy(() => import("./pages/Pricing"));
 const JurisdictionsHub = lazy(() => import("./pages/JurisdictionsHub"));
 const UAE = lazy(() => import("./pages/UAE"));
 const CasesHub = lazy(() => import("./pages/CasesHub"));
@@ -67,6 +68,7 @@ function LocalizedRoutes() {
         <Route path="services/:line" element={<ThemedService />} />
         <Route path="services/:line/:product" element={<ProductTemplate />} />
         <Route path="packages" element={<PackagesPage />} />
+        <Route path="pricing" element={<Pricing />} />
         <Route path="jurisdictions" element={<JurisdictionsHub />} />
         <Route path="jurisdictions/uae" element={<UAE />} />
         <Route path="jurisdictions/:slug" element={<JurisdictionComparator />} />

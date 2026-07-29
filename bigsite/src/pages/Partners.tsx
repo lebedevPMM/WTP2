@@ -48,6 +48,20 @@ export default function Partners() {
             "Семейные офисы, которым нужен оператор банковского уровня на месте",
             "Управляющие капиталом и брокеры, которые раз за разом упираются в банковскую стену",
           ],
+          // Блок добавлен по итогам встречи 16.07: страница описывала модель работы,
+          // но не отвечала на первый вопрос партнёра — как он на этом зарабатывает.
+          // Ставки сознательно не публикуем: они в партнёрском соглашении.
+          eyebrowEarn: "Как вы зарабатываете",
+          earnH2: "Вы приводите клиента — вы получаете комиссию",
+          earnLead:
+            "У вашего клиента появляется задача, которую закрываем мы: например, он хочет корпоративный счёт в банке Дубая. Вы приводите его к нам, мы открываем счёт, вы получаете комиссию со сделки. Так же по компании, релокации, Golden Visa и недвижимости — одна рекомендация закрывает сразу несколько задач клиента, и каждая это ваша комиссия.",
+          earn: [
+            "Комиссия по каждой сделке, которую мы закрыли по вашей рекомендации.",
+            "Продления, бухгалтерия, завещания — комиссия сохраняется и по повторным работам с клиентом.",
+            "Кейсы фиксируем и отчитываемся по статусу; выплаты — раз в месяц.",
+          ],
+          earnNote:
+            "Конкретные ставки и сегменты партнёров согласуются индивидуально и зафиксированы в партнёрском соглашении и Partner Kit.",
           eyebrowProgramme: "Партнёрская программа",
           h2: "Условия, материалы и вся программа",
           muted:
@@ -88,6 +102,17 @@ export default function Partners() {
             "Family offices that need a banking-grade operator on the ground",
             "Wealth managers and brokers who keep hitting the banking wall",
           ],
+          eyebrowEarn: "How you earn",
+          earnH2: "You bring the client. You earn the commission.",
+          earnLead:
+            "Your client has a job to be done and we do it — say they want a corporate account with a Dubai bank. You introduce them, we open the account, you earn a commission on the deal. The same applies to company formation, relocation, Golden Visa and property: one introduction can close several of your client's open items, and each one is your commission.",
+          earn: [
+            "A commission on every deal we close on your referral.",
+            "Renewals, accounting and wills keep earning — the commission carries over to repeat work with the client.",
+            "Cases are logged and reported back to you; payouts run monthly.",
+          ],
+          earnNote:
+            "Actual rates and partner tiers are agreed individually and set out in the partner agreement and the Partner Kit.",
           eyebrowProgramme: "The partner programme",
           h2: "Terms, materials and the full programme",
           muted:
@@ -125,6 +150,24 @@ export default function Partners() {
               <p style={{ fontSize: 14.5, color: "var(--ink-70)", lineHeight: 1.6 }}>{h.body}</p>
             </div>
           ))}
+        </div>
+      </Section>
+
+      <Section>
+        <div style={{ maxWidth: 820 }}>
+          <Eyebrow>{t.eyebrowEarn}</Eyebrow>
+          <h2 style={{ fontSize: "clamp(22px,3vw,32px)", margin: "16px 0 14px" }} className="h-grad">
+            {t.earnH2}
+          </h2>
+          <p style={{ fontSize: 16.5, color: "var(--ink-70)", lineHeight: 1.65 }}>{t.earnLead}</p>
+          <ul style={{ marginTop: 18, listStyle: "none", padding: 0 }}>
+            {t.earn.map((e) => (
+              <li key={e} style={{ padding: "12px 0", borderBottom: "1px solid var(--line)", display: "flex", gap: 10, fontSize: 15.5 }}>
+                <span style={{ color: "var(--gold)" }}>→</span> {e}
+              </li>
+            ))}
+          </ul>
+          <p style={{ fontSize: 13.5, color: "var(--ink-55)", lineHeight: 1.55, marginTop: 16 }}>{t.earnNote}</p>
         </div>
       </Section>
 

@@ -59,14 +59,24 @@ const docsEn: Record<string, LegalDoc> = {
     body: (
       <>
         <p>
-          This policy explains how WTP handles personal data you provide through
-          this website (for example, when you request a pre-screen or contact us).
+          This policy explains how WTP handles personal data you provide through this website (for
+          example, when you request a pre-screen or contact us) and through our advertising on
+          Facebook and Instagram.
         </p>
         <h3>What we collect</h3>
         <p>
-          The details you submit — typically your name, email, country of origin, and a description of
-          your situation — plus basic technical data your browser sends. We do not knowingly collect
-          special-category data through this site.
+          The details you submit — typically your name, email, phone number, country of origin, and a
+          description of your situation — plus basic technical data your browser sends. We do not
+          knowingly collect special-category data.
+        </p>
+        <h3>Leads from our ads</h3>
+        <p>
+          When you respond to a WTP ad on Facebook or Instagram and submit one of Meta's lead forms
+          (Instant Forms), Meta passes us the details you entered — typically your name, email, phone
+          number, and answers to a few short qualifying questions. We use them only to contact you
+          about the request you made and related WTP services, exactly as set out below. We receive
+          your data only if you submit the form yourself, and we are joint controllers with Meta only
+          for that lead-form step; Meta's own handling of your data is governed by its privacy policy.
         </p>
         <h3>Why we use it</h3>
         <p>
@@ -82,10 +92,12 @@ const docsEn: Record<string, LegalDoc> = {
         </p>
         <h3>Retention &amp; your rights</h3>
         <p>
-          We keep enquiry data only as long as needed for the purpose above and applicable record-
-          keeping rules. Our lawful basis is your consent and our legitimate interest in responding
-          to your enquiry. You can ask us to access, correct, delete, port, or object to the
-          processing of your data at{" "}
+          We keep enquiry and lead data only as long as needed for the purpose above — typically no
+          longer than 24 months after our last contact with you — unless a longer period is required
+          by applicable record-keeping or anti-money-laundering rules. Our lawful basis is your
+          consent and our legitimate interest in responding to your enquiry. You can ask us to access,
+          correct, delete, port, or object to the processing of your data — including asking us to
+          delete your lead — at{" "}
           <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>. If you
           are covered by the EU/UK GDPR or a similar regime, you may also lodge a complaint with your
           local data-protection supervisory authority.
@@ -98,29 +110,121 @@ const docsEn: Record<string, LegalDoc> = {
     body: (
       <>
         <p>
-          These terms govern your use of the WTP website. By using the site you
-          accept them.
+          These terms govern your use of the WTP website and any services you engage us to provide.
+          By using the site you accept them.
+        </p>
+        {/* [НА УТВЕРЖДЕНИЕ ЮРИСТОМ] — contracting entity confirmed by Konstantin (Q2): ILEGAL CONSULTANCY CO. L.L.C, licence 1162594. Verify this is the Stripe merchant of record before prod. */}
+        <h3>Who you are contracting with</h3>
+        <p>
+          Paid services described on this site — will registration assistance, residency and Golden
+          Visa processing, and company formation — are provided by <strong>ILEGAL CONSULTANCY CO.
+          L.L.C</strong>, a UAE management consultancy (licence 1162594), registered at Dubai Media
+          City, Arenco Tower, Office 1207, Dubai, United Arab Emirates ("WTP", "we"). Real-estate
+          services are provided by an affiliated licensed broker; see our{" "}
+          <a href="/legal/regulatory" style={{ color: "var(--gold)" }}>Regulatory Status</a> page.
+          You can reach us at{" "}
+          <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>.
         </p>
         <h3>The website</h3>
         <p>
-          This site is informational. It does not create a client relationship; an engagement begins
-          only when both parties sign a written engagement letter that sets out scope, fees and
-          responsibilities. Content may be updated or removed at any time.
+          The site itself is informational. Browsing it does not create a client relationship; an
+          engagement begins only when both parties agree a written offer or engagement letter that
+          sets out scope, fees and responsibilities. Content may be updated or removed at any time.
+        </p>
+        <h3>Services, fees and payment</h3>
+        <p>
+          Published fees for our productized services are shown on our{" "}
+          <a href="/pricing" style={{ color: "var(--gold)" }}>Service pricing</a> page. A fee covers
+          our professional work on that service; UAE government charges, court, notary and other
+          third-party costs are separate and are confirmed for your case before you commit. We
+          confirm the exact scope and price for you in a written offer, and payment is taken via the
+          payment link or invoice referenced in that offer. Bespoke advisory mandates are scoped and
+          quoted per engagement.
+        </p>
+        <h3>Refunds</h3>
+        <p>
+          Deposits and fees are handled under our{" "}
+          <a href="/legal/refund-policy" style={{ color: "var(--gold)" }}>Refund Policy</a>, which
+          forms part of these terms.
         </p>
         <h3>No guarantee of outcome</h3>
         <p>
-          Service tiers, timelines and prices indicated here are guidance and are confirmed per
-          engagement. Third-party outcomes — bank approvals, regulator decisions, visa issuance — are
-          determined by those parties, not by WTP, and are never guaranteed.
+          We provide assistance, processing and facilitation — not a guaranteed result. Third-party
+          outcomes — bank approvals, regulator and court decisions, visa issuance — are determined by
+          those parties under their own rules and discretion, not by WTP, and are never guaranteed.
+          Timelines are estimates that depend on the relevant authority.
+        </p>
+        <h3>Your responsibilities</h3>
+        <p>
+          You agree to provide accurate information and genuine documents, and to complete our
+          know-your-client and source-of-funds checks. We may decline or discontinue an engagement
+          where compliance requirements cannot be met, or where a matter falls outside what we are
+          licensed to do.
         </p>
         <h3>Intellectual property</h3>
         <p>
           The site content, brand and materials are owned by WTP unless stated otherwise. Don't
           reproduce them commercially without permission.
         </p>
+        <h3>Governing law</h3>
+        <p>
+          These terms and any engagement are governed by the laws of the United Arab Emirates as
+          applied in the Emirate of Dubai, and are subject to the jurisdiction of the Dubai courts.
+        </p>
         <h3>Contact</h3>
         <p>
           Questions: <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a> · {site.office}.
+        </p>
+      </>
+    ),
+  },
+
+  // [НА УТВЕРЖДЕНИЕ ЮРИСТОМ] — refund terms are a first draft on the default Konstantin approved
+  // (deposit refundable before work starts, non-refundable after, government/third-party fees never
+  // refundable). Counsel to confirm the refundable window and the pro-rata wording before prod.
+  "refund-policy": {
+    title: "Refund Policy",
+    body: (
+      <>
+        <p>
+          This policy explains how deposits and fees for WTP services — will registration assistance,
+          residency and Golden Visa processing, and company formation — are refunded. It forms part of
+          our <a href="/legal/terms" style={{ color: "var(--gold)" }}>Terms of Service</a>. The exact
+          refundable amount for your matter is set out in the written offer you sign before payment.
+        </p>
+        <h3>Before we start work</h3>
+        <p>
+          If you cancel before we begin working on your matter, your deposit is refundable, less any
+          non-recoverable payment-processing fees charged by the card network or payment provider.
+          "Starting work" means we have begun drafting, filing, KYC review, or otherwise acting on
+          your instructions.
+        </p>
+        <h3>Once work has started</h3>
+        <p>
+          Fees covering work already performed are non-refundable, because that work cannot be
+          returned. Where part of the engagement has not yet begun, we may refund that portion at our
+          discretion, calculated pro-rata against the scope in your offer.
+        </p>
+        <h3>Government and third-party charges</h3>
+        <p>
+          UAE government fees, court and notary fees, immigration, free-zone and bank charges, and
+          other third-party costs are non-refundable once paid to the relevant authority or provider.
+          These are outside our control — we pass them through at cost and cannot recover them on your
+          behalf.
+        </p>
+        <h3>How the products differ</h3>
+        <p>
+          The same principle applies to every service, whether fixed-fee (for example UAE will
+          registration or Golden Visa processing) or from-priced (for example company formation): our
+          professional fee is refundable only for work not yet started, and third-party charges are
+          never refundable once paid out.
+        </p>
+        <h3>How to request a refund</h3>
+        <p>
+          Email <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a> with
+          your name and the service concerned. We review the request against the stage your matter has
+          reached and, where a refund is due, return it to your original payment method within a
+          reasonable period, typically 10 business days.
         </p>
       </>
     ),
@@ -267,13 +371,24 @@ const docsRu: Record<string, LegalDoc> = {
       <>
         <p>
           Эта политика объясняет, как WTP обрабатывает персональные данные, которые вы предоставляете
-          через этот сайт (например, когда запрашиваете пре-скрининг или связываетесь с нами).
+          через этот сайт (например, когда запрашиваете пре-скрининг или связываетесь с нами) и через
+          нашу рекламу в Facebook и Instagram.
         </p>
         <h3>Что мы собираем</h3>
         <p>
-          Сведения, которые вы отправляете, — как правило, имя, email, страну происхождения и описание
-          вашей ситуации, — а также базовые технические данные, которые передаёт ваш браузер. Мы
-          сознательно не собираем через этот сайт данные особых категорий.
+          Сведения, которые вы отправляете, — как правило, имя, email, номер телефона, страну
+          происхождения и описание вашей ситуации, — а также базовые технические данные, которые
+          передаёт ваш браузер. Мы сознательно не собираем данные особых категорий.
+        </p>
+        <h3>Лиды из нашей рекламы</h3>
+        <p>
+          Когда вы откликаетесь на рекламу WTP в Facebook или Instagram и отправляете одну из лид-форм
+          Meta (Instant Forms), Meta передаёт нам введённые вами данные — как правило, имя, email,
+          номер телефона и ответы на несколько коротких уточняющих вопросов. Мы используем их только
+          чтобы связаться с вами по вашему запросу и по сопутствующим услугам WTP, ровно как описано
+          ниже. Мы получаем ваши данные только если вы сами отправили форму, и являемся совместными
+          контролёрами с Meta только на этом шаге лид-формы; собственная обработка ваших данных со
+          стороны Meta регулируется её политикой конфиденциальности.
         </p>
         <h3>Зачем мы их используем</h3>
         <p>
@@ -290,10 +405,12 @@ const docsRu: Record<string, LegalDoc> = {
         </p>
         <h3>Хранение &amp; ваши права</h3>
         <p>
-          Мы храним данные запроса только столько, сколько необходимо для указанной выше цели и в
-          соответствии с применимыми правилами документооборота. Нашим законным основанием является
-          ваше согласие и наш законный интерес в ответе на ваш запрос. Вы можете запросить доступ,
-          исправление, удаление, перенос данных или возражать против их обработки по адресу{" "}
+          Мы храним данные запроса и лидов только столько, сколько необходимо для указанной выше цели
+          — как правило, не дольше 24 месяцев с момента последнего контакта с вами, — если более
+          длительный срок не требуется применимыми правилами документооборота или противодействия
+          отмыванию средств. Нашим законным основанием является ваше согласие и наш законный интерес в
+          ответе на ваш запрос. Вы можете запросить доступ, исправление, удаление, перенос данных или
+          возражать против их обработки — в том числе попросить удалить ваш лид — по адресу{" "}
           <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>. Если на вас
           распространяется GDPR ЕС/Великобритании или аналогичный режим, вы также вправе подать жалобу
           в местный надзорный орган по защите данных.
@@ -306,29 +423,121 @@ const docsRu: Record<string, LegalDoc> = {
     body: (
       <>
         <p>
-          Эти условия регулируют использование вами сайта WTP. Пользуясь сайтом, вы принимаете их.
+          Эти условия регулируют использование вами сайта WTP и любые услуги, которые вы нам
+          поручаете. Пользуясь сайтом, вы принимаете их.
+        </p>
+        {/* [НА УТВЕРЖДЕНИЕ ЮРИСТОМ] — юрлицо-исполнитель подтверждено Костей (Q2): ILEGAL CONSULTANCY CO. L.L.C, лицензия 1162594. Убедиться, что это merchant of record для Stripe, до прод-деплоя. */}
+        <h3>С кем вы заключаете договор</h3>
+        <p>
+          Платные услуги, описанные на этом сайте, — сопровождение регистрации завещания, оформление
+          резидентства и Golden Visa, регистрация компаний — оказывает <strong>ILEGAL CONSULTANCY
+          CO. L.L.C</strong>, управленческий консалтинг в ОАЭ (лицензия 1162594), зарегистрированный
+          по адресу Dubai Media City, Arenco Tower, Office 1207, Дубай, ОАЭ («WTP», «мы»). Услуги по
+          недвижимости оказывает аффилированный лицензированный брокер — см. страницу{" "}
+          <a href="/ru/legal/regulatory" style={{ color: "var(--gold)" }}>Регуляторный статус</a>.
+          Связаться с нами: <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a>.
         </p>
         <h3>О сайте</h3>
         <p>
-          Этот сайт носит информационный характер. Он не создаёт клиентских отношений; проект
-          начинается только тогда, когда обе стороны подписывают письменное соглашение об оказании
-          услуг, определяющее объём, стоимость и ответственность. Содержимое может обновляться или
-          удаляться в любое время.
+          Сам сайт носит информационный характер. Его просмотр не создаёт клиентских отношений;
+          проект начинается только тогда, когда обе стороны согласуют письменную оферту или
+          соглашение, определяющее объём, стоимость и ответственность. Содержимое может обновляться
+          или удаляться в любое время.
+        </p>
+        <h3>Услуги, стоимость и оплата</h3>
+        <p>
+          Публичные цены на наши продуктизированные услуги указаны на странице{" "}
+          <a href="/ru/pricing" style={{ color: "var(--gold)" }}>Стоимость услуг</a>. Стоимость покрывает
+          нашу профессиональную работу по услуге; государственные пошлины ОАЭ, судебные, нотариальные
+          и иные сборы третьих сторон оплачиваются отдельно и подтверждаются по вашему делу до старта.
+          Точный объём и цену мы фиксируем в письменной оферте, оплата производится по платёжной
+          ссылке или счёту из этой оферты. Индивидуальные консультационные мандаты оцениваются
+          отдельно по каждому проекту.
+        </p>
+        <h3>Возвраты</h3>
+        <p>
+          Депозиты и оплаты регулируются нашей{" "}
+          <a href="/ru/legal/refund-policy" style={{ color: "var(--gold)" }}>Политикой возврата</a>,
+          которая является частью этих условий.
         </p>
         <h3>Отсутствие гарантии результата</h3>
         <p>
-          Указанные здесь уровни услуг, сроки и цены являются ориентиром и подтверждаются по каждому
-          проекту. Результаты, зависящие от третьих сторон, — одобрения банков, решения регуляторов,
-          выдача виз — определяются этими сторонами, а не WTP, и никогда не гарантируются.
+          Мы оказываем содействие, обработку и фасилитацию — а не гарантированный результат.
+          Результаты, зависящие от третьих сторон, — одобрения банков, решения регуляторов и судов,
+          выдача виз — определяются этими сторонами по их собственным правилам и на их усмотрение, а
+          не WTP, и никогда не гарантируются. Сроки являются оценочными и зависят от соответствующего
+          органа.
+        </p>
+        <h3>Ваши обязанности</h3>
+        <p>
+          Вы обязуетесь предоставлять достоверную информацию и подлинные документы и проходить наши
+          процедуры «знай своего клиента» и проверки происхождения средств. Мы вправе отказать в
+          проекте или прекратить его, если требования комплаенса не могут быть выполнены либо вопрос
+          выходит за рамки того, на что мы лицензированы.
         </p>
         <h3>Интеллектуальная собственность</h3>
         <p>
           Содержимое сайта, бренд и материалы принадлежат WTP, если не указано иное. Не воспроизводите
           их в коммерческих целях без разрешения.
         </p>
+        <h3>Применимое право</h3>
+        <p>
+          Эти условия и любой проект регулируются законодательством Объединённых Арабских Эмиратов в
+          применении эмирата Дубай и подпадают под юрисдикцию судов Дубая.
+        </p>
         <h3>Контакты</h3>
         <p>
           Вопросы: <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a> · {site.office}.
+        </p>
+      </>
+    ),
+  },
+
+  // [НА УТВЕРЖДЕНИЕ ЮРИСТОМ] — условия возврата = первый черновик на дефолте, утверждённом Костей.
+  "refund-policy": {
+    title: "Политика возврата",
+    body: (
+      <>
+        <p>
+          Эта политика объясняет, как возвращаются депозиты и оплаты за услуги WTP — сопровождение
+          регистрации завещания, оформление резидентства и Golden Visa, регистрацию компаний. Она
+          является частью наших <a href="/ru/legal/terms" style={{ color: "var(--gold)" }}>Условий
+          использования</a>. Точная возвращаемая сумма по вашему делу указана в письменной оферте,
+          которую вы подписываете до оплаты.
+        </p>
+        <h3>До начала работ</h3>
+        <p>
+          Если вы отменяете до того, как мы приступили к работе по вашему делу, депозит возвращается
+          за вычетом невозвратных комиссий за обработку платежа, удержанных платёжной системой или
+          провайдером. «Начало работ» означает, что мы начали подготовку документов, подачу,
+          KYC-проверку или иным образом действуем по вашим инструкциям.
+        </p>
+        <h3>После начала работ</h3>
+        <p>
+          Оплата за уже выполненную работу возврату не подлежит, поскольку эту работу нельзя вернуть.
+          Если часть проекта ещё не начата, мы можем вернуть эту часть по нашему усмотрению, рассчитав
+          её пропорционально объёму в вашей оферте.
+        </p>
+        <h3>Государственные сборы и платежи третьим сторонам</h3>
+        <p>
+          Государственные пошлины ОАЭ, судебные и нотариальные сборы, иммиграционные, фризонные и
+          банковские платежи и иные расходы третьих сторон не возвращаются после уплаты
+          соответствующему органу или провайдеру. Они вне нашего контроля — мы передаём их по
+          себестоимости и не можем вернуть их за вас.
+        </p>
+        <h3>Чем различаются продукты</h3>
+        <p>
+          Тот же принцип применяется к каждой услуге — как с фиксированной ценой (например,
+          регистрация завещания в ОАЭ или оформление Golden Visa), так и с ценой «от» (например,
+          регистрация компании): наша профессиональная оплата возвращается только за ещё не начатую
+          работу, а сборы третьих сторон не возвращаются после их уплаты.
+        </p>
+        <h3>Как запросить возврат</h3>
+        <p>
+          Напишите на <a href={`mailto:${site.email}`} style={{ color: "var(--gold)" }}>{site.email}</a> с
+          указанием имени и услуги. Мы сверяем запрос со стадией, которой достигло ваше дело, и, если
+          возврат причитается, возвращаем средства на исходный способ оплаты в разумный срок, обычно в
+          течение 10 рабочих дней.
         </p>
       </>
     ),

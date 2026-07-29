@@ -8,5 +8,7 @@ Disallow: /v2
 Disallow: /v3
 # Post-form confirmation
 Disallow: /thank-you
+# Password-gated partner materials
+Disallow: /partner-zone
 
 Sitemap: https://wtp.ae/sitemap.xml

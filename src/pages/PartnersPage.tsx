@@ -20,6 +20,27 @@ const PartnersPage: React.FC = () => {
                 <p className="subtitle" style={{ marginBottom: 0 }}>{t('partnersPage.subtitle')}</p>
             </section>
 
+            {/* How you earn — added per team meeting 16.07: the page never explained the partner's economics */}
+            <section>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '32px' }}>
+                    <h2>{t('partnersPage.earn.title')}</h2>
+                    <span className="label">{t('partnersPage.earn.label')}</span>
+                </div>
+                <Card accentGradient="var(--accent-gold)" hasAccentTop>
+                    <div>
+                        <p className="text-body" style={{ fontSize: '15px', marginBottom: '16px' }}>{tRich('partnersPage.earn.intro')}</p>
+                        <p className="text-body" style={{ fontSize: '13px', marginBottom: '24px' }}>{tRich('partnersPage.earn.example')}</p>
+                        <h4 style={{ fontSize: '16px', marginBottom: '12px' }}>{t('partnersPage.earn.mech.title')}</h4>
+                        <ul className="text-body" style={{ fontSize: '13px', paddingLeft: '20px', marginBottom: '16px' }}>
+                            <li>{t('partnersPage.earn.mech1')}</li>
+                            <li>{t('partnersPage.earn.mech2')}</li>
+                            <li>{t('partnersPage.earn.mech3')}</li>
+                        </ul>
+                        <p className="text-body" style={{ fontSize: '12px', opacity: 0.75 }}>{t('partnersPage.earn.rates')}</p>
+                    </div>
+                </Card>
+            </section>
+
             {/* Who we work with */}
             <section>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '32px' }}>

@@ -18,6 +18,12 @@
 /privacy              /legal/privacy                                        301
 /terms-of-service     /legal/terms                                          301
 /terms                /legal/terms                                          301
+/refund-policy        /legal/refund-policy                                  301
+/refund               /legal/refund-policy                                  301
+
+# Partner Kit moved behind the partner-zone password (team meeting 16.07). Old links keep
+# working — they now land on the gated copy and ask for the shared credential.
+/WTP_Partner_Kit_EN.zip  /partner-zone/WTP_Partner_Kit_EN.zip                301
 
 # SPA fallback for anything without a prerendered snapshot or asset
 /*    /index.html   200

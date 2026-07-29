@@ -5,6 +5,10 @@ import { useLanguage } from '../lib/LanguageContext'
 import { trackCtaClick, trackEvent } from '../lib/analytics'
 import './PostDealLandingPage.css'
 
+// Catalogue items beyond the three that already carry a published broker commission.
+// Client-facing fees only — commissions for these are set in the partner agreement.
+const EXTRA_SERVICES = ['personalAccount', 'will', 'escrow', 'mortgage', 'gvProperty', 'relocation'] as const
+
 const WA_MESSAGES = {
     en: "Hello, I'd like to refer a client for after-sale services (visas/banking/setup). My name is [NAME], I work at [AGENCY].",
     ru: 'Здравствуйте, хочу направить клиента на after-sale услуги (визы/банки/регистрация). Меня зовут [ИМЯ], я работаю в [АГЕНТСТВО].',
@@ -218,7 +222,23 @@ const PostDealLandingPage: React.FC = () => {
                         <p className="text-body">{tRich('pd.services.asset.desc')}</p>
                         <span className="pd-service-commission">{t('pd.services.asset.commission')}</span>
                     </div>
+                    {/* Rest of the catalogue — added per team meeting 16.07: the page listed only
+                        company / bank / Golden Visa / retainer, so brokers could not see the full
+                        offer they are able to sell. Client-facing fees are the published ones. */}
+                    {EXTRA_SERVICES.map((svc) => (
+                        <div className="pd-service-card" key={svc}>
+                            <div className="pd-service-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <h3>{t(`pd.services.${svc}.title`)}</h3>
+                            <p className="text-body">{tRich(`pd.services.${svc}.desc`)}</p>
+                            <span className="pd-service-commission">{t(`pd.services.${svc}.commission`)}</span>
+                        </div>
+                    ))}
                 </div>
+                <p className="text-body" style={{ fontSize: '13px', opacity: 0.75, marginTop: '24px' }}>
+                    {t('pd.services.note')}
+                </p>
             </section>
 
             {/* 6. Social Proof */}
