@@ -104,21 +104,26 @@
       color: var(--text-muted);
     }
 
+    /* Бейдж повторяет шапку основного сайта: тёмный квадрат и белая монограмма.
+       Полный локап с подписью «Welcome to paradise» на этом размере не читается,
+       поэтому здесь именно знак — тот же файл, что wtp.ae ставит в свою шапку. */
     .mark {
       width: 64px;
       height: 64px;
       border-radius: 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
+      background: linear-gradient(135deg, #161310 0%, #1E1A15 100%);
+      border: 1px solid rgba(184,149,106,.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 28px;
-      font-weight: 500;
-      color: var(--text-primary);
-      letter-spacing: 0.5px;
       position: relative;
+      overflow: hidden;
+    }
+
+    .mark img {
+      height: 30px;
+      width: auto;
+      display: block;
     }
 
     .mark::after {
@@ -221,14 +226,19 @@
     .mainsite:hover::after, .mainsite:focus-visible::after { animation: ms-sheen 1.15s cubic-bezier(.3,.7,.4,1) forwards; }
     .mainsite:focus-visible { outline: 2px solid #B8956A; outline-offset: 3px; }
     .mainsite .ms-mark {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-size: 26px;
-      color: #B8956A;
+      display: flex;
+      align-items: center;
       line-height: 1;
-      transition: color .28s ease, transform .28s cubic-bezier(.22,.8,.3,1);
+      transition: opacity .28s ease, transform .28s cubic-bezier(.22,.8,.3,1);
     }
-    .mainsite:hover .ms-mark, .mainsite:focus-visible .ms-mark { color: #E2C79A; transform: translateY(-1px); }
+
+    .mainsite .ms-mark img {
+      height: 22px;
+      width: auto;
+      display: block;
+      opacity: .95;
+    }
+    .mainsite:hover .ms-mark, .mainsite:focus-visible .ms-mark { transform: translateY(-1px); }
     .mainsite .ms-title { color: #F5F3EE; font-family: 'Playfair Display', Georgia, serif; font-size: 19px; display: block; }
     .mainsite .ms-desc { color: #B8B2A8; font-size: 13.5px; margin-top: 3px; display: block; }
     .mainsite .ms-arrow {
@@ -435,13 +445,13 @@
     </nav>
 
     <header class="hero">
-      <div class="mark">W</div>
-      <span class="eyebrow">WTP · Хаб ресурсов</span>
+      <div class="mark"><img src="../logo-wtp.png" alt="WTP" width="34" height="30"></div>
+      <span class="eyebrow">Хаб ресурсов</span>
       <h1>Всё <em>WTP</em> &mdash; на одной странице</h1>
       <p class="lead">Партнёрские сайты, страницы для клиентов, библиотека документов, команда и прямые каналы &mdash; разложено по аудитории.</p>
     </header>
     <a href="https://wtp.ae/ru/" class="mainsite" target="_blank" rel="noopener">
-      <span class="ms-mark">W</span>
+      <span class="ms-mark"><img src="../logo-wtp.png" alt="" width="25" height="22"></span>
       <span><span class="ms-title">wtp.ae &mdash; основной сайт</span>
       <span class="ms-desc">Бэк-офис для частного капитала: банкинг, структуры, резидентство и наследование</span></span>
       <svg class="ms-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
