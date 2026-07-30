@@ -8,9 +8,10 @@ import { useLang, L as Link } from "../i18n/lang";
 // fees — required for Stripe's site-vs-application review. Bespoke advisory mandates stay unpriced
 // ("quoted per engagement"), preserving the "no prices" stance on the marketing pages.
 //
-// Prices are the public prices Konstantin approved (2026-07). Fees cover WTP's professional work;
-// government / third-party charges are billed separately at cost (see note) — [ПОДТВЕРДИТЬ с Олей,
-// включены ли какие-либо гос-сборы в озвученную цену перед прод-деплоем].
+// Prices are the public prices Konstantin approved (2026-07). Confirmed by him 2026-07-30:
+// the quoted fee is all-in — the UAE government, court and notary charges that the service
+// requires are already inside it, not billed on top. Bank charges are the client's own
+// relationship with the bank and stay outside any quote.
 
 type Item = {
   name: string;
@@ -35,7 +36,7 @@ export default function Pricing() {
         lead:
           "Публичные фиксированные цены на наши продуктизированные услуги. Комплексные консультационные мандаты — банковские мандаты, структурирование — оцениваются индивидуально по каждому проекту.",
         feeNote:
-          "Указанные цены покрывают профессиональную работу WTP. Государственные пошлины ОАЭ, судебные, нотариальные, фризонные и банковские сборы оплачиваются отдельно по себестоимости и подтверждаются по вашему делу до старта.",
+          "Цена указана целиком: она включает и работу WTP, и государственные, судебные и нотариальные сборы ОАЭ, необходимые для услуги. Доплат по ходу нет. Банковские тарифы — это отношения клиента с банком, они в цену услуги не входят ни у кого на рынке.",
         guaranteeNote:
           "Мы оказываем сопровождение и обработку, а не гарантированный результат: одобрения банков, решения судов и выдача виз — на усмотрение соответствующих органов.",
         bespokeTitle: "Индивидуальные мандаты",
@@ -60,7 +61,7 @@ export default function Pricing() {
         lead:
           "Published fixed fees for our productized services. Full advisory mandates — banking mandates, wealth structuring — are scoped and quoted per engagement.",
         feeNote:
-          "Fees shown cover WTP's professional work. UAE government, court, notary, free-zone and bank charges are billed separately at cost and confirmed for your case before you commit.",
+          "The fee shown is all-in: it covers WTP's work and the UAE government, court and notary charges the service requires. Nothing is added along the way. Bank charges sit between the client and the bank and are not part of anyone's service fee.",
         guaranteeNote:
           "We provide assistance and processing, not a guaranteed result: bank approvals, court decisions and visa issuance are at the discretion of the relevant authorities.",
         bespokeTitle: "Bespoke mandates",
