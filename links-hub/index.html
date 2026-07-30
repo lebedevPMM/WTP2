@@ -169,12 +169,93 @@
       padding-left: 4px;
     }
 
-    .mainsite { max-width: 640px; margin: 30px auto 0; background: #161310; border-radius: 14px; padding: 20px 24px; text-decoration: none; display: flex; align-items: center; gap: 16px; border: 1px solid rgba(184,149,106,.35); transition: border-color .15s ease, transform .15s ease; }
-    .mainsite:hover { border-color: #B8956A; transform: translateY(-1px); }
-    .mainsite .ms-mark { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 26px; color: #B8956A; line-height: 1; }
+    /* Main-site block. Deliberately the one animated element on the page: it is the
+       only card that leads to wtp.ae itself, so it earns the weight. Everything is
+       transform/opacity so it stays cheap, and the whole thing is switched off under
+       prefers-reduced-motion. */
+    .mainsite {
+      position: relative;
+      overflow: hidden;
+      max-width: 640px;
+      margin: 30px auto 0;
+      background: linear-gradient(135deg, #161310 0%, #1E1A15 100%);
+      border-radius: 14px;
+      padding: 22px 26px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      border: 1px solid rgba(184,149,106,.35);
+      box-shadow: 0 1px 0 rgba(184,149,106,.10) inset;
+      transition: border-color .28s ease, transform .28s cubic-bezier(.22,.8,.3,1), box-shadow .28s ease;
+      /* fill-mode намеренно не задан: с `both` анимация удерживает transform
+         и перебивает подъём из :hover. Конечное состояние совпадает с базовым,
+         поэтому по завершении ничего не мигает. */
+      animation: ms-enter .7s cubic-bezier(.22,.8,.3,1);
+    }
+    /* Hairline of gold along the top edge, brightening from the left on hover. */
+    .mainsite::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #B8956A 22%, #E2C79A 50%, #B8956A 78%, transparent);
+      opacity: .45;
+      transition: opacity .35s ease;
+    }
+    /* Slow sheen that crosses the card once on hover. */
+    .mainsite::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: -60%;
+      width: 45%;
+      background: linear-gradient(100deg, transparent, rgba(226,199,154,.13), transparent);
+      transform: skewX(-16deg);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .mainsite:hover, .mainsite:focus-visible {
+      border-color: #B8956A;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px -22px rgba(0,0,0,.75), 0 1px 0 rgba(184,149,106,.18) inset;
+    }
+    .mainsite:hover::before, .mainsite:focus-visible::before { opacity: 1; }
+    .mainsite:hover::after, .mainsite:focus-visible::after { animation: ms-sheen 1.15s cubic-bezier(.3,.7,.4,1) forwards; }
+    .mainsite:focus-visible { outline: 2px solid #B8956A; outline-offset: 3px; }
+    .mainsite .ms-mark {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 26px;
+      color: #B8956A;
+      line-height: 1;
+      transition: color .28s ease, transform .28s cubic-bezier(.22,.8,.3,1);
+    }
+    .mainsite:hover .ms-mark, .mainsite:focus-visible .ms-mark { color: #E2C79A; transform: translateY(-1px); }
     .mainsite .ms-title { color: #F5F3EE; font-family: 'Playfair Display', Georgia, serif; font-size: 19px; display: block; }
     .mainsite .ms-desc { color: #B8B2A8; font-size: 13.5px; margin-top: 3px; display: block; }
-    .mainsite .ms-arrow { margin-left: auto; color: #B8956A; flex-shrink: 0; }
+    .mainsite .ms-arrow {
+      margin-left: auto;
+      color: #B8956A;
+      flex-shrink: 0;
+      transition: transform .28s cubic-bezier(.22,.8,.3,1), color .28s ease;
+    }
+    .mainsite:hover .ms-arrow, .mainsite:focus-visible .ms-arrow { transform: translateX(4px); color: #E2C79A; }
+    @keyframes ms-enter {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ms-sheen {
+      from { left: -60%; opacity: 1; }
+      to   { left: 115%; opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mainsite { animation: none; transition: border-color .2s ease; }
+      .mainsite:hover { transform: none; }
+      .mainsite:hover::after, .mainsite:focus-visible::after { animation: none; }
+      .mainsite:hover .ms-arrow, .mainsite:hover .ms-mark,
+      .mainsite:focus-visible .ms-arrow, .mainsite:focus-visible .ms-mark { transform: none; }
+    }
     .socials { text-align: center; padding: 34px 0 6px; }
     .socials .socials-label { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #8A8580; margin-bottom: 12px; }
     .socials a { display: inline-flex; align-items: center; gap: 8px; color: #5C5C5C; text-decoration: none; font-size: 14px; padding: 9px 16px; border: 1px solid #E5E1D8; border-radius: 999px; background: #FFFFFF; transition: border-color .15s ease, color .15s ease; }
