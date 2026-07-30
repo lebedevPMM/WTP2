@@ -202,7 +202,15 @@ function htmlMetaPlugin(): Plugin {
 }
 
 const cfPages = process.env.VITE_CF_PAGES === '1'
-const base = cfPages && landing !== 'main' ? `/${landing}/` : '/'
+// On Cloudflare each landing is served from its own folder, and a non-English build
+// gets a language folder inside it: /client/ → EN, /client/ru/ → RU. The worker maps
+// client.wtp.ae/ru/ onto the latter. EN keeps its existing paths untouched.
+const langFolder = lang === 'en' ? '' : `${lang}/`
+const base = cfPages
+    ? landing === 'main'
+        ? `/${langFolder}`
+        : `/${landing}/${langFolder}`
+    : '/'
 
 export default defineConfig({
     plugins: [react(), htmlMetaPlugin()],

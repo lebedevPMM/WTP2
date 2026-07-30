@@ -30,7 +30,13 @@ const LANDINGS = [
     { id: 'realestate', path: '/realestate/' },
     { id: 'partners', path: '/partners/' },
     { id: 'client', path: '/client/' },
+    // Language folder inside a landing — must be listed after its parent and matched
+    // by longest prefix, or /client/ru/ renders the English page into the RU file.
+    { id: 'client/ru', path: '/client/ru/' },
 ]
+
+// Longest path first so /client/ru/ wins over /client/.
+const BY_DEPTH = LANDINGS.filter((l) => l.id !== 'main').sort((a, b) => b.path.length - a.path.length)
 
 if (!existsSync(OUT)) {
     console.error(`prerender-cf: ${OUT} not found — run scripts/build-cloudflare.mjs first`)
@@ -50,8 +56,8 @@ const server = createServer((req, res) => {
     let p = decodeURIComponent(new URL(req.url, 'http://localhost').pathname)
     let file = join(OUT, p)
     if (!extname(p)) {
-        const seg = p.split('/').filter(Boolean)[0]
-        const landing = LANDINGS.find((l) => l.id === seg && l.id !== 'main')
+        const withSlash = p.endsWith('/') ? p : `${p}/`
+        const landing = BY_DEPTH.find((l) => withSlash.startsWith(l.path))
         file = landing ? join(OUT, landing.id, 'index.html') : join(OUT, 'index.html')
     }
     if (!existsSync(file) || statSync(file).isDirectory()) {

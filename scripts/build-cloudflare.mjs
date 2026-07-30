@@ -19,6 +19,12 @@ const LANDINGS = ['main', 'banking', 'realestate', 'partners', 'client']
 const LANG = 'en'
 const OUT_DIR = 'dist/cloudflare'
 
+// Non-English builds that ship alongside their EN landing, served from a language
+// folder inside it (/client/ru/) and reachable at client.wtp.ae/ru/. Added for the
+// relocation page, which was the last client-facing page on a bare pages.dev URL.
+// The rest of the RU estate still lives on the Timeweb mirror.
+const EXTRA_LANG_BUILDS = [{ landing: 'client', lang: 'ru' }]
+
 // Essential public files to copy for sub-landings (not PDFs/ZIPs)
 const ESSENTIAL_PUBLIC = [
     'favicon.svg', 'favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png',
@@ -39,6 +45,19 @@ for (const landing of LANDINGS) {
             ...process.env,
             VITE_LANDING: landing,
             VITE_LANG: LANG,
+            VITE_CF_PAGES: '1',
+        },
+    })
+}
+
+for (const { landing, lang } of EXTRA_LANG_BUILDS) {
+    console.log(`\n=== Building ${landing}-${lang} ===`)
+    execSync('npx vite build', {
+        stdio: 'inherit',
+        env: {
+            ...process.env,
+            VITE_LANDING: landing,
+            VITE_LANG: lang,
             VITE_CF_PAGES: '1',
         },
     })
@@ -73,9 +92,29 @@ for (const landing of LANDINGS.slice(1)) {
     }
 }
 
+// Language folders inside a landing: dist/client-ru → dist/cloudflare/client/ru
+for (const { landing, lang } of EXTRA_LANG_BUILDS) {
+    const src = `dist/${landing}-${lang}`
+    const dest = `${OUT_DIR}/${landing}/${lang}`
+
+    mkdirSync(dest, { recursive: true })
+    copyFileSync(`${src}/index.html`, `${dest}/index.html`)
+    cpSync(`${src}/assets`, `${dest}/assets`, { recursive: true })
+    for (const file of ESSENTIAL_PUBLIC) {
+        try {
+            copyFileSync(`${src}/${file}`, `${dest}/${file}`)
+        } catch {
+            // File may not exist — skip silently
+        }
+    }
+}
+
 // 4. _worker.js — handles subdomain routing + SPA fallback
 // When _worker.js exists, _redirects is ignored — worker handles everything.
 const worker = `
+// Landing/language folders that exist in this build, as "<landing>/<lang>".
+const LANG_FOLDERS = ${JSON.stringify(EXTRA_LANG_BUILDS.map((b) => `${b.landing}/${b.lang}`))};
+
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -150,8 +189,15 @@ export default {
                 }
                 return res;
             }
-            // SPA route (no extension) — always serve landing's index.html
-            return fetchAsset('/' + landing + '/index.html');
+            // A landing can ship a language folder (/client/ru/). On the subdomain that
+            // build is reached at client.wtp.ae/ru/, so a leading /ru segment selects it.
+            // Assets are unaffected: their URLs already carry the /client/ru/ base and are
+            // handled by the branch above.
+            const langSeg = path.split('/')[1];
+            const langPath = LANG_FOLDERS.includes(landing + '/' + langSeg) ? '/' + langSeg : '';
+
+            // SPA route (no extension) — serve the index.html of that landing/language
+            return fetchAsset('/' + landing + langPath + '/index.html');
         }
 
         // --- Path-based routing (pages.dev or root domain) ---
@@ -160,6 +206,10 @@ export default {
         }
 
         // SPA fallback — determine which landing's index.html to serve
+        // Language folders first — /client/ru must not be swallowed by the /client rule.
+        for (const folder of LANG_FOLDERS) {
+            if (path.startsWith('/' + folder)) return fetchAsset('/' + folder + '/index.html');
+        }
         if (path.startsWith('/banking')) return fetchAsset('/banking/index.html');
         if (path.startsWith('/realestate')) return fetchAsset('/realestate/index.html');
         if (path.startsWith('/partners')) return fetchAsset('/partners/index.html');
