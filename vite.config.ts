@@ -5,8 +5,16 @@ const landing = process.env.VITE_LANDING || 'main'
 const lang = process.env.VITE_LANG || 'en'
 
 const subdomain = landing === 'main' ? '' : `${landing}.`
-const domain = lang === 'en' ? 'wtp.ae' : 'wtpref.ru'
-const siteUrl = `https://${subdomain}${domain}`
+// Landings whose RU version now lives as a /ru/ path on the same wtp.ae host rather
+// than on the Timeweb mirror. Keep this in step with RU_ON_SAME_HOST in
+// src/config/landing.ts — that one drives the runtime hreflang, this one drives the
+// canonical, og:url and JSON-LD baked in at build time. They disagreed once and the
+// RU relocation page shipped declaring client.wtpref.ru canonical, a host that has
+// never existed.
+const RU_ON_SAME_HOST = ['client']
+const ruOnSameHost = lang === 'ru' && RU_ON_SAME_HOST.includes(landing)
+const domain = lang === 'en' || ruOnSameHost ? 'wtp.ae' : 'wtpref.ru'
+const siteUrl = `https://${subdomain}${domain}${ruOnSameHost ? `/${lang}` : ''}`
 
 const meta: Record<string, Record<string, { title: string; description: string; keywords: string }>> = {
     main: {
@@ -33,16 +41,20 @@ const meta: Record<string, Record<string, { title: string; description: string; 
             keywords: 'корпоративный банкинг ОАЭ, открытие счета ОАЭ, бизнес счет Дубай, банковский комплаенс',
         },
     },
+    // This landing renders PostDealLandingPage — the co-brokerage offer for agents,
+    // headlined "Earn $3,500+ from every client after the deal closes". The meta used
+    // to describe property structuring for investors, i.e. a different audience than
+    // the page actually serves; buyers are handled by re.wtp.ae, not here.
     realestate: {
         en: {
-            title: 'WTP - Real Estate Operations in UAE | Property Deals & Compliance',
-            description: 'Professional real estate execution in the UAE. From property structuring to compliance, we handle operational complexity for real estate investors.',
-            keywords: 'UAE real estate, property investment Dubai, real estate compliance, property structuring UAE',
+            title: 'WTP - Co-brokerage for UAE Agents | Earn After the Deal Closes',
+            description: 'For Dubai real estate agents: your client still needs a company, a bank account, a Golden Visa and a will. You refer, we execute, you earn a commission on each one.',
+            keywords: 'co-brokerage Dubai, real estate agent commission UAE, referral partner Dubai property, after-sale services UAE',
         },
         ru: {
-            title: 'WTP - Недвижимость в ОАЭ | Сделки и комплаенс',
-            description: 'Профессиональное сопровождение сделок с недвижимостью в ОАЭ. Структурирование, комплаенс и операционная поддержка для инвесторов.',
-            keywords: 'недвижимость ОАЭ, инвестиции Дубай, комплаенс недвижимость, структурирование сделок ОАЭ',
+            title: 'WTP - Ко-брокеридж для агентов ОАЭ | Заработок после сделки',
+            description: 'Агентам по недвижимости в Дубае: клиенту после покупки нужны компания, счёт, Golden Visa и завещание. Вы приводите — мы исполняем — вы получаете комиссию с каждой услуги.',
+            keywords: 'ко-брокеридж Дубай, комиссия агента недвижимости ОАЭ, партнёрская программа брокеров, услуги после сделки ОАЭ',
         },
     },
     partners: {
