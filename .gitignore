@@ -133,3 +133,6 @@ public/WTP_Partner_Kit_EN.zip
 public/WTP_Partner_Kit_RU.zip
 public/WTP_Partner_Kit_RU/
 .wrangler/
+
+# corp-kit: сборка для вычитки — артефакт, пересобирается build-review.mjs
+corp-kit/dist-review/
