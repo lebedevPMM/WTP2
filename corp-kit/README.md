@@ -19,16 +19,18 @@ corp-kit/
 ├── shared/
 │   ├── styles.css          ← канон лендингов
 │   └── deck.css            ← канон дек (те же токены, слайд 1600×900)
+├── glossary.md             ← терминология RU⇄EN + запрещённая лексика
 ├── landings/
-│   ├── index.html          ← хаб пяти услуг
-│   ├── company-setup/      ← открытие компаний  (локомотив)
+│   ├── index.html          ← хаб пяти услуг (RU)
+│   ├── company-setup/      ← открытие компаний
 │   ├── bank-accounts/      ← корпоративные счета
-│   ├── golden-visa/        ← резидентство и Golden Visa  (магнит)
+│   ├── golden-visa/        ← резидентство и Golden Visa
 │   ├── wills/              ← завещание через Dubai Courts
-│   └── liquidation/        ← ликвидация компаний
+│   ├── liquidation/        ← ликвидация компаний
+│   └── en/                 ← те же шесть страниц на английском
 ├── decks/
-│   ├── b2b/                ← 10 слайдов для партнёров (брокеры, юристы, консультанты)
-│   └── b2c/                ← 10 слайдов для клиентов
+│   ├── b2b/  b2b-en/       ← 10 слайдов для партнёров (брокеры, юристы, консультанты)
+│   └── b2c/  b2c-en/       ← 10 слайдов для клиентов
 ├── instagram/
 │   ├── carousels.html      ← 5 каруселей × 5 кадров, 1080×1350
 │   ├── captions.md         ← подписи + первые комментарии (можно отдавать наружу)
@@ -42,12 +44,13 @@ corp-kit/
 ```bash
 cd "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Antygravity folder/sync/WTP2"
 node corp-kit/render.cjs            # всё
-node corp-kit/render.cjs landings   # только лендинги, fullPage PNG
+node corp-kit/render.cjs landings   # лендинги RU и EN, fullPage PNG
 node corp-kit/render.cjs decks      # деки: PNG постранично + PDF 1600×900
 node corp-kit/render.cjs ig         # карусели 1080×1350
 ```
 
-Результат в `corp-kit/render/`. Деки в PDF — `render/decks/WTP-b2b.pdf` и `WTP-b2c.pdf`.
+Результат в `corp-kit/render/`. Деки в PDF — `WTP-b2b.pdf`, `WTP-b2c.pdf`,
+`WTP-b2b-en.pdf`, `WTP-b2c-en.pdf` в `render/decks/`. EN-лендинги в `render/landings/en-*.png`.
 
 ## Проверки
 
@@ -72,7 +75,8 @@ python3 -m http.server 4173 --directory corp-kit
 ## Правило работы с текстом
 
 **Ни одна цифра и ни одно утверждение не попадает на публичный носитель, если его нет
-в `FACT-LEDGER.md`.** Ledger собран из скриптов с указанием источника и отдельно помечает,
+в `FACT-LEDGER.md`.** Терминология и запрещённая лексика — в `glossary.md`; после любой
+правки EN прогонять `translation-qa` и дописывать лог прогонов в конце глоссария. Ledger собран из скриптов с указанием источника и отдельно помечает,
 что является внутренним и наружу не идёт (внутренние показатели, план департамента,
 цели по партнёрской сети, планы по географии).
 

@@ -17,7 +17,7 @@ const OUT = path.join(ROOT, 'render');
 
 const LANDINGS = ['index', 'company-setup', 'bank-accounts', 'golden-visa', 'wills', 'liquidation'];
 const LANDINGS_EN = LANDINGS.map((n) => `en/${n}`);
-const DECKS = ['b2b', 'b2c'];
+const DECKS = ['b2b', 'b2c', 'b2b-en', 'b2c-en'];
 
 const only = process.argv[2];
 const want = (kind) => !only || only === kind;

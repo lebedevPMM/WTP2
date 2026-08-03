@@ -3,7 +3,7 @@ const path = require('path');
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1600, height: 900 } });
-  for (const deck of ['b2b','b2c']) {
+  for (const deck of ['b2b','b2c','b2b-en','b2c-en']) {
     const f = path.join(process.cwd(), 'corp-kit/decks', deck, 'index.html');
     await page.goto('file://'+f, { waitUntil:'networkidle' });
     await page.evaluate(()=>document.fonts.ready);
