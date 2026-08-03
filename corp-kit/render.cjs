@@ -16,6 +16,7 @@ const ROOT = __dirname;
 const OUT = path.join(ROOT, 'render');
 
 const LANDINGS = ['index', 'company-setup', 'bank-accounts', 'golden-visa', 'wills', 'liquidation'];
+const LANDINGS_EN = LANDINGS.map((n) => `en/${n}`);
 const DECKS = ['b2b', 'b2c'];
 
 const only = process.argv[2];
@@ -32,15 +33,19 @@ async function renderLandings(browser) {
   const dir = path.join(OUT, 'landings');
   ensure(dir);
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
-  for (const name of LANDINGS) {
+  for (const name of [...LANDINGS, ...LANDINGS_EN]) {
+    const base = name.endsWith('/index') || name === 'index' ? name.replace(/index$/, '') : name;
     const file = name === 'index'
       ? path.join(ROOT, 'landings', 'index.html')
-      : path.join(ROOT, 'landings', name, 'index.html');
+      : name === 'en/index'
+        ? path.join(ROOT, 'landings', 'en', 'index.html')
+        : path.join(ROOT, 'landings', name, 'index.html');
     if (!fs.existsSync(file)) { console.log(`  skip ${name} (нет файла)`); continue; }
     await page.goto(`file://${file}`, { waitUntil: 'networkidle' });
     await settle(page);
-    await page.screenshot({ path: path.join(dir, `${name}.png`), fullPage: true });
-    console.log(`  landings/${name}.png`);
+    const out = name.replace('/', '-');
+    await page.screenshot({ path: path.join(dir, `${out}.png`), fullPage: true });
+    console.log(`  landings/${out}.png`);
   }
   await page.close();
 }
