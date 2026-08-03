@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>WTP · Корп. услуги — Instagram-карусели 1080×1350</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F5F3EE; --white:#FFFFFF; --dark:#161310;
+  --ink:#1A1A1A; --ink-2:#5C5C5C; --muted:#8A8580;
+  --gold:#B8956A; --gold-dark:#9A7A52;
+  --line:#E5E1D8; --line-strong:#D5CFC1;
+  --dark-ink:#B8B2A8; --dark-line:#2A2620;
+  --pos:#3E6B4F; --neg:#A4503F; --warn:#A8813C;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#33302B;font-family:var(--sans);-webkit-font-smoothing:antialiased;padding:30px}
+
+.ig{
+  position:relative;width:1080px;height:1350px;overflow:hidden;
+  background:var(--cream);color:var(--ink);
+  padding:96px 88px 112px;display:flex;flex-direction:column;
+  margin:0 auto 28px;
+}
+.ig.white{background:var(--white)}
+.ig.dark{background:var(--dark);color:var(--cream)}
+.ig.dark h1,.ig.dark h2,.ig.dark h3{color:#fff}
+.ig.dark p,.ig.dark li{color:var(--dark-ink)}
+
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.06;letter-spacing:-0.01em;color:var(--ink)}
+p{color:var(--ink-2);line-height:1.5}
+
+.kicker{
+  font-family:var(--mono);font-size:19px;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);
+}
+.ig h1{font-size:96px;font-style:italic;margin-top:34px}
+.ig h2{font-size:66px;font-style:italic;margin-top:30px}
+.ig .accent{font-style:normal;color:var(--gold-dark)}
+.ig.dark .accent{color:var(--gold)}
+.ig .lede{font-size:31px;line-height:1.45;margin-top:34px}
+.mid{flex:1;display:flex;flex-direction:column;justify-content:center}
+.bottom{margin-top:auto}
+
+/* нижний колонтитул кадра */
+.foot{
+  position:absolute;left:88px;right:88px;bottom:56px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:18px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);border-top:1px solid var(--line);padding-top:22px;
+}
+.ig.dark .foot{color:#6E685F;border-top-color:var(--dark-line)}
+.foot .brand{font-family:var(--serif);font-style:italic;font-size:24px;letter-spacing:0;text-transform:none;color:var(--ink)}
+.ig.dark .foot .brand{color:#fff}
+
+/* блоки */
+.rows{margin-top:44px;border-top:1px solid var(--line)}
+.ig.dark .rows{border-top-color:var(--dark-line)}
+.row{padding:26px 0;border-bottom:1px solid var(--line);display:flex;gap:26px;align-items:baseline}
+.ig.dark .row{border-bottom-color:var(--dark-line)}
+.row .n{font-family:var(--mono);font-size:20px;color:var(--gold);flex-shrink:0;width:44px}
+.row .t{font-size:29px;line-height:1.35;color:var(--ink-2)}
+.ig.dark .row .t{color:var(--dark-ink)}
+.row .t b{color:var(--ink);font-weight:600}
+.ig.dark .row .t b{color:#fff}
+
+.figure{margin-top:52px;display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.ig.dark .figure{border-top-color:var(--dark-line);border-left-color:var(--dark-line)}
+.figure > div{padding:32px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ig.dark .figure > div{border-right-color:var(--dark-line);border-bottom-color:var(--dark-line)}
+.figure .n{font-family:var(--serif);font-style:italic;font-size:56px;line-height:1;color:var(--gold-dark)}
+.ig.dark .figure .n{color:var(--gold)}
+.figure .l{margin-top:14px;font-size:21px;color:var(--muted);line-height:1.4}
+
+.callout{
+  margin-top:46px;padding:34px 36px;background:var(--white);
+  border:1px solid var(--line);border-left:3px solid var(--gold);
+  font-size:28px;line-height:1.45;color:var(--ink-2);
+}
+.ig.white .callout{background:var(--cream)}
+.ig.dark .callout{background:#1E1A16;border-color:var(--dark-line);border-left-color:var(--gold);color:var(--dark-ink)}
+.callout b{color:var(--ink)}
+.ig.dark .callout b{color:#fff}
+
+.pillars{margin-top:48px;display:grid;gap:20px}
+.pill{padding:30px 32px;background:var(--white);border:1px solid var(--line);border-top:3px solid var(--line-strong)}
+.ig.white .pill{background:var(--cream)}
+.ig.dark .pill{background:#1E1A16;border-color:var(--dark-line)}
+.pill.g{border-top-color:var(--pos)}
+.pill.y{border-top-color:var(--warn)}
+.pill.r{border-top-color:var(--neg)}
+.pill .lb{font-family:var(--mono);font-size:18px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px}
+.pill.g .lb{color:var(--pos)}.pill.y .lb{color:var(--warn)}.pill.r .lb{color:var(--neg)}
+.pill p{font-size:25px;line-height:1.4}
+
+.split{margin-top:46px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);background:var(--white)}
+.ig.white .split{background:var(--cream)}
+.ig.dark .split{background:#1E1A16;border-color:var(--dark-line)}
+.split > div{padding:32px 30px}
+.split > div + div{border-left:1px solid var(--line)}
+.ig.dark .split > div + div{border-left-color:var(--dark-line)}
+.split h3{font-family:var(--mono);font-style:normal;font-size:18px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:18px}
+.split .yes h3{color:var(--pos)}
+.split .no h3{color:var(--neg)}
+.split ul{list-style:none}
+.split li{padding:13px 0;font-size:24px;line-height:1.35;color:var(--ink-2);border-bottom:1px dotted var(--line)}
+.ig.dark .split li{color:var(--dark-ink);border-bottom-color:var(--dark-line)}
+.split li:last-child{border-bottom:none}
+
+.cta-note{margin-top:38px;font-size:25px;color:var(--muted);line-height:1.5}
+.price-hero{font-family:var(--serif);font-style:italic;font-size:112px;color:var(--gold-dark);line-height:1;margin-top:22px}
+.ig.dark .price-hero{color:var(--gold)}
+.price-sub{font-size:26px;color:var(--muted);margin-top:18px}
+.disc{margin-top:auto;font-size:19px;line-height:1.5;color:var(--muted);padding-bottom:8px}
+.ig.dark .disc{color:#6E685F}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ КАРУСЕЛЬ 1 · GOLDEN VISA ═══════════ -->
+
+<section class="ig dark" id="gv-1">
+  <span class="kicker">Резидентство · Дубай</span>
+  <div class="mid">
+    <h1>Две визы. <span class="accent">Одна цена.</span></h1>
+    <p class="lede">Двухлетняя виза владельца недвижимости и десятилетняя Golden Visa
+      через недвижимость стоят одинаково — 4 900 USD.</p>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>01 / 05</span></div>
+</section>
+
+<section class="ig" id="gv-2">
+  <span class="kicker">В чём разница</span>
+  <h2>Цена та же. <span class="accent">Статус — нет</span></h2>
+  <div class="rows">
+    <div class="row"><span class="n">01</span><span class="t"><b>10 лет вместо 2</b> — продление раз в десятилетие, а не каждые два года</span></div>
+    <div class="row"><span class="n">02</span><span class="t"><b>Отсутствие в ОАЭ</b> — можно вне страны более 6 месяцев без автоматической потери статуса</span></div>
+    <div class="row"><span class="n">03</span><span class="t"><b>Консульская поддержка</b> — специальные сервисы для держателей Golden Visa</span></div>
+    <div class="row"><span class="n">04</span><span class="t"><b>Помощь при кризисах</b> — включение в планы помощи и эвакуации</span></div>
+  </div>
+  <div class="callout"><b>Вывод.</b> При наличии основания на Golden Visa оформлять двухлетнюю визу
+    через недвижимость невыгодно: цена та же, статус слабее.</div>
+  <div class="foot"><span class="brand">WTP</span><span>02 / 05</span></div>
+</section>
+
+<section class="ig white" id="gv-3">
+  <span class="kicker">Основания</span>
+  <h2>Четыре маршрута <span class="accent">и пороги по каждому</span></h2>
+  <div class="rows">
+    <div class="row"><span class="n">01</span><span class="t"><b>Golden Visa через недвижимость</b> — объекты в Дубае от ~545 000 USD (2 000 000 AED)</span></div>
+    <div class="row"><span class="n">02</span><span class="t"><b>Golden Visa через депозит</b> — от ~545 000 USD в банке Дубая, минимум два года</span></div>
+    <div class="row"><span class="n">03</span><span class="t"><b>Виза владельца, 2 года</b> — подходящий объект после проверки, оформление 10–14 рабочих дней</span></div>
+    <div class="row"><span class="n">04</span><span class="t"><b>Виза цифрового кочевника</b> — 2 400 USD, в том числе как быстрый вход перед депозитным маршрутом</span></div>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>03 / 05</span></div>
+</section>
+
+<section class="ig" id="gv-4">
+  <span class="kicker">Что входит в 4 900 USD</span>
+  <h2>Фиксированная цена, <span class="accent">а не «от»</span></h2>
+  <div class="figure">
+    <div><div class="n">Сборы</div><div class="l">государственные пошлины по маршруту</div></div>
+    <div><div class="n">Медицина</div><div class="l">обследование и медицинская страховка</div></div>
+    <div><div class="n">Emirates ID</div><div class="l">выпуск идентификационной карты</div></div>
+    <div><div class="n">Ведение</div><div class="l">сопровождение WTP на всех этапах</div></div>
+  </div>
+  <div class="callout">Цена не зависит от того, была ли у клиента ранее резидентская виза
+    или Emirates ID. Семья считается отдельно: супруга — около 2 050 USD, ребёнок — около 1 635 USD.</div>
+  <div class="foot"><span class="brand">WTP</span><span>04 / 05</span></div>
+</section>
+
+<section class="ig dark" id="gv-5">
+  <span class="kicker">Следующий шаг</span>
+  <div class="mid">
+    <h2>Проверим основание <span class="accent">до того, как что-то платить</span></h2>
+    <p class="lede">Пришлите Title Deed или опишите ситуацию — вернёмся с маршрутом,
+      полной сметой и сроком.</p>
+    <p class="cta-note">wtp.ae · hello@wtp.ae</p>
+  </div>
+  <p class="disc">Только Дубай: цены, сроки, объекты и банковские маршруты относятся исключительно
+    к Дубаю, другие эмираты рассчитываются отдельно. Информация не является офертой.
+    WTP не даёт гарантий решения государственных органов. Ориентир: 1 USD = 3,6725 AED. Июль 2026.</p>
+  <div class="foot"><span class="brand">WTP</span><span>05 / 05</span></div>
+</section>
+
+<!-- ═══════════ КАРУСЕЛЬ 2 · ОТКРЫТИЕ КОМПАНИЙ ═══════════ -->
+
+<section class="ig dark" id="co-1">
+  <span class="kicker">Открытие компаний · ОАЭ</span>
+  <div class="mid">
+    <h1>Лицензия есть. <span class="accent">Счёта нет.</span></h1>
+    <p class="lede">Самый частый сценарий провала в ОАЭ: компанию зарегистрировали быстро,
+      а банк её профиль не принял.</p>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>01 / 05</span></div>
+</section>
+
+<section class="ig" id="co-2">
+  <span class="kicker">Почему так выходит</span>
+  <h2>Юрисдикцию выбрали <span class="accent">раньше, чем поняли бизнес</span></h2>
+  <div class="rows">
+    <div class="row"><span class="n">01</span><span class="t">Одинаковое слово «логистика», «IT» или «консалтинг» означает разные activity codes и разные требования</span></div>
+    <div class="row"><span class="n">02</span><span class="t">В ОАЭ более <b>2 000</b> видов экономической деятельности — угадать код по одному сообщению нельзя</span></div>
+    <div class="row"><span class="n">03</span><span class="t">Если activity не отражает реальные операции, банк это увидит на KYC</span></div>
+    <div class="row"><span class="n">04</span><span class="t">Менять маршрут до оплаты лицензии дешевле, чем переделывать готовую компанию</span></div>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>02 / 05</span></div>
+</section>
+
+<section class="ig white" id="co-3">
+  <span class="kicker">Banking-first</span>
+  <h2>Банк смотрит профиль <span class="accent">до регистрации</span></h2>
+  <div class="rows">
+    <div class="row"><span class="n">01</span><span class="t"><b>Бизнес-модель</b> — товары, клиенты, поставщики, страны, валюты, обороты</span></div>
+    <div class="row"><span class="n">02</span><span class="t"><b>Лицензия</b> — юрисдикция и activity codes, не противоречащие банковскому профилю</span></div>
+    <div class="row"><span class="n">03</span><span class="t"><b>Pre-check</b> — профиль показывается банкирам, ответ приходит до оплаты</span></div>
+    <div class="row"><span class="n">04</span><span class="t"><b>Регистрация</b> — только после подтверждения маршрута</span></div>
+    <div class="row"><span class="n">05</span><span class="t"><b>Счёт</b> — KYC package, подача и сопровождение запросов</span></div>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>03 / 05</span></div>
+</section>
+
+<section class="ig" id="co-4">
+  <span class="kicker">Сравнение предложений</span>
+  <h2>Почему два КП <span class="accent">отличаются вдвое</span></h2>
+  <p class="lede">Клиент сравнивает рекламную цену лицензии с полной стоимостью запуска.
+    Восемь компонентов, по которым сравниваются любые два предложения:</p>
+  <div class="figure">
+    <div><div class="n">01</div><div class="l">Лицензия и registration fees</div></div>
+    <div><div class="n">02</div><div class="l">Офис, склад, Ejari, депозит</div></div>
+    <div><div class="n">03</div><div class="l">Establishment card, immigration file</div></div>
+    <div><div class="n">04</div><div class="l">Визы, медицина, Emirates ID</div></div>
+    <div><div class="n">05</div><div class="l">Внешние согласования</div></div>
+    <div><div class="n">06</div><div class="l">Налоги, VAT, UBO, бухгалтерия</div></div>
+    <div><div class="n">07</div><div class="l">Банковский проект</div></div>
+    <div><div class="n">08</div><div class="l">Professional fee исполнителя</div></div>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>04 / 05</span></div>
+</section>
+
+<section class="ig dark" id="co-5">
+  <span class="kicker">Следующий шаг</span>
+  <div class="mid">
+    <h2>Пришлите чужое КП — <span class="accent">сравним состав, а не цифры</span></h2>
+    <p class="lede">Разложим оба предложения по восьми компонентам и покажем, что включено,
+      а что оплачивается позже. Бесплатно.</p>
+    <p class="cta-note">wtp.ae · hello@wtp.ae</p>
+  </div>
+  <p class="disc">Информация не является офертой, налоговой или юридической консультацией.
+    Регистрация во free zone сама по себе не гарантирует ставку Corporate Tax 0%: нулевая ставка
+    применяется к qualifying income при выполнении условий Qualifying Free Zone Person, иная
+    налогооблагаемая прибыль может облагаться по ставке 9%. Решение об открытии счёта принимает банк.</p>
+  <div class="foot"><span class="brand">WTP</span><span>05 / 05</span></div>
+</section>
+
+<!-- ═══════════ КАРУСЕЛЬ 3 · БАНКОВСКИЕ СЧЕТА ═══════════ -->
+
+<section class="ig dark" id="bk-1">
+  <span class="kicker">Корпоративные счета · ОАЭ</span>
+  <div class="mid">
+    <h1>Отказ банка — <span class="accent">не приговор</span></h1>
+    <p class="lede">Отказ одного банка не означает автоматический запрет для всех.
+      Но попытка его скрыть повышает риск нового отказа.</p>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>01 / 05</span></div>
+</section>
+
+<section class="ig" id="bk-2">
+  <span class="kicker">Терминология</span>
+  <h2>За «чёрным списком» <span class="accent">три разные ситуации</span></h2>
+  <div class="pillars">
+    <div class="pill y">
+      <div class="lb">01 · Внутренний risk flag</div>
+      <p>Банк отказал, закрыл счёт или отметил профиль как повышенный риск. Кейс иногда
+        можно переработать и направить по другому маршруту.</p>
+    </div>
+    <div class="pill g">
+      <div class="lb">02 · False positive / name match</div>
+      <p>Имя или компания совпали с другой записью. Нужна идентификация, документы
+        и корректное объяснение различий.</p>
+    </div>
+    <div class="pill r">
+      <div class="lb">03 · Подтверждённые санкции</div>
+      <p>Если ограничения действительно применяются, WTP не обещает открытие
+        и не предлагает способы обхода.</p>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>02 / 05</span></div>
+</section>
+
+<section class="ig white" id="bk-3">
+  <span class="kicker">Почему банк отказывает</span>
+  <h2>Чаще проблема не в компании, <span class="accent">а в картине</span></h2>
+  <div class="rows">
+    <div class="row"><span class="n">01</span><span class="t">Компания не ответила на KYC review — или ответила поздно и неполно</span></div>
+    <div class="row"><span class="n">02</span><span class="t">Операции не соответствуют лицензии, фактическая география отличается от заявленной</span></div>
+    <div class="row"><span class="n">03</span><span class="t">Документы противоречат анкете, нет актуальных договоров или отчётности</span></div>
+    <div class="row"><span class="n">04</span><span class="t">Сложная структура владения и неясный UBO</span></div>
+    <div class="row"><span class="n">05</span><span class="t">Банк не понимает источник средств или назначение операций</span></div>
+  </div>
+  <div class="callout">По требованиям CBUAE банк обязан понимать владельцев компании, природу бизнеса,
+    назначение счёта и источник средств. Если картину сформировать не удаётся — он вправе
+    не начинать отношения.</div>
+  <div class="foot"><span class="brand">WTP</span><span>03 / 05</span></div>
+</section>
+
+<section class="ig" id="bk-4">
+  <span class="kicker">Что делаем и чего не делаем</span>
+  <h2>Границы, <span class="accent">названные заранее</span></h2>
+  <div class="split">
+    <div class="yes">
+      <h3>Делаем</h3>
+      <ul>
+        <li>Собираем факты и восстанавливаем реальную историю кейса</li>
+        <li>Подтверждаем UBO и деятельность</li>
+        <li>Подбираем адекватный банк под профиль</li>
+        <li>Сопровождаем официальную заявку</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h3>Не делаем</h3>
+      <ul>
+        <li>Не скрываем санкционный статус</li>
+        <li>Не меняем фиктивно владельцев</li>
+        <li>Не подаём ложные сведения</li>
+        <li>Не помогаем обходить AML/CFT</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><b>Pre-check бесплатный.</b> 2–3 рабочих дня, на выходе — вердикт:
+    зелёный, жёлтый или красный. Красный говорим прямо и денег за него не берём.</div>
+  <div class="foot"><span class="brand">WTP</span><span>04 / 05</span></div>
+</section>
+
+<section class="ig dark" id="bk-5">
+  <span class="kicker">Следующий шаг</span>
+  <div class="mid">
+    <h2>Опишите кейс — <span class="accent">включая то, что уже пошло не так</span></h2>
+    <p class="lede">Компания, владельцы, деятельность, страны, обороты и история счетов.
+      Вернёмся с риск-вердиктом и маршрутом.</p>
+    <p class="cta-note">wtp.ae · hello@wtp.ae</p>
+  </div>
+  <p class="disc">Информация не является офертой или банковской консультацией. WTP не является банком
+    и не принимает решений об открытии счёта: решение принимает банк в рамках собственных процедур KYC
+    и требований Центрального банка ОАЭ. Базовый ориентир сопровождения — от 4 300 USD; стоимость
+    сложного кейса определяется по итогам предварительной проверки. Июль 2026.</p>
+  <div class="foot"><span class="brand">WTP</span><span>05 / 05</span></div>
+</section>
+
+<!-- ═══════════ КАРУСЕЛЬ 4 · ЛИКВИДАЦИЯ ═══════════ -->
+
+<section class="ig dark" id="lq-1">
+  <span class="kicker">Ликвидация · ОАЭ</span>
+  <div class="mid">
+    <h1>Не работает — <span class="accent">ещё не закрыта</span></h1>
+    <p class="lede">Истечение лицензии, прекращение операций или отъезд владельца
+      не означают, что компания исчезла.</p>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>01 / 05</span></div>
+</section>
+
+<section class="ig" id="lq-2">
+  <span class="kicker">Что продолжает начисляться</span>
+  <h2>Контуры, которые <span class="accent">не закрываются сами</span></h2>
+  <div class="rows">
+    <div class="row"><span class="n">01</span><span class="t"><b>Corporate Tax.</b> Дерегистрация — в течение 3 месяцев. Просрочка: 1 000 AED и далее ежемесячно, максимум 10 000 AED</span></div>
+    <div class="row"><span class="n">02</span><span class="t"><b>VAT.</b> Заявление — в течение 20 рабочих дней. Закрытие лицензии не заменяет VAT deregistration</span></div>
+    <div class="row"><span class="n">03</span><span class="t"><b>Реестр.</b> При исключении органом ответственность директоров и участников сохраняется</span></div>
+    <div class="row"><span class="n">04</span><span class="t"><b>UBO register.</b> Предупреждение, затем 50 000 AED, при повторном нарушении 100 000 AED</span></div>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>02 / 05</span></div>
+</section>
+
+<section class="ig white" id="lq-3">
+  <span class="kicker">Частое заблуждение</span>
+  <h2>Истёкшая лицензия <span class="accent">не равна ликвидации</span></h2>
+  <div class="split">
+    <div class="no">
+      <h3>Как думают</h3>
+      <ul>
+        <li>«Я не работаю»</li>
+        <li>«Счёт пустой»</li>
+        <li>«Лицензия истекла»</li>
+        <li>«Значит, компания сама закрылась»</li>
+      </ul>
+    </div>
+    <div class="yes">
+      <h3>Как есть</h3>
+      <ul>
+        <li>Отчётность сохраняется</li>
+        <li>Налоговые регистрации активны</li>
+        <li>Штрафы продолжают начисляться</li>
+        <li>Визовые и договорные хвосты открыты</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">Орган может приостановить лицензию и позднее исключить компанию — но это
+    не «обнуляет» обязательства. Ответственность директоров и участников сохраняется так,
+    как если бы компания не была распущена.</div>
+  <div class="foot"><span class="brand">WTP</span><span>03 / 05</span></div>
+</section>
+
+<section class="ig" id="lq-4">
+  <span class="kicker">Результат услуги</span>
+  <h2>Не «отмена лицензии», <span class="accent">а доказуемый финал</span></h2>
+  <div class="rows">
+    <div class="row"><span class="n">01</span><span class="t">Лицензия и запись в реестре закрыты, компания официально ликвидирована</span></div>
+    <div class="row"><span class="n">02</span><span class="t">Визы, work permits, immigration и establishment files закрыты</span></div>
+    <div class="row"><span class="n">03</span><span class="t">Декларации поданы, заявления на VAT и Corporate Tax deregistration направлены</span></div>
+    <div class="row"><span class="n">04</span><span class="t">Кредиторы, аренда, банк и коммунальные контуры урегулированы</span></div>
+    <div class="row"><span class="n">05</span><span class="t"><b>Closure pack</b> — решения, сертификаты, подтверждения и реестр закрытого</span></div>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>04 / 05</span></div>
+</section>
+
+<section class="ig dark" id="lq-5">
+  <span class="kicker">Следующий шаг</span>
+  <div class="mid">
+    <h2>Сроки называем <span class="accent">после диагностики</span></h2>
+    <p class="lede">Назовите компанию, юрисдикцию и последнюю известную дату лицензии —
+      вернёмся с картой хвостов и планом закрытия.</p>
+    <p class="cta-note">wtp.ae · hello@wtp.ae</p>
+  </div>
+  <p class="disc">Информация не является офертой, налоговой или юридической консультацией.
+    Сроки и размеры административных штрафов — по состоянию на 28.07.2026 по официальным источникам:
+    FTA Decision 6/2023 · Federal Decree-Law 47/2022, Art. 52 · Cabinet Decision 75/2023 ·
+    FTA VAT Deregistration · Federal Decree-Law 32/2021, Art. 309–325 · Cabinet Resolution 132/2023.
+    Конкретные последствия зависят от юрисдикции, формы компании, налогового статуса, сотрудников,
+    долгов и истории операций.</p>
+  <div class="foot"><span class="brand">WTP</span><span>05 / 05</span></div>
+</section>
+
+<!-- ═══════════ КАРУСЕЛЬ 5 · ЗАВЕЩАНИЕ ═══════════ -->
+
+<section class="ig dark" id="wl-1">
+  <span class="kicker">Наследственное планирование</span>
+  <div class="mid">
+    <h1>Кому актив <span class="accent">перейдёт завтра</span></h1>
+    <p class="lede">Покупка актива отвечает на вопрос, кому он принадлежит сегодня.
+      Наследственное планирование — на вопрос, кому и как он перейдёт в будущем.</p>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>01 / 05</span></div>
+</section>
+
+<section class="ig" id="wl-2">
+  <span class="kicker">Рамка продукта</span>
+  <h2>Не о смерти. <span class="accent">О продолжении</span></h2>
+  <div class="callout" style="margin-top:52px;font-size:34px">Мы не предлагаем человеку готовиться
+    к смерти. Мы помогаем ему при жизни определить, как будет жить дальше всё, что он создал.</div>
+  <div class="rows">
+    <div class="row"><span class="n">01</span><span class="t">Наследники и доли определяются заранее и своей волей</span></div>
+    <div class="row"><span class="n">02</span><span class="t">Разные активы могут переходить разным людям</span></div>
+    <div class="row"><span class="n">03</span><span class="t">Назначается исполнитель, который представляет волю владельца</span></div>
+    <div class="row"><span class="n">04</span><span class="t">Недвижимость, доли в компаниях, счета и вклады связываются в единую логику</span></div>
+  </div>
+  <div class="foot"><span class="brand">WTP</span><span>02 / 05</span></div>
+</section>
+
+<section class="ig white" id="wl-3">
+  <span class="kicker">Два формата</span>
+  <h2>Всё имущество <span class="accent">или точечно</span></h2>
+  <div class="split">
+    <div class="yes">
+      <h3>Весь состав активов</h3>
+      <ul>
+        <li>Существующее и будущее имущество</li>
+        <li>Удобно тому, кто продолжает покупать и продавать</li>
+        <li>Круг наследников и доли определяются заранее</li>
+      </ul>
+    </div>
+    <div class="yes">
+      <h3>Отдельные распоряжения</h3>
+      <ul>
+        <li>Конкретный объект, доля в бизнесе, вклад или счёт</li>
+        <li>Подходит владельцу устойчивого бизнеса или единственного объекта</li>
+        <li>Квартира — супруге, доля — сыну, вклад — детям поровну</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">Выбирать вслепую не нужно: WTP собирает карту активов и пожеланий,
+    а профильный юрист помогает выбрать корректную структуру и формулировки.</div>
+  <div class="foot"><span class="brand">WTP</span><span>03 / 05</span></div>
+</section>
+
+<section class="ig" id="wl-4">
+  <span class="kicker">Когда об этом думают</span>
+  <h2>Естественные моменты, <span class="accent">а не «срочно»</span></h2>
+  <div class="figure">
+    <div><div class="n">Покупка</div><div class="l">после регистрации недвижимости или при покупке второго объекта</div></div>
+    <div><div class="n">Компания</div><div class="l">после открытия компании или получения доли в бизнесе</div></div>
+    <div><div class="n">Счёт</div><div class="l">после открытия банковского или инвестиционного счёта</div></div>
+    <div><div class="n">Семья</div><div class="l">при изменении состава семьи или состава активов</div></div>
+  </div>
+  <div class="callout"><b>Стоимость фиксированная</b> — $2 725 (10 000 AED). Оформление
+    через Dubai Courts.</div>
+  <div class="foot"><span class="brand">WTP</span><span>04 / 05</span></div>
+</section>
+
+<section class="ig dark" id="wl-5">
+  <span class="kicker">Следующий шаг</span>
+  <div class="mid">
+    <h2>Начнём с карты активов, <span class="accent">а не с документа</span></h2>
+    <p class="lede">Расскажите, что уже есть в ОАЭ и как вы видите дальнейший маршрут
+      этих активов. Вернёмся со структурой и списком документов.</p>
+    <p class="cta-note">wtp.ae · hello@wtp.ae</p>
+  </div>
+  <p class="disc">Информация не является офертой или юридической консультацией. Юридический инструмент —
+    завещание, зарегистрированное через Dubai Courts. Применимое наследственное право, корректная
+    структура и формулировки определяются профильным юристом по конкретному кейсу. WTP не обещает
+    отсутствие наследственных процедур или передачу активов «за один день». Июль 2026.</p>
+  <div class="foot"><span class="brand">WTP</span><span>05 / 05</span></div>
+</section>
+
+</body>
+</html>
